@@ -1,5 +1,5 @@
 // ============================================================
-// APP.JS — Routing, Rendering, Search, Modal
+// APP.JS — Routing, Rendering, Game Detail Page
 // ============================================================
 
 // ---- STATE ----
@@ -9,30 +9,31 @@ let genrePageFilter  = null;
 
 // ---- ROUTES ----
 const ROUTES = {
-  'home'  : { hash: '/',         pageId: 'page-home',  navId: 'nav-home'  },
-  'games' : { hash: '/games',    pageId: 'page-games', navId: 'nav-games' },
-  'genre' : { hash: '/the-loai', pageId: 'page-genre', navId: 'nav-genre' },
-  'viet'  : { hash: '/viet-hoa', pageId: 'page-viet',  navId: 'nav-viet'  },
-  'new'   : { hash: '/game-moi', pageId: 'page-new',   navId: 'nav-new'   },
-  'top'   : { hash: '/top-game', pageId: 'page-top',   navId: 'nav-top'   },
+  'home'  : { hash: '/',         pageId: 'page-home',   navId: 'nav-home'  },
+  'games' : { hash: '/games',    pageId: 'page-games',  navId: 'nav-games' },
+  'genre' : { hash: '/the-loai', pageId: 'page-genre',  navId: 'nav-genre' },
+  'viet'  : { hash: '/viet-hoa', pageId: 'page-viet',   navId: 'nav-viet'  },
+  'new'   : { hash: '/game-moi', pageId: 'page-new',    navId: 'nav-new'   },
+  'top'   : { hash: '/top-game', pageId: 'page-top',    navId: 'nav-top'   },
+  'detail': { hash: '/game/',    pageId: 'page-detail', navId: null        },
 };
 
-function navigate(page) {
-  if (!ROUTES[page]) return;
+function navigate(page, param) {
   currentPage = page;
-
-  // Hide all pages
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  // Show target
-  document.getElementById(ROUTES[page].pageId).classList.add('active');
-  // Update nav active
+  const route = ROUTES[page];
+  if (!route) return;
+  document.getElementById(route.pageId).classList.add('active');
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-  const navEl = document.getElementById(ROUTES[page].navId);
-  if (navEl) navEl.classList.add('active');
-  // Update URL hash
-  history.pushState(null, '', '#' + ROUTES[page].hash);
-  // Render page content
-  renderPage(page);
+  if (route.navId) document.getElementById(route.navId)?.classList.add('active');
+
+  if (page === 'detail' && param) {
+    history.pushState(null, '', '#/game/' + param);
+    renderDetailPage(+param);
+  } else {
+    history.pushState(null, '', '#' + route.hash);
+    renderPage(page);
+  }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -50,7 +51,10 @@ function renderPage(page) {
 // ---- HASH ROUTING ----
 function handleHash() {
   const hash = location.hash.replace('#', '') || '/';
-  const found = Object.entries(ROUTES).find(([, r]) => r.hash === hash);
+  // Game detail route: /game/:id
+  const detailMatch = hash.match(/^\/game\/(\d+)$/);
+  if (detailMatch) { navigate('detail', +detailMatch[1]); return; }
+  const found = Object.entries(ROUTES).find(([k, r]) => k !== 'detail' && r.hash === hash);
   navigate(found ? found[0] : 'home');
 }
 window.addEventListener('popstate', handleHash);
@@ -80,7 +84,7 @@ function badgesHTML(badges, viet) {
 
 function gameCard(g, delay = 0) {
   return `
-  <div class="game-card" data-id="${g.id}" style="animation-delay:${delay}s" onclick="openModal(${g.id})">
+  <div class="game-card" data-id="${g.id}" style="animation-delay:${delay}s" onclick="navigate('detail',${g.id})">
     <div class="card-thumb">
       <span>${g.emoji}</span>
     </div>
@@ -100,7 +104,7 @@ function gameCard(g, delay = 0) {
           <span class="card-size">${g.size}</span>
           <span class="card-year">${g.year}</span>
         </div>
-        <button class="btn-dl-sm" onclick="event.stopPropagation(); dlGame(${g.id})">⬇ Tải</button>
+        <button class="btn-dl-sm" onclick="event.stopPropagation(); navigate('detail',${g.id})">Xem →</button>
       </div>
     </div>
   </div>`;
@@ -109,7 +113,7 @@ function gameCard(g, delay = 0) {
 function topItem(g, rank) {
   const rankClass = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
   return `
-  <div class="top-item" onclick="openModal(${g.id})">
+  <div class="top-item" onclick="navigate('detail',${g.id})">
     <div class="top-rank ${rankClass}">${rank <= 3 ? ['🥇','🥈','🥉'][rank-1] : '#'+rank}</div>
     <div class="top-icon">${g.emoji}</div>
     <div class="top-info">
@@ -140,8 +144,8 @@ function renderHome() {
         ${featured.viet ? '<span class="featured-meta-item">🇻🇳 Có Việt hóa</span>' : ''}
       </div>
       <div class="featured-actions">
-        <button class="btn-primary" onclick="dlGame(${featured.id})">⬇ Tải ngay — Miễn phí</button>
-        <button class="btn-outline" onclick="openModal(${featured.id})">Chi tiết</button>
+        <button class="btn-primary" onclick="navigate('detail',${featured.id})">⬇ Tải ngay — Miễn phí</button>
+        <button class="btn-outline" onclick="navigate('detail',${featured.id})">Xem chi tiết →</button>
       </div>
     </div>
     <div class="featured-emoji">${featured.emoji}</div>
@@ -262,59 +266,142 @@ function renderTopPage() {
   document.getElementById('topHot').innerHTML    = byHot.map((g,i) => topItem(g, i+1)).join('');
 }
 
-// ---- MODAL ----
-function openModal(id) {
+// ---- RENDER GAME DETAIL PAGE ----
+function renderDetailPage(id) {
   const g = GAMES.find(x => x.id === id);
-  if (!g) return;
+  if (!g) {
+    document.getElementById('page-detail').innerHTML = `
+      <div style="padding:8rem 2rem; text-align:center; color:var(--text3);">
+        <div style="font-size:3rem;">😕</div>
+        <h2 style="margin:.75rem 0 .5rem;">Không tìm thấy game</h2>
+        <button class="btn-primary" onclick="navigate('games')" style="margin-top:1rem;">← Quay lại</button>
+      </div>`;
+    return;
+  }
 
-  document.getElementById('modalContent').innerHTML = `
-  <div class="modal-thumb">${g.emoji}</div>
-  <div class="modal-body">
-    <div class="modal-head">
-      <div class="modal-title">${g.title}</div>
-      <div class="modal-rating">★ ${g.rating.toFixed(1)}</div>
-    </div>
-    <div class="modal-tags">
-      <span class="modal-tag accent">🗂️ ${g.genre_label}</span>
-      ${g.viet ? '<span class="modal-tag red">🇻🇳 Đã Việt hóa</span>' : ''}
-      ${g.badges.includes('hot') ? '<span class="modal-tag" style="border-color:#ff4466;color:#ff4466;">🔥 Nóng</span>' : ''}
-      ${g.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}
-    </div>
-    <div class="modal-desc">${g.desc}</div>
-    <div class="modal-info-grid">
-      <div class="info-cell"><div class="info-label">Phiên bản</div><div class="info-val">${g.version}</div></div>
-      <div class="info-cell"><div class="info-label">Năm phát hành</div><div class="info-val">${g.year}</div></div>
-      <div class="info-cell"><div class="info-label">Dung lượng</div><div class="info-val">${g.size}</div></div>
-      <div class="info-cell"><div class="info-label">Lượt tải</div><div class="info-val">⬇ ${fmtDl(g.downloads)}</div></div>
-      <div class="info-cell"><div class="info-label">Đánh giá</div><div class="info-val">${stars(g.rating)}</div></div>
-      <div class="info-cell"><div class="info-label">Việt hóa</div><div class="info-val">${g.viet ? '✅ Có' : '❌ Chưa có'}</div></div>
-    </div>
-    <div class="modal-actions">
-      <a href="${g.download}" class="btn-dl-main" download>⬇ Tải xuống — Miễn phí</a>
-      <button class="btn-dl-secondary" onclick="closeModal()">Đóng</button>
-    </div>
-  </div>`;
+  // Related games: same genre, exclude current
+  const related = GAMES.filter(x => x.genre === g.genre && x.id !== g.id).slice(0, 4);
 
-  document.getElementById('gameModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
+  // Star bar render
+  const ratingPct = (g.rating / 5 * 100).toFixed(0);
 
-function closeModal() {
-  document.getElementById('gameModal').classList.remove('open');
-  document.body.style.overflow = '';
+  document.getElementById('page-detail').innerHTML = `
+  <!-- BREADCRUMB -->
+  <div style="background:var(--surface); border-bottom:1px solid var(--border); padding:.75rem 2rem;">
+    <div style="max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:.5rem; font-size:.8rem; color:var(--text3);">
+      <a onclick="navigate('home')" href="#/" style="color:var(--text3); cursor:pointer; transition:color .15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">Trang chủ</a>
+      <span>›</span>
+      <a onclick="navigate('games')" href="#/games" style="color:var(--text3); cursor:pointer; transition:color .15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">Tất cả game</a>
+      <span>›</span>
+      <span style="color:var(--text2);">${g.title}</span>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <div class="detail-hero">
+    <div class="detail-hero-bg" style="background:radial-gradient(ellipse 70% 80% at 50% 0%, rgba(108,99,255,.15) 0%, transparent 70%);"></div>
+    <div class="detail-container">
+      <div class="detail-layout">
+
+        <!-- LEFT: Cover art -->
+        <div class="detail-cover">
+          <div class="detail-cover-art">${g.emoji}</div>
+          <div class="detail-cover-badges">
+            ${g.badges.includes('hot') ? '<span class="badge badge-hot">🔥 Đang hot</span>' : ''}
+            ${g.badges.includes('new') ? '<span class="badge badge-new">✨ Mới cập nhật</span>' : ''}
+            ${g.viet ? '<span class="badge badge-viet">🇻🇳 Việt hóa</span>' : ''}
+          </div>
+          <!-- DOWNLOAD BOX -->
+          <div class="dl-box">
+            <div class="dl-box-title">Tải miễn phí</div>
+            <div class="dl-size">📦 ${g.size}</div>
+            <a href="${g.download}" class="btn-dl-big" download>
+              ⬇ Tải xuống ngay
+            </a>
+            <div class="dl-note">✅ Miễn phí · Không quảng cáo · Tốc độ cao</div>
+            ${g.viet ? '<div class="dl-viet">🇻🇳 Bản này đã có tiếng Việt</div>' : ''}
+          </div>
+        </div>
+
+        <!-- RIGHT: Info -->
+        <div class="detail-info">
+          <div class="detail-genre-tag">${g.genre_label}</div>
+          <h1 class="detail-title">${g.title}</h1>
+
+          <!-- Rating row -->
+          <div class="detail-rating-row">
+            <div class="detail-stars">
+              ${'★'.repeat(Math.floor(g.rating))}${g.rating % 1 >= .5 ? '½' : ''}
+            </div>
+            <span class="detail-rating-num">${g.rating.toFixed(1)}</span>
+            <span class="detail-rating-bar">
+              <span style="width:${ratingPct}%"></span>
+            </span>
+            <span class="detail-dl-count">⬇ ${fmtDl(g.downloads)} lượt tải</span>
+          </div>
+
+          <p class="detail-desc">${g.desc}</p>
+
+          <!-- Specs grid -->
+          <div class="detail-specs">
+            <div class="spec-item">
+              <div class="spec-label">Phiên bản</div>
+              <div class="spec-val">${g.version}</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Năm phát hành</div>
+              <div class="spec-val">${g.year}</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Dung lượng</div>
+              <div class="spec-val">${g.size}</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Việt hóa</div>
+              <div class="spec-val">${g.viet ? '✅ Có đầy đủ' : '❌ Chưa có'}</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Thể loại</div>
+              <div class="spec-val">${g.genre_label}</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Tags</div>
+              <div class="spec-val">${g.tags.join(', ')}</div>
+            </div>
+          </div>
+
+          <!-- Cấu hình tối thiểu (mẫu) -->
+          <div class="detail-req">
+            <div class="detail-req-title">⚙️ Cấu hình tối thiểu</div>
+            <div class="detail-req-grid">
+              <div><span>OS</span> Windows 10 64-bit</div>
+              <div><span>CPU</span> Intel Core i5 hoặc tương đương</div>
+              <div><span>RAM</span> 8 GB</div>
+              <div><span>GPU</span> NVIDIA GTX 970 / AMD RX 480</div>
+              <div><span>Ổ cứng</span> ${g.size} trống</div>
+              <div><span>DirectX</span> Version 11</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED GAMES -->
+  ${related.length ? `
+  <div class="detail-container" style="padding-top:2.5rem; padding-bottom:3rem;">
+    <div class="section-header">
+      <h2 class="section-title"><span class="icon">🎮</span> Game cùng thể loại</h2>
+      <a class="section-more" onclick="navigate('genre')" href="#/the-loai">Xem thêm →</a>
+    </div>
+    <div class="game-grid wide">${related.map((r,i) => gameCard(r, i*.05)).join('')}</div>
+  </div>` : ''}
+  `;
 }
 
 function dlGame(id) {
-  const g = GAMES.find(x => x.id === id);
-  if (!g) return;
-  // In production: trigger real download
-  openModal(id);
+  navigate('detail', id);
 }
-
-// Backdrop click
-document.getElementById('gameModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
 
 // ---- SEARCH ----
 function openSearch() {
@@ -355,7 +442,7 @@ function renderSearchResults() {
   }
 
   container.innerHTML = results.map(g => `
-  <div class="search-result-item" onclick="closeSearch(); openModal(${g.id})">
+  <div class="search-result-item" onclick="closeSearch(); navigate('detail',${g.id})">
     <div class="search-result-icon">${g.emoji}</div>
     <div class="search-result-info">
       <div class="search-result-title">${g.title} ${g.viet ? '🇻🇳' : ''}</div>
@@ -371,7 +458,7 @@ document.addEventListener('keydown', e => {
     e.preventDefault(); openSearch();
   }
   if (e.key === 'Escape') {
-    closeModal(); closeSearch();
+    closeSearch();
     document.getElementById('navDrawer').classList.remove('open');
   }
 });
