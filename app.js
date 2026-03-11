@@ -1,5 +1,5 @@
 // ============================================================
-// APP.JS — Routing, Rendering, Game Detail Page
+// APP.JS — History API Routing (no # in URLs)
 // ============================================================
 
 // ---- STATE ----
@@ -9,13 +9,13 @@ let genrePageFilter  = null;
 
 // ---- ROUTES ----
 const ROUTES = {
-  'home'  : { hash: '/',         pageId: 'page-home',   navId: 'nav-home'  },
-  'games' : { hash: '/games',    pageId: 'page-games',  navId: 'nav-games' },
-  'genre' : { hash: '/the-loai', pageId: 'page-genre',  navId: 'nav-genre' },
-  'viet'  : { hash: '/viet-hoa', pageId: 'page-viet',   navId: 'nav-viet'  },
-  'new'   : { hash: '/game-moi', pageId: 'page-new',    navId: 'nav-new'   },
-  'top'   : { hash: '/top-game', pageId: 'page-top',    navId: 'nav-top'   },
-  'detail': { hash: '/game/',    pageId: 'page-detail', navId: null        },
+  'home'  : { path: '/',         pageId: 'page-home',   navId: 'nav-home'  },
+  'games' : { path: '/games',    pageId: 'page-games',  navId: 'nav-games' },
+  'genre' : { path: '/the-loai', pageId: 'page-genre',  navId: 'nav-genre' },
+  'viet'  : { path: '/viet-hoa', pageId: 'page-viet',   navId: 'nav-viet'  },
+  'new'   : { path: '/game-moi', pageId: 'page-new',    navId: 'nav-new'   },
+  'top'   : { path: '/top-game', pageId: 'page-top',    navId: 'nav-top'   },
+  'detail': { path: '/game/',    pageId: 'page-detail', navId: null        },
 };
 
 function navigate(page, param) {
@@ -28,10 +28,10 @@ function navigate(page, param) {
   if (route.navId) document.getElementById(route.navId)?.classList.add('active');
 
   if (page === 'detail' && param) {
-    history.pushState(null, '', '#/game/' + param);
+    history.pushState(null, '', '/game/' + param);
     renderDetailPage(+param);
   } else {
-    history.pushState(null, '', '#' + route.hash);
+    history.pushState(null, '', route.path);
     renderPage(page);
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -48,24 +48,22 @@ function renderPage(page) {
   }
 }
 
-// ---- HASH ROUTING ----
-function handleHash() {
-  const hash = location.hash.replace('#', '') || '/';
-  // Game detail route: /game/:id
-  const detailMatch = hash.match(/^\/game\/(\d+)$/);
+// ---- HISTORY ROUTING ----
+function handlePath() {
+  const path = location.pathname;
+  const detailMatch = path.match(/^\/game\/(\d+)$/);
   if (detailMatch) { navigate('detail', +detailMatch[1]); return; }
-  const found = Object.entries(ROUTES).find(([k, r]) => k !== 'detail' && r.hash === hash);
+  const found = Object.entries(ROUTES).find(([k, r]) => k !== 'detail' && r.path === path);
   navigate(found ? found[0] : 'home');
 }
-window.addEventListener('popstate', handleHash);
+window.addEventListener('popstate', handlePath);
 
 // ---- HELPERS ----
 function stars(r) {
   const full = Math.floor(r);
-  const half = r % 1 >= .5 ? 1 : 0;
   let s = '';
   for (let i = 0; i < full; i++) s += '★';
-  if (half) s += '½';
+  if (r % 1 >= .5) s += '½';
   return `<span style="color:#fbbf24; font-size:.75rem;">${s}</span> <span style="font-size:.75rem;">${r.toFixed(1)}</span>`;
 }
 
@@ -85,9 +83,7 @@ function badgesHTML(badges, viet) {
 function gameCard(g, delay = 0) {
   return `
   <div class="game-card" data-id="${g.id}" style="animation-delay:${delay}s" onclick="navigate('detail',${g.id})">
-    <div class="card-thumb">
-      <span>${g.emoji}</span>
-    </div>
+    <div class="card-thumb"><span>${g.emoji}</span></div>
     ${badgesHTML(g.badges, g.viet)}
     <div class="card-body">
       <div class="card-top">
@@ -129,7 +125,6 @@ function renderHome() {
   document.getElementById('heroTotal').textContent = GAMES.length;
   document.getElementById('heroViet').textContent = GAMES.filter(g => g.viet).length;
 
-  // Featured banner = highest rated
   const featured = [...GAMES].sort((a,b) => b.downloads - a.downloads)[0];
   document.getElementById('featuredBanner').innerHTML = `
   <div class="featured-banner">
@@ -151,24 +146,15 @@ function renderHome() {
     <div class="featured-emoji">${featured.emoji}</div>
   </div>`;
 
-  // Hot games (has 'hot' badge)
-  const hot = GAMES.filter(g => g.badges.includes('hot')).slice(0, 8);
-  document.getElementById('homeHot').innerHTML = hot.map((g,i) => gameCard(g, i*.04)).join('');
-
-  // New games (has 'new' badge)
-  const newest = GAMES.filter(g => g.badges.includes('new')).slice(0, 4);
-  document.getElementById('homeNew').innerHTML = newest.map((g,i) => gameCard(g, i*.05)).join('');
-
-  // Viet games
-  const viet = GAMES.filter(g => g.viet).slice(0, 4);
-  document.getElementById('homeViet').innerHTML = viet.map((g,i) => gameCard(g, i*.05)).join('');
+  document.getElementById('homeHot').innerHTML = GAMES.filter(g => g.badges.includes('hot')).slice(0,8).map((g,i) => gameCard(g,i*.04)).join('');
+  document.getElementById('homeNew').innerHTML = GAMES.filter(g => g.badges.includes('new')).slice(0,4).map((g,i) => gameCard(g,i*.05)).join('');
+  document.getElementById('homeViet').innerHTML = GAMES.filter(g => g.viet).slice(0,4).map((g,i) => gameCard(g,i*.05)).join('');
 }
 
 // ---- RENDER GAMES PAGE ----
 function renderGamesPage() {
-  const q     = (document.getElementById('gamesSearch')?.value || '').toLowerCase().trim();
-  const sort  = document.getElementById('gamesSort')?.value || 'new';
-
+  const q    = (document.getElementById('gamesSearch')?.value || '').toLowerCase().trim();
+  const sort = document.getElementById('gamesSort')?.value || 'new';
   let list = [...GAMES];
   if (gamesGenreFilter !== 'all') list = list.filter(g => g.genre === gamesGenreFilter);
   if (q) list = list.filter(g =>
@@ -183,15 +169,14 @@ function renderGamesPage() {
   if (sort === 'new')    list.sort((a,b) => b.year - a.year);
 
   const countEl = document.getElementById('gamesCount');
-  if (countEl) countEl.innerHTML = `<strong>${list.length}</strong> game${list.length!==1?'':''}`;
-
+  if (countEl) countEl.innerHTML = `<strong>${list.length}</strong> game`;
   const grid = document.getElementById('gamesGrid');
   if (!grid) return;
   if (!list.length) {
     grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🔍</div><h3>Không tìm thấy game</h3><p>Thử từ khóa khác hoặc bỏ bộ lọc</p></div>`;
     return;
   }
-  grid.innerHTML = list.map((g,i) => gameCard(g, i*.03)).join('');
+  grid.innerHTML = list.map((g,i) => gameCard(g,i*.03)).join('');
 }
 
 function setGamesGenre(el, genre) {
@@ -203,9 +188,14 @@ function setGamesGenre(el, genre) {
 
 // ---- RENDER GENRE PAGE ----
 function renderGenrePage() {
-  // Genre cards
   const cards = document.getElementById('genreCards');
-  cards.innerHTML = GENRES.map(g => {
+  let html = `
+    <div class="genre-card ${!genrePageFilter ? 'active' : ''}" onclick="selectGenre(null)">
+      <div class="genre-icon">🎮</div>
+      <div class="genre-name">Tất cả</div>
+      <div class="genre-count">${GAMES.length} game</div>
+    </div>`;
+  html += GENRES.map(g => {
     const count = GAMES.filter(x => x.genre === g.id).length;
     return `
     <div class="genre-card ${genrePageFilter === g.id ? 'active' : ''}" onclick="selectGenre('${g.id}')">
@@ -214,14 +204,7 @@ function renderGenrePage() {
       <div class="genre-count">${count} game</div>
     </div>`;
   }).join('');
-
-  // Add "All"
-  cards.innerHTML = `
-    <div class="genre-card ${!genrePageFilter ? 'active' : ''}" onclick="selectGenre(null)">
-      <div class="genre-icon">🎮</div>
-      <div class="genre-name">Tất cả</div>
-      <div class="genre-count">${GAMES.length} game</div>
-    </div>` + cards.innerHTML;
+  cards.innerHTML = html;
 
   const header = document.getElementById('genreSectionHeader');
   const title  = document.getElementById('genreTitle');
@@ -231,11 +214,10 @@ function renderGenrePage() {
     const g = GENRES.find(x => x.id === genrePageFilter);
     header.style.display = 'flex';
     title.innerHTML = `<span class="icon">${g?.icon||'🎮'}</span> ${g?.name||''} <span style="color:var(--text3); font-weight:400; font-size:1rem;">(${GAMES.filter(x=>x.genre===genrePageFilter).length})</span>`;
-    const list = GAMES.filter(x => x.genre === genrePageFilter);
-    grid.innerHTML = list.map((g,i) => gameCard(g, i*.03)).join('');
+    grid.innerHTML = GAMES.filter(x => x.genre === genrePageFilter).map((g,i) => gameCard(g,i*.03)).join('');
   } else {
     header.style.display = 'none';
-    grid.innerHTML = GAMES.map((g,i) => gameCard(g, i*.02)).join('');
+    grid.innerHTML = GAMES.map((g,i) => gameCard(g,i*.02)).join('');
   }
 }
 
@@ -248,22 +230,18 @@ function selectGenre(id) {
 function renderVietPage() {
   const list = GAMES.filter(g => g.viet);
   document.getElementById('vietCount').innerHTML = `<strong>${list.length}</strong> game đã được Việt hóa`;
-  document.getElementById('vietGrid').innerHTML = list.map((g,i) => gameCard(g, i*.03)).join('');
+  document.getElementById('vietGrid').innerHTML = list.map((g,i) => gameCard(g,i*.03)).join('');
 }
 
 // ---- RENDER GAME MỚI ----
 function renderNewPage() {
-  const sorted = [...GAMES].sort((a,b) => b.year - a.year);
-  document.getElementById('newGrid').innerHTML = sorted.map((g,i) => gameCard(g, i*.03)).join('');
+  document.getElementById('newGrid').innerHTML = [...GAMES].sort((a,b) => b.year - a.year).map((g,i) => gameCard(g,i*.03)).join('');
 }
 
 // ---- RENDER TOP ----
 function renderTopPage() {
-  const byRating = [...GAMES].sort((a,b) => b.rating - a.rating).slice(0,10);
-  const byHot    = [...GAMES].sort((a,b) => b.downloads - a.downloads).slice(0,10);
-
-  document.getElementById('topRating').innerHTML = byRating.map((g,i) => topItem(g, i+1)).join('');
-  document.getElementById('topHot').innerHTML    = byHot.map((g,i) => topItem(g, i+1)).join('');
+  document.getElementById('topRating').innerHTML = [...GAMES].sort((a,b) => b.rating - a.rating).slice(0,10).map((g,i) => topItem(g,i+1)).join('');
+  document.getElementById('topHot').innerHTML    = [...GAMES].sort((a,b) => b.downloads - a.downloads).slice(0,10).map((g,i) => topItem(g,i+1)).join('');
 }
 
 // ---- RENDER GAME DETAIL PAGE ----
@@ -279,19 +257,16 @@ function renderDetailPage(id) {
     return;
   }
 
-  // Related games: same genre, exclude current
   const related = GAMES.filter(x => x.genre === g.genre && x.id !== g.id).slice(0, 4);
-
-  // Star bar render
   const ratingPct = (g.rating / 5 * 100).toFixed(0);
 
   document.getElementById('page-detail').innerHTML = `
   <!-- BREADCRUMB -->
   <div style="background:var(--surface); border-bottom:1px solid var(--border); padding:.75rem 2rem;">
     <div style="max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:.5rem; font-size:.8rem; color:var(--text3);">
-      <a onclick="navigate('home')" href="#/" style="color:var(--text3); cursor:pointer; transition:color .15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">Trang chủ</a>
+      <a onclick="navigate('home')" href="/" style="color:var(--text3); cursor:pointer; transition:color .15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">Trang chủ</a>
       <span>›</span>
-      <a onclick="navigate('games')" href="#/games" style="color:var(--text3); cursor:pointer; transition:color .15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">Tất cả game</a>
+      <a onclick="navigate('games')" href="/games" style="color:var(--text3); cursor:pointer; transition:color .15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">Tất cả game</a>
       <span>›</span>
       <span style="color:var(--text2);">${g.title}</span>
     </div>
@@ -302,7 +277,6 @@ function renderDetailPage(id) {
     <div class="detail-hero-bg" style="background:radial-gradient(ellipse 70% 80% at 50% 0%, rgba(108,99,255,.15) 0%, transparent 70%);"></div>
     <div class="detail-container">
       <div class="detail-layout">
-
         <!-- LEFT: Cover art -->
         <div class="detail-cover">
           <div class="detail-cover-art">${g.emoji}</div>
@@ -311,13 +285,10 @@ function renderDetailPage(id) {
             ${g.badges.includes('new') ? '<span class="badge badge-new">✨ Mới cập nhật</span>' : ''}
             ${g.viet ? '<span class="badge badge-viet">🇻🇳 Việt hóa</span>' : ''}
           </div>
-          <!-- DOWNLOAD BOX -->
           <div class="dl-box">
             <div class="dl-box-title">Tải miễn phí</div>
             <div class="dl-size">📦 ${g.size}</div>
-            <a href="${g.download}" class="btn-dl-big" download>
-              ⬇ Tải xuống ngay
-            </a>
+            <a href="${g.download}" class="btn-dl-big" download>⬇ Tải xuống ngay</a>
             <div class="dl-note">✅ Miễn phí · Không quảng cáo · Tốc độ cao</div>
             ${g.viet ? '<div class="dl-viet">🇻🇳 Bản này đã có tiếng Việt</div>' : ''}
           </div>
@@ -327,50 +298,21 @@ function renderDetailPage(id) {
         <div class="detail-info">
           <div class="detail-genre-tag">${g.genre_label}</div>
           <h1 class="detail-title">${g.title}</h1>
-
-          <!-- Rating row -->
           <div class="detail-rating-row">
-            <div class="detail-stars">
-              ${'★'.repeat(Math.floor(g.rating))}${g.rating % 1 >= .5 ? '½' : ''}
-            </div>
+            <div class="detail-stars">${'★'.repeat(Math.floor(g.rating))}${g.rating % 1 >= .5 ? '½' : ''}</div>
             <span class="detail-rating-num">${g.rating.toFixed(1)}</span>
-            <span class="detail-rating-bar">
-              <span style="width:${ratingPct}%"></span>
-            </span>
+            <span class="detail-rating-bar"><span style="width:${ratingPct}%"></span></span>
             <span class="detail-dl-count">⬇ ${fmtDl(g.downloads)} lượt tải</span>
           </div>
-
           <p class="detail-desc">${g.desc}</p>
-
-          <!-- Specs grid -->
           <div class="detail-specs">
-            <div class="spec-item">
-              <div class="spec-label">Phiên bản</div>
-              <div class="spec-val">${g.version}</div>
-            </div>
-            <div class="spec-item">
-              <div class="spec-label">Năm phát hành</div>
-              <div class="spec-val">${g.year}</div>
-            </div>
-            <div class="spec-item">
-              <div class="spec-label">Dung lượng</div>
-              <div class="spec-val">${g.size}</div>
-            </div>
-            <div class="spec-item">
-              <div class="spec-label">Việt hóa</div>
-              <div class="spec-val">${g.viet ? '✅ Có đầy đủ' : '❌ Chưa có'}</div>
-            </div>
-            <div class="spec-item">
-              <div class="spec-label">Thể loại</div>
-              <div class="spec-val">${g.genre_label}</div>
-            </div>
-            <div class="spec-item">
-              <div class="spec-label">Tags</div>
-              <div class="spec-val">${g.tags.join(', ')}</div>
-            </div>
+            <div class="spec-item"><div class="spec-label">Phiên bản</div><div class="spec-val">${g.version}</div></div>
+            <div class="spec-item"><div class="spec-label">Năm phát hành</div><div class="spec-val">${g.year}</div></div>
+            <div class="spec-item"><div class="spec-label">Dung lượng</div><div class="spec-val">${g.size}</div></div>
+            <div class="spec-item"><div class="spec-label">Việt hóa</div><div class="spec-val">${g.viet ? '✅ Có đầy đủ' : '❌ Chưa có'}</div></div>
+            <div class="spec-item"><div class="spec-label">Thể loại</div><div class="spec-val">${g.genre_label}</div></div>
+            <div class="spec-item"><div class="spec-label">Tags</div><div class="spec-val">${g.tags.join(', ')}</div></div>
           </div>
-
-          <!-- Cấu hình tối thiểu (mẫu) -->
           <div class="detail-req">
             <div class="detail-req-title">⚙️ Cấu hình tối thiểu</div>
             <div class="detail-req-grid">
@@ -387,21 +329,18 @@ function renderDetailPage(id) {
     </div>
   </div>
 
-  <!-- RELATED GAMES -->
   ${related.length ? `
   <div class="detail-container" style="padding-top:2.5rem; padding-bottom:3rem;">
     <div class="section-header">
       <h2 class="section-title"><span class="icon">🎮</span> Game cùng thể loại</h2>
-      <a class="section-more" onclick="navigate('genre')" href="#/the-loai">Xem thêm →</a>
+      <a class="section-more" onclick="navigate('genre')" href="/the-loai">Xem thêm →</a>
     </div>
-    <div class="game-grid wide">${related.map((r,i) => gameCard(r, i*.05)).join('')}</div>
+    <div class="game-grid wide">${related.map((r,i) => gameCard(r,i*.05)).join('')}</div>
   </div>` : ''}
   `;
 }
 
-function dlGame(id) {
-  navigate('detail', id);
-}
+function dlGame(id) { navigate('detail', id); }
 
 // ---- SEARCH ----
 function openSearch() {
@@ -424,23 +363,19 @@ document.getElementById('searchOverlay').addEventListener('click', function(e) {
 function renderSearchResults() {
   const q = document.getElementById('searchModalInput').value.toLowerCase().trim();
   const container = document.getElementById('searchResults');
-
   if (!q) {
     container.innerHTML = `<div class="search-empty">Nhập tên game, thể loại... để tìm kiếm</div>`;
     return;
   }
-
   const results = GAMES.filter(g =>
     g.title.toLowerCase().includes(q) ||
     g.genre_label.toLowerCase().includes(q) ||
     g.tags.some(t => t.toLowerCase().includes(q))
   ).slice(0, 8);
-
   if (!results.length) {
-    container.innerHTML = `<div class="search-empty">Không tìm thấy game nào cho "<strong>${q}</strong>"</div>`;
+    container.innerHTML = `<div class="search-empty">Không tìm thấy "<strong>${q}</strong>"</div>`;
     return;
   }
-
   container.innerHTML = results.map(g => `
   <div class="search-result-item" onclick="closeSearch(); navigate('detail',${g.id})">
     <div class="search-result-icon">${g.emoji}</div>
@@ -454,9 +389,7 @@ function renderSearchResults() {
 
 // ---- KEYBOARD SHORTCUTS ----
 document.addEventListener('keydown', e => {
-  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-    e.preventDefault(); openSearch();
-  }
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
   if (e.key === 'Escape') {
     closeSearch();
     document.getElementById('navDrawer').classList.remove('open');
@@ -471,5 +404,5 @@ function toggleDrawer() {
 // ---- INIT ----
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('navCount').textContent = GAMES.length + ' games';
-  handleHash();
+  handlePath();
 });
