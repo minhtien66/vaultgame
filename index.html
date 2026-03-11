@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VaultGame — Kho Game PC Miễn Phí</title>
+<meta name="description" content="Kho lưu trữ game PC miễn phí lớn nhất Việt Nam. Tải game không giới hạn, việt hóa đầy đủ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   VARIABLES & RESET
+   ============================================= */
+:root {
+  --bg:        #08080e;
+  --bg2:       #0f0f18;
+  --surface:   #13131e;
+  --surface2:  #1c1c2e;
+  --border:    #252538;
+  --border2:   #333350;
+  --accent:    #6c63ff;
+  --accent-h:  #8b85ff;
+  --accent2:   #ff6584;
+  --green:     #22d3a5;
+  --yellow:    #fbbf24;
+  --text:      #e2e2f0;
+  --text2:     #a0a0c0;
+  --text3:     #55556a;
+  --font:      'Be Vietnam Pro', sans-serif;
+  --mono:      'JetBrains Mono', monospace;
+  --nav-h:     64px;
+  --radius:    12px;
+  --shadow:    0 4px 32px rgba(0,0,0,.5);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--font); cursor: pointer; }
+input, select { font-family: var(--font); }
+img { display: block; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: var(--nav-h);
+  background: rgba(8,8,14,.92);
+  backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 2rem;
+  gap: 0;
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -.02em;
+  display: flex; align-items: center; gap: .4rem;
+  margin-right: 2.5rem;
+  flex-shrink: 0;
+}
+.nav-logo .bracket { color: var(--accent); }
+.nav-logo .name { color: var(--text); }
+.nav-logo .dot { color: var(--green); }
+
+.nav-links {
+  display: flex; align-items: center; gap: .25rem;
+  flex: 1;
+}
+.nav-link {
+  display: flex; align-items: center; gap: .4rem;
+  padding: .45rem .85rem;
+  border-radius: 8px;
+  font-size: .875rem;
+  font-weight: 500;
+  color: var(--text2);
+  transition: color .2s, background .2s;
+  white-space: nowrap;
+}
+.nav-link .icon { font-size: .9rem; }
+.nav-link:hover { color: var(--text); background: var(--surface); }
+.nav-link.active { color: var(--accent); background: rgba(108,99,255,.12); }
+
+.nav-right {
+  display: flex; align-items: center; gap: .75rem;
+  margin-left: auto;
+}
+
+.nav-search-btn {
+  display: flex; align-items: center; gap: .5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: .4rem .9rem;
+  border-radius: 8px;
+  font-size: .8rem;
+  transition: all .2s;
+}
+.nav-search-btn:hover { border-color: var(--accent); color: var(--text); }
+.nav-search-btn kbd {
+  font-family: var(--mono);
+  font-size: .65rem;
+  background: var(--border);
+  padding: .1rem .35rem;
+  border-radius: 3px;
+  color: var(--text3);
+}
+
+.nav-count {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text3);
+  border: 1px solid var(--border);
+  padding: .3rem .6rem;
+  border-radius: 6px;
+}
+
+/* Mobile nav toggle */
+.nav-hamburger {
+  display: none;
+  background: none; border: none; color: var(--text);
+  font-size: 1.3rem; padding: .25rem;
+  margin-left: auto;
+}
+
+/* =============================================
+   PAGES
+   ============================================= */
+.page { display: none; padding-top: var(--nav-h); min-height: 100vh; }
+.page.active { display: block; animation: pageFade .3s ease; }
+@keyframes pageFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =============================================
+   HERO (HOME)
+   ============================================= */
+.hero {
+  position: relative;
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(108,99,255,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(255,101,132,.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Grid lines */
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(108,99,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,99,255,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-size: .78rem; font-weight: 600;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  background: rgba(108,99,255,.08);
+  border: 1px solid rgba(108,99,255,.25);
+  padding: .35rem 1rem;
+  border-radius: 100px;
+}
+.hero-eyebrow .pulse {
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(34,211,165,.6);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34,211,165,.6); }
+  70% { box-shadow: 0 0 0 8px rgba(34,211,165,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,211,165,0); }
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text2);
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.hero-ctas {
+  display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--accent);
+  color: #fff;
+  padding: .75rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 700; font-size: .95rem;
+  border: none;
+  transition: all .2s;
+  box-shadow: 0 4px 20px rgba(108,99,255,.35);
+}
+.btn-primary:hover { background: var(--accent-h); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(108,99,255,.45); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: transparent;
+  color: var(--text);
+  padding: .75rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 600; font-size: .95rem;
+  border: 1px solid var(--border2);
+  transition: all .2s;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: rgba(108,99,255,.06); }
+
+.hero-stats {
+  display: flex; justify-content: center; gap: 3.5rem; flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: var(--mono);
+  font-size: 2rem; font-weight: 700;
+  display: block;
+  background: linear-gradient(135deg, var(--text) 0%, var(--text2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-stat-label { font-size: .8rem; color: var(--text3); text-transform: uppercase; letter-spacing: .08em; margin-top: .15rem; }
+
+/* =============================================
+   SECTION HEADER
+   ============================================= */
+.section-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+.section-title {
+  font-size: 1.35rem; font-weight: 800;
+  letter-spacing: -.02em;
+  display: flex; align-items: center; gap: .6rem;
+}
+.section-title .icon { font-size: 1.1rem; }
+.section-more {
+  font-size: .82rem; color: var(--accent); font-weight: 600;
+  display: flex; align-items: center; gap: .25rem;
+  transition: gap .2s;
+}
+.section-more:hover { gap: .5rem; }
+
+/* =============================================
+   GAME CARDS
+   ============================================= */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.game-grid.wide {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.game-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .22s, border-color .22s, box-shadow .22s;
+  position: relative;
+  animation: cardUp .35s both;
+}
+.game-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px rgba(108,99,255,.15);
+}
+@keyframes cardUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.card-thumb::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,.6) 100%);
+}
+.card-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  position: absolute; inset: 0;
+}
+
+.card-badges {
+  position: absolute; top: .6rem; left: .6rem;
+  display: flex; gap: .35rem; z-index: 2;
+}
+.badge {
+  font-size: .62rem; font-weight: 700;
+  padding: .2rem .5rem;
+  border-radius: 4px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.badge-hot   { background: #ff4466; color: #fff; }
+.badge-new   { background: var(--accent); color: #fff; }
+.badge-viet  { background: #dc2626; color: #fff; }
+.badge-free  { background: var(--green); color: #000; }
+.badge-dlc   { background: var(--yellow); color: #000; }
+
+.card-body { padding: .9rem 1rem 1rem; }
+
+.card-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: .5rem; margin-bottom: .4rem;
+}
+.card-title {
+  font-size: .95rem; font-weight: 700;
+  letter-spacing: -.01em; line-height: 1.3;
+  flex: 1;
+}
+.card-rating {
+  font-family: var(--mono);
+  font-size: .72rem; font-weight: 700;
+  color: var(--yellow);
+  display: flex; align-items: center; gap: .2rem;
+  flex-shrink: 0; margin-top: .1rem;
+}
+
+.card-tags {
+  display: flex; gap: .35rem; flex-wrap: wrap;
+  margin-bottom: .6rem;
+}
+.tag {
+  font-size: .65rem; font-weight: 600;
+  color: var(--text3);
+  border: 1px solid var(--border);
+  padding: .1rem .45rem;
+  border-radius: 4px;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.tag.viet { color: #ef4444; border-color: rgba(239,68,68,.3); }
+
+.card-desc {
+  font-size: .8rem; color: var(--text2); line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  margin-bottom: .75rem;
+}
+
+.card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: .75rem;
+  border-top: 1px solid var(--border);
+  gap: .5rem;
+}
+.card-meta-info { display: flex; align-items: center; gap: .6rem; }
+.card-size, .card-year {
+  font-family: var(--mono);
+  font-size: .68rem; color: var(--text3);
+}
+.card-size::before { content: '📦 '; }
+
+.btn-dl-sm {
+  font-size: .75rem; font-weight: 700;
+  background: var(--accent);
+  color: #fff; border: none;
+  padding: .35rem .8rem;
+  border-radius: 6px;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.btn-dl-sm:hover { background: var(--accent-h); transform: scale(1.04); }
+
+/* =============================================
+   FEATURED / HERO GAME BANNER
+   ============================================= */
+.featured-banner {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 2rem; align-items: center;
+  margin-bottom: 3rem;
+  position: relative; overflow: hidden;
+}
+.featured-banner::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+.featured-label {
+  font-size: .72rem; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .6rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.featured-label::before { content: ''; width: 20px; height: 2px; background: var(--accent); }
+.featured-title { font-size: 2rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: .5rem; }
+.featured-desc { font-size: .9rem; color: var(--text2); line-height: 1.65; max-width: 500px; margin-bottom: 1.25rem; }
+.featured-meta { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.featured-meta-item {
+  font-size: .78rem; color: var(--text3);
+  display: flex; align-items: center; gap: .3rem;
+}
+.featured-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+.featured-emoji {
+  font-size: 7rem; line-height: 1;
+  filter: drop-shadow(0 8px 32px rgba(108,99,255,.3));
+}
+
+/* =============================================
+   SECTIONS + CONTAINERS
+   ============================================= */
+.container { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
+.section { padding: 2.5rem 0; }
+.section + .section { border-top: 1px solid var(--border); }
+
+/* =============================================
+   GENRE PAGE
+   ============================================= */
+.page-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 2rem 2rem;
+}
+.page-header-inner { max-width: 1320px; margin: 0 auto; }
+.page-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900; letter-spacing: -.04em;
+  margin-bottom: .5rem;
+}
+.page-sub { color: var(--text2); font-size: .95rem; }
+
+/* Genre cards grid */
+.genre-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: .75rem;
+  margin-bottom: 2.5rem;
+}
+.genre-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+}
+.genre-card:hover, .genre-card.active {
+  border-color: var(--accent);
+  background: rgba(108,99,255,.08);
+  transform: translateY(-2px);
+}
+.genre-card.active .genre-name { color: var(--accent); }
+.genre-icon { font-size: 2rem; margin-bottom: .5rem; }
+.genre-name { font-size: .82rem; font-weight: 700; }
+.genre-count { font-family: var(--mono); font-size: .7rem; color: var(--text3); margin-top: .15rem; }
+
+/* =============================================
+   SEARCH + FILTER BAR
+   ============================================= */
+.filter-bar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  display: flex; flex-wrap: wrap; gap: .75rem; align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-field {
+  flex: 1; min-width: 200px;
+  position: relative;
+}
+.search-field svg {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  color: var(--text3); pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: .55rem 1rem .55rem 2.2rem;
+  border-radius: 8px;
+  font-size: .875rem; outline: none;
+  transition: border-color .2s;
+}
+.search-input:focus { border-color: var(--accent); }
+.search-input::placeholder { color: var(--text3); }
+
+.filter-chips { display: flex; gap: .4rem; flex-wrap: wrap; }
+.chip {
+  font-size: .75rem; font-weight: 600;
+  padding: .4rem .85rem;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text2);
+  cursor: pointer; transition: all .18s;
+  white-space: nowrap;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.sort-select {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: .45rem .85rem;
+  border-radius: 8px;
+  font-size: .8rem;
+  cursor: pointer; outline: none;
+  transition: border-color .2s;
+}
+.sort-select:focus { border-color: var(--accent); }
+
+.results-count {
+  font-family: var(--mono);
+  font-size: .75rem; color: var(--text3);
+  margin-bottom: 1rem;
+}
+.results-count strong { color: var(--green); }
+
+/* =============================================
+   MODAL
+   ============================================= */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 900;
+  background: rgba(0,0,0,.8);
+  backdrop-filter: blur(12px);
+  padding: 1.5rem;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  width: 100%; max-width: 700px;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+  animation: modalPop .28s cubic-bezier(.34,1.4,.64,1);
+}
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(.92) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem; z-index: 10;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); width: 36px; height: 36px;
+  border-radius: 50%; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .18s;
+}
+.modal-close:hover { background: #ef4444; border-color: #ef4444; }
+
+.modal-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 6rem;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+.modal-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.modal-body { padding: 1.75rem 2rem 2rem; }
+
+.modal-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1rem;
+}
+.modal-title { font-size: 1.65rem; font-weight: 900; letter-spacing: -.03em; }
+.modal-rating {
+  font-family: var(--mono);
+  font-size: .9rem; font-weight: 700;
+  color: var(--yellow);
+  display: flex; align-items: center; gap: .25rem;
+  flex-shrink: 0;
+}
+
+.modal-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.modal-tag {
+  font-size: .72rem; font-weight: 600;
+  padding: .25rem .65rem;
+  border-radius: 5px;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+}
+.modal-tag.accent { border-color: rgba(108,99,255,.5); color: var(--accent); background: rgba(108,99,255,.08); }
+.modal-tag.green  { border-color: rgba(34,211,165,.4); color: var(--green); background: rgba(34,211,165,.06); }
+.modal-tag.red    { border-color: rgba(239,68,68,.4); color: #ef4444; background: rgba(239,68,68,.06); }
+
+.modal-desc {
+  font-size: .92rem; color: var(--text2); line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.modal-info-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: .75rem; margin-bottom: 1.75rem;
+}
+.info-cell {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .75rem 1rem;
+}
+.info-label {
+  font-size: .65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text3); margin-bottom: .3rem;
+}
+.info-val { font-size: .9rem; font-weight: 600; }
+
+.modal-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+.btn-dl-main {
+  flex: 1; min-width: 160px;
+  background: var(--accent); color: #fff; border: none;
+  padding: .9rem 1.5rem;
+  border-radius: 10px; font-size: .95rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  transition: all .2s;
+  box-shadow: 0 4px 20px rgba(108,99,255,.3);
+  text-decoration: none;
+}
+.btn-dl-main:hover { background: var(--accent-h); transform: translateY(-2px); }
+.btn-dl-secondary {
+  background: var(--surface2); color: var(--text);
+  border: 1px solid var(--border2); padding: .9rem 1.25rem;
+  border-radius: 10px; font-size: .9rem; font-weight: 600;
+  transition: all .2s;
+}
+.btn-dl-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* =============================================
+   SEARCH MODAL / OVERLAY
+   ============================================= */
+#searchOverlay {
+  display: none; position: fixed; inset: 0; z-index: 800;
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(12px);
+  padding: 6rem 1.5rem 1.5rem;
+  align-items: flex-start; justify-content: center;
+}
+#searchOverlay.open { display: flex; }
+.search-modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  width: 100%; max-width: 640px;
+  animation: modalPop .25s cubic-bezier(.34,1.4,.64,1);
+  overflow: hidden;
+}
+.search-modal-input-wrap {
+  display: flex; align-items: center; gap: .75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.search-modal-input {
+  flex: 1; background: none; border: none; outline: none;
+  font-family: var(--font); font-size: 1.1rem; color: var(--text);
+}
+.search-modal-input::placeholder { color: var(--text3); }
+.search-modal-esc {
+  font-family: var(--mono); font-size: .7rem;
+  color: var(--text3); background: var(--border);
+  padding: .2rem .5rem; border-radius: 4px;
+  cursor: pointer; flex-shrink: 0;
+}
+.search-results-list { max-height: 420px; overflow-y: auto; }
+.search-result-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: .85rem 1.25rem;
+  cursor: pointer; transition: background .15s;
+  border-bottom: 1px solid var(--border);
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: var(--surface2); }
+.search-result-icon { font-size: 1.8rem; flex-shrink: 0; }
+.search-result-info { flex: 1; }
+.search-result-title { font-size: .9rem; font-weight: 700; margin-bottom: .15rem; }
+.search-result-meta { font-size: .75rem; color: var(--text3); }
+.search-empty {
+  text-align: center; padding: 2.5rem;
+  color: var(--text3); font-size: .9rem;
+}
+
+/* =============================================
+   EMPTY STATE
+   ============================================= */
+.empty-state {
+  text-align: center; padding: 5rem 2rem;
+  color: var(--text3);
+}
+.empty-state .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+.empty-state h3 { font-size: 1.1rem; font-weight: 700; color: var(--text2); margin-bottom: .4rem; }
+.empty-state p { font-size: .875rem; }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem 2rem;
+  margin-top: 4rem;
+}
+.footer-inner {
+  max-width: 1320px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem; margin-bottom: 2.5rem;
+}
+.footer-logo {
+  font-family: var(--mono); font-weight: 700; font-size: 1.1rem;
+  color: var(--accent); margin-bottom: .75rem;
+}
+.footer-desc { font-size: .85rem; color: var(--text3); line-height: 1.65; }
+.footer-col-title {
+  font-size: .8rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text2); margin-bottom: .85rem;
+}
+.footer-links { display: flex; flex-direction: column; gap: .5rem; }
+.footer-link {
+  font-size: .85rem; color: var(--text3);
+  transition: color .15s;
+}
+.footer-link:hover { color: var(--accent); }
+.footer-bottom {
+  max-width: 1320px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap; gap: .75rem;
+}
+.footer-copy { font-size: .8rem; color: var(--text3); font-family: var(--mono); }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 900px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .featured-banner { grid-template-columns: 1fr; }
+  .featured-emoji { display: none; }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 56px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-right .nav-search-btn .nav-search-label { display: none; }
+  .hero { padding: 3.5rem 1.25rem 2.5rem; }
+  .container { padding: 0 1.25rem; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .modal-info-grid { grid-template-columns: 1fr 1fr; }
+  .genre-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}
+
+/* Mobile nav drawer */
+.nav-drawer {
+  display: none; position: fixed;
+  top: var(--nav-h); left: 0; right: 0; bottom: 0; z-index: 400;
+  background: var(--bg);
+  padding: 1rem;
+  flex-direction: column; gap: .25rem;
+  border-top: 1px solid var(--border);
+  animation: drawerIn .2s ease;
+}
+.nav-drawer.open { display: flex; }
+@keyframes drawerIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nav-drawer .nav-link { padding: .75rem 1rem; font-size: 1rem; }
+
+/* =============================================
+   VIỆT HÓA PAGE SPECIAL
+   ============================================= */
+.viet-banner {
+  background: linear-gradient(135deg, rgba(220,38,38,.12) 0%, rgba(239,68,68,.05) 100%);
+  border: 1px solid rgba(239,68,68,.25);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  display: flex; align-items: center; gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.viet-flag { font-size: 3rem; flex-shrink: 0; }
+.viet-info h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: .25rem; }
+.viet-info p { font-size: .875rem; color: var(--text2); }
+
+/* =============================================
+   TOP GAMES (ranking)
+   ============================================= */
+.top-list { display: flex; flex-direction: column; gap: .6rem; }
+.top-item {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .85rem 1rem;
+  cursor: pointer; transition: all .18s;
+}
+.top-item:hover { border-color: var(--accent); background: rgba(108,99,255,.04); }
+.top-rank {
+  font-family: var(--mono); font-size: .8rem; font-weight: 700;
+  color: var(--text3); width: 28px; text-align: center; flex-shrink: 0;
+}
+.top-rank.gold { color: #fbbf24; }
+.top-rank.silver { color: #94a3b8; }
+.top-rank.bronze { color: #b87333; }
+.top-icon { font-size: 1.75rem; flex-shrink: 0; }
+.top-info { flex: 1; }
+.top-title { font-size: .9rem; font-weight: 700; margin-bottom: .15rem; }
+.top-meta { font-size: .75rem; color: var(--text3); }
+.top-dl {
+  font-family: var(--mono); font-size: .72rem;
+  color: var(--green); flex-shrink: 0;
+}
+
+/* Divider */
+.divider { height: 1px; background: var(--border); margin: 2.5rem 0; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#/" onclick="navigate('home')">
+    <span class="bracket">[</span>
+    <span class="name">VaultGame</span>
+    <span class="bracket">]</span>
+    <span class="dot">•</span>
+  </a>
+
+  <div class="nav-links" id="navLinks">
+    <a class="nav-link active" id="nav-home" onclick="navigate('home')" href="#/">
+      <span class="icon">🏠</span> Trang chủ
+    </a>
+    <a class="nav-link" id="nav-games" onclick="navigate('games')" href="#/games">
+      <span class="icon">🎮</span> Tất cả game
+    </a>
+    <a class="nav-link" id="nav-genre" onclick="navigate('genre')" href="#/the-loai">
+      <span class="icon">🗂️</span> Thể loại
+    </a>
+    <a class="nav-link" id="nav-viet" onclick="navigate('viet')" href="#/viet-hoa">
+      <span class="icon">🇻🇳</span> Việt hóa
+    </a>
+    <a class="nav-link" id="nav-new" onclick="navigate('new')" href="#/game-moi">
+      <span class="icon">✨</span> Game mới
+    </a>
+    <a class="nav-link" id="nav-top" onclick="navigate('top')" href="#/top-game">
+      <span class="icon">🏆</span> Top game
+    </a>
+  </div>
+
+  <div class="nav-right">
+    <button class="nav-search-btn" onclick="openSearch()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span class="nav-search-label">Tìm kiếm</span>
+      <kbd>K</kbd>
+    </button>
+    <span class="nav-count" id="navCount">0 games</span>
+  </div>
+
+  <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()">☰</button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="navDrawer">
+  <a class="nav-link" onclick="navigate('home');toggleDrawer()" href="#/">🏠 Trang chủ</a>
+  <a class="nav-link" onclick="navigate('games');toggleDrawer()" href="#/games">🎮 Tất cả game</a>
+  <a class="nav-link" onclick="navigate('genre');toggleDrawer()" href="#/the-loai">🗂️ Thể loại</a>
+  <a class="nav-link" onclick="navigate('viet');toggleDrawer()" href="#/viet-hoa">🇻🇳 Việt hóa</a>
+  <a class="nav-link" onclick="navigate('new');toggleDrawer()" href="#/game-moi">✨ Game mới</a>
+  <a class="nav-link" onclick="navigate('top');toggleDrawer()" href="#/top-game">🏆 Top game</a>
+</div>
+
+<!-- ============================================================
+     PAGE: HOME
+     ============================================================ -->
+<div class="page active" id="page-home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-eyebrow">
+      <span class="pulse"></span>
+      Cập nhật liên tục — miễn phí 100%
+    </div>
+    <h1>Kho game PC<br><span class="highlight">miễn phí lớn nhất</span></h1>
+    <p class="hero-sub">Tải game PC không giới hạn tốc độ. Đầy đủ thể loại, việt hóa hoàn chỉnh, không quảng cáo, không đăng ký.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="navigate('games')">🎮 Khám phá kho game</button>
+      <button class="btn-outline" onclick="navigate('viet')">🇻🇳 Game Việt hóa</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-num" id="heroTotal">0</span><span class="hero-stat-label">Game</span></div>
+      <div class="hero-stat"><span class="hero-stat-num" id="heroViet">0</span><span class="hero-stat-label">Việt hóa</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">100%</span><span class="hero-stat-label">Miễn phí</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">∞</span><span class="hero-stat-label">Tốc độ</span></div>
+    </div>
+  </section>
+
+  <!-- Featured + Hot -->
+  <div class="container">
+    <div id="featuredBanner"></div>
+
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title"><span class="icon">🔥</span> Game nổi bật</h2>
+        <a class="section-more" onclick="navigate('games')" href="#">Xem tất cả →</a>
+      </div>
+      <div class="game-grid" id="homeHot"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title"><span class="icon">✨</span> Mới thêm gần đây</h2>
+        <a class="section-more" onclick="navigate('new')" href="#">Xem thêm →</a>
+      </div>
+      <div class="game-grid" id="homeNew"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title"><span class="icon">🇻🇳</span> Game Việt hóa hot</h2>
+        <a class="section-more" onclick="navigate('viet')" href="#">Xem tất cả →</a>
+      </div>
+      <div class="game-grid" id="homeViet"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: TẤT CẢ GAME
+     ============================================================ -->
+<div class="page" id="page-games">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-title">🎮 Tất cả game PC</div>
+      <div class="page-sub">Toàn bộ kho game — tìm kiếm và lọc theo nhu cầu</div>
+    </div>
+  </div>
+  <div class="container" style="padding-top:2rem; padding-bottom:2rem;">
+    <div class="filter-bar">
+      <div class="search-field">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="search-input" id="gamesSearch" placeholder="Tìm theo tên, thể loại..." oninput="renderGamesPage()">
+      </div>
+      <div class="filter-chips" id="gamesChips">
+        <button class="chip active" data-genre="all" onclick="setGamesGenre(this,'all')">Tất cả</button>
+        <button class="chip" data-genre="action" onclick="setGamesGenre(this,'action')">Action</button>
+        <button class="chip" data-genre="rpg" onclick="setGamesGenre(this,'rpg')">RPG</button>
+        <button class="chip" data-genre="strategy" onclick="setGamesGenre(this,'strategy')">Chiến thuật</button>
+        <button class="chip" data-genre="puzzle" onclick="setGamesGenre(this,'puzzle')">Đố trí</button>
+        <button class="chip" data-genre="shooter" onclick="setGamesGenre(this,'shooter')">Bắn súng</button>
+        <button class="chip" data-genre="adventure" onclick="setGamesGenre(this,'adventure')">Phiêu lưu</button>
+        <button class="chip" data-genre="simulation" onclick="setGamesGenre(this,'simulation')">Mô phỏng</button>
+        <button class="chip" data-genre="horror" onclick="setGamesGenre(this,'horror')">Kinh dị</button>
+      </div>
+      <select class="sort-select" id="gamesSort" onchange="renderGamesPage()">
+        <option value="new">Mới nhất</option>
+        <option value="name">Tên A→Z</option>
+        <option value="rating">Đánh giá</option>
+        <option value="size">Dung lượng</option>
+      </select>
+    </div>
+    <div class="results-count" id="gamesCount"></div>
+    <div class="game-grid wide" id="gamesGrid"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: THỂ LOẠI
+     ============================================================ -->
+<div class="page" id="page-genre">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-title">🗂️ Thể loại game</div>
+      <div class="page-sub">Chọn thể loại yêu thích và khám phá ngay</div>
+    </div>
+  </div>
+  <div class="container" style="padding-top:2rem; padding-bottom:2rem;">
+    <div class="genre-cards" id="genreCards"></div>
+    <div class="section-header" id="genreSectionHeader" style="display:none;">
+      <h2 class="section-title" id="genreTitle"></h2>
+    </div>
+    <div class="game-grid wide" id="genreGrid"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: VIỆT HÓA
+     ============================================================ -->
+<div class="page" id="page-viet">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-title">🇻🇳 Game Việt hóa</div>
+      <div class="page-sub">Trải nghiệm game bằng tiếng Việt — dịch hoàn chỉnh bởi cộng đồng</div>
+    </div>
+  </div>
+  <div class="container" style="padding-top:2rem; padding-bottom:2rem;">
+    <div class="viet-banner">
+      <div class="viet-flag">🇻🇳</div>
+      <div class="viet-info">
+        <h3>Tất cả game trong mục này đã được Việt hóa</h3>
+        <p>Được dịch bởi cộng đồng game thủ Việt Nam — giao diện, lời thoại, cốt truyện đều bằng tiếng Việt.</p>
+      </div>
+    </div>
+    <div class="results-count" id="vietCount"></div>
+    <div class="game-grid wide" id="vietGrid"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: GAME MỚI
+     ============================================================ -->
+<div class="page" id="page-new">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-title">✨ Game mới cập nhật</div>
+      <div class="page-sub">Những game vừa được thêm vào kho — tươi nhất, mới nhất</div>
+    </div>
+  </div>
+  <div class="container" style="padding-top:2rem; padding-bottom:2rem;">
+    <div class="game-grid wide" id="newGrid"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: TOP GAME
+     ============================================================ -->
+<div class="page" id="page-top">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-title">🏆 Top game được tải nhiều nhất</div>
+      <div class="page-sub">Bảng xếp hạng dựa trên lượt tải và đánh giá</div>
+    </div>
+  </div>
+  <div class="container" style="padding-top:2rem; padding-bottom:2rem;">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;" id="topGrid">
+      <div>
+        <div class="section-header"><h2 class="section-title"><span class="icon">⭐</span> Đánh giá cao nhất</h2></div>
+        <div class="top-list" id="topRating"></div>
+      </div>
+      <div>
+        <div class="section-header"><h2 class="section-title"><span class="icon">🔥</span> Được yêu thích nhất</h2></div>
+        <div class="top-list" id="topHot"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     GAME MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="gameModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SEARCH OVERLAY
+     ============================================================ -->
+<div id="searchOverlay">
+  <div class="search-modal">
+    <div class="search-modal-input-wrap">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="search-modal-input" id="searchModalInput" placeholder="Tìm kiếm game..." oninput="renderSearchResults()">
+      <span class="search-modal-esc" onclick="closeSearch()">ESC</span>
+    </div>
+    <div class="search-results-list" id="searchResults"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">[VaultGame]•</div>
+      <p class="footer-desc">Kho lưu trữ game PC miễn phí lớn nhất Việt Nam. Không quảng cáo, không giới hạn tốc độ. Tải ngay, chơi ngay.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Khám phá</div>
+      <div class="footer-links">
+        <a class="footer-link" onclick="navigate('home')" href="#">Trang chủ</a>
+        <a class="footer-link" onclick="navigate('games')" href="#">Tất cả game</a>
+        <a class="footer-link" onclick="navigate('genre')" href="#">Thể loại</a>
+        <a class="footer-link" onclick="navigate('viet')" href="#">Việt hóa</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Danh sách</div>
+      <div class="footer-links">
+        <a class="footer-link" onclick="navigate('new')" href="#">Game mới</a>
+        <a class="footer-link" onclick="navigate('top')" href="#">Top game</a>
+        <a class="footer-link" href="#">Game miễn phí</a>
+        <a class="footer-link" href="#">Indie games</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Thông tin</div>
+      <div class="footer-links">
+        <a class="footer-link" href="#">Giới thiệu</a>
+        <a class="footer-link" href="#">Liên hệ</a>
+        <a class="footer-link" href="#">Báo lỗi</a>
+        <a class="footer-link" href="#">Upload game</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 VaultGame — All rights reserved</span>
+    <span class="footer-copy">Xây dựng với ❤️ cho cộng đồng game thủ Việt</span>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// DATA.JS — Toàn bộ dữ liệu game
+// Thêm game mới: copy một object, điền thông tin, đặt vào mảng GAMES
+// ============================================================
+
+const GAMES = [
+  {
+    id: 1,
+    title: "Hollow Knight",
+    genre: "action",
+    desc: "Metroidvania kinh điển với thế giới ngầm tăm tối và đầy bí ẩn. Khám phá vương quốc côn trùng cổ đại Hallownest, chiến đấu với hàng trăm kẻ thù và boss độc đáo. Gameplay mượt mà, cốt truyện sâu sắc ẩn chứa trong từng góc khuất.",
+    size: "9.1 GB",
+    version: "1.5.78.11808",
+    year: 2017,
+    rating: 5.0,
+    downloads: 84200,
+    emoji: "🐛",
+    genre_label: "Action / Metroidvania",
+    badges: ["hot"],
+    viet: true,
+    download: "#",
+    tags: ["Metroidvania", "Indie", "Khó"],
+  },
+  {
+    id: 2,
+    title: "Stardew Valley",
+    genre: "simulation",
+    desc: "Game nông trại huyền thoại do một người duy nhất tạo ra. Xây dựng trang trại từ mảnh đất hoang, kết bạn với dân làng Pelican Town, khám phá mỏ đầy quái vật và craft đồ vật. Thư giãn hoàn toàn.",
+    size: "518 MB",
+    version: "1.6.15",
+    year: 2016,
+    rating: 5.0,
+    downloads: 120500,
+    emoji: "🌾",
+    genre_label: "Nông trại / RPG",
+    badges: ["hot", "viet"],
+    viet: true,
+    download: "#",
+    tags: ["Farming", "Thư giãn", "RPG"],
+  },
+  {
+    id: 3,
+    title: "Celeste",
+    genre: "action",
+    desc: "Platformer cực kỳ thử thách với câu chuyện cảm động về sức mạnh nội tâm. Leo lên đỉnh núi Celeste trong khi đối mặt với chính bản thân. Kiểm soát chính xác tuyệt vời, nhạc nền cực hay.",
+    size: "1.2 GB",
+    version: "1.4.0.0",
+    year: 2018,
+    rating: 4.9,
+    downloads: 63100,
+    emoji: "🏔️",
+    genre_label: "Platformer / Indie",
+    badges: ["new", "viet"],
+    viet: true,
+    download: "#",
+    tags: ["Platformer", "Khó", "Cảm xúc"],
+  },
+  {
+    id: 4,
+    title: "Undertale",
+    genre: "rpg",
+    desc: "RPG nơi bạn không cần giết bất kỳ ai. Câu chuyện gây sốc và đầy nước mắt, nhạc nền iconic, và những khoảnh khắc bất ngờ sẽ khiến bạn nhớ mãi. Mỗi quyết định đều có hậu quả.",
+    size: "210 MB",
+    version: "1.08",
+    year: 2015,
+    rating: 4.9,
+    downloads: 97300,
+    emoji: "❤️",
+    genre_label: "RPG / Indie",
+    badges: ["hot", "viet"],
+    viet: true,
+    download: "#",
+    tags: ["RPG", "Indie", "Cốt truyện"],
+  },
+  {
+    id: 5,
+    title: "Hades",
+    genre: "action",
+    desc: "Roguelite action nơi bạn đóng vai con trai thần chết Zagreus, liên tục vượt ngục giới. Mỗi lần chết là một lần cốt truyện tiến thêm. Gameplay combat siêu mướt, replayability vô tận.",
+    size: "3.1 GB",
+    version: "1.38388",
+    year: 2020,
+    rating: 4.9,
+    downloads: 88700,
+    emoji: "⚔️",
+    genre_label: "Roguelite / Action",
+    badges: ["hot"],
+    viet: false,
+    download: "#",
+    tags: ["Roguelite", "Action", "Mythology"],
+  },
+  {
+    id: 6,
+    title: "Disco Elysium",
+    genre: "rpg",
+    desc: "RPG thuần đối thoại không có combat. Bạn là thám tử mất trí nhớ điều tra vụ án giết người. Thế giới Revachol cực kỳ phong phú, hệ thống skill đặc biệt, viết lách xuất sắc nhất làng game.",
+    size: "15 GB",
+    version: "Final Cut",
+    year: 2019,
+    rating: 4.8,
+    downloads: 41200,
+    emoji: "🕵️",
+    genre_label: "RPG / Detective",
+    badges: ["viet"],
+    viet: true,
+    download: "#",
+    tags: ["RPG", "Detective", "Cốt truyện"],
+  },
+  {
+    id: 7,
+    title: "Into the Breach",
+    genre: "strategy",
+    desc: "Tactics game turn-based được thiết kế hoàn hảo từng pixel. Điều khiển mech bảo vệ nhân loại khỏi Vek. Mỗi màn chơi là một câu đố chiến thuật, không có yếu tố may rủi. Từ nhà làm FTL.",
+    size: "298 MB",
+    version: "1.2.86",
+    year: 2018,
+    rating: 4.8,
+    downloads: 39500,
+    emoji: "🤖",
+    genre_label: "Chiến thuật / Turn-based",
+    badges: [],
+    viet: false,
+    download: "#",
+    tags: ["Turn-based", "Chiến thuật", "Indie"],
+  },
+  {
+    id: 8,
+    title: "Sekiro: Shadows Die Twice",
+    genre: "action",
+    desc: "Action RPG cực khó của FromSoftware đặt tại Nhật Bản thời Sengoku. Hệ thống posture và parry độc đáo đòi hỏi phản xạ chính xác. Cảm giác chiến thắng boss cực kỳ thỏa mãn.",
+    size: "14.3 GB",
+    version: "1.06",
+    year: 2019,
+    rating: 4.9,
+    downloads: 72100,
+    emoji: "🗡️",
+    genre_label: "Action RPG / Soulslike",
+    badges: ["hot"],
+    viet: false,
+    download: "#",
+    tags: ["Soulslike", "Khó", "Samurai"],
+  },
+  {
+    id: 9,
+    title: "Elden Ring",
+    genre: "rpg",
+    desc: "Masterpiece của FromSoftware kết hợp với George R.R. Martin. Open world Soulslike rộng lớn với hàng trăm giờ khám phá. Xây dựng nhân vật tự do, lore cực kỳ sâu sắc.",
+    size: "44.5 GB",
+    version: "1.12.3",
+    year: 2022,
+    rating: 5.0,
+    downloads: 156000,
+    emoji: "👑",
+    genre_label: "Open World / Soulslike",
+    badges: ["hot", "new"],
+    viet: false,
+    download: "#",
+    tags: ["Open World", "Soulslike", "RPG"],
+  },
+  {
+    id: 10,
+    title: "Tetris Effect: Connected",
+    genre: "puzzle",
+    desc: "Tetris được tái sinh với âm thanh và hình ảnh ảo diệu. Mỗi xoay block đồng bộ với nhạc tạo ra trải nghiệm gần như thiền định. Mode multiplayer Connected hoàn toàn mới lạ.",
+    size: "3.8 GB",
+    version: "1.2.1",
+    year: 2021,
+    rating: 4.7,
+    downloads: 28900,
+    emoji: "🎯",
+    genre_label: "Puzzle / Music",
+    badges: ["new"],
+    viet: false,
+    download: "#",
+    tags: ["Puzzle", "Âm nhạc", "Thư giãn"],
+  },
+  {
+    id: 11,
+    title: "Vampire Survivors",
+    genre: "action",
+    desc: "Rogue-like auto-shooter cực kỳ gây nghiện. Chọn vũ khí, upgrade, sống sót qua màn đêm dài. Đơn giản nhưng độ sâu vô tận. Game 5 đô gây sốt cộng đồng Steam năm 2022.",
+    size: "520 MB",
+    version: "1.10.101",
+    year: 2022,
+    rating: 4.7,
+    downloads: 94200,
+    emoji: "🧛",
+    genre_label: "Roguelite / Survival",
+    badges: ["hot", "new"],
+    viet: true,
+    download: "#",
+    tags: ["Roguelite", "Gây nghiện", "Indie"],
+  },
+  {
+    id: 12,
+    title: "Firewatch",
+    genre: "adventure",
+    desc: "Walking simulator đầy cảm xúc trong rừng núi Wyoming năm 1989. Henry trốn tránh quá khứ bằng công việc gác rừng và dần khám phá bí ẩn. Đồ họa hand-painted tuyệt đẹp, diễn xuất voice acting chuẩn.",
+    size: "3.2 GB",
+    version: "1.10",
+    year: 2016,
+    rating: 4.5,
+    downloads: 31700,
+    emoji: "🔥",
+    genre_label: "Adventure / Story",
+    badges: [],
+    viet: true,
+    download: "#",
+    tags: ["Walking Sim", "Cốt truyện", "Thư giãn"],
+  },
+  {
+    id: 13,
+    title: "The Witcher 3: Wild Hunt",
+    genre: "rpg",
+    desc: "RPG open world đặt chuẩn vàng của thể loại. Geralt of Rivia tìm con gái nuôi trong thế giới fantasy đen tối. Side quest chất lượng không thua main quest, hệ thống lựa chọn ảnh hưởng thực sự.",
+    size: "50.2 GB",
+    version: "4.04 GOTY",
+    year: 2015,
+    rating: 5.0,
+    downloads: 198000,
+    emoji: "🐺",
+    genre_label: "Open World RPG",
+    badges: ["hot", "viet"],
+    viet: true,
+    download: "#",
+    tags: ["Open World", "RPG", "Fantasy"],
+  },
+  {
+    id: 14,
+    title: "Cuphead",
+    genre: "action",
+    desc: "Run & gun cực khó được vẽ tay theo phong cách hoạt hình 1930s. Mỗi boss là một màn chơi độc lập với pattern phức tạp. Art style không nơi nào có, nhạc jazz big band tuyệt vời.",
+    size: "2.8 GB",
+    version: "1.3.4",
+    year: 2017,
+    rating: 4.7,
+    downloads: 58400,
+    emoji: "☕",
+    genre_label: "Run & Gun / Boss Rush",
+    badges: ["viet"],
+    viet: true,
+    download: "#",
+    tags: ["Boss Rush", "Khó", "Phong cách"],
+  },
+  {
+    id: 15,
+    title: "Dead Cells",
+    genre: "action",
+    desc: "Roguelite Metroidvania kết hợp hoàn hảo. Mỗi run là một trải nghiệm mới với vũ khí ngẫu nhiên và build phong phú. Combat cực kỳ mượt mà và có chiều sâu. DLC liên tục cập nhật thêm nội dung.",
+    size: "1.5 GB",
+    version: "3.5 GOTY",
+    year: 2018,
+    rating: 4.8,
+    downloads: 67800,
+    emoji: "💀",
+    genre_label: "Roguelite / Metroidvania",
+    badges: ["hot"],
+    viet: false,
+    download: "#",
+    tags: ["Roguelite", "Metroidvania", "Khó"],
+  },
+  {
+    id: 16,
+    title: "Resident Evil Village",
+    genre: "horror",
+    desc: "Survival horror first-person kết hợp action. Ethan Winters tìm con gái trong ngôi làng đầy quái vật. Lady Dimitrescu trở thành biểu tượng văn hóa. Gameplay tight, atmosphere rùng rợn.",
+    size: "28.9 GB",
+    version: "1.51",
+    year: 2021,
+    rating: 4.6,
+    downloads: 52300,
+    emoji: "🏰",
+    genre_label: "Horror / Action",
+    badges: ["new"],
+    viet: true,
+    download: "#",
+    tags: ["Horror", "FPS", "Story"],
+  },
+  {
+    id: 17,
+    title: "Subnautica",
+    genre: "adventure",
+    desc: "Survival game dưới đáy đại dương hành tinh xa lạ. Xây dựng căn cứ dưới nước, khám phá vùng biển sâu thẳm đầy sinh vật kỳ lạ. Cảm giác sợ hãi và tò mò xen lẫn nhau liên tục.",
+    size: "8.4 GB",
+    version: "68598",
+    year: 2018,
+    rating: 4.8,
+    downloads: 71200,
+    emoji: "🌊",
+    genre_label: "Survival / Exploration",
+    badges: [],
+    viet: true,
+    download: "#",
+    tags: ["Survival", "Khám phá", "Underwater"],
+  },
+  {
+    id: 18,
+    title: "Cyberpunk 2077",
+    genre: "rpg",
+    desc: "Open world RPG trong thành phố dystopia Night City đầy neon. Sau các bản vá lỗi, game đã trở thành một trong những RPG tốt nhất. DLC Phantom Liberty được khen ngợi cực cao.",
+    size: "70.1 GB",
+    version: "2.12 + Phantom Liberty",
+    year: 2020,
+    rating: 4.6,
+    downloads: 143000,
+    emoji: "🌃",
+    genre_label: "Open World RPG / Cyberpunk",
+    badges: ["hot", "new"],
+    viet: true,
+    download: "#",
+    tags: ["Open World", "Cyberpunk", "RPG"],
+  },
+  {
+    id: 19,
+    title: "Terraria",
+    genre: "action",
+    desc: "Sandbox 2D với nội dung không giới hạn. Đào đất, xây nhà, đánh boss, craft gear, khám phá hầm ngục. Hơn 400 boss và kẻ thù, hàng nghìn item. Đã chơi hàng trăm giờ mà vẫn còn thứ để khám phá.",
+    size: "1.1 GB",
+    version: "1.4.4.9",
+    year: 2011,
+    rating: 4.9,
+    downloads: 205000,
+    emoji: "⛏️",
+    genre_label: "Sandbox / Action",
+    badges: ["hot"],
+    viet: true,
+    download: "#",
+    tags: ["Sandbox", "Craft", "Multiplayer"],
+  },
+  {
+    id: 20,
+    title: "Portal 2",
+    genre: "puzzle",
+    desc: "Puzzle game kinh điển dùng súng tạo portal. Cốt truyện hài hước đỉnh cao với GLaDOS, Wheatley. Cả campaign đơn lẫn co-op đều tuyệt vời. Một trong những game được đánh giá cao nhất mọi thời đại.",
+    size: "9.8 GB",
+    version: "1.0",
+    year: 2011,
+    rating: 5.0,
+    downloads: 178000,
+    emoji: "🌀",
+    genre_label: "Puzzle / FPS",
+    badges: ["hot", "viet"],
+    viet: true,
+    download: "#",
+    tags: ["Puzzle", "Co-op", "Classic"],
+  },
+];
+
+// Genre metadata
+const GENRES = [
+  { id: "action",     icon: "⚔️",  name: "Action",        desc: "Hành động nhanh, chiến đấu mượt" },
+  { id: "rpg",        icon: "🧙",  name: "RPG",           desc: "Nhập vai, cốt truyện, phát triển nhân vật" },
+  { id: "strategy",   icon: "♟️",  name: "Chiến thuật",   desc: "Suy nghĩ kỹ trước mỗi bước đi" },
+  { id: "puzzle",     icon: "🧩",  name: "Đố trí",        desc: "Giải câu đố, động não" },
+  { id: "shooter",    icon: "🔫",  name: "Bắn súng",      desc: "FPS/TPS hành động" },
+  { id: "adventure",  icon: "🗺️",  name: "Phiêu lưu",    desc: "Khám phá thế giới rộng lớn" },
+  { id: "simulation", icon: "🏗️",  name: "Mô phỏng",     desc: "Xây dựng, quản lý, nông trại" },
+  { id: "horror",     icon: "👻",  name: "Kinh dị",       desc: "Rùng rợn, hồi hộp" },
+];
+
+</script>
+<script>
+// ============================================================
+// APP.JS — Routing, Rendering, Search, Modal
+// ============================================================
+
+// ---- STATE ----
+let currentPage = 'home';
+let gamesGenreFilter = 'all';
+let genrePageFilter  = null;
+
+// ---- ROUTES ----
+const ROUTES = {
+  'home'  : { hash: '/',         pageId: 'page-home',  navId: 'nav-home'  },
+  'games' : { hash: '/games',    pageId: 'page-games', navId: 'nav-games' },
+  'genre' : { hash: '/the-loai', pageId: 'page-genre', navId: 'nav-genre' },
+  'viet'  : { hash: '/viet-hoa', pageId: 'page-viet',  navId: 'nav-viet'  },
+  'new'   : { hash: '/game-moi', pageId: 'page-new',   navId: 'nav-new'   },
+  'top'   : { hash: '/top-game', pageId: 'page-top',   navId: 'nav-top'   },
+};
+
+function navigate(page) {
+  if (!ROUTES[page]) return;
+  currentPage = page;
+
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target
+  document.getElementById(ROUTES[page].pageId).classList.add('active');
+  // Update nav active
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const navEl = document.getElementById(ROUTES[page].navId);
+  if (navEl) navEl.classList.add('active');
+  // Update URL hash
+  history.pushState(null, '', '#' + ROUTES[page].hash);
+  // Render page content
+  renderPage(page);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderPage(page) {
+  switch(page) {
+    case 'home':   renderHome(); break;
+    case 'games':  renderGamesPage(); break;
+    case 'genre':  renderGenrePage(); break;
+    case 'viet':   renderVietPage(); break;
+    case 'new':    renderNewPage(); break;
+    case 'top':    renderTopPage(); break;
+  }
+}
+
+// ---- HASH ROUTING ----
+function handleHash() {
+  const hash = location.hash.replace('#', '') || '/';
+  const found = Object.entries(ROUTES).find(([, r]) => r.hash === hash);
+  navigate(found ? found[0] : 'home');
+}
+window.addEventListener('popstate', handleHash);
+
+// ---- HELPERS ----
+function stars(r) {
+  const full = Math.floor(r);
+  const half = r % 1 >= .5 ? 1 : 0;
+  let s = '';
+  for (let i = 0; i < full; i++) s += '★';
+  if (half) s += '½';
+  return `<span style="color:#fbbf24; font-size:.75rem;">${s}</span> <span style="font-size:.75rem;">${r.toFixed(1)}</span>`;
+}
+
+function fmtDl(n) {
+  if (n >= 1000) return (n/1000).toFixed(1) + 'k';
+  return n;
+}
+
+function badgesHTML(badges, viet) {
+  let html = '';
+  if (badges.includes('hot'))  html += '<span class="badge badge-hot">🔥 Nóng</span>';
+  if (badges.includes('new'))  html += '<span class="badge badge-new">✨ Mới</span>';
+  if (viet)                    html += '<span class="badge badge-viet">🇻🇳 Việt hóa</span>';
+  return html ? `<div class="card-badges">${html}</div>` : '';
+}
+
+function gameCard(g, delay = 0) {
+  return `
+  <div class="game-card" data-id="${g.id}" style="animation-delay:${delay}s" onclick="openModal(${g.id})">
+    <div class="card-thumb">
+      <span>${g.emoji}</span>
+    </div>
+    ${badgesHTML(g.badges, g.viet)}
+    <div class="card-body">
+      <div class="card-top">
+        <div class="card-title">${g.title}</div>
+        <div class="card-rating">${stars(g.rating)}</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">${g.genre_label}</span>
+        ${g.viet ? '<span class="tag viet">🇻🇳 Việt</span>' : ''}
+      </div>
+      <div class="card-desc">${g.desc}</div>
+      <div class="card-footer">
+        <div class="card-meta-info">
+          <span class="card-size">${g.size}</span>
+          <span class="card-year">${g.year}</span>
+        </div>
+        <button class="btn-dl-sm" onclick="event.stopPropagation(); dlGame(${g.id})">⬇ Tải</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function topItem(g, rank) {
+  const rankClass = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
+  return `
+  <div class="top-item" onclick="openModal(${g.id})">
+    <div class="top-rank ${rankClass}">${rank <= 3 ? ['🥇','🥈','🥉'][rank-1] : '#'+rank}</div>
+    <div class="top-icon">${g.emoji}</div>
+    <div class="top-info">
+      <div class="top-title">${g.title}</div>
+      <div class="top-meta">${g.genre_label} · ${g.year}</div>
+    </div>
+    <div class="top-dl">⬇ ${fmtDl(g.downloads)}</div>
+  </div>`;
+}
+
+// ---- RENDER HOME ----
+function renderHome() {
+  document.getElementById('heroTotal').textContent = GAMES.length;
+  document.getElementById('heroViet').textContent = GAMES.filter(g => g.viet).length;
+
+  // Featured banner = highest rated
+  const featured = [...GAMES].sort((a,b) => b.downloads - a.downloads)[0];
+  document.getElementById('featuredBanner').innerHTML = `
+  <div class="featured-banner">
+    <div>
+      <div class="featured-label">⭐ Game nổi bật</div>
+      <div class="featured-title">${featured.title}</div>
+      <div class="featured-desc">${featured.desc}</div>
+      <div class="featured-meta">
+        <span class="featured-meta-item">🗂️ ${featured.genre_label}</span>
+        <span class="featured-meta-item">📦 ${featured.size}</span>
+        <span class="featured-meta-item">⬇ ${fmtDl(featured.downloads)} lượt tải</span>
+        ${featured.viet ? '<span class="featured-meta-item">🇻🇳 Có Việt hóa</span>' : ''}
+      </div>
+      <div class="featured-actions">
+        <button class="btn-primary" onclick="dlGame(${featured.id})">⬇ Tải ngay — Miễn phí</button>
+        <button class="btn-outline" onclick="openModal(${featured.id})">Chi tiết</button>
+      </div>
+    </div>
+    <div class="featured-emoji">${featured.emoji}</div>
+  </div>`;
+
+  // Hot games (has 'hot' badge)
+  const hot = GAMES.filter(g => g.badges.includes('hot')).slice(0, 8);
+  document.getElementById('homeHot').innerHTML = hot.map((g,i) => gameCard(g, i*.04)).join('');
+
+  // New games (has 'new' badge)
+  const newest = GAMES.filter(g => g.badges.includes('new')).slice(0, 4);
+  document.getElementById('homeNew').innerHTML = newest.map((g,i) => gameCard(g, i*.05)).join('');
+
+  // Viet games
+  const viet = GAMES.filter(g => g.viet).slice(0, 4);
+  document.getElementById('homeViet').innerHTML = viet.map((g,i) => gameCard(g, i*.05)).join('');
+}
+
+// ---- RENDER GAMES PAGE ----
+function renderGamesPage() {
+  const q     = (document.getElementById('gamesSearch')?.value || '').toLowerCase().trim();
+  const sort  = document.getElementById('gamesSort')?.value || 'new';
+
+  let list = [...GAMES];
+  if (gamesGenreFilter !== 'all') list = list.filter(g => g.genre === gamesGenreFilter);
+  if (q) list = list.filter(g =>
+    g.title.toLowerCase().includes(q) ||
+    g.desc.toLowerCase().includes(q) ||
+    g.genre_label.toLowerCase().includes(q) ||
+    g.tags.some(t => t.toLowerCase().includes(q))
+  );
+  if (sort === 'name')   list.sort((a,b) => a.title.localeCompare(b.title, 'vi'));
+  if (sort === 'rating') list.sort((a,b) => b.rating - a.rating);
+  if (sort === 'size')   list.sort((a,b) => parseFloat(b.size) - parseFloat(a.size));
+  if (sort === 'new')    list.sort((a,b) => b.year - a.year);
+
+  const countEl = document.getElementById('gamesCount');
+  if (countEl) countEl.innerHTML = `<strong>${list.length}</strong> game${list.length!==1?'':''}`;
+
+  const grid = document.getElementById('gamesGrid');
+  if (!grid) return;
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🔍</div><h3>Không tìm thấy game</h3><p>Thử từ khóa khác hoặc bỏ bộ lọc</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map((g,i) => gameCard(g, i*.03)).join('');
+}
+
+function setGamesGenre(el, genre) {
+  gamesGenreFilter = genre;
+  document.querySelectorAll('#gamesChips .chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderGamesPage();
+}
+
+// ---- RENDER GENRE PAGE ----
+function renderGenrePage() {
+  // Genre cards
+  const cards = document.getElementById('genreCards');
+  cards.innerHTML = GENRES.map(g => {
+    const count = GAMES.filter(x => x.genre === g.id).length;
+    return `
+    <div class="genre-card ${genrePageFilter === g.id ? 'active' : ''}" onclick="selectGenre('${g.id}')">
+      <div class="genre-icon">${g.icon}</div>
+      <div class="genre-name">${g.name}</div>
+      <div class="genre-count">${count} game</div>
+    </div>`;
+  }).join('');
+
+  // Add "All"
+  cards.innerHTML = `
+    <div class="genre-card ${!genrePageFilter ? 'active' : ''}" onclick="selectGenre(null)">
+      <div class="genre-icon">🎮</div>
+      <div class="genre-name">Tất cả</div>
+      <div class="genre-count">${GAMES.length} game</div>
+    </div>` + cards.innerHTML;
+
+  const header = document.getElementById('genreSectionHeader');
+  const title  = document.getElementById('genreTitle');
+  const grid   = document.getElementById('genreGrid');
+
+  if (genrePageFilter) {
+    const g = GENRES.find(x => x.id === genrePageFilter);
+    header.style.display = 'flex';
+    title.innerHTML = `<span class="icon">${g?.icon||'🎮'}</span> ${g?.name||''} <span style="color:var(--text3); font-weight:400; font-size:1rem;">(${GAMES.filter(x=>x.genre===genrePageFilter).length})</span>`;
+    const list = GAMES.filter(x => x.genre === genrePageFilter);
+    grid.innerHTML = list.map((g,i) => gameCard(g, i*.03)).join('');
+  } else {
+    header.style.display = 'none';
+    grid.innerHTML = GAMES.map((g,i) => gameCard(g, i*.02)).join('');
+  }
+}
+
+function selectGenre(id) {
+  genrePageFilter = id;
+  renderGenrePage();
+}
+
+// ---- RENDER VIỆT HÓA ----
+function renderVietPage() {
+  const list = GAMES.filter(g => g.viet);
+  document.getElementById('vietCount').innerHTML = `<strong>${list.length}</strong> game đã được Việt hóa`;
+  document.getElementById('vietGrid').innerHTML = list.map((g,i) => gameCard(g, i*.03)).join('');
+}
+
+// ---- RENDER GAME MỚI ----
+function renderNewPage() {
+  const sorted = [...GAMES].sort((a,b) => b.year - a.year);
+  document.getElementById('newGrid').innerHTML = sorted.map((g,i) => gameCard(g, i*.03)).join('');
+}
+
+// ---- RENDER TOP ----
+function renderTopPage() {
+  const byRating = [...GAMES].sort((a,b) => b.rating - a.rating).slice(0,10);
+  const byHot    = [...GAMES].sort((a,b) => b.downloads - a.downloads).slice(0,10);
+
+  document.getElementById('topRating').innerHTML = byRating.map((g,i) => topItem(g, i+1)).join('');
+  document.getElementById('topHot').innerHTML    = byHot.map((g,i) => topItem(g, i+1)).join('');
+}
+
+// ---- MODAL ----
+function openModal(id) {
+  const g = GAMES.find(x => x.id === id);
+  if (!g) return;
+
+  document.getElementById('modalContent').innerHTML = `
+  <div class="modal-thumb">${g.emoji}</div>
+  <div class="modal-body">
+    <div class="modal-head">
+      <div class="modal-title">${g.title}</div>
+      <div class="modal-rating">★ ${g.rating.toFixed(1)}</div>
+    </div>
+    <div class="modal-tags">
+      <span class="modal-tag accent">🗂️ ${g.genre_label}</span>
+      ${g.viet ? '<span class="modal-tag red">🇻🇳 Đã Việt hóa</span>' : ''}
+      ${g.badges.includes('hot') ? '<span class="modal-tag" style="border-color:#ff4466;color:#ff4466;">🔥 Nóng</span>' : ''}
+      ${g.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}
+    </div>
+    <div class="modal-desc">${g.desc}</div>
+    <div class="modal-info-grid">
+      <div class="info-cell"><div class="info-label">Phiên bản</div><div class="info-val">${g.version}</div></div>
+      <div class="info-cell"><div class="info-label">Năm phát hành</div><div class="info-val">${g.year}</div></div>
+      <div class="info-cell"><div class="info-label">Dung lượng</div><div class="info-val">${g.size}</div></div>
+      <div class="info-cell"><div class="info-label">Lượt tải</div><div class="info-val">⬇ ${fmtDl(g.downloads)}</div></div>
+      <div class="info-cell"><div class="info-label">Đánh giá</div><div class="info-val">${stars(g.rating)}</div></div>
+      <div class="info-cell"><div class="info-label">Việt hóa</div><div class="info-val">${g.viet ? '✅ Có' : '❌ Chưa có'}</div></div>
+    </div>
+    <div class="modal-actions">
+      <a href="${g.download}" class="btn-dl-main" download>⬇ Tải xuống — Miễn phí</a>
+      <button class="btn-dl-secondary" onclick="closeModal()">Đóng</button>
+    </div>
+  </div>`;
+
+  document.getElementById('gameModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('gameModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function dlGame(id) {
+  const g = GAMES.find(x => x.id === id);
+  if (!g) return;
+  // In production: trigger real download
+  openModal(id);
+}
+
+// Backdrop click
+document.getElementById('gameModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ---- SEARCH ----
+function openSearch() {
+  document.getElementById('searchOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('searchModalInput').focus(), 50);
+  document.body.style.overflow = 'hidden';
+  renderSearchResults();
+}
+
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('open');
+  document.getElementById('searchModalInput').value = '';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('searchOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeSearch();
+});
+
+function renderSearchResults() {
+  const q = document.getElementById('searchModalInput').value.toLowerCase().trim();
+  const container = document.getElementById('searchResults');
+
+  if (!q) {
+    container.innerHTML = `<div class="search-empty">Nhập tên game, thể loại... để tìm kiếm</div>`;
+    return;
+  }
+
+  const results = GAMES.filter(g =>
+    g.title.toLowerCase().includes(q) ||
+    g.genre_label.toLowerCase().includes(q) ||
+    g.tags.some(t => t.toLowerCase().includes(q))
+  ).slice(0, 8);
+
+  if (!results.length) {
+    container.innerHTML = `<div class="search-empty">Không tìm thấy game nào cho "<strong>${q}</strong>"</div>`;
+    return;
+  }
+
+  container.innerHTML = results.map(g => `
+  <div class="search-result-item" onclick="closeSearch(); openModal(${g.id})">
+    <div class="search-result-icon">${g.emoji}</div>
+    <div class="search-result-info">
+      <div class="search-result-title">${g.title} ${g.viet ? '🇻🇳' : ''}</div>
+      <div class="search-result-meta">${g.genre_label} · ${g.size} · ${g.year}</div>
+    </div>
+    <div style="font-size:.7rem; color:var(--text3);">★ ${g.rating}</div>
+  </div>`).join('');
+}
+
+// ---- KEYBOARD SHORTCUTS ----
+document.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault(); openSearch();
+  }
+  if (e.key === 'Escape') {
+    closeModal(); closeSearch();
+    document.getElementById('navDrawer').classList.remove('open');
+  }
+});
+
+// ---- MOBILE DRAWER ----
+function toggleDrawer() {
+  document.getElementById('navDrawer').classList.toggle('open');
+}
+
+// ---- INIT ----
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('navCount').textContent = GAMES.length + ' games';
+  handleHash();
+});
+
+</script>
+</body>
+</html>
