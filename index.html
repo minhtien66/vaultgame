@@ -4,720 +4,489 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VaultGame — Kho Game PC Miễn Phí</title>
-<meta name="description" content="Kho lưu trữ game PC miễn phí lớn nhất Việt Nam. Tải game không giới hạn, việt hóa đầy đủ.">
+<meta name="description" content="Tải game PC miễn phí, full crack, việt hóa đầy đủ. Cập nhật liên tục.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:        #08080e;
-  --bg2:       #0f0f18;
-  --surface:   #13131e;
-  --surface2:  #1c1c2e;
-  --border:    #252538;
-  --border2:   #333350;
-  --accent:    #6c63ff;
-  --accent-h:  #8b85ff;
-  --accent2:   #ff6584;
-  --green:     #22d3a5;
-  --yellow:    #fbbf24;
-  --red:       #ef4444;
-  --text:      #e2e2f0;
-  --text2:     #a0a0c0;
-  --text3:     #55556a;
-  --font:      'Be Vietnam Pro', sans-serif;
-  --mono:      'JetBrains Mono', monospace;
-  --nav-h:     64px;
-  --radius:    12px;
+:root{
+  --bg:#0b0c10;--bg2:#111318;--bg3:#16181f;
+  --card:#1a1d26;--card2:#20232e;
+  --border:#2a2d3a;--border2:#353848;
+  --accent:#00b4d8;--accent2:#0077b6;--accent3:#90e0ef;
+  --orange:#f77f00;--green:#06d6a0;--red:#ef233c;--yellow:#ffd60a;
+  --text:#e8eaf0;--text2:#9096b0;--text3:#464a60;
+  --display:'Rajdhani',sans-serif;--body:'Nunito',sans-serif;--mono:'JetBrains Mono',monospace;
+  --nav-h:60px;--r:10px;
 }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--body);cursor:pointer;border:none;outline:none}
+input,select{font-family:var(--body);outline:none}
+img{display:block;max-width:100%}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; line-height: 1.6; }
-a { color: inherit; text-decoration: none; }
-button { font-family: var(--font); cursor: pointer; }
-input, select { font-family: var(--font); }
-img { display: block; max-width: 100%; }
+/* NAVBAR */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:999;height:var(--nav-h);background:rgba(11,12,16,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);display:flex;align-items:center;padding:0 1.5rem;gap:.5rem}
+.nav-brand{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:.05em;margin-right:1.5rem;flex-shrink:0;display:flex;align-items:center;gap:.5rem;cursor:pointer}
+.nav-brand-icon{width:32px;height:32px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#000;font-weight:900;font-family:var(--display)}
+.nav-brand span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:.1rem;flex:1}
+.nav-link{display:flex;align-items:center;gap:.38rem;padding:.38rem .7rem;border-radius:6px;font-size:.75rem;font-weight:800;color:var(--text2);transition:all .15s;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+.nav-link svg{width:13px;height:13px;flex-shrink:0}
+.nav-link:hover{color:var(--text);background:var(--card)}
+.nav-link.active{color:var(--accent);background:rgba(0,180,216,.1)}
+.nav-right{display:flex;align-items:center;gap:.55rem;margin-left:auto}
+.nav-search{display:flex;align-items:center;gap:.45rem;background:var(--card);border:1px solid var(--border);padding:.32rem .8rem;border-radius:6px;font-size:.75rem;color:var(--text2);cursor:pointer;transition:all .18s;min-width:130px}
+.nav-search:hover{border-color:var(--accent);color:var(--text)}
+.nav-search kbd{font-family:var(--mono);font-size:.58rem;background:var(--border);padding:.1rem .28rem;border-radius:3px;margin-left:auto}
+.nav-count{font-family:var(--mono);font-size:.65rem;color:var(--text3);background:var(--card);border:1px solid var(--border);padding:.25rem .55rem;border-radius:5px}
+.nav-toggle{display:none;background:none;color:var(--text);font-size:1.2rem;padding:.3rem;margin-left:.5rem;border:none;cursor:pointer}
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+/* PAGES */
+.page{display:none;padding-top:var(--nav-h);min-height:100vh}
+.page.active{display:block;animation:fadeUp .25s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* ===== NAVBAR ===== */
-#navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-  height: var(--nav-h);
-  background: rgba(8,8,14,.95);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center;
-  padding: 0 2rem; gap: 0;
-}
-.nav-logo {
-  font-family: var(--mono); font-weight: 700; font-size: 1.15rem;
-  letter-spacing: -.02em; display: flex; align-items: center; gap: .4rem;
-  margin-right: 2.5rem; flex-shrink: 0;
-}
-.nav-logo .bracket { color: var(--accent); }
-.nav-logo .dot { color: var(--green); }
-.nav-links { display: flex; align-items: center; gap: .25rem; flex: 1; }
-.nav-link {
-  display: flex; align-items: center; gap: .4rem;
-  padding: .45rem .85rem; border-radius: 8px;
-  font-size: .875rem; font-weight: 500; color: var(--text2);
-  transition: color .2s, background .2s; white-space: nowrap;
-}
-.nav-link:hover { color: var(--text); background: var(--surface); }
-.nav-link.active { color: var(--accent); background: rgba(108,99,255,.12); }
-.nav-right { display: flex; align-items: center; gap: .75rem; margin-left: auto; }
-.nav-search-btn {
-  display: flex; align-items: center; gap: .5rem;
-  background: var(--surface); border: 1px solid var(--border);
-  color: var(--text2); padding: .4rem .9rem; border-radius: 8px;
-  font-size: .8rem; transition: all .2s;
-}
-.nav-search-btn:hover { border-color: var(--accent); color: var(--text); }
-.nav-search-btn kbd { font-family: var(--mono); font-size: .65rem; background: var(--border); padding: .1rem .35rem; border-radius: 3px; color: var(--text3); }
-.nav-count { font-family: var(--mono); font-size: .7rem; color: var(--text3); border: 1px solid var(--border); padding: .3rem .6rem; border-radius: 6px; }
-.nav-hamburger { display: none; background: none; border: none; color: var(--text); font-size: 1.3rem; padding: .25rem; margin-left: auto; }
+/* HERO */
+.hero{position:relative;overflow:hidden}
+.hero-inner{position:relative;min-height:500px;display:grid;grid-template-columns:1fr 400px;max-width:1400px;margin:0 auto;padding:2.5rem 2rem 2rem;gap:2rem;align-items:center}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(3px) brightness(.22);transition:background-image .6s}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,12,16,.98) 0%,rgba(11,12,16,.75) 55%,rgba(11,12,16,.25) 100%)}
+.hero-content{position:relative;z-index:2}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.45rem;font-size:.65rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem;background:rgba(0,180,216,.08);border:1px solid rgba(0,180,216,.2);padding:.28rem .8rem;border-radius:100px}
+.hero-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-title{font-family:var(--display);font-size:clamp(1.9rem,3.5vw,3.2rem);font-weight:700;letter-spacing:.03em;line-height:1.05;margin-bottom:.8rem;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+.hero-meta{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.9rem}
+.hbadge{font-size:.6rem;font-weight:800;padding:.18rem .5rem;border-radius:3px;letter-spacing:.08em;text-transform:uppercase}
+.hbadge.hot{background:var(--red);color:#fff}
+.hbadge.new{background:var(--accent);color:#000}
+.hbadge.viet{background:#c41e3a;color:#fff}
+.hero-rating{display:flex;align-items:center;gap:.3rem;font-size:.78rem;color:var(--yellow);font-weight:800}
+.hero-desc{font-size:.87rem;color:var(--text2);line-height:1.7;max-width:520px;margin-bottom:1.4rem}
+.hero-info-row{display:flex;gap:1.5rem;margin-bottom:1.5rem}
+.hi-item{text-align:left}
+.hi-val{font-family:var(--mono);font-size:.82rem;font-weight:600;color:var(--text);display:block}
+.hi-key{font-size:.6rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em}
+.hero-btns{display:flex;gap:.6rem;flex-wrap:wrap}
+.hero-img{position:relative;z-index:2;border-radius:10px;overflow:hidden;aspect-ratio:16/10;box-shadow:0 20px 60px rgba(0,0,0,.75);border:1px solid var(--border2)}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-img-fb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:var(--card2)}
+.hero-dots-bar{position:relative;z-index:2;display:flex;gap:.4rem;max-width:1400px;margin:0 auto;padding:.75rem 2rem 1.5rem}
+.hdot{width:26px;height:3px;border-radius:2px;background:var(--border2);cursor:pointer;transition:all .2s}
+.hdot.active{background:var(--accent);width:44px}
 
-/* ===== PAGES ===== */
-.page { display: none; padding-top: var(--nav-h); min-height: 100vh; }
-.page.active { display: block; animation: pageFade .3s ease; }
-@keyframes pageFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+/* STRIPE */
+.stripe{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.55rem 0}
+.stripe-inner{max-width:1400px;margin:0 auto;padding:0 2rem;display:flex;gap:2.5rem;align-items:center;overflow-x:auto}
+.si{display:flex;align-items:center;gap:.45rem;font-size:.72rem;font-weight:700;color:var(--text2);white-space:nowrap}
+.si svg{color:var(--accent);width:13px;height:13px;flex-shrink:0}
 
-/* ===== HERO ===== */
-.hero {
-  position: relative; padding: 5rem 2rem 4rem;
-  text-align: center; overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(108,99,255,.18) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(255,101,132,.07) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero-bg::after {
-  content: ''; position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(108,99,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(108,99,255,.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: .6rem;
-  font-size: .78rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 1.5rem;
-  background: rgba(108,99,255,.08); border: 1px solid rgba(108,99,255,.25);
-  padding: .35rem 1rem; border-radius: 100px;
-}
-.hero-eyebrow .pulse {
-  width: 6px; height: 6px; background: var(--green); border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(34,211,165,.6); }
-  70% { box-shadow: 0 0 0 8px rgba(34,211,165,0); }
-  100% { box-shadow: 0 0 0 0 rgba(34,211,165,0); }
-}
-.hero h1 { font-size: clamp(2.4rem, 6vw, 4.8rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 1.25rem; }
-.hero h1 .highlight {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.hero-sub { font-size: 1.05rem; color: var(--text2); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; }
-.hero-ctas { display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: .5rem;
-  background: var(--accent); color: #fff; padding: .75rem 1.75rem;
-  border-radius: 10px; font-weight: 700; font-size: .95rem; border: none;
-  transition: all .2s; box-shadow: 0 4px 20px rgba(108,99,255,.35);
-}
-.btn-primary:hover { background: var(--accent-h); transform: translateY(-2px); }
-.btn-outline {
-  display: inline-flex; align-items: center; gap: .5rem;
-  background: transparent; color: var(--text); padding: .75rem 1.75rem;
-  border-radius: 10px; font-weight: 600; font-size: .95rem;
-  border: 1px solid var(--border2); transition: all .2s;
-}
-.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: rgba(108,99,255,.06); }
-.hero-stats { display: flex; justify-content: center; gap: 3.5rem; flex-wrap: wrap; }
-.hero-stat { text-align: center; }
-.hero-stat-num {
-  font-family: var(--mono); font-size: 2rem; font-weight: 700; display: block;
-  background: linear-gradient(135deg, var(--text) 0%, var(--text2) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.hero-stat-label { font-size: .8rem; color: var(--text3); text-transform: uppercase; letter-spacing: .08em; margin-top: .15rem; }
+/* LAYOUT */
+.wrap{max-width:1400px;margin:0 auto;padding:0 2rem}
+.section{padding:1.75rem 0}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.15rem;gap:1rem}
+.sec-label{font-family:var(--display);font-size:1.15rem;font-weight:700;letter-spacing:.05em;display:flex;align-items:center;gap:.55rem}
+.sec-label::before{content:'';width:3px;height:1rem;background:var(--accent);border-radius:2px;display:block}
+.sec-more{font-size:.68rem;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;cursor:pointer;display:flex;align-items:center;gap:.25rem;transition:gap .15s}
+.sec-more:hover{gap:.45rem}
+.divider{height:1px;background:var(--border);margin:1.25rem 0}
 
-/* ===== LAYOUT ===== */
-.container { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
-.section { padding: 2.5rem 0; }
-.section + .section { border-top: 1px solid var(--border); }
-.divider { height: 1px; background: var(--border); margin: 2.5rem 0; }
-.section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.5rem; gap: 1rem; }
-.section-title { font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; display: flex; align-items: center; gap: .6rem; }
-.section-more { font-size: .82rem; color: var(--accent); font-weight: 600; display: flex; align-items: center; gap: .25rem; transition: gap .2s; }
-.section-more:hover { gap: .5rem; }
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.4rem;font-weight:800;font-size:.82rem;padding:.6rem 1.3rem;border-radius:7px;transition:all .17s;cursor:pointer;border:none;letter-spacing:.02em;font-family:var(--body)}
+.btn-primary{background:var(--accent);color:#000;box-shadow:0 4px 18px rgba(0,180,216,.28)}
+.btn-primary:hover{background:var(--accent3);transform:translateY(-2px);box-shadow:0 7px 22px rgba(0,180,216,.4)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid var(--border2)}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:var(--accent)}
+.btn-dl{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:.78rem 1.5rem;font-size:.9rem;box-shadow:0 4px 18px rgba(0,180,216,.3);width:100%;justify-content:center;border-radius:8px}
+.btn-dl:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(0,180,216,.45)}
 
-/* ===== GAME CARDS ===== */
-.game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
-.game-grid.wide { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); }
+/* GAME CARDS */
+.game-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem}
+.game-grid.lg{grid-template-columns:repeat(auto-fill,minmax(255px,1fr))}
+.gcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;animation:cardIn .3s both}
+.gcard:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 32px rgba(0,0,0,.55)}
+@keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.gcard-thumb{position:relative;aspect-ratio:16/9;background:var(--card2);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.gcard-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gcard:hover .gcard-thumb img{transform:scale(1.06)}
+.gcard-emoji{font-size:2.8rem;position:relative;z-index:1}
+.gcard-grad{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.7) 100%)}
+.gcard-badges{position:absolute;top:.45rem;left:.45rem;display:flex;gap:.28rem;z-index:3}
+.badge{font-size:.56rem;font-weight:800;padding:.16rem .42rem;border-radius:3px;letter-spacing:.07em;text-transform:uppercase}
+.badge-hot{background:var(--red);color:#fff}
+.badge-new{background:var(--accent);color:#000}
+.badge-viet{background:#c41e3a;color:#fff}
+.gcard-score{position:absolute;bottom:.45rem;right:.45rem;z-index:3;background:rgba(0,0,0,.78);padding:.18rem .45rem;border-radius:4px;font-size:.65rem;font-weight:800;color:var(--yellow);display:flex;align-items:center;gap:.18rem}
+.gcard-body{padding:.7rem .85rem .85rem}
+.gcard-genre{font-size:.58rem;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.28rem}
+.gcard-title{font-family:var(--display);font-size:.98rem;font-weight:700;letter-spacing:.02em;line-height:1.2;margin-bottom:.38rem}
+.gcard-desc{font-size:.72rem;color:var(--text2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:.55rem}
+.gcard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:.55rem;border-top:1px solid var(--border)}
+.gcard-size{font-family:var(--mono);font-size:.6rem;color:var(--text3)}
+.gcard-btn{font-size:.67rem;font-weight:800;background:var(--accent);color:#000;padding:.25rem .65rem;border-radius:4px;transition:all .14s;letter-spacing:.02em;border:none;cursor:pointer}
+.gcard-btn:hover{background:var(--accent3);transform:scale(1.04)}
 
-.game-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden; cursor: pointer;
-  transition: transform .22s, border-color .22s, box-shadow .22s;
-  position: relative; animation: cardUp .35s both;
-}
-.game-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 12px 40px rgba(108,99,255,.15); }
-@keyframes cardUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+/* PAGE HEADER */
+.ph{background:var(--bg2);border-bottom:1px solid var(--border);padding:1.75rem 2rem 1.35rem}
+.ph-inner{max-width:1400px;margin:0 auto}
+.ph-title{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.3rem);font-weight:700;letter-spacing:.04em;margin-bottom:.28rem}
+.ph-sub{color:var(--text2);font-size:.82rem}
 
-.card-thumb {
-  width: 100%; aspect-ratio: 16/9;
-  background: var(--surface2);
-  position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 4rem;
-}
-.card-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
-.game-card:hover .card-thumb img { transform: scale(1.05); }
-.card-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,.5) 100%); }
+/* FILTER */
+.filter-bar{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1.1rem}
+.fsearch{flex:1;min-width:180px;position:relative}
+.fsearch svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none;width:13px;height:13px}
+.finput{width:100%;background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:.44rem .85rem .44rem 1.9rem;border-radius:6px;font-size:.8rem;transition:border-color .18s}
+.finput:focus{border-color:var(--accent)}
+.finput::placeholder{color:var(--text3)}
+.chips{display:flex;gap:.32rem;flex-wrap:wrap}
+.chip{font-size:.66rem;font-weight:800;padding:.32rem .7rem;border-radius:100px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .14s;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.active{background:var(--accent);border-color:var(--accent);color:#000}
+.fsort{background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:.38rem .7rem;border-radius:6px;font-size:.76rem;cursor:pointer;transition:border-color .18s}
+.fsort:focus{border-color:var(--accent)}
+.rcount{font-family:var(--mono);font-size:.7rem;color:var(--text3);margin-bottom:.85rem}
+.rcount strong{color:var(--green)}
 
-.card-badges { position: absolute; top: .6rem; left: .6rem; display: flex; gap: .35rem; z-index: 2; }
-.badge { font-size: .62rem; font-weight: 700; padding: .2rem .5rem; border-radius: 4px; letter-spacing: .05em; text-transform: uppercase; }
-.badge-hot   { background: #ff4466; color: #fff; }
-.badge-new   { background: var(--accent); color: #fff; }
-.badge-viet  { background: #dc2626; color: #fff; }
-.badge-free  { background: var(--green); color: #000; }
+/* GENRE */
+.genre-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:.6rem;margin-bottom:1.75rem}
+.gc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem .85rem;text-align:center;cursor:pointer;transition:all .17s}
+.gc:hover,.gc.active{border-color:var(--accent);background:rgba(0,180,216,.07);transform:translateY(-2px)}
+.gc.active .gc-name{color:var(--accent)}
+.gc-icon{font-size:1.7rem;margin-bottom:.38rem}
+.gc-name{font-size:.75rem;font-weight:800;letter-spacing:.02em}
+.gc-count{font-family:var(--mono);font-size:.62rem;color:var(--text3);margin-top:.12rem}
 
-.card-body { padding: .9rem 1rem 1rem; }
-.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .5rem; margin-bottom: .4rem; }
-.card-title { font-size: .95rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.3; flex: 1; }
-.card-rating { font-family: var(--mono); font-size: .72rem; font-weight: 700; color: var(--yellow); display: flex; align-items: center; gap: .2rem; flex-shrink: 0; margin-top: .1rem; }
-.card-tags { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: .6rem; }
-.tag { font-size: .65rem; font-weight: 600; color: var(--text3); border: 1px solid var(--border); padding: .1rem .45rem; border-radius: 4px; text-transform: uppercase; letter-spacing: .04em; }
-.tag.viet { color: #ef4444; border-color: rgba(239,68,68,.3); }
-.card-desc { font-size: .8rem; color: var(--text2); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: .75rem; }
-.card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: .75rem; border-top: 1px solid var(--border); gap: .5rem; }
-.card-meta-info { display: flex; align-items: center; gap: .6rem; }
-.card-size, .card-year { font-family: var(--mono); font-size: .68rem; color: var(--text3); }
-.card-size::before { content: '📦 '; }
-.btn-dl-sm { font-size: .75rem; font-weight: 700; background: var(--accent); color: #fff; border: none; padding: .35rem .8rem; border-radius: 6px; transition: all .15s; flex-shrink: 0; }
-.btn-dl-sm:hover { background: var(--accent-h); transform: scale(1.04); }
+/* VIET */
+.viet-banner{background:linear-gradient(135deg,rgba(196,30,58,.14),rgba(196,30,58,.04));border:1px solid rgba(196,30,58,.22);border-radius:11px;padding:1.1rem 1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.viet-flag{font-size:2.3rem;flex-shrink:0}
+.viet-info h3{font-size:.95rem;font-weight:800;margin-bottom:.18rem}
+.viet-info p{font-size:.76rem;color:var(--text2)}
 
-/* ===== FEATURED BANNER ===== */
-.featured-banner {
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
-  border: 1px solid var(--border); border-radius: 16px;
-  overflow: hidden; margin-bottom: 3rem; position: relative;
-  display: grid; grid-template-columns: 1fr 380px;
-}
-.featured-banner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-.featured-content { padding: 2.5rem; }
-.featured-label { font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; display: flex; align-items: center; gap: .5rem; }
-.featured-label::before { content: ''; width: 20px; height: 2px; background: var(--accent); }
-.featured-title { font-size: 2.2rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: .6rem; line-height: 1.1; }
-.featured-desc { font-size: .9rem; color: var(--text2); line-height: 1.65; max-width: 500px; margin-bottom: 1.25rem; }
-.featured-meta { display: flex; gap: 1rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
-.featured-meta-item { font-size: .78rem; color: var(--text3); display: flex; align-items: center; gap: .3rem; }
-.featured-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
-.featured-img {
-  position: relative; overflow: hidden;
-  background: var(--surface2);
-  min-height: 240px;
-}
-.featured-img img { width: 100%; height: 100%; object-fit: cover; }
-.featured-img-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 8rem; }
+/* TOP */
+.top-list{display:flex;flex-direction:column;gap:.45rem}
+.top-item{display:flex;align-items:center;gap:.8rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.7rem .85rem;cursor:pointer;transition:all .15s}
+.top-item:hover{border-color:var(--accent);background:rgba(0,180,216,.04)}
+.top-rank{font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--text3);width:22px;text-align:center;flex-shrink:0}
+.top-rank.g1{color:var(--yellow)}.top-rank.g2{color:#94a3b8}.top-rank.g3{color:#cd7f32}
+.top-emoji{font-size:1.5rem;flex-shrink:0}
+.top-info{flex:1}
+.top-title{font-size:.82rem;font-weight:800;margin-bottom:.1rem}
+.top-meta{font-size:.67rem;color:var(--text3)}
+.top-dl{font-family:var(--mono);font-size:.65rem;color:var(--green);flex-shrink:0}
 
-/* ===== PAGE HEADER ===== */
-.page-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem 2rem; }
-.page-header-inner { max-width: 1320px; margin: 0 auto; }
-.page-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -.04em; margin-bottom: .5rem; }
-.page-sub { color: var(--text2); font-size: .95rem; }
+/* EMPTY */
+.empty{text-align:center;padding:4rem 2rem;color:var(--text3)}
+.empty-icon{font-size:2.5rem;margin-bottom:.65rem}
+.empty h3{font-size:.95rem;font-weight:800;color:var(--text2);margin-bottom:.28rem}
+.empty p{font-size:.8rem}
 
-/* ===== FILTER BAR ===== */
-.filter-bar {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1rem 1.25rem; display: flex; flex-wrap: wrap; gap: .75rem; align-items: center;
-  margin-bottom: 1.5rem;
-}
-.search-field { flex: 1; min-width: 200px; position: relative; }
-.search-field svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text3); pointer-events: none; }
-.search-input { width: 100%; background: var(--bg2); border: 1px solid var(--border); color: var(--text); padding: .55rem 1rem .55rem 2.2rem; border-radius: 8px; font-size: .875rem; outline: none; transition: border-color .2s; }
-.search-input:focus { border-color: var(--accent); }
-.search-input::placeholder { color: var(--text3); }
-.filter-chips { display: flex; gap: .4rem; flex-wrap: wrap; }
-.chip { font-size: .75rem; font-weight: 600; padding: .4rem .85rem; border-radius: 100px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); cursor: pointer; transition: all .18s; white-space: nowrap; }
-.chip:hover { border-color: var(--accent); color: var(--accent); }
-.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.sort-select { background: var(--bg2); border: 1px solid var(--border); color: var(--text); padding: .45rem .85rem; border-radius: 8px; font-size: .8rem; cursor: pointer; outline: none; transition: border-color .2s; }
-.sort-select:focus { border-color: var(--accent); }
-.results-count { font-family: var(--mono); font-size: .75rem; color: var(--text3); margin-bottom: 1rem; }
-.results-count strong { color: var(--green); }
+/* SEARCH */
+#searchOverlay{display:none;position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);padding:5rem 1.5rem 1.5rem;align-items:flex-start;justify-content:center}
+#searchOverlay.open{display:flex}
+.s-modal{background:var(--card);border:1px solid var(--border2);border-radius:12px;width:100%;max-width:580px;overflow:hidden;animation:fadeUp .2s ease}
+.s-head{display:flex;align-items:center;gap:.7rem;padding:.85rem 1.05rem;border-bottom:1px solid var(--border)}
+.s-input{flex:1;background:none;border:none;font-family:var(--body);font-size:.95rem;color:var(--text)}
+.s-input::placeholder{color:var(--text3)}
+.s-esc{font-family:var(--mono);font-size:.62rem;color:var(--text3);background:var(--border);padding:.12rem .42rem;border-radius:3px;cursor:pointer;flex-shrink:0}
+.s-list{max-height:380px;overflow-y:auto}
+.s-item{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.05rem;cursor:pointer;transition:background .12s;border-bottom:1px solid var(--border)}
+.s-item:last-child{border-bottom:none}
+.s-item:hover{background:var(--card2)}
+.s-icon{font-size:1.5rem;flex-shrink:0}
+.s-info{flex:1}
+.s-title{font-size:.82rem;font-weight:800;margin-bottom:.08rem}
+.s-meta{font-size:.67rem;color:var(--text3)}
+.s-empty{text-align:center;padding:1.75rem;color:var(--text3);font-size:.82rem}
 
-/* ===== GENRE CARDS ===== */
-.genre-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .75rem; margin-bottom: 2.5rem; }
-.genre-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1rem; text-align: center; cursor: pointer; transition: all .2s; }
-.genre-card:hover, .genre-card.active { border-color: var(--accent); background: rgba(108,99,255,.08); transform: translateY(-2px); }
-.genre-card.active .genre-name { color: var(--accent); }
-.genre-icon { font-size: 2rem; margin-bottom: .5rem; }
-.genre-name { font-size: .82rem; font-weight: 700; }
-.genre-count { font-family: var(--mono); font-size: .7rem; color: var(--text3); margin-top: .15rem; }
+/* LIGHTBOX */
+#lb{display:none;position:fixed;inset:0;z-index:950;background:rgba(0,0,0,.95);align-items:center;justify-content:center;padding:1rem}
+#lb.open{display:flex}
+#lb img{max-width:100%;max-height:90vh;border-radius:8px;object-fit:contain}
+#lb-close{position:absolute;top:1rem;right:1rem;background:var(--card);border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:50%;font-size:.95rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s}
+#lb-close:hover{background:var(--red)}
 
-/* ===== VIỆT HÓA ===== */
-.viet-banner { background: linear-gradient(135deg, rgba(220,38,38,.12) 0%, rgba(239,68,68,.05) 100%); border: 1px solid rgba(239,68,68,.25); border-radius: 14px; padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2rem; }
-.viet-flag { font-size: 3rem; flex-shrink: 0; }
-.viet-info h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: .25rem; }
-.viet-info p { font-size: .875rem; color: var(--text2); }
+/* DRAWER */
+.drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;z-index:500;background:var(--bg);padding:.85rem;flex-direction:column;gap:.18rem;border-top:1px solid var(--border);overflow-y:auto}
+.drawer.open{display:flex}
+.drawer .nav-link{padding:.65rem .9rem;font-size:.88rem}
 
-/* ===== TOP LIST ===== */
-.top-list { display: flex; flex-direction: column; gap: .6rem; }
-.top-item { display: flex; align-items: center; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: .85rem 1rem; cursor: pointer; transition: all .18s; }
-.top-item:hover { border-color: var(--accent); background: rgba(108,99,255,.04); }
-.top-rank { font-family: var(--mono); font-size: .8rem; font-weight: 700; color: var(--text3); width: 28px; text-align: center; flex-shrink: 0; }
-.top-rank.gold { color: #fbbf24; }
-.top-rank.silver { color: #94a3b8; }
-.top-rank.bronze { color: #b87333; }
-.top-icon { font-size: 1.75rem; flex-shrink: 0; }
-.top-info { flex: 1; }
-.top-title { font-size: .9rem; font-weight: 700; margin-bottom: .15rem; }
-.top-meta { font-size: .75rem; color: var(--text3); }
-.top-dl { font-family: var(--mono); font-size: .72rem; color: var(--green); flex-shrink: 0; }
+/* DETAIL */
+.bc{background:var(--bg2);border-bottom:1px solid var(--border);padding:.55rem 2rem}
+.bc-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.38rem;font-size:.72rem;color:var(--text3)}
+.bc-inner a{color:var(--text3);cursor:pointer;transition:color .14s}
+.bc-inner a:hover{color:var(--accent)}
+.detail-wrap{max-width:1400px;margin:0 auto;padding:1.5rem 2rem 4rem}
+.d-hero{position:relative;border-radius:12px;overflow:hidden;margin-bottom:1.5rem;aspect-ratio:21/8;background:var(--card2)}
+.d-hero img{width:100%;height:100%;object-fit:cover}
+.d-hero-fb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:7rem}
+.d-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,12,16,.95) 0%,rgba(11,12,16,.35) 55%,transparent 100%)}
+.d-hero-bottom{position:absolute;bottom:1.25rem;left:1.75rem;right:1.75rem}
+.d-hero-title{font-family:var(--display);font-size:clamp(1.7rem,3.5vw,2.8rem);font-weight:700;letter-spacing:.04em;text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.d-layout{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:flex-start}
+.d-right{position:sticky;top:calc(var(--nav-h) + 1.1rem)}
+.d-meta{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-bottom:1.35rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
+.d-genre{font-size:.62rem;font-weight:800;color:var(--accent);background:rgba(0,180,216,.1);border:1px solid rgba(0,180,216,.22);padding:.25rem .7rem;border-radius:100px;text-transform:uppercase;letter-spacing:.1em}
+.d-stars{color:var(--yellow);font-size:.9rem}
+.d-rnum{font-family:var(--mono);font-weight:700;color:var(--yellow);font-size:.8rem}
+.d-dlcount{font-family:var(--mono);font-size:.68rem;color:var(--text3);margin-left:auto}
+.dt{font-size:.76rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--text2);margin-bottom:.8rem;display:flex;align-items:center;gap:.45rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+.dt::before{content:'';width:3px;height:.8rem;background:var(--accent);border-radius:2px;flex-shrink:0}
+.d-desc{font-size:.875rem;color:var(--text2);line-height:1.85;margin-bottom:1.5rem}
+.d-desc p{margin-bottom:.8rem}
+.d-desc p:last-child{margin-bottom:0}
+.gallery{margin-bottom:1.5rem}
+.gal-main{position:relative;border-radius:9px;overflow:hidden;aspect-ratio:16/9;background:var(--card2);margin-bottom:.55rem;cursor:zoom-in}
+.gal-main img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.gal-main:hover img{transform:scale(1.02)}
+.gal-thumbs{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.2rem}
+.gal-thumbs::-webkit-scrollbar{height:3px}
+.gal-thumb{flex-shrink:0;width:95px;aspect-ratio:16/9;border-radius:5px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all .16s;opacity:.55}
+.gal-thumb.active,.gal-thumb:hover{border-color:var(--accent);opacity:1}
+.gal-thumb img{width:100%;height:100%;object-fit:cover}
+.d-trailer{margin-bottom:1.5rem}
+.trailer-wrap{position:relative;aspect-ratio:16/9;border-radius:9px;overflow:hidden;background:#000}
+.trailer-wrap iframe{width:100%;height:100%;border:none}
+.d-specs{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem}
+.spec-box{background:var(--card);border:1px solid var(--border);border-radius:7px;padding:.6rem .85rem}
+.spec-k{font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:.22rem}
+.spec-v{font-size:.8rem;font-weight:700}
+.sr-tabs{display:flex;gap:.38rem;margin-bottom:.7rem}
+.sr-tab{font-size:.68rem;font-weight:800;padding:.32rem .8rem;border-radius:5px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .14s;text-transform:uppercase;letter-spacing:.06em}
+.sr-tab.active{background:var(--accent);border-color:var(--accent);color:#000}
+.sr-table{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem}
+.sr-row{display:flex;border-bottom:1px solid var(--border)}
+.sr-row:last-child{border-bottom:none}
+.sr-k{font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--accent);padding:.5rem .85rem;min-width:80px;background:rgba(0,180,216,.04);display:flex;align-items:center}
+.sr-v{font-size:.75rem;color:var(--text2);padding:.5rem .85rem;display:flex;align-items:center}
+.install-box{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.install-box ol{padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem}
+.install-box li{font-size:.8rem;color:var(--text2);line-height:1.6}
+.install-box strong{color:var(--text)}
 
-/* ===== EMPTY STATE ===== */
-.empty-state { text-align: center; padding: 5rem 2rem; color: var(--text3); }
-.empty-state .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
-.empty-state h3 { font-size: 1.1rem; font-weight: 700; color: var(--text2); margin-bottom: .4rem; }
-.empty-state p { font-size: .875rem; }
+/* SIDEBAR */
+.dl-box{background:var(--card);border:1px solid var(--border2);border-radius:11px;overflow:hidden;margin-bottom:1rem;position:relative}
+.dl-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--green))}
+.dl-head{padding:1rem 1rem .7rem}
+.dl-label{font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--text3);margin-bottom:.55rem}
+.dl-name{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:.03em;margin-bottom:.35rem;line-height:1.2}
+.dl-ver{font-family:var(--mono);font-size:.66rem;color:var(--green);background:rgba(6,214,160,.08);border:1px solid rgba(6,214,160,.18);padding:.15rem .42rem;border-radius:4px;display:inline-block;margin-bottom:.65rem}
+.dl-rows{display:flex;flex-direction:column;gap:.28rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.dl-row{display:flex;justify-content:space-between;font-size:.73rem}
+.dl-rk{color:var(--text3)}
+.dl-rv{color:var(--text);font-weight:700;font-family:var(--mono);font-size:.67rem}
+.dl-body{padding:.7rem 1rem 1rem}
+.dl-size-big{text-align:center;margin-bottom:.9rem}
+.dl-size-num{font-family:var(--mono);font-size:1.75rem;font-weight:700;color:var(--accent);display:block;line-height:1}
+.dl-size-lbl{font-size:.6rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-top:.12rem}
+.dl-free{text-align:center;font-size:.67rem;font-weight:800;color:var(--green);margin-bottom:.35rem}
+.dl-note{font-size:.64rem;color:var(--text3);text-align:center;line-height:1.55}
+.dl-viet{margin-top:.45rem;font-size:.67rem;font-weight:800;color:#ef4444;text-align:center;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);border-radius:5px;padding:.28rem .5rem}
+.info-box{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:.85rem 1rem;margin-bottom:1rem}
+.info-box-t{font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--text3);margin-bottom:.7rem}
+.info-r{display:flex;justify-content:space-between;align-items:flex-start;padding:.38rem 0;border-bottom:1px solid var(--border);font-size:.75rem}
+.info-r:last-child{border-bottom:none;padding-bottom:0}
+.info-k{color:var(--text3)}
+.info-v{color:var(--text);font-weight:700;text-align:right;max-width:55%}
+.info-tags{display:flex;flex-wrap:wrap;gap:.22rem;justify-content:flex-end}
+.itag{font-size:.58rem;background:var(--card2);border:1px solid var(--border);padding:.08rem .35rem;border-radius:3px;color:var(--text2)}
 
-/* ===== SEARCH OVERLAY ===== */
-#searchOverlay { display: none; position: fixed; inset: 0; z-index: 800; background: rgba(0,0,0,.85); backdrop-filter: blur(12px); padding: 6rem 1.5rem 1.5rem; align-items: flex-start; justify-content: center; }
-#searchOverlay.open { display: flex; }
-.search-modal { background: var(--surface); border: 1px solid var(--border2); border-radius: 16px; width: 100%; max-width: 640px; animation: modalPop .25s cubic-bezier(.34,1.4,.64,1); overflow: hidden; }
-@keyframes modalPop { from { opacity: 0; transform: scale(.92) translateY(16px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-.search-modal-input-wrap { display: flex; align-items: center; gap: .75rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
-.search-modal-input { flex: 1; background: none; border: none; outline: none; font-family: var(--font); font-size: 1.1rem; color: var(--text); }
-.search-modal-input::placeholder { color: var(--text3); }
-.search-modal-esc { font-family: var(--mono); font-size: .7rem; color: var(--text3); background: var(--border); padding: .2rem .5rem; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
-.search-results-list { max-height: 420px; overflow-y: auto; }
-.search-result-item { display: flex; align-items: center; gap: 1rem; padding: .85rem 1.25rem; cursor: pointer; transition: background .15s; border-bottom: 1px solid var(--border); }
-.search-result-item:last-child { border-bottom: none; }
-.search-result-item:hover { background: var(--surface2); }
-.search-result-icon { font-size: 1.8rem; flex-shrink: 0; }
-.search-result-info { flex: 1; }
-.search-result-title { font-size: .9rem; font-weight: 700; margin-bottom: .15rem; }
-.search-result-meta { font-size: .75rem; color: var(--text3); }
-.search-empty { text-align: center; padding: 2.5rem; color: var(--text3); font-size: .9rem; }
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.25rem 2rem 1.5rem;margin-top:2.5rem}
+.footer-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:1.75rem}
+.footer-brand{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.06em;color:var(--accent);margin-bottom:.55rem}
+.footer-desc{font-size:.76rem;color:var(--text3);line-height:1.7}
+.footer-ht{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--text2);margin-bottom:.65rem}
+.footer-links{display:flex;flex-direction:column;gap:.38rem}
+.footer-link{font-size:.77rem;color:var(--text3);transition:color .14s;cursor:pointer}
+.footer-link:hover{color:var(--accent)}
+.footer-bot{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-top:1.1rem;border-top:1px solid var(--border);flex-wrap:wrap;gap:.45rem}
+.footer-copy{font-size:.7rem;color:var(--text3);font-family:var(--mono)}
 
-/* ===== DETAIL PAGE ===== */
-.detail-breadcrumb {
-  background: var(--surface); border-bottom: 1px solid var(--border);
-  padding: .75rem 2rem;
-}
-.detail-breadcrumb-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; align-items: center; gap: .5rem;
-  font-size: .8rem; color: var(--text3);
-}
-.detail-breadcrumb a { color: var(--text3); cursor: pointer; transition: color .15s; }
-.detail-breadcrumb a:hover { color: var(--accent); }
-.detail-breadcrumb span { color: var(--text2); }
-
-.detail-wrap { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 4rem; }
-
-/* Hero banner */
-.detail-hero-banner {
-  position: relative; border-radius: 16px; overflow: hidden;
-  margin-bottom: 2rem; aspect-ratio: 21/9;
-  background: var(--surface2);
-  display: flex; align-items: center; justify-content: center;
-}
-.detail-hero-banner img { width: 100%; height: 100%; object-fit: cover; }
-.detail-hero-banner-fallback { font-size: 8rem; }
-.detail-hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(8,8,14,.9) 0%, transparent 60%);
-}
-.detail-hero-title-overlay {
-  position: absolute; bottom: 1.5rem; left: 2rem; right: 2rem;
-}
-.detail-hero-title-overlay h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; letter-spacing: -.04em; text-shadow: 0 2px 20px rgba(0,0,0,.8); }
-
-/* Main layout */
-.detail-main { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; align-items: flex-start; }
-.detail-left {}
-.detail-right { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
-
-/* Meta row */
-.detail-meta-row {
-  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
-  margin-bottom: 1.5rem; padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
-}
-.detail-genre-badge {
-  display: inline-flex; font-size: .75rem; font-weight: 700;
-  color: var(--accent); background: rgba(108,99,255,.1);
-  border: 1px solid rgba(108,99,255,.3); padding: .3rem .85rem;
-  border-radius: 100px; letter-spacing: .04em;
-}
-.detail-rating-stars { color: var(--yellow); font-size: 1rem; }
-.detail-rating-num { font-family: var(--mono); font-weight: 700; color: var(--yellow); }
-.detail-dl-stat { font-family: var(--mono); font-size: .78rem; color: var(--text3); margin-left: auto; }
-.detail-badges { display: flex; gap: .4rem; }
-
-/* Description */
-.detail-section-title {
-  font-size: 1rem; font-weight: 800; letter-spacing: -.01em;
-  margin-bottom: 1rem;
-  display: flex; align-items: center; gap: .5rem;
-  padding-bottom: .5rem; border-bottom: 2px solid var(--border);
-}
-.detail-section-title::before { content: ''; width: 3px; height: 1rem; background: var(--accent); border-radius: 2px; }
-.detail-desc { font-size: .95rem; color: var(--text2); line-height: 1.85; margin-bottom: 2rem; }
-.detail-desc p { margin-bottom: 1rem; }
-.detail-desc p:last-child { margin-bottom: 0; }
-
-/* Screenshot gallery */
-.screenshot-gallery { margin-bottom: 2rem; }
-.gallery-main {
-  position: relative; border-radius: 12px; overflow: hidden;
-  aspect-ratio: 16/9; background: var(--surface2);
-  margin-bottom: .75rem; cursor: pointer;
-}
-.gallery-main img { width: 100%; height: 100%; object-fit: cover; }
-.gallery-thumbs { display: flex; gap: .5rem; overflow-x: auto; padding-bottom: .25rem; }
-.gallery-thumbs::-webkit-scrollbar { height: 3px; }
-.gallery-thumb {
-  flex-shrink: 0; width: 110px; aspect-ratio: 16/9;
-  border-radius: 6px; overflow: hidden; cursor: pointer;
-  border: 2px solid transparent; transition: border-color .2s; opacity: .65;
-}
-.gallery-thumb.active { border-color: var(--accent); opacity: 1; }
-.gallery-thumb:hover { opacity: 1; }
-.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-/* Trailer */
-.detail-trailer { margin-bottom: 2rem; }
-.trailer-frame {
-  position: relative; aspect-ratio: 16/9;
-  border-radius: 12px; overflow: hidden; background: #000;
-}
-.trailer-frame iframe { width: 100%; height: 100%; border: none; }
-
-/* Specs table */
-.detail-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: 2rem; }
-.spec-item { background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: .75rem 1rem; }
-.spec-label { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text3); margin-bottom: .3rem; }
-.spec-val { font-size: .875rem; font-weight: 600; }
-
-/* System Requirements */
-.sysreq-tabs { display: flex; gap: .5rem; margin-bottom: 1rem; }
-.sysreq-tab { font-size: .8rem; font-weight: 700; padding: .4rem 1rem; border-radius: 7px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); cursor: pointer; transition: all .18s; }
-.sysreq-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.sysreq-table { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 2rem; }
-.sysreq-row { display: flex; border-bottom: 1px solid var(--border); }
-.sysreq-row:last-child { border-bottom: none; }
-.sysreq-key { font-family: var(--mono); font-size: .72rem; font-weight: 700; color: var(--accent); padding: .65rem 1rem; min-width: 90px; background: rgba(108,99,255,.04); display: flex; align-items: center; }
-.sysreq-val { font-size: .82rem; color: var(--text2); padding: .65rem 1rem; display: flex; align-items: center; }
-
-/* Install guide */
-.install-guide { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
-.install-guide ol { padding-left: 1.25rem; display: flex; flex-direction: column; gap: .6rem; }
-.install-guide li { font-size: .875rem; color: var(--text2); line-height: 1.6; }
-.install-guide strong { color: var(--text); }
-
-/* Related games */
-.related-section { margin-top: 2rem; }
-
-/* RIGHT SIDEBAR */
-.dl-card {
-  background: var(--surface); border: 1px solid var(--border2);
-  border-radius: 16px; overflow: hidden; margin-bottom: 1.25rem;
-  position: relative;
-}
-.dl-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--green)); }
-.dl-card-header { padding: 1.25rem 1.25rem .75rem; }
-.dl-card-title { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--text3); margin-bottom: .75rem; }
-.dl-game-name { font-size: 1.1rem; font-weight: 900; letter-spacing: -.02em; margin-bottom: .5rem; line-height: 1.2; }
-.dl-version { font-family: var(--mono); font-size: .75rem; color: var(--green); background: rgba(34,211,165,.08); border: 1px solid rgba(34,211,165,.2); padding: .2rem .5rem; border-radius: 5px; display: inline-block; margin-bottom: .85rem; }
-.dl-meta-list { display: flex; flex-direction: column; gap: .4rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
-.dl-meta-item { display: flex; justify-content: space-between; font-size: .8rem; }
-.dl-meta-key { color: var(--text3); }
-.dl-meta-val { color: var(--text); font-weight: 600; font-family: var(--mono); font-size: .75rem; }
-.dl-card-body { padding: .85rem 1.25rem 1.25rem; }
-.dl-size-display { text-align: center; margin-bottom: 1rem; }
-.dl-size-num { font-family: var(--mono); font-size: 2rem; font-weight: 700; color: var(--accent); display: block; }
-.dl-size-label { font-size: .7rem; color: var(--text3); text-transform: uppercase; letter-spacing: .08em; }
-.btn-dl-main {
-  display: flex; align-items: center; justify-content: center; gap: .6rem;
-  width: 100%; background: var(--accent); color: #fff;
-  padding: 1rem 1.25rem; border-radius: 10px;
-  font-family: var(--font); font-weight: 800; font-size: 1rem;
-  border: none; cursor: pointer; text-decoration: none;
-  transition: all .2s; box-shadow: 0 4px 20px rgba(108,99,255,.35);
-  margin-bottom: .6rem;
-}
-.btn-dl-main:hover { background: var(--accent-h); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(108,99,255,.45); }
-.dl-free-badge { text-align: center; font-size: .72rem; color: var(--green); font-weight: 700; margin-bottom: .5rem; }
-.dl-note { font-size: .7rem; color: var(--text3); text-align: center; line-height: 1.6; }
-.dl-viet-note { margin-top: .6rem; font-size: .75rem; font-weight: 700; color: #ef4444; text-align: center; background: rgba(239,68,68,.06); border: 1px solid rgba(239,68,68,.2); border-radius: 6px; padding: .35rem .5rem; }
-
-/* Info card */
-.info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
-.info-card-title { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--text3); margin-bottom: .85rem; }
-.info-row { display: flex; justify-content: space-between; align-items: center; padding: .45rem 0; border-bottom: 1px solid var(--border); font-size: .83rem; }
-.info-row:last-child { border-bottom: none; padding-bottom: 0; }
-.info-key { color: var(--text3); }
-.info-val { color: var(--text); font-weight: 600; text-align: right; max-width: 60%; }
-.info-tags { display: flex; flex-wrap: wrap; gap: .3rem; justify-content: flex-end; }
-.info-tag { font-size: .65rem; background: var(--surface2); border: 1px solid var(--border); padding: .1rem .4rem; border-radius: 4px; color: var(--text2); }
-
-/* Lightbox */
-#lightbox { display: none; position: fixed; inset: 0; z-index: 900; background: rgba(0,0,0,.95); align-items: center; justify-content: center; padding: 1rem; }
-#lightbox.open { display: flex; }
-#lightbox img { max-width: 100%; max-height: 90vh; border-radius: 8px; object-fit: contain; }
-#lightbox-close { position: absolute; top: 1rem; right: 1rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text); width: 40px; height: 40px; border-radius: 50%; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-
-/* ===== FOOTER ===== */
-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 3rem 2rem 2rem; margin-top: 4rem; }
-.footer-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
-.footer-logo { font-family: var(--mono); font-weight: 700; font-size: 1.1rem; color: var(--accent); margin-bottom: .75rem; }
-.footer-desc { font-size: .85rem; color: var(--text3); line-height: 1.65; }
-.footer-col-title { font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--text2); margin-bottom: .85rem; }
-.footer-links { display: flex; flex-direction: column; gap: .5rem; }
-.footer-link { font-size: .85rem; color: var(--text3); transition: color .15s; cursor: pointer; }
-.footer-link:hover { color: var(--accent); }
-.footer-bottom { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: .75rem; }
-.footer-copy { font-size: .8rem; color: var(--text3); font-family: var(--mono); }
-
-/* ===== MOBILE NAV ===== */
-.nav-drawer { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; z-index: 400; background: var(--bg); padding: 1rem; flex-direction: column; gap: .25rem; border-top: 1px solid var(--border); animation: drawerIn .2s ease; }
-.nav-drawer.open { display: flex; }
-@keyframes drawerIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-.nav-drawer .nav-link { padding: .75rem 1rem; font-size: 1rem; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-  .detail-main { grid-template-columns: 1fr; }
-  .detail-right { position: static; }
-  .dl-card, .info-card { max-width: 480px; }
-}
-@media (max-width: 900px) {
-  .footer-inner { grid-template-columns: 1fr 1fr; }
-  .featured-banner { grid-template-columns: 1fr; }
-  .featured-img { display: none; }
-}
-@media (max-width: 640px) {
-  :root { --nav-h: 56px; }
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
-  .nav-right .nav-search-btn .nav-search-label { display: none; }
-  .hero { padding: 3.5rem 1.25rem 2.5rem; }
-  .container, .detail-wrap { padding: 0 1.25rem; }
-  .detail-wrap { padding: 1.25rem 1.25rem 3rem; }
-  .footer-inner { grid-template-columns: 1fr; }
-  .detail-specs-grid { grid-template-columns: 1fr; }
-  .detail-hero-banner { aspect-ratio: 16/9; }
-  .gallery-thumbs { gap: .35rem; }
-  .gallery-thumb { width: 80px; }
-}
+/* RESPONSIVE */
+@media(max-width:1100px){.d-layout{grid-template-columns:1fr}.d-right{position:static}.dl-box,.info-box{max-width:460px}.hero-inner{grid-template-columns:1fr}.hero-img{display:none}}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){:root{--nav-h:56px}.nav-links{display:none}.nav-toggle{display:flex}.wrap,.detail-wrap,.bc,.ph{padding-left:1rem;padding-right:1rem}.hero-inner{padding:1.5rem 1rem 1.25rem}.footer-grid{grid-template-columns:1fr}.d-specs{grid-template-columns:1fr}.d-hero{aspect-ratio:16/9}}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav id="navbar">
-  <a class="nav-logo" href="/" onclick="navigate('home')">
-    <span class="bracket">[</span><span class="name">VaultGame</span><span class="bracket">]</span><span class="dot">•</span>
-  </a>
+  <div class="nav-brand" onclick="go('home')">
+    <div class="nav-brand-icon">VG</div>
+    <span>Vault<span>Game</span></span>
+  </div>
   <div class="nav-links" id="navLinks">
-    <a class="nav-link active" id="nav-home" onclick="navigate('home')" href="/">🏠 Trang chủ</a>
-    <a class="nav-link" id="nav-games" onclick="navigate('games')" href="/games">🎮 Tất cả game</a>
-    <a class="nav-link" id="nav-genre" onclick="navigate('genre')" href="/the-loai">🗂️ Thể loại</a>
-    <a class="nav-link" id="nav-viet" onclick="navigate('viet')" href="/viet-hoa">🇻🇳 Việt hóa</a>
-    <a class="nav-link" id="nav-new" onclick="navigate('new')" href="/game-moi">✨ Game mới</a>
-    <a class="nav-link" id="nav-top" onclick="navigate('top')" href="/top-game">🏆 Top game</a>
+    <a class="nav-link active" id="nl-home" onclick="go('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Trang chủ
+    </a>
+    <a class="nav-link" id="nl-games" onclick="go('games')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="8" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="16" y2="12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>Tất cả Game
+    </a>
+    <a class="nav-link" id="nl-genre" onclick="go('genre')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Thể loại
+    </a>
+    <a class="nav-link" id="nl-viet" onclick="go('viet')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Việt Hóa
+    </a>
+    <a class="nav-link" id="nl-new" onclick="go('new')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Game Mới
+    </a>
+    <a class="nav-link" id="nl-top" onclick="go('top')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Top Game
+    </a>
   </div>
   <div class="nav-right">
-    <button class="nav-search-btn" onclick="openSearch()">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <span class="nav-search-label">Tìm kiếm</span><kbd>K</kbd>
+    <button class="nav-search" onclick="openSearch()">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Tìm kiếm<kbd>K</kbd>
     </button>
     <span class="nav-count" id="navCount">0 games</span>
   </div>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()">☰</button>
+  <button class="nav-toggle" id="navToggle" onclick="toggleDrawer()">☰</button>
 </nav>
 
-<div class="nav-drawer" id="navDrawer">
-  <a class="nav-link" onclick="navigate('home');toggleDrawer()" href="/">🏠 Trang chủ</a>
-  <a class="nav-link" onclick="navigate('games');toggleDrawer()" href="/games">🎮 Tất cả game</a>
-  <a class="nav-link" onclick="navigate('genre');toggleDrawer()" href="/the-loai">🗂️ Thể loại</a>
-  <a class="nav-link" onclick="navigate('viet');toggleDrawer()" href="/viet-hoa">🇻🇳 Việt hóa</a>
-  <a class="nav-link" onclick="navigate('new');toggleDrawer()" href="/game-moi">✨ Game mới</a>
-  <a class="nav-link" onclick="navigate('top');toggleDrawer()" href="/top-game">🏆 Top game</a>
+<div class="drawer" id="drawer">
+  <a class="nav-link" onclick="go('home');toggleDrawer()">🏠 Trang chủ</a>
+  <a class="nav-link" onclick="go('games');toggleDrawer()">🎮 Tất cả Game</a>
+  <a class="nav-link" onclick="go('genre');toggleDrawer()">🗂 Thể loại</a>
+  <a class="nav-link" onclick="go('viet');toggleDrawer()">🌐 Việt Hóa</a>
+  <a class="nav-link" onclick="go('new');toggleDrawer()">⚡ Game Mới</a>
+  <a class="nav-link" onclick="go('top');toggleDrawer()">📈 Top Game</a>
 </div>
 
-<!-- PAGE: HOME -->
+<!-- HOME -->
 <div class="page active" id="page-home">
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-eyebrow"><span class="pulse"></span>Cập nhật liên tục — miễn phí 100%</div>
-    <h1>Kho game PC<br><span class="highlight">miễn phí lớn nhất</span></h1>
-    <p class="hero-sub">Tải game PC không giới hạn tốc độ. Đầy đủ thể loại, việt hóa hoàn chỉnh, không quảng cáo, không đăng ký.</p>
-    <div class="hero-ctas">
-      <button class="btn-primary" onclick="navigate('games')">🎮 Khám phá kho game</button>
-      <button class="btn-outline" onclick="navigate('viet')">🇻🇳 Game Việt hóa</button>
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow"><span class="hero-dot"></span>Cập nhật liên tục — 100% miễn phí</div>
+        <div class="hero-title" id="heroTitle"></div>
+        <div class="hero-meta" id="heroMeta"></div>
+        <div class="hero-desc" id="heroDesc"></div>
+        <div class="hero-info-row" id="heroInfoRow"></div>
+        <div class="hero-btns" id="heroBtns"></div>
+      </div>
+      <div class="hero-img" id="heroImg"></div>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><span class="hero-stat-num" id="heroTotal">0</span><span class="hero-stat-label">Game</span></div>
-      <div class="hero-stat"><span class="hero-stat-num" id="heroViet">0</span><span class="hero-stat-label">Việt hóa</span></div>
-      <div class="hero-stat"><span class="hero-stat-num">100%</span><span class="hero-stat-label">Miễn phí</span></div>
-      <div class="hero-stat"><span class="hero-stat-num">∞</span><span class="hero-stat-label">Tốc độ</span></div>
+    <div class="hero-dots-bar" id="heroDots"></div>
+  </div>
+  <div class="stripe">
+    <div class="stripe-inner">
+      <div class="si"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span id="stripTotal">0 game</span></div>
+      <div class="si"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg><span id="stripViet">0 Việt hóa</span></div>
+      <div class="si"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>Cập nhật thường xuyên</div>
+      <div class="si"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Tốc độ cao không giới hạn</div>
+      <div class="si"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Không quảng cáo</div>
     </div>
-  </section>
-  <div class="container">
-    <div id="featuredBanner"></div>
+  </div>
+  <div class="wrap">
     <div class="section">
-      <div class="section-header"><h2 class="section-title">🔥 Game nổi bật</h2><a class="section-more" onclick="navigate('games')" href="/games">Xem tất cả →</a></div>
+      <div class="sec-head"><div class="sec-label">Game Nổi Bật</div><span class="sec-more" onclick="go('games')">Xem tất cả →</span></div>
       <div class="game-grid" id="homeHot"></div>
     </div>
     <div class="divider"></div>
     <div class="section">
-      <div class="section-header"><h2 class="section-title">✨ Mới thêm gần đây</h2><a class="section-more" onclick="navigate('new')" href="/game-moi">Xem thêm →</a></div>
+      <div class="sec-head"><div class="sec-label">Mới Cập Nhật</div><span class="sec-more" onclick="go('new')">Xem thêm →</span></div>
       <div class="game-grid" id="homeNew"></div>
     </div>
   </div>
 </div>
 
-<!-- PAGE: TẤT CẢ GAME -->
+<!-- TẤT CẢ GAME -->
 <div class="page" id="page-games">
-  <div class="page-header"><div class="page-header-inner"><div class="page-title">🎮 Tất cả game PC</div><div class="page-sub">Toàn bộ kho game — tìm kiếm và lọc theo nhu cầu</div></div></div>
-  <div class="container" style="padding-top:2rem;padding-bottom:2rem;">
+  <div class="ph"><div class="ph-inner"><div class="ph-title">Tất Cả Game PC</div><div class="ph-sub">Toàn bộ kho game — tìm kiếm và lọc theo nhu cầu</div></div></div>
+  <div class="wrap" style="padding-top:1.5rem;padding-bottom:2rem">
     <div class="filter-bar">
-      <div class="search-field">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input class="search-input" id="gamesSearch" placeholder="Tìm theo tên, thể loại..." oninput="renderGamesPage()">
+      <div class="fsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="finput" id="gSearch" placeholder="Tìm theo tên, thể loại, tags..." oninput="renderGames()"></div>
+      <div class="chips" id="gChips">
+        <button class="chip active" data-g="all" onclick="setGenreFilter(this,'all')">Tất cả</button>
+        <button class="chip" data-g="action" onclick="setGenreFilter(this,'action')">Action</button>
+        <button class="chip" data-g="rpg" onclick="setGenreFilter(this,'rpg')">RPG</button>
+        <button class="chip" data-g="strategy" onclick="setGenreFilter(this,'strategy')">Chiến thuật</button>
+        <button class="chip" data-g="puzzle" onclick="setGenreFilter(this,'puzzle')">Đố trí</button>
+        <button class="chip" data-g="shooter" onclick="setGenreFilter(this,'shooter')">Bắn súng</button>
+        <button class="chip" data-g="adventure" onclick="setGenreFilter(this,'adventure')">Phiêu lưu</button>
+        <button class="chip" data-g="simulation" onclick="setGenreFilter(this,'simulation')">Mô phỏng</button>
+        <button class="chip" data-g="horror" onclick="setGenreFilter(this,'horror')">Kinh dị</button>
       </div>
-      <div class="filter-chips" id="gamesChips">
-        <button class="chip active" data-genre="all" onclick="setGamesGenre(this,'all')">Tất cả</button>
-        <button class="chip" data-genre="action" onclick="setGamesGenre(this,'action')">Action</button>
-        <button class="chip" data-genre="rpg" onclick="setGamesGenre(this,'rpg')">RPG</button>
-        <button class="chip" data-genre="strategy" onclick="setGamesGenre(this,'strategy')">Chiến thuật</button>
-        <button class="chip" data-genre="puzzle" onclick="setGamesGenre(this,'puzzle')">Đố trí</button>
-        <button class="chip" data-genre="shooter" onclick="setGamesGenre(this,'shooter')">Bắn súng</button>
-        <button class="chip" data-genre="adventure" onclick="setGamesGenre(this,'adventure')">Phiêu lưu</button>
-        <button class="chip" data-genre="simulation" onclick="setGamesGenre(this,'simulation')">Mô phỏng</button>
-        <button class="chip" data-genre="horror" onclick="setGamesGenre(this,'horror')">Kinh dị</button>
-      </div>
-      <select class="sort-select" id="gamesSort" onchange="renderGamesPage()">
-        <option value="new">Mới nhất</option>
-        <option value="name">Tên A→Z</option>
-        <option value="rating">Đánh giá</option>
-        <option value="downloads">Lượt tải</option>
-      </select>
+      <select class="fsort" id="gSort" onchange="renderGames()"><option value="new">Mới nhất</option><option value="name">Tên A→Z</option><option value="rating">Đánh giá</option><option value="dl">Lượt tải</option></select>
     </div>
-    <div class="results-count" id="gamesCount"></div>
-    <div class="game-grid wide" id="gamesGrid"></div>
+    <div class="rcount" id="gCount"></div>
+    <div class="game-grid lg" id="gGrid"></div>
   </div>
 </div>
 
-<!-- PAGE: THỂ LOẠI -->
+<!-- THỂ LOẠI -->
 <div class="page" id="page-genre">
-  <div class="page-header"><div class="page-header-inner"><div class="page-title">🗂️ Thể loại game</div><div class="page-sub">Chọn thể loại yêu thích và khám phá ngay</div></div></div>
-  <div class="container" style="padding-top:2rem;padding-bottom:2rem;">
-    <div class="genre-cards" id="genreCards"></div>
-    <div class="section-header" id="genreSectionHeader" style="display:none;"><h2 class="section-title" id="genreTitle"></h2></div>
-    <div class="game-grid wide" id="genreGrid"></div>
+  <div class="ph"><div class="ph-inner"><div class="ph-title">Thể Loại Game</div><div class="ph-sub">Chọn thể loại yêu thích để khám phá</div></div></div>
+  <div class="wrap" style="padding-top:1.5rem;padding-bottom:2rem">
+    <div class="genre-grid" id="genreGrid"></div>
+    <div class="sec-head" id="genreHead" style="display:none"><div class="sec-label" id="genreLabel"></div></div>
+    <div class="game-grid lg" id="genreGames"></div>
   </div>
 </div>
 
-<!-- PAGE: VIỆT HÓA -->
+<!-- VIỆT HÓA -->
 <div class="page" id="page-viet">
-  <div class="page-header"><div class="page-header-inner"><div class="page-title">🇻🇳 Game Việt hóa</div><div class="page-sub">Trải nghiệm game bằng tiếng Việt — dịch hoàn chỉnh bởi cộng đồng</div></div></div>
-  <div class="container" style="padding-top:2rem;padding-bottom:2rem;">
-    <div class="viet-banner"><div class="viet-flag">🇻🇳</div><div class="viet-info"><h3>Tất cả game trong mục này đã được Việt hóa</h3><p>Được dịch bởi cộng đồng game thủ Việt Nam.</p></div></div>
-    <div class="results-count" id="vietCount"></div>
-    <div class="game-grid wide" id="vietGrid"></div>
+  <div class="ph"><div class="ph-inner"><div class="ph-title">Game Việt Hóa</div><div class="ph-sub">Trải nghiệm game bằng tiếng Việt hoàn toàn</div></div></div>
+  <div class="wrap" style="padding-top:1.5rem;padding-bottom:2rem">
+    <div class="viet-banner"><div class="viet-flag">🇻🇳</div><div class="viet-info"><h3>Game đã được Việt hóa hoàn chỉnh</h3><p>Dịch bởi cộng đồng game thủ Việt Nam — giao diện &amp; lời thoại đầy đủ tiếng Việt.</p></div></div>
+    <div class="rcount" id="vietCount"></div>
+    <div class="game-grid lg" id="vietGrid"></div>
   </div>
 </div>
 
-<!-- PAGE: GAME MỚI -->
+<!-- GAME MỚI -->
 <div class="page" id="page-new">
-  <div class="page-header"><div class="page-header-inner"><div class="page-title">✨ Game mới cập nhật</div><div class="page-sub">Những game vừa được thêm vào kho — tươi nhất, mới nhất</div></div></div>
-  <div class="container" style="padding-top:2rem;padding-bottom:2rem;">
-    <div class="game-grid wide" id="newGrid"></div>
-  </div>
+  <div class="ph"><div class="ph-inner"><div class="ph-title">Game Mới Cập Nhật</div><div class="ph-sub">Những game vừa được thêm vào kho</div></div></div>
+  <div class="wrap" style="padding-top:1.5rem;padding-bottom:2rem"><div class="game-grid lg" id="newGrid"></div></div>
 </div>
 
-<!-- PAGE: TOP GAME -->
+<!-- TOP -->
 <div class="page" id="page-top">
-  <div class="page-header"><div class="page-header-inner"><div class="page-title">🏆 Top game được tải nhiều nhất</div><div class="page-sub">Bảng xếp hạng dựa trên lượt tải và đánh giá</div></div></div>
-  <div class="container" style="padding-top:2rem;padding-bottom:2rem;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;" id="topGrid">
-      <div><div class="section-header"><h2 class="section-title">⭐ Đánh giá cao nhất</h2></div><div class="top-list" id="topRating"></div></div>
-      <div><div class="section-header"><h2 class="section-title">🔥 Được yêu thích nhất</h2></div><div class="top-list" id="topHot"></div></div>
+  <div class="ph"><div class="ph-inner"><div class="ph-title">Top Game</div><div class="ph-sub">Bảng xếp hạng theo đánh giá và lượt tải</div></div></div>
+  <div class="wrap" style="padding-top:1.5rem;padding-bottom:2rem">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+      <div><div class="sec-head"><div class="sec-label">Đánh Giá Cao Nhất</div></div><div class="top-list" id="topRating"></div></div>
+      <div><div class="sec-head"><div class="sec-label">Tải Nhiều Nhất</div></div><div class="top-list" id="topDl"></div></div>
     </div>
   </div>
 </div>
 
-<!-- PAGE: GAME DETAIL -->
+<!-- DETAIL -->
 <div class="page" id="page-detail"></div>
 
-<!-- SEARCH OVERLAY -->
+<!-- SEARCH -->
 <div id="searchOverlay">
-  <div class="search-modal">
-    <div class="search-modal-input-wrap">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input class="search-modal-input" id="searchModalInput" placeholder="Tìm kiếm game..." oninput="renderSearchResults()">
-      <span class="search-modal-esc" onclick="closeSearch()">ESC</span>
+  <div class="s-modal">
+    <div class="s-head">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="s-input" id="sInput" placeholder="Tìm kiếm game..." oninput="renderSearch()">
+      <span class="s-esc" onclick="closeSearch()">ESC</span>
     </div>
-    <div class="search-results-list" id="searchResults"></div>
+    <div class="s-list" id="sList"></div>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
-<div id="lightbox">
-  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightbox-img" src="" alt="">
-</div>
+<div id="lb"><button id="lb-close" onclick="closeLb()">✕</button><img id="lb-img" src="" alt=""></div>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-logo">[VaultGame]•</div>
-      <p class="footer-desc">Kho lưu trữ game PC miễn phí lớn nhất Việt Nam. Không quảng cáo, không giới hạn tốc độ.</p>
-    </div>
-    <div>
-      <div class="footer-col-title">Khám phá</div>
-      <div class="footer-links">
-        <a class="footer-link" onclick="navigate('home')">Trang chủ</a>
-        <a class="footer-link" onclick="navigate('games')">Tất cả game</a>
-        <a class="footer-link" onclick="navigate('genre')">Thể loại</a>
-        <a class="footer-link" onclick="navigate('viet')">Việt hóa</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Danh sách</div>
-      <div class="footer-links">
-        <a class="footer-link" onclick="navigate('new')">Game mới</a>
-        <a class="footer-link" onclick="navigate('top')">Top game</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Thông tin</div>
-      <div class="footer-links">
-        <a class="footer-link" href="#">Giới thiệu</a>
-        <a class="footer-link" href="#">Liên hệ</a>
-        <a class="footer-link" href="#">Báo lỗi</a>
-      </div>
-    </div>
+  <div class="footer-grid">
+    <div><div class="footer-brand">VaultGame</div><p class="footer-desc">Kho game PC miễn phí lớn nhất Việt Nam. Không quảng cáo, không giới hạn tốc độ. Cập nhật liên tục.</p></div>
+    <div><div class="footer-ht">Khám phá</div><div class="footer-links"><span class="footer-link" onclick="go('home')">Trang chủ</span><span class="footer-link" onclick="go('games')">Tất cả game</span><span class="footer-link" onclick="go('genre')">Thể loại</span><span class="footer-link" onclick="go('viet')">Việt hóa</span></div></div>
+    <div><div class="footer-ht">Danh sách</div><div class="footer-links"><span class="footer-link" onclick="go('new')">Game mới</span><span class="footer-link" onclick="go('top')">Top game</span></div></div>
+    <div><div class="footer-ht">Thông tin</div><div class="footer-links"><span class="footer-link">Giới thiệu</span><span class="footer-link">Liên hệ</span><span class="footer-link">Báo lỗi</span></div></div>
   </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2025 VaultGame — All rights reserved</span>
-    <span class="footer-copy">Xây dựng với ❤️ cho cộng đồng game thủ Việt</span>
-  </div>
+  <div class="footer-bot"><span class="footer-copy">© 2025 VaultGame — All rights reserved</span><span class="footer-copy">Made with ❤️ for VN gamers</span></div>
 </footer>
 
 <script src="data.js"></script>
