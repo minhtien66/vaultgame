@@ -20,8 +20,8 @@ const GAMES = [
       <li>Copy file crack trong thư mục <strong>CODEX</strong> vào thư mục game</li>
       <li>Chạy <strong>GPS2026.exe</strong> để chơi</li>
     </ol>`,
-    size: "4.8 GB",
-    version: "5.00.4 + All DLC",
+    size: "6.5 GB",
+    version: "v2.14-P2P",
     year: 2025,
     developer: "Eversim",
     publisher: "Eversim",
