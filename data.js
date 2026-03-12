@@ -29,8 +29,8 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: false,
     // Link tải — thay bằng link Gofile thật
-    download_links: [
-      { label: "Gofile", url: "#", icon: "⬇️" },
+    download_links: [ 
+      { label: "Gofile", url: "https://gofile.io/d/7iU3Fi", icon: "⬇️" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
     screenshots: [
