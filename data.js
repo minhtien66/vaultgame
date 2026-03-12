@@ -34,14 +34,13 @@ const GAMES = [
     download_links: [
       { label: "Gofile", url: "#", icon: "⬇️" },
     ],
-    // Ảnh — thay bằng URL ảnh thật
-    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1771515309",
+    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
     screenshots: [
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2281550/ss_f4e40a84ad0ec6a36da6f9de4cba89b2b2e40c28.jpg",
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2281550/ss_7d1b0e2e9c5a3f8b4d6e1a2c9f7b3d5e8a4c2f6.jpg",
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2281550/header.jpg",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/e7cc6361f338a81fa281ddba522f8060f82f782c/page_bg_raw.jpg?t=1764264528",
+      "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/4021780/433886202fd1bfe0d56a90394bd71ac401bd5b99.jpg",
     ],
-    trailer: "https://www.youtube.com/embed/dQw4w9WgXcQ", // thay bằng trailer thật
+    trailer: "https://www.youtube.com/embed/ZCqSM3-HH78",
     tags: ["Chiến lược", "Mô phỏng", "Chính trị", "Thế giới mở"],
     sys_req: {
       min: {
