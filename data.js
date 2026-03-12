@@ -14,14 +14,12 @@ const GAMES = [
     <p>Game tái hiện thế giới thực tế với dữ liệu kinh tế, dân số, địa lý và chính trị cập nhật đến năm 2026. Mọi quyết định của bạn đều có hậu quả thực sự — từ việc ký kết hiệp ước thương mại, phát động chiến tranh, quản lý ngân sách quốc gia đến đối phó với thiên tai và khủng hoảng.</p>
     <p>Phiên bản 2026 bổ sung nhiều tính năng mới: AI ngoại giao nâng cao, hệ thống biến đổi khí hậu, khủng hoảng năng lượng toàn cầu và nhiều sự kiện lịch sử có thể thay đổi.</p>`,
     install_guide: `<ol>
-      <li>Giải nén file .rar vừa tải về</li>
-      <li>Chạy file <strong>Setup.exe</strong> với quyền Administrator</li>
-      <li>Chọn thư mục cài đặt, bấm <strong>Next</strong> và chờ cài xong</li>
-      <li>Copy file crack trong thư mục <strong>CODEX</strong> vào thư mục game</li>
-      <li>Chạy <strong>GPS2026.exe</strong> để chơi</li>
+      <li>Giải nén file .zip vừa tải về</li>
+      <li>Chọn thư mục cài đặt</li>
+      <li>Chạy <strong>Launcher.exe</strong> để chơi</li>
     </ol>`,
-    size: "4.8 GB",
-    version: "5.00.4 + All DLC",
+    size: "6.5 GB",
+    version: "v2.14-P2P",
     year: 2025,
     developer: "Eversim",
     publisher: "Eversim",
