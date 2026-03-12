@@ -35,7 +35,7 @@ const GAMES = [
       { label: "Gofile", url: "#", icon: "⬇️" },
     ],
     // Ảnh — thay bằng URL ảnh thật
-    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2281550/ss_f4e40a84ad0ec6a36da6f9de4cba89b2b2e40c28.jpg",
+    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1771515309",
     screenshots: [
       "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2281550/ss_f4e40a84ad0ec6a36da6f9de4cba89b2b2e40c28.jpg",
       "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2281550/ss_7d1b0e2e9c5a3f8b4d6e1a2c9f7b3d5e8a4c2f6.jpg",
