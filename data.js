@@ -27,7 +27,7 @@ const GAMES = [
     publisher: "Eversim",
     rating: 4.5,
     downloads: 1200,
-    emoji: "🌍",
+    emoji: "",
     badges: ["hot", "new"],
     viet: false,
     // Link tải — thay bằng link Gofile thật
@@ -40,7 +40,7 @@ const GAMES = [
       "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/e7cc6361f338a81fa281ddba522f8060f82f782c/page_bg_raw.jpg?t=1764264528",
       "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/4021780/433886202fd1bfe0d56a90394bd71ac401bd5b99.jpg",
     ],
-    trailer: "https://www.youtube.com/embed/ZCqSM3-HH78",
+    trailer: "https://www.youtube.com/watch?v=BzS1ONXLpH4",
     tags: ["Chiến lược", "Mô phỏng", "Chính trị", "Thế giới mở"],
     sys_req: {
       min: {
