@@ -14,31 +14,33 @@ const GAMES = [
     <p>Game tái hiện thế giới thực tế với dữ liệu kinh tế, dân số, địa lý và chính trị cập nhật đến năm 2026. Mọi quyết định của bạn đều có hậu quả thực sự — từ việc ký kết hiệp ước thương mại, phát động chiến tranh, quản lý ngân sách quốc gia đến đối phó với thiên tai và khủng hoảng.</p>
     <p>Phiên bản 2026 bổ sung nhiều tính năng mới: AI ngoại giao nâng cao, hệ thống biến đổi khí hậu, khủng hoảng năng lượng toàn cầu và nhiều sự kiện lịch sử có thể thay đổi.</p>`,
     install_guide: `<ol>
-      <li>Giải nén file .zip vừa tải về</li>
-      <li>Chọn thư mục cài đặt</li>
-      <li>Chạy <strong>Launcher.exe</strong> để chơi</li>
+      <li>Giải nén file .rar vừa tải về</li>
+      <li>Chạy file <strong>Setup.exe</strong> với quyền Administrator</li>
+      <li>Chọn thư mục cài đặt, bấm <strong>Next</strong> và chờ cài xong</li>
+      <li>Copy file crack trong thư mục <strong>CODEX</strong> vào thư mục game</li>
+      <li>Chạy <strong>GPS2026.exe</strong> để chơi</li>
     </ol>`,
-    size: "6.5 GB",
-    version: "v2.14-P2P",
+    size: "4.8 GB",
+    version: "5.00.4 + All DLC",
     year: 2025,
     developer: "Eversim",
     publisher: "Eversim",
     rating: 4.5,
     downloads: 1200,
-    emoji: "",
+    emoji: "🌍",
     badges: ["hot", "new"],
     viet: false,
     // Link tải — thay bằng link Gofile thật
-    download_links: [ 
+    download_links: [
       { label: "Gofile", url: "https://gofile.io/d/7iU3Fi", icon: "⬇️" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
     screenshots: [
-      "https://tamhongame.net/storage/games/geo-political-simulator-2026-edition/geo-political-simulator-2026-edition-screenshot-lVbRcozmHsDHXUcePklI.jpeg",
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/8b3076a8b6385185a572c81c33949c91fc192093/ss_8b3076a8b6385185a572c81c33949c91fc192093.1920x1080.jpg?t=1764264528",
-      "https://cdn.genbadigital.io/common/6e7db9f2-e44d-4cc2-afa0-2f999041fe31/66a622c6-c01a-498c-bf5c-ccac7560e9d9/t150_citybattle.jpg",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/e7cc6361f338a81fa281ddba522f8060f82f782c/page_bg_raw.jpg?t=1764264528",
+      "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/4021780/433886202fd1bfe0d56a90394bd71ac401bd5b99.jpg",
     ],
-    trailer: "https://www.youtube.com/watch?v=BzS1ONXLpH4",
+    trailer: "https://www.youtube.com/embed/ZCqSM3-HH78",
     tags: ["Chiến lược", "Mô phỏng", "Chính trị", "Thế giới mở"],
     sys_req: {
       min: {
