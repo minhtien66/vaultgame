@@ -353,13 +353,16 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
 #langBtn .lb-code{font-family:var(--mono);font-size:.65rem;font-weight:800;color:var(--text);letter-spacing:.05em}
 /* Circular flag — both in button and dropdown */
 .lb-flag-circle,.lang-flag-circle{
-  width:28px;height:28px;border-radius:50%;
+  width:26px;height:26px;border-radius:50%;
   display:inline-flex;align-items:center;justify-content:center;
-  font-size:1.1rem;line-height:1;
   overflow:hidden;flex-shrink:0;
-  background:var(--card2);border:1.5px solid var(--border2);
+  border:1.5px solid var(--border2);
 }
-#langBtn .lb-flag-circle{width:24px;height:24px;font-size:.95rem;border-width:1px}
+.lb-flag-circle img,.lang-flag-circle img{
+  width:38px;height:38px;object-fit:cover;border-radius:50%;
+}
+#langBtn .lb-flag-circle{width:22px;height:22px;}
+#langBtn .lb-flag-circle img{width:32px;height:32px;}
 
 /* ── STATIC INFO PAGES (about/contact/report) ── */
 .info-static-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem 2rem 1.75rem;margin-bottom:1.5rem;text-align:center}
@@ -416,20 +419,20 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
     <!-- LANGUAGE SWITCHER -->
     <div class="lang-wrap">
       <button id="langBtn" onclick="toggleLangMenu(event)">
-        <span class="lb-flag-circle">🇻🇳</span><span class="lb-code">VN</span>
+        <span class="lb-flag-circle"><img src="https://flagcdn.com/w40/vn.png" alt="VN"></span><span class="lb-code">VN</span>
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div id="langMenu">
         <div class="lang-opt active" data-lang="vi" onclick="setLang('vi')">
-          <span class="lang-flag-circle">🇻🇳</span>
+          <span class="lang-flag-circle"><img src="https://flagcdn.com/w40/vn.png" alt="VN"></span>
           <div class="lang-info"><span class="lang-native">Tiếng Việt</span><span class="lang-code">VI</span></div>
         </div>
         <div class="lang-opt" data-lang="en" onclick="setLang('en')">
-          <span class="lang-flag-circle">🇬🇧</span>
+          <span class="lang-flag-circle"><img src="https://flagcdn.com/w40/gb.png" alt="EN"></span>
           <div class="lang-info"><span class="lang-native">English</span><span class="lang-code">EN</span></div>
         </div>
         <div class="lang-opt" data-lang="es" onclick="setLang('es')">
-          <span class="lang-flag-circle">🇪🇸</span>
+          <span class="lang-flag-circle"><img src="https://flagcdn.com/w40/es.png" alt="ES"></span>
           <div class="lang-info"><span class="lang-native">Español</span><span class="lang-code">ES</span></div>
         </div>
       </div>
@@ -448,9 +451,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
   <a class="nav-link" onclick="go('new');toggleDrawer()">⚡ Game Mới</a>
   <a class="nav-link" onclick="go('top');toggleDrawer()">📈 Top Game</a>
   <div class="drawer-lang">
-    <button class="drawer-lang-btn" onclick="setLang('vi');toggleDrawer()">🇻🇳 Việt</button>
-    <button class="drawer-lang-btn" onclick="setLang('en');toggleDrawer()">🇬🇧 EN</button>
-    <button class="drawer-lang-btn" onclick="setLang('es');toggleDrawer()">🇪🇸 ES</button>
+    <button class="drawer-lang-btn" onclick="setLang('vi');toggleDrawer()"><span class="lang-flag-circle" style="width:20px;height:20px"><img src="https://flagcdn.com/w40/vn.png" alt="VN" style="width:28px;height:28px"></span> Việt</button>
+    <button class="drawer-lang-btn" onclick="setLang('en');toggleDrawer()"><span class="lang-flag-circle" style="width:20px;height:20px"><img src="https://flagcdn.com/w40/gb.png" alt="EN" style="width:28px;height:28px"></span> EN</button>
+    <button class="drawer-lang-btn" onclick="setLang('es');toggleDrawer()"><span class="lang-flag-circle" style="width:20px;height:20px"><img src="https://flagcdn.com/w40/es.png" alt="ES" style="width:28px;height:28px"></span> ES</button>
   </div>
 </div>
 
