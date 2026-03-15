@@ -21,7 +21,7 @@ const GAMES = [
       <li>Copy thư mục <strong>VietHoa</strong> vào thư mục game để kích hoạt tiếng Việt</li>
       <li>Chạy <strong>PES2020.exe</strong> và tận hưởng!</li>
     </ol>`,
-    size: "17.2 GB",
+    size: "36.1 GB",
     version: "v1.06.00-VH",
     year: 2019,
     developer: "Konami",
@@ -34,10 +34,12 @@ const GAMES = [
     download_links: [
       { label: "Gofile", url: "https://gofile.io/d/example", icon: "⬇️" },
     ],
-    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1161580/header.jpg",
+    thumbnail: "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
     screenshots: [
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1161580/header.jpg",
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1161580/ss_7c3f7b0e9e6e8f0e3b2e0f4e7e3e6e0e3e6e0e3.1920x1080.jpg",
+      "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
+      "https://img.konami.com/products_master/eu_publish/pes2020/eu/en/images/pes2020-hp-messi-ronaldinho-02.jpg",
+      "https://www.gamereactor.eu/media/98/efootballpes2020_2959873b.jpg",
+      "https://product.hstatic.net/200000992511/product/pes-2020-gameplay_3ea412c58c584274b298d5399d5fd16b_master.jpg",
     ],
     trailer: "https://www.youtube.com/embed/4-ZStCPtYVE",
     tags: ["Bóng Đá", "Thể Thao", "Việt Hóa", "Multiplayer", "PES"],
