@@ -92,7 +92,7 @@ function updateLangUI() {
   const cur = LANGS[_lang];
   // Button
   const btn = document.getElementById('langBtn');
-  if (btn) btn.innerHTML = `<span class="lb-flag">${cur.flag}</span><span class="lb-code">${cur.code.toUpperCase()}</span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>`;
+  if (btn) btn.innerHTML = `<span class="lb-flag-circle">${cur.flag}</span><span class="lb-code">${cur.code.toUpperCase()}</span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>`;
   // Dropdown active
   document.querySelectorAll('.lang-opt').forEach(o => o.classList.toggle('active', o.dataset.lang === _lang));
 
@@ -137,7 +137,7 @@ function updateLangUI() {
   const dTxts=[nl.home,nl.games,nl.genre,nl.viet,nl.new_,nl.top];
   document.querySelectorAll('.drawer .nav-link').forEach((el,i)=>{ if(dTxts[i]) el.textContent=`${dIcons[i]} ${dTxts[i]}`; });
   // navCount lang
-  // navCount removed
+  const nc2=document.getElementById('navCount'); if(nc2) nc2.textContent=GAMES.length+' games';
 }
 
 function toggleLangMenu(e) { e.stopPropagation(); document.getElementById('langMenu').classList.toggle('open'); }
@@ -272,7 +272,7 @@ function topRow(g,rank) {
 
 function renderHome() {
   const l=L(); const total=GAMES.length; const vietN=GAMES.filter(g=>g.viet).length;
-  document.getElementById('navCount').textContent=total+' games';
+  const nc=document.getElementById('navCount'); if(nc) nc.textContent=total+' games';
   document.getElementById('stripTotal').textContent=`${total} ${l.stripe.games}`;
   document.getElementById('stripViet').textContent=`${vietN} ${l.stripe.viet}`;
   const ey=document.getElementById('heroEyebrow'); if(ey) ey.textContent=l.hero.eyebrow;
