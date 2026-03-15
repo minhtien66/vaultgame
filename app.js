@@ -150,13 +150,13 @@ let genreFilter = 'all';
 let genrePageFilter = null;
 
 const ROUTES = {
-  home:  { path:'/',         el:'page-home',   nav:'nl-home'  },
-  games: { path:'/games',    el:'page-games',  nav:'nl-games' },
-  genre: { path:'/the-loai', el:'page-genre',  nav:'nl-genre' },
-  viet:  { path:'/viet-hoa', el:'page-viet',   nav:'nl-viet'  },
-  new:   { path:'/game-moi', el:'page-new',     nav:'nl-new'   },
-  top:   { path:'/top-game', el:'page-top',     nav:'nl-top'   },
-  detail:{ path:'/game/',    el:'page-detail',  nav:null       },
+  home:  { hash:'',          el:'page-home',   nav:'nl-home'  },
+  games: { hash:'games',     el:'page-games',  nav:'nl-games' },
+  genre: { hash:'the-loai',  el:'page-genre',  nav:'nl-genre' },
+  viet:  { hash:'viet-hoa',  el:'page-viet',   nav:'nl-viet'  },
+  new:   { hash:'game-moi',  el:'page-new',    nav:'nl-new'   },
+  top:   { hash:'top-game',  el:'page-top',    nav:'nl-top'   },
+  detail:{ hash:'game/',     el:'page-detail', nav:null       },
 };
 
 function go(page, param) {
@@ -170,10 +170,12 @@ function go(page, param) {
   if (page==='detail' && param) {
     const g = GAMES.find(x=>x.id===+param);
     const urlSlug = g ? g.slug : param;
-    history.pushState(null,'','/game/'+urlSlug);
+    history.replaceState(null,'', location.pathname + '#game/' + urlSlug);
     renderDetail(+param);
+  } else {
+    history.replaceState(null,'', location.pathname + (r.hash ? '#' + r.hash : '#'));
+    reRender(page);
   }
-  else { history.pushState(null,'',r.path); reRender(page); }
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -185,25 +187,46 @@ function reRender(page) {
     case 'viet':  renderViet(); break;
     case 'new':   renderNew(); break;
     case 'top':   renderTop(); break;
-    case 'detail': { const id=parseInt(location.pathname.split('/game/')[1]); if(id) renderDetail(id); break; }
+    case 'detail': {
+      const h = location.hash.replace('#','');
+      const m = h.match(/^game\/(.+)$/);
+      if (m) {
+        const raw = m[1];
+        const g = GAMES.find(x=>x.id===+raw) || GAMES.find(x=>x.slug===raw);
+        if (g) renderDetail(g.id);
+      }
+      break;
+    }
   }
 }
 
-function handlePath() {
-  const p = location.pathname;
-  // Support both /game/123 (id) and /game/some-slug (slug)
-  const m = p.match(/^\/game\/(.+)$/);
+function handleHash() {
+  const h = location.hash.replace('#','');
+  const m = h.match(/^game\/(.+)$/);
   if (m) {
     const raw = m[1];
-    const byId = GAMES.find(x=>x.id===+raw);
-    const bySlug = GAMES.find(x=>x.slug===raw);
-    const g = byId || bySlug;
-    if (g) { go('detail', g.id); return; }
+    const g = GAMES.find(x=>x.id===+raw) || GAMES.find(x=>x.slug===raw);
+    if (g) {
+      curPage = 'detail';
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      document.getElementById('page-detail').classList.add('active');
+      renderDetail(g.id);
+      window.scrollTo({top:0,behavior:'smooth'});
+      return;
+    }
   }
-  const found = Object.entries(ROUTES).find(([k,r])=>k!=='detail'&&r.path===p);
-  go(found ? found[0] : 'home');
+  const found = Object.entries(ROUTES).find(([k,r])=>k!=='detail' && r.hash===h);
+  const target = found ? found[0] : 'home';
+  curPage = target;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  const r = ROUTES[target];
+  const el = document.getElementById(r.el); if (el) el.classList.add('active');
+  if (r.nav) { const n=document.getElementById(r.nav); if(n) n.classList.add('active'); }
+  reRender(target);
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-window.addEventListener('popstate', handlePath);
+window.addEventListener('hashchange', handleHash);
 
 // ══ 3. HELPERS ═══════════════════════════════════════════
 function starStr(r) { let s=''; for(let i=1;i<=5;i++) s+=i<=Math.floor(r)?'★':(i===Math.ceil(r)&&r%1>=.5?'½':'☆'); return s; }
@@ -488,4 +511,4 @@ document.addEventListener('keydown',e=>{
 function toggleDrawer(){ document.getElementById('drawer').classList.toggle('open'); }
 
 // ══ 8. INIT ═══════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded',()=>{ updateLangUI(); handlePath(); });
+document.addEventListener('DOMContentLoaded',()=>{ updateLangUI(); handleHash(); });
