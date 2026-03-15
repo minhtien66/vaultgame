@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAC2UlEQVR4nO2XTUwdVRTHf/feGd6jQAkfj4CobTEpC4mpC0wwKbELTIxxoQlx7aILcVEXXWrUVZMmdd1040pd1g8IGghtlVbtAhNMUEybYrE08SEFHg94vJn5u5hXAybAjNIQE05yFzM5H/977jn/e64BxD6K3c/gBwAOAKQEYB4JAEOaNtysbW38sdla6Ts6EQBjPfwoIACiTf8dW/MSYYhS0oq3c2CHopCm7l6az31I8dsbzL03QAi09r1K/ZtnCIoBSLhan+KXg9z76ALGGhRFO7neItp2GStAh3KPqWZ6Q7U/b+hQc5s8jNpHfxULEnmJeckUpKpTr8V2zm3v8x9rxwygCKxlLT9H01efsfxGP9lnnsNO/cjSUx2YOyt4k5OQzWDz8wQ/XMFYm2r3OwMAjDEICMeG4HQ/PN9H9nAjD1od3qfDRO+8TYggWgMWEwdODEBRXFTr343hz6wRvPASfufThAWwV0eoeaKNXF8vQbmM9RyFW7eZvzaEMaCEXbH7WVkjC2q4NCz7u+Tfktz4vLzGLh09e171oVR9V6orSrUDH6Sqg2REZCwRoNHPcYJylbA3r+MXlwiOdVL4ZoYgv0Jhpszq15cr20rejrsjrXRDddsx1U0siVnJf+UtZVpOqOr4i2p59mXlptdkBqflXKZiZ/YwA4rAGkr37+Amb2L/XMf7aYLGJx+nKWuo7+1huTWLGx8hDEvgKiyZQHYtwr/FWCJCGB/FX9ygqacb8/67hAsl8jUNlJfB//4KQayc2C0kJIyHx5Dp6FL9ydfV/sk1sSoxGxNR9ehvcnW5im6y9LMrEW2BGZNLaeYXgj+WsV8c4fD9BcoBSBsEH18kLOSp9F9itylvw9i513gUl81RmpvCEAABIkwdHNLUAMTOjQWXobx4G2wxjmcApQ8OaTMAYL34lgxKbC22fzfdpwewF6ab5D/MhHvznvk/DaUHAA4APBr5C9QVgeFiHDFAAAAAAElFTkSuQmCC">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VaultGame — Kho Game PC Miễn Phí</title>
 
@@ -44,6 +45,8 @@ img{display:block;max-width:100%}
 /* ── NAVBAR ── */
 #navbar{position:fixed;top:0;left:0;right:0;z-index:999;height:var(--nav-h);background:rgba(11,12,16,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);display:flex;align-items:center;padding:0 1.5rem;gap:.4rem}
 .nav-brand{font-family:var(--display);font-size:1.45rem;font-weight:700;letter-spacing:.05em;margin-right:1.25rem;flex-shrink:0;display:flex;align-items:center;gap:.45rem;cursor:pointer}
+
+.nav-brand-logo{height:34px;width:auto;display:block;object-fit:contain}
 .nav-brand-icon{width:32px;height:32px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#000;font-weight:900;font-family:var(--display);letter-spacing:.05em}
 .nav-brand span{color:var(--accent)}
 .nav-links{display:flex;align-items:center;gap:.08rem;flex:1;min-width:0}
@@ -396,7 +399,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-brand" onclick="go('home')">
-    <div class="nav-brand-icon">VG</div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAAkCAYAAADCW8lNAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAEEElEQVR4nO2YW4hVZRTHf+vbe58zczwzXmeaMi3zQiWKhUYP3R7qISsw6EEhhII0KHowiCh66kkiiighULsIPqRSWF4q9CUhQjOxhtHR8eCMlxhx9IwzzpnZl38PZ5zG0rA5+2Qj84e1H/a39/r+/2+tvb61PwPEDQh3vQlUC2PCRhvGhI02jAkbbfAr9mAGzv7cDZPk8mHnwOyqm6UhFCdXGa2AFhVt0Fd4ffgtM9C1uK+QxhUw4oiZGcIx58XXcffeg2KIDrVQeP8tEgPDISVMmT2fpuUvEGVylMlfiq6QQRDHHH1vNaUzx/7FQlwbNBIzzxOgW5csV0NRsuPS1BPSlLn3lcfNlJ94k+b92K7aLsk/IXmnhlm75PdKk9fulPMywpnARsTlKjbSF02YySPQHZv2iNZQXnuiGe98psGYaObzq5TrlDhQEq2SHZasZdBapcz+8/JnLCz7cy5NUaoouc1zKE5oeuJZ+j/ewLmiaOIivYsX0dfeyvQdBzk2+y7MM4Ltu0k2rMPq8uUZPQfFItG+r1F8sZyCKaYhVLQy5aj5QV7Tt+4TbYmC01LjK2+rYeFjqj8p0ZIo82ufsvOeVFA3U+Y3ymecPGrlUSMrr245yualFrEKy70wc0RhD/3r11D/4Tq6e0S8ZCnZ+x/kTL+wvOE27iDuaMPG1TP3pZUkc+8mGYjAeSgBr8aj1HyYwuo3UNJXaSINY1eJWTlqQc0ETfvmgCgk8g4n8tskDiUKmvuVXfSMrH6Obnvoac3qlDgr8btEh8RxyTsn1T73ZqrfWuWdh4SZEZbOM7B+DXVZIw4TolIE9Ybb+R3xkWa8wCf/wMOcbu3A/6GV+kMnCXpCKEX4+zsY2PzJkL80kEpLJQnM6Nq+mfG/HIS8B87hnw/RF59DTYZs4y0Utn6LVqzEX7GMWUf3Q22Ay/m4bVuIL5wa7GD+R8LKUYOw1MXA2o/IOyBnBN/vIjz4M1lzZOOY2oE+gt5ups+fzdlHHiXsh8zZHqKvNg76SYUNkGYvYwZAkJlAw+bddC5YQPz4U0xtqGHSa6/S1x2C52FRSHL7TArjbybJe4zbtIXeVcuQhakVjUtIb1N05c6hYenLmvTpHvnBNC3Y9pPokihItA8WjCMSbVKukKh20eLBopFq11Fpuf/LCiUAxrmdX+If+I1s0xQukKOuMyKURzwsQbziGfjgXUp7d5XzJuUGP/22GsA8yE4kM3kafm4S1tBI5NxQkSGJSAotRKebweJqMEjhf+xvMFCMcwl+bgJxqUj/3n0QFq/4aDVEVc+18/Ab7kT9PcTdJyGJhorLZdDQJXVURZh5GXA+Ci9Wc5p/5lDdGf97QZdQ5cOc6yMKbuBTqjFhow1jwkYbxoSNNvwB5LCRfWabA4MAAAAASUVORK5CYII=" alt="VG" class="nav-brand-logo">
     <span>Vault<span>Game</span></span>
   </div>
 
@@ -644,7 +647,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
         <div class="isb-card-icon">📧</div>
         <div class="isb-card-title">Email</div>
         <p class="isb-card-text">Gửi email cho chúng tôi để được hỗ trợ nhanh nhất.</p>
-        <a class="isb-btn" href="mailto:support@vaultgame.io">support@vaultgame.io</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#c8bbbdb8b8a7babc88bea9bda4bcafa9a5ade6a1a7"><span class="__cf_email__" data-cfemail="c7b4b2b7b7a8b5b387b1a6b2abb3a0a6aaa2e9aea8">[email&#160;protected]</span></a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">💬</div>
@@ -682,25 +685,25 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
         <div class="isb-card-icon">🔗</div>
         <div class="isb-card-title">Link hỏng / 404</div>
         <p class="isb-card-text">Link tải không hoạt động hoặc file bị xóa.</p>
-        <a class="isb-btn" href="mailto:report@vaultgame.io?subject=Link hỏng">Báo ngay →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#17657267786563576176627b6370767a72397e78286462757d7274632a5b7e797c377ff6ac987970">Báo ngay →</a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">⚠️</div>
         <div class="isb-card-title">Game bị lỗi</div>
         <p class="isb-card-text">Game không chạy được, crash hoặc thiếu file.</p>
-        <a class="isb-btn" href="mailto:report@vaultgame.io?subject=Game lỗi">Báo ngay →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#453720352a3731053324302931222428206b2c2a7a3630272f20263178022428206529a4fed22c">Báo ngay →</a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">📝</div>
         <div class="isb-card-title">Nội dung sai</div>
         <p class="isb-card-text">Thông tin game không chính xác hoặc ảnh bị lỗi.</p>
-        <a class="isb-btn" href="mailto:report@vaultgame.io?subject=Nội dung sai">Báo ngay →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#93e1f6e3fce1e7d3e5f2e6ffe7f4f2fef6bdfafcace0e6f1f9f6f0e7aedd72280afab3f7e6fdf4b3e0f2fa">Báo ngay →</a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">💡</div>
         <div class="isb-card-title">Yêu cầu game</div>
         <p class="isb-card-text">Muốn chúng tôi thêm một tựa game cụ thể vào kho.</p>
-        <a class="isb-btn" href="mailto:request@vaultgame.io?subject=Yêu cầu game">Gửi yêu cầu →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#6311061216061017231502160f1704020e064d0a0c5c101601090600175e3aa0c916430082d9c4164304020e06">Gửi yêu cầu →</a>
       </div>
     </div>
   </div>
@@ -737,17 +740,3 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
       <div class="footer-links">
         <span class="footer-link flink-about" onclick="go('about')">Giới thiệu</span>
         <span class="footer-link flink-contact" onclick="go('contact')">Liên hệ</span>
-        <span class="footer-link flink-report" onclick="go('report')">Báo lỗi</span>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bot">
-    <span class="footer-copy">© 2025 VaultGame — All rights reserved</span>
-    <span class="footer-copy">Made with ❤️ for VN gamers</span>
-  </div>
-</footer>
-
-<script src="data.js"></script>
-<script src="app.js"></script>
-</body>
-</html>
