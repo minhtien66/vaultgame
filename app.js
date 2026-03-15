@@ -180,10 +180,10 @@ function go(page, param) {
   if (page==='detail' && param) {
     const g = GAMES.find(x=>x.id===+param);
     const urlSlug = g ? g.slug : param;
-    history.replaceState(null,'', location.pathname + '#game/' + urlSlug);
+    history.pushState(null,'', location.pathname + '#game/' + urlSlug);
     renderDetail(+param);
   } else {
-    history.replaceState(null,'', location.pathname + (r.hash ? '#' + r.hash : '#'));
+    history.pushState(null,'', location.pathname + (r.hash ? '#' + r.hash : '#'));
     reRender(page);
   }
   window.scrollTo({top:0,behavior:'smooth'});
@@ -605,7 +605,7 @@ function goBlogPost(slug) {
   curPage = 'blogpost';
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-blog-post').classList.add('active');
-  history.replaceState(null,'', location.pathname + '#blog/post/' + post.slug);
+  history.pushState(null,'', location.pathname + '#blog/post/' + post.slug);
   renderBlogPost(post);
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -614,9 +614,13 @@ function renderBlogPost(post) {
   const el = document.getElementById('page-blog-post');
   if (!el) return;
   const catMeta = BLOG_CAT_META[post.cat]||{label:post.cat,color:'rgba(0,180,216,.15)',text:'var(--accent)'};
-  const heroBg = post.thumbnail
-    ? `<div class="bp-hero-bg" style="background-image:url(${post.thumbnail})"></div>`
-    : `<div class="bp-hero-bg" style="background:${post.gradient||'#111'}"></div>`;
+  // Preload thumbnail to detect load failure, fallback to gradient
+  const thumbSrc = post.thumbnail;
+  const fallbackBg = post.gradient || 'linear-gradient(135deg,#111318,#16181f)';
+  const heroBgId = 'bp-hero-bg-' + post.id;
+  const heroBg = thumbSrc
+    ? `<div class="bp-hero-bg" id="${heroBgId}" style="background:${fallbackBg}"></div>`
+    : `<div class="bp-hero-bg" style="background:${fallbackBg}"></div>`;
   // Related posts
   const related = BLOG_POSTS.filter(p=>p.cat===post.cat && p.id!==post.id).slice(0,3);
   const relatedHtml = related.length ? `
@@ -635,6 +639,17 @@ function renderBlogPost(post) {
     }).join('')}
   </div>
 </div>` : '';
+
+  // After render: preload thumbnail and set if loaded
+  if (thumbSrc) {
+    const probe = new window.Image();
+    probe.onload = () => {
+      const bgEl = document.getElementById(heroBgId);
+      if (bgEl) bgEl.style.backgroundImage = `url(${thumbSrc})`;
+    };
+    // on error keep gradient — no action needed
+    probe.src = thumbSrc;
+  }
 
   // Build table of contents from h2 tags in content
   const tocMatches = [...post.content.matchAll(/<h2[^>]*>(.*?)<\/h2>/gi)];
