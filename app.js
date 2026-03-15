@@ -1,3 +1,17 @@
+// ══ 0. THEME (Light / Dark) ══════════════════════════════
+let _theme = localStorage.getItem('vg_theme') || 'dark';
+
+function applyTheme(t) {
+  _theme = t;
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('vg_theme', t);
+  const btn = document.getElementById('themeBtn');
+  if (btn) btn.innerHTML = t === 'light'
+    ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>'
+    : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+}
+function toggleTheme() { applyTheme(_theme === 'dark' ? 'light' : 'dark'); }
+
 // ============================================================
 // APP.JS — VaultGame  (i18n: vi / en / es)
 // ============================================================
@@ -6,18 +20,25 @@
 const LANGS = {
   vi: {
     code:'vi',flag:'🇻🇳',name:'Tiếng Việt',
-    nav:{ home:'Trang chủ',games:'Tất cả Game',genre:'Thể loại',viet:'Việt Hóa',new_:'Game Mới',top:'Top Game',search:'Tìm kiếm' },
+    nav:{ home:'Trang chủ',games:'Tất cả Game',genre:'Thể loại',viet:'Việt Hóa',new_:'Game Mới',top:'Top Game',search:'Tìm kiếm',blog:'Blog' },
     hero:{ eyebrow:'Cập nhật liên tục — 100% miễn phí',size:'Dung lượng',version:'Phiên bản',downloads:'Lượt tải',dlBtn:'⬇ Tải ngay — Miễn phí',detailBtn:'Xem chi tiết →' },
     stripe:{ updated:'Cập nhật thường xuyên',speed:'Tốc độ cao không giới hạn',noads:'Không quảng cáo',viet:'Việt hóa',games:'game' },
     home:{ hot:'Game Nổi Bật',hotMore:'Xem tất cả →',new_:'Mới Cập Nhật',newMore:'Xem thêm →' },
     pages:{
-      games:{ title:'Tất Cả Game PC',sub:'Toàn bộ kho game — tìm kiếm và lọc theo nhu cầu' },
-      genre:{ title:'Thể Loại Game',sub:'Chọn thể loại yêu thích để khám phá' },
-      viet: { title:'Game Việt Hóa',sub:'Trải nghiệm game bằng tiếng Việt hoàn toàn' },
-      new_: { title:'Game Mới Cập Nhật',sub:'Những game vừa được thêm vào kho' },
-      top:  { title:'Top Game',sub:'Bảng xếp hạng theo đánh giá và lượt tải' },
+      games:   { title:'Tất Cả Game PC',          sub:'Toàn bộ kho game — tìm kiếm và lọc theo nhu cầu' },
+      genre:   { title:'Thể Loại Game',            sub:'Chọn thể loại yêu thích để khám phá' },
+      viet:    { title:'Game Việt Hóa',            sub:'Trải nghiệm game bằng tiếng Việt hoàn toàn' },
+      new_:    { title:'Game Mới Cập Nhật',        sub:'Những game vừa được thêm vào kho' },
+      top:     { title:'Top Game',                 sub:'Bảng xếp hạng theo đánh giá và lượt tải' },
+      blog:    { title:'Blog VaultGame',           sub:'Tin tức, thủ thuật và bài viết về thế giới gaming' },
+      about:   { title:'Giới Thiệu',               sub:'Về VaultGame và sứ mệnh của chúng tôi' },
+      contact: { title:'Liên Hệ',                  sub:'Chúng tôi luôn sẵn sàng hỗ trợ bạn' },
+      report:  { title:'Báo Lỗi',                  sub:'Giúp chúng tôi cải thiện VaultGame mỗi ngày' },
+      privacy: { title:'Chính Sách Bảo Mật',       sub:'Cập nhật lần cuối: Tháng 1, 2025' },
+      terms:   { title:'Điều Khoản Sử Dụng',       sub:'Cập nhật lần cuối: Tháng 1, 2025' },
     },
     filter:{ all:'Tất cả',action:'Action',rpg:'RPG',strategy:'Chiến thuật',puzzle:'Đố trí',shooter:'Bắn súng',adventure:'Phiêu lưu',simulation:'Mô phỏng',horror:'Kinh dị',sports:'Thể Thao',sortNew:'Mới nhất',sortName:'Tên A→Z',sortRating:'Đánh giá',sortDl:'Lượt tải',placeholder:'Tìm theo tên, thể loại, tags...',found:'Tìm thấy',gameUnit:'game' },
+    blogCats:{ all:'Tất cả',news:'Tin tức',guide:'Hướng dẫn',review:'Đánh giá',viet:'Việt hóa',dev:'Phát triển game' },
     vietBanner:{ title:'Game đã được Việt hóa hoàn chỉnh',sub:'Dịch bởi cộng đồng game thủ Việt Nam — giao diện & lời thoại đầy đủ tiếng Việt.',count:'game đã được Việt hóa' },
     top:{ rating:'Đánh Giá Cao Nhất',dl:'Tải Nhiều Nhất' },
     card:{ detail:'Chi tiết →',newBadge:'MỚI',vietBadge:'VIỆT HÓA' },
@@ -29,18 +50,25 @@ const LANGS = {
   },
   en: {
     code:'en',flag:'🇬🇧',name:'English',
-    nav:{ home:'Home',games:'All Games',genre:'Genres',viet:'Vietnamese',new_:'New Games',top:'Top Games',search:'Search' },
+    nav:{ home:'Home',games:'All Games',genre:'Genres',viet:'Vietnamese',new_:'New Games',top:'Top Games',search:'Search',blog:'Blog' },
     hero:{ eyebrow:'Updated constantly — 100% free',size:'File size',version:'Version',downloads:'Downloads',dlBtn:'⬇ Download Free',detailBtn:'View details →' },
     stripe:{ updated:'Regular updates',speed:'Unlimited high speed',noads:'No ads',viet:'Vietnamese patch',games:'games' },
     home:{ hot:'Featured Games',hotMore:'View all →',new_:'Recently Added',newMore:'View more →' },
     pages:{
-      games:{ title:'All PC Games',sub:'Full game library — search and filter as needed' },
-      genre:{ title:'Game Genres',sub:'Pick your favourite genre and explore' },
-      viet: { title:'Vietnamese Games',sub:'Fully localised games in Vietnamese' },
-      new_: { title:'New Releases',sub:'Latest games added to the vault' },
-      top:  { title:'Top Games',sub:'Rankings by rating and downloads' },
+      games:   { title:'All PC Games',          sub:'Full game library — search and filter as needed' },
+      genre:   { title:'Game Genres',            sub:'Pick your favourite genre and explore' },
+      viet:    { title:'Vietnamese Games',        sub:'Fully localised games in Vietnamese' },
+      new_:    { title:'New Releases',            sub:'Latest games added to the vault' },
+      top:     { title:'Top Games',               sub:'Rankings by rating and downloads' },
+      blog:    { title:'VaultGame Blog',          sub:'News, guides and articles about gaming' },
+      about:   { title:'About Us',                sub:'About VaultGame and our mission' },
+      contact: { title:'Contact',                 sub:'Get in touch with our team' },
+      report:  { title:'Report an Issue',         sub:'Help us improve VaultGame every day' },
+      privacy: { title:'Privacy Policy',          sub:'Last updated: January 2025' },
+      terms:   { title:'Terms of Service',        sub:'Last updated: January 2025' },
     },
     filter:{ all:'All',action:'Action',rpg:'RPG',strategy:'Strategy',puzzle:'Puzzle',shooter:'Shooter',adventure:'Adventure',simulation:'Simulation',horror:'Horror',sports:'Sports',sortNew:'Newest',sortName:'Name A→Z',sortRating:'Rating',sortDl:'Downloads',placeholder:'Search by name, genre, tags...',found:'Found',gameUnit:'games' },
+    blogCats:{ all:'All',news:'News',guide:'Guides',review:'Reviews',viet:'Vietnamese',dev:'Game Dev' },
     vietBanner:{ title:'These games are fully localised in Vietnamese',sub:'Translated by the Vietnamese gaming community — full UI & dialogue.',count:'games localised in Vietnamese' },
     top:{ rating:'Highest Rated',dl:'Most Downloaded' },
     card:{ detail:'Details →',newBadge:'NEW',vietBadge:'VIET' },
@@ -52,18 +80,25 @@ const LANGS = {
   },
   es: {
     code:'es',flag:'🇪🇸',name:'Español',
-    nav:{ home:'Inicio',games:'Todos los Juegos',genre:'Géneros',viet:'Vietnamita',new_:'Novedades',top:'Top Juegos',search:'Buscar' },
+    nav:{ home:'Inicio',games:'Todos los Juegos',genre:'Géneros',viet:'Vietnamita',new_:'Novedades',top:'Top Juegos',search:'Buscar',blog:'Blog' },
     hero:{ eyebrow:'Actualizado constantemente — 100% gratis',size:'Tamaño',version:'Versión',downloads:'Descargas',dlBtn:'⬇ Descargar Gratis',detailBtn:'Ver detalles →' },
     stripe:{ updated:'Actualizaciones frecuentes',speed:'Velocidad ilimitada',noads:'Sin publicidad',viet:'Parche vietnamita',games:'juegos' },
     home:{ hot:'Juegos Destacados',hotMore:'Ver todos →',new_:'Recién Añadidos',newMore:'Ver más →' },
     pages:{
-      games:{ title:'Todos los Juegos PC',sub:'Biblioteca completa — busca y filtra a tu gusto' },
-      genre:{ title:'Géneros de Juegos',sub:'Elige tu género favorito y explora' },
-      viet: { title:'Juegos en Vietnamita',sub:'Juegos completamente localizados al vietnamita' },
-      new_: { title:'Novedades',sub:'Los últimos juegos añadidos al catálogo' },
-      top:  { title:'Top Juegos',sub:'Rankings por puntuación y descargas' },
+      games:   { title:'Todos los Juegos PC',     sub:'Biblioteca completa — busca y filtra a tu gusto' },
+      genre:   { title:'Géneros de Juegos',        sub:'Elige tu género favorito y explora' },
+      viet:    { title:'Juegos en Vietnamita',      sub:'Juegos completamente localizados al vietnamita' },
+      new_:    { title:'Novedades',                 sub:'Los últimos juegos añadidos al catálogo' },
+      top:     { title:'Top Juegos',                sub:'Rankings por puntuación y descargas' },
+      blog:    { title:'Blog de VaultGame',         sub:'Noticias, guías y artículos sobre gaming' },
+      about:   { title:'Sobre Nosotros',            sub:'Acerca de VaultGame y nuestra misión' },
+      contact: { title:'Contacto',                  sub:'Ponte en contacto con nuestro equipo' },
+      report:  { title:'Reportar Problema',         sub:'Ayúdanos a mejorar VaultGame cada día' },
+      privacy: { title:'Política de Privacidad',    sub:'Última actualización: Enero 2025' },
+      terms:   { title:'Términos de Uso',           sub:'Última actualización: Enero 2025' },
     },
     filter:{ all:'Todos',action:'Acción',rpg:'RPG',strategy:'Estrategia',puzzle:'Puzzle',shooter:'Shooter',adventure:'Aventura',simulation:'Simulación',horror:'Terror',sports:'Deportes',sortNew:'Más nuevos',sortName:'Nombre A→Z',sortRating:'Puntuación',sortDl:'Descargas',placeholder:'Buscar por nombre, género, etiquetas...',found:'Encontrados',gameUnit:'juegos' },
+    blogCats:{ all:'Todos',news:'Noticias',guide:'Guías',review:'Reseñas',viet:'Vietnamita',dev:'Desarrollo' },
     vietBanner:{ title:'Todos los juegos están localizados en vietnamita',sub:'Traducido por la comunidad gamer vietnamita — interfaz y diálogos completos.',count:'juegos localizados en vietnamita' },
     top:{ rating:'Mejor Valorados',dl:'Más Descargados' },
     card:{ detail:'Detalles →',newBadge:'NUEVO',vietBadge:'VIET' },
@@ -117,8 +152,12 @@ function updateLangUI() {
   // Filter chips
   const fl = L().filter;
   [['chip-all',fl.all],['chip-action',fl.action],['chip-rpg',fl.rpg],['chip-strategy',fl.strategy],['chip-puzzle',fl.puzzle],['chip-shooter',fl.shooter],['chip-adventure',fl.adventure],['chip-simulation',fl.simulation],['chip-horror',fl.horror],['chip-sports',fl.sports]].forEach(([id,txt]) => { const el=document.getElementById(id); if(el) el.textContent=txt; });
-  // Page headers
-  [['page-games',L().pages.games],['page-genre',L().pages.genre],['page-viet',L().pages.viet],['page-new',L().pages.new_],['page-top',L().pages.top]].forEach(([pid,p]) => {
+  // Page headers — all pages including static ones
+  const allPageKeys = ['games','genre','viet','new_','top','blog','about','contact','report','privacy','terms'];
+  const pageIdMap = {games:'page-games',genre:'page-genre',viet:'page-viet',new_:'page-new',top:'page-top',blog:'page-blog',about:'page-about',contact:'page-contact',report:'page-report',privacy:'page-privacy',terms:'page-terms'};
+  allPageKeys.forEach(key => {
+    const p = L().pages[key]; if(!p) return;
+    const pid = pageIdMap[key]; if(!pid) return;
     const page=document.getElementById(pid); if(!page) return;
     const t=page.querySelector('.ph-title'),s=page.querySelector('.ph-sub');
     if(t) t.textContent=p.title; if(s) s.textContent=p.sub;
@@ -137,10 +176,16 @@ function updateLangUI() {
   const fc=document.querySelectorAll('.footer-copy'); if(fc[0])fc[0].textContent=ff.copy; if(fc[1])fc[1].textContent=ff.made;
   // Drawer
   const dIcons=['🏠','🎮','🗂','🌐','⚡','📈','✍️'];
-  const dTxts=[nl.home,nl.games,nl.genre,nl.viet,nl.new_,nl.top,'Blog'];
+  const dTxts=[nl.home,nl.games,nl.genre,nl.viet,nl.new_,nl.top,nl.blog||'Blog'];
   document.querySelectorAll('.drawer .nav-link').forEach((el,i)=>{ if(dTxts[i]) el.textContent=`${dIcons[i]} ${dTxts[i]}`; });
   // navCount lang
   const nc2=document.getElementById('navCount'); if(nc2) nc2.textContent=GAMES.length+' games';
+  // Blog category buttons
+  const bc=L().blogCats||{}; const catMap={all:bc.all,news:bc.news,guide:bc.guide,review:bc.review,viet:bc.viet,dev:bc.dev};
+  document.querySelectorAll('.blog-cat[onclick]').forEach(btn => {
+    const m=btn.getAttribute('onclick').match(/filterBlog\(this,'(\w+)'\)/);
+    if(m && catMap[m[1]]) { const icon=btn.textContent.split(' ')[0]; btn.textContent=icon+' '+catMap[m[1]]; }
+  });
 }
 
 function toggleLangMenu(e) { e.stopPropagation(); document.getElementById('langMenu').classList.toggle('open'); }
@@ -706,4 +751,4 @@ function renderBlogPost(post) {
 }
 
 // ══ 8. INIT ═══════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded',()=>{ updateLangUI(); handleHash(); });
+document.addEventListener('DOMContentLoaded',()=>{ applyTheme(_theme); updateLangUI(); handleHash(); });
