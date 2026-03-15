@@ -92,7 +92,7 @@ function updateLangUI() {
   const cur = LANGS[_lang];
   // Button
   const btn = document.getElementById('langBtn');
-  if (btn) btn.innerHTML = `${cur.flag} <span class="lb-name">${cur.name}</span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>`;
+  if (btn) btn.innerHTML = `<span class="lb-flag">${cur.flag}</span><span class="lb-code">${cur.code.toUpperCase()}</span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>`;
   // Dropdown active
   document.querySelectorAll('.lang-opt').forEach(o => o.classList.toggle('active', o.dataset.lang === _lang));
 
@@ -137,7 +137,7 @@ function updateLangUI() {
   const dTxts=[nl.home,nl.games,nl.genre,nl.viet,nl.new_,nl.top];
   document.querySelectorAll('.drawer .nav-link').forEach((el,i)=>{ if(dTxts[i]) el.textContent=`${dIcons[i]} ${dTxts[i]}`; });
   // navCount lang
-  document.getElementById('navCount').textContent = GAMES.length+' games';
+  // navCount removed
 }
 
 function toggleLangMenu(e) { e.stopPropagation(); document.getElementById('langMenu').classList.toggle('open'); }
@@ -150,13 +150,16 @@ let genreFilter = 'all';
 let genrePageFilter = null;
 
 const ROUTES = {
-  home:  { hash:'',          el:'page-home',   nav:'nl-home'  },
-  games: { hash:'games',     el:'page-games',  nav:'nl-games' },
-  genre: { hash:'the-loai',  el:'page-genre',  nav:'nl-genre' },
-  viet:  { hash:'viet-hoa',  el:'page-viet',   nav:'nl-viet'  },
-  new:   { hash:'game-moi',  el:'page-new',    nav:'nl-new'   },
-  top:   { hash:'top-game',  el:'page-top',    nav:'nl-top'   },
-  detail:{ hash:'game/',     el:'page-detail', nav:null       },
+  home:   { hash:'',           el:'page-home',    nav:'nl-home'  },
+  games:  { hash:'games',      el:'page-games',   nav:'nl-games' },
+  genre:  { hash:'the-loai',   el:'page-genre',   nav:'nl-genre' },
+  viet:   { hash:'viet-hoa',   el:'page-viet',    nav:'nl-viet'  },
+  new:    { hash:'game-moi',   el:'page-new',     nav:'nl-new'   },
+  top:    { hash:'top-game',   el:'page-top',     nav:'nl-top'   },
+  detail: { hash:'game/',      el:'page-detail',  nav:null       },
+  about:  { hash:'gioi-thieu', el:'page-about',   nav:null       },
+  contact:{ hash:'lien-he',    el:'page-contact', nav:null       },
+  report: { hash:'bao-loi',    el:'page-report',  nav:null       },
 };
 
 function go(page, param) {
