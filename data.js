@@ -38,7 +38,7 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: true,
     download_links: [
-      { label: "Gofile", url: "https://gofile.io/d/example", icon: "⬇️" },
+      { label: "Gofile", url: "https://gofile.io/d/4OYOvy", icon: "⬇️" },
     ],
     thumbnail: "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
     screenshots: [
