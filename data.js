@@ -4,6 +4,63 @@
 
 const GAMES = [
   {
+    id: 2,
+    title: "eFootball PES 2020 Việt Hóa + Bình Luận Tiếng Việt",
+    slug: "efootball-pes-2020-viet-hoa",
+    genre: "sports",
+    genre_label: "Thể Thao / Bóng Đá",
+    desc_short: "Trải nghiệm bóng đá đỉnh cao với bình luận tiếng Việt hoàn chỉnh, đội tuyển Việt Nam cập nhật, và lối chơi mượt mà được Việt hóa 100% bởi cộng đồng.",
+    desc_full: `<p>eFootball PES 2020 (Pro Evolution Soccer 2020) là tựa game bóng đá huyền thoại của Konami, nay được cộng đồng game thủ Việt Nam Việt hóa hoàn chỉnh với bình luận tiếng Việt sống động.</p>
+    <p>Phiên bản Việt hóa này bao gồm lời bình luận tiếng Việt được thu âm chuyên nghiệp, giao diện menu hoàn toàn tiếng Việt, và đội tuyển quốc gia Việt Nam với đội hình cập nhật. Gameplay mượt mà, vật lý bóng chân thực, và chế độ Master League hấp dẫn là những điểm nhấn của tựa game này.</p>
+    <p>Được tối ưu hóa để chạy tốt trên cấu hình máy tính phổ thông tại Việt Nam, đây là lựa chọn hoàn hảo cho những ai yêu thích bóng đá muốn trải nghiệm bằng tiếng mẹ đẻ.</p>`,
+    install_guide: `<ol>
+      <li>Giải nén file .zip vừa tải về bằng WinRAR hoặc 7-Zip</li>
+      <li>Chạy file <strong>Setup.exe</strong> với quyền Administrator</li>
+      <li>Chọn thư mục cài đặt, nhấn <strong>Install</strong> và chờ hoàn tất</li>
+      <li>Copy toàn bộ file trong thư mục <strong>Crack</strong> vào thư mục cài game</li>
+      <li>Copy thư mục <strong>VietHoa</strong> vào thư mục game để kích hoạt tiếng Việt</li>
+      <li>Chạy <strong>PES2020.exe</strong> và tận hưởng!</li>
+    </ol>`,
+    size: "17.2 GB",
+    version: "v1.06.00-VH",
+    year: 2019,
+    developer: "Konami",
+    publisher: "Konami",
+    rating: 4.7,
+    downloads: 3800,
+    emoji: "⚽",
+    badges: ["hot", "new"],
+    viet: true,
+    download_links: [
+      { label: "Gofile", url: "https://gofile.io/d/example", icon: "⬇️" },
+    ],
+    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1161580/header.jpg",
+    screenshots: [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1161580/header.jpg",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1161580/ss_7c3f7b0e9e6e8f0e3b2e0f4e7e3e6e0e3e6e0e3.1920x1080.jpg",
+    ],
+    trailer: "https://www.youtube.com/embed/4-ZStCPtYVE",
+    tags: ["Bóng Đá", "Thể Thao", "Việt Hóa", "Multiplayer", "PES"],
+    sys_req: {
+      min: {
+        os: "Windows 7 SP1 64-bit",
+        cpu: "Intel Core i5-3470 / AMD FX-4350",
+        ram: "4 GB",
+        gpu: "NVIDIA GTX 670 / AMD Radeon HD 7870",
+        storage: "20 GB",
+        directx: "Version 11",
+      },
+      rec: {
+        os: "Windows 10 64-bit",
+        cpu: "Intel Core i7-6700 / AMD Ryzen 5 1600",
+        ram: "8 GB",
+        gpu: "NVIDIA GTX 1060 / AMD RX 5500 XT",
+        storage: "20 GB SSD",
+        directx: "Version 12",
+      },
+    },
+  },
+  {
     id: 1,
     title: "Geo-Political Simulator 2026",
     slug: "geo-political-simulator-2026",
@@ -64,12 +121,13 @@ const GAMES = [
 ];
 
 const GENRES = [
-  { id: "action",     icon: "⚔️",  name: "Action",        desc: "Hành động nhanh, chiến đấu mượt" },
-  { id: "rpg",        icon: "🧙",  name: "RPG",           desc: "Nhập vai, cốt truyện, phát triển nhân vật" },
-  { id: "strategy",   icon: "♟️",  name: "Chiến thuật",   desc: "Suy nghĩ kỹ trước mỗi bước đi" },
-  { id: "puzzle",     icon: "🧩",  name: "Đố trí",        desc: "Giải câu đố, động não" },
-  { id: "shooter",    icon: "🔫",  name: "Bắn súng",      desc: "FPS/TPS hành động" },
-  { id: "adventure",  icon: "🗺️",  name: "Phiêu lưu",    desc: "Khám phá thế giới rộng lớn" },
-  { id: "simulation", icon: "🏗️",  name: "Mô phỏng",     desc: "Xây dựng, quản lý, nông trại" },
-  { id: "horror",     icon: "👻",  name: "Kinh dị",       desc: "Rùng rợn, hồi hộp" },
+  { id: "action",     icon: "🗡",   name: "Action",        desc: "Hành động nhanh, chiến đấu mượt" },
+  { id: "rpg",        icon: "⚗️",  name: "RPG",           desc: "Nhập vai, cốt truyện, phát triển nhân vật" },
+  { id: "strategy",   icon: "♟",   name: "Chiến thuật",   desc: "Suy nghĩ kỹ trước mỗi bước đi" },
+  { id: "puzzle",     icon: "⬡",   name: "Đố trí",        desc: "Giải câu đố, động não" },
+  { id: "shooter",    icon: "◎",   name: "Bắn súng",      desc: "FPS/TPS hành động" },
+  { id: "adventure",  icon: "△",   name: "Phiêu lưu",    desc: "Khám phá thế giới rộng lớn" },
+  { id: "simulation", icon: "◈",   name: "Mô phỏng",     desc: "Xây dựng, quản lý, nông trại" },
+  { id: "horror",     icon: "◉",   name: "Kinh dị",       desc: "Rùng rợn, hồi hộp" },
+  { id: "sports",     icon: "◭",   name: "Thể Thao",      desc: "Bóng đá, thể thao, đua xe" },
 ];
