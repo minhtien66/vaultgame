@@ -17,7 +17,7 @@ const LANGS = {
       new_: { title:'Game Mới Cập Nhật',sub:'Những game vừa được thêm vào kho' },
       top:  { title:'Top Game',sub:'Bảng xếp hạng theo đánh giá và lượt tải' },
     },
-    filter:{ all:'Tất cả',action:'Action',rpg:'RPG',strategy:'Chiến thuật',puzzle:'Đố trí',shooter:'Bắn súng',adventure:'Phiêu lưu',simulation:'Mô phỏng',horror:'Kinh dị',sortNew:'Mới nhất',sortName:'Tên A→Z',sortRating:'Đánh giá',sortDl:'Lượt tải',placeholder:'Tìm theo tên, thể loại, tags...',found:'Tìm thấy',gameUnit:'game' },
+    filter:{ all:'Tất cả',action:'Action',rpg:'RPG',strategy:'Chiến thuật',puzzle:'Đố trí',shooter:'Bắn súng',adventure:'Phiêu lưu',simulation:'Mô phỏng',horror:'Kinh dị',sports:'Thể Thao',sortNew:'Mới nhất',sortName:'Tên A→Z',sortRating:'Đánh giá',sortDl:'Lượt tải',placeholder:'Tìm theo tên, thể loại, tags...',found:'Tìm thấy',gameUnit:'game' },
     vietBanner:{ title:'Game đã được Việt hóa hoàn chỉnh',sub:'Dịch bởi cộng đồng game thủ Việt Nam — giao diện & lời thoại đầy đủ tiếng Việt.',count:'game đã được Việt hóa' },
     top:{ rating:'Đánh Giá Cao Nhất',dl:'Tải Nhiều Nhất' },
     card:{ detail:'Chi tiết →',newBadge:'MỚI',vietBadge:'VIỆT HÓA' },
@@ -40,7 +40,7 @@ const LANGS = {
       new_: { title:'New Releases',sub:'Latest games added to the vault' },
       top:  { title:'Top Games',sub:'Rankings by rating and downloads' },
     },
-    filter:{ all:'All',action:'Action',rpg:'RPG',strategy:'Strategy',puzzle:'Puzzle',shooter:'Shooter',adventure:'Adventure',simulation:'Simulation',horror:'Horror',sortNew:'Newest',sortName:'Name A→Z',sortRating:'Rating',sortDl:'Downloads',placeholder:'Search by name, genre, tags...',found:'Found',gameUnit:'games' },
+    filter:{ all:'All',action:'Action',rpg:'RPG',strategy:'Strategy',puzzle:'Puzzle',shooter:'Shooter',adventure:'Adventure',simulation:'Simulation',horror:'Horror',sports:'Sports',sortNew:'Newest',sortName:'Name A→Z',sortRating:'Rating',sortDl:'Downloads',placeholder:'Search by name, genre, tags...',found:'Found',gameUnit:'games' },
     vietBanner:{ title:'These games are fully localised in Vietnamese',sub:'Translated by the Vietnamese gaming community — full UI & dialogue.',count:'games localised in Vietnamese' },
     top:{ rating:'Highest Rated',dl:'Most Downloaded' },
     card:{ detail:'Details →',newBadge:'NEW',vietBadge:'VIET' },
@@ -63,7 +63,7 @@ const LANGS = {
       new_: { title:'Novedades',sub:'Los últimos juegos añadidos al catálogo' },
       top:  { title:'Top Juegos',sub:'Rankings por puntuación y descargas' },
     },
-    filter:{ all:'Todos',action:'Acción',rpg:'RPG',strategy:'Estrategia',puzzle:'Puzzle',shooter:'Shooter',adventure:'Aventura',simulation:'Simulación',horror:'Terror',sortNew:'Más nuevos',sortName:'Nombre A→Z',sortRating:'Puntuación',sortDl:'Descargas',placeholder:'Buscar por nombre, género, etiquetas...',found:'Encontrados',gameUnit:'juegos' },
+    filter:{ all:'Todos',action:'Acción',rpg:'RPG',strategy:'Estrategia',puzzle:'Puzzle',shooter:'Shooter',adventure:'Aventura',simulation:'Simulación',horror:'Terror',sports:'Deportes',sortNew:'Más nuevos',sortName:'Nombre A→Z',sortRating:'Puntuación',sortDl:'Descargas',placeholder:'Buscar por nombre, género, etiquetas...',found:'Encontrados',gameUnit:'juegos' },
     vietBanner:{ title:'Todos los juegos están localizados en vietnamita',sub:'Traducido por la comunidad gamer vietnamita — interfaz y diálogos completos.',count:'juegos localizados en vietnamita' },
     top:{ rating:'Mejor Valorados',dl:'Más Descargados' },
     card:{ detail:'Detalles →',newBadge:'NUEVO',vietBadge:'VIET' },
@@ -113,7 +113,7 @@ function updateLangUI() {
   if (gs) { const fl=L().filter; gs.options[0].text=fl.sortNew; gs.options[1].text=fl.sortName; gs.options[2].text=fl.sortRating; gs.options[3].text=fl.sortDl; }
   // Filter chips
   const fl = L().filter;
-  [['chip-all',fl.all],['chip-action',fl.action],['chip-rpg',fl.rpg],['chip-strategy',fl.strategy],['chip-puzzle',fl.puzzle],['chip-shooter',fl.shooter],['chip-adventure',fl.adventure],['chip-simulation',fl.simulation],['chip-horror',fl.horror]].forEach(([id,txt]) => { const el=document.getElementById(id); if(el) el.textContent=txt; });
+  [['chip-all',fl.all],['chip-action',fl.action],['chip-rpg',fl.rpg],['chip-strategy',fl.strategy],['chip-puzzle',fl.puzzle],['chip-shooter',fl.shooter],['chip-adventure',fl.adventure],['chip-simulation',fl.simulation],['chip-horror',fl.horror],['chip-sports',fl.sports]].forEach(([id,txt]) => { const el=document.getElementById(id); if(el) el.textContent=txt; });
   // Page headers
   [['page-games',L().pages.games],['page-genre',L().pages.genre],['page-viet',L().pages.viet],['page-new',L().pages.new_],['page-top',L().pages.top]].forEach(([pid,p]) => {
     const page=document.getElementById(pid); if(!page) return;
@@ -167,7 +167,12 @@ function go(page, param) {
   const r = ROUTES[page]; if (!r) return;
   const el = document.getElementById(r.el); if (el) el.classList.add('active');
   if (r.nav) { const n=document.getElementById(r.nav); if(n) n.classList.add('active'); }
-  if (page==='detail' && param) { history.pushState(null,'','/game/'+param); renderDetail(+param); }
+  if (page==='detail' && param) {
+    const g = GAMES.find(x=>x.id===+param);
+    const urlSlug = g ? g.slug : param;
+    history.pushState(null,'','/game/'+urlSlug);
+    renderDetail(+param);
+  }
   else { history.pushState(null,'',r.path); reRender(page); }
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -186,8 +191,15 @@ function reRender(page) {
 
 function handlePath() {
   const p = location.pathname;
-  const m = p.match(/^\/game\/(\d+)$/);
-  if (m) { go('detail',+m[1]); return; }
+  // Support both /game/123 (id) and /game/some-slug (slug)
+  const m = p.match(/^\/game\/(.+)$/);
+  if (m) {
+    const raw = m[1];
+    const byId = GAMES.find(x=>x.id===+raw);
+    const bySlug = GAMES.find(x=>x.slug===raw);
+    const g = byId || bySlug;
+    if (g) { go('detail', g.id); return; }
+  }
   const found = Object.entries(ROUTES).find(([k,r])=>k!=='detail'&&r.path===p);
   go(found ? found[0] : 'home');
 }
