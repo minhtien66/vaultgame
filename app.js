@@ -164,8 +164,9 @@ const ROUTES = {
   contact:{ hash:'lien-he',         el:'page-contact', nav:null       },
   report: { hash:'bao-loi',         el:'page-report',  nav:null       },
   blog:   { hash:'blog',            el:'page-blog',    nav:'nl-blog'  },
-  privacy:{ hash:'chinh-sach',      el:'page-privacy', nav:null       },
-  terms:  { hash:'dieu-khoan',      el:'page-terms',   nav:null       },
+  privacy:  { hash:'chinh-sach',    el:'page-privacy',   nav:null       },
+  terms:    { hash:'dieu-khoan',    el:'page-terms',    nav:null       },
+  blogpost: { hash:'blog/',         el:'page-blog-post', nav:null       },
 };
 
 function go(page, param) {
@@ -196,9 +197,29 @@ function reRender(page) {
     case 'viet':  renderViet(); break;
     case 'new':   renderNew(); break;
     case 'top':   renderTop(); break;
+    case 'blog':  renderBlog(); break;
+    case 'blogpost': {
+      const bh = location.hash.replace('#','');
+      const bm = bh.match(/^blog\/post\/(.+)$/);
+      if (bm) { const bp = BLOG_POSTS.find(x=>x.slug===bm[1]||x.id===+bm[1]); if(bp) renderBlogPost(bp); }
+      break;
+    }
     case 'detail': {
       const h = location.hash.replace('#','');
-      const m = h.match(/^game\/(.+)$/);
+      // Blog post detail: #blog/post/slug
+  const bp = h.match(/^blog\/post\/(.+)$/);
+  if (bp) {
+    const post = BLOG_POSTS.find(x=>x.slug===bp[1]||x.id===+bp[1]);
+    if (post) {
+      curPage = 'blogpost';
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      document.getElementById('page-blog-post').classList.add('active');
+      renderBlogPost(post);
+      window.scrollTo({top:0,behavior:'smooth'});
+      return;
+    }
+  }
+  const m = h.match(/^game\/(.+)$/);
       if (m) {
         const raw = m[1];
         const g = GAMES.find(x=>x.id===+raw) || GAMES.find(x=>x.slug===raw);
@@ -211,6 +232,19 @@ function reRender(page) {
 
 function handleHash() {
   const h = location.hash.replace('#','');
+  // Blog post detail: #blog/post/slug
+  const bp = h.match(/^blog\/post\/(.+)$/);
+  if (bp) {
+    const post = BLOG_POSTS.find(x=>x.slug===bp[1]||x.id===+bp[1]);
+    if (post) {
+      curPage = 'blogpost';
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      document.getElementById('page-blog-post').classList.add('active');
+      renderBlogPost(post);
+      window.scrollTo({top:0,behavior:'smooth'});
+      return;
+    }
+  }
   const m = h.match(/^game\/(.+)$/);
   if (m) {
     const raw = m[1];
@@ -519,14 +553,111 @@ document.addEventListener('keydown',e=>{
 });
 function toggleDrawer(){ document.getElementById('drawer').classList.toggle('open'); }
 
-// ══ 8. BLOG FILTER ═══════════════════════════════════════
+// ══ 8. BLOG ══════════════════════════════════════════════
+
+const BLOG_CAT_META = {
+  news:   { label:'Tin tức',          color:'rgba(0,180,216,.15)',   text:'var(--accent)' },
+  guide:  { label:'Hướng dẫn',        color:'rgba(6,214,160,.15)',   text:'var(--green)'  },
+  review: { label:'Đánh giá',         color:'rgba(255,214,10,.15)',  text:'var(--yellow)' },
+  viet:   { label:'Việt hóa',         color:'rgba(196,30,58,.15)',   text:'#ef4444'       },
+  dev:    { label:'Phát triển game',  color:'rgba(247,127,0,.15)',   text:'var(--orange)' },
+};
+
+function blogTagHtml(cat) {
+  const m = BLOG_CAT_META[cat]||{label:cat,color:'rgba(255,255,255,.1)',text:'var(--text2)'};
+  return `<span class="blog-tag ${cat}" style="background:${m.color};color:${m.text}">${m.label}</span>`;
+}
+
+function renderBlog(activeCat='all') {
+  const grid = document.getElementById('blogGrid');
+  const empty = document.getElementById('blogEmpty');
+  if (!grid) return;
+  const list = activeCat==='all' ? BLOG_POSTS : BLOG_POSTS.filter(p=>p.cat===activeCat);
+  if (!list.length) { grid.innerHTML=''; if(empty) empty.style.display='block'; return; }
+  if(empty) empty.style.display='none';
+  grid.innerHTML = list.map((p,i) => {
+    const bg = p.thumbnail
+      ? `style="background-image:url(${p.thumbnail});background-size:cover;background-position:center"`
+      : `style="background:${p.gradient||'linear-gradient(135deg,#0077b6,#00b4d8)'}"`;
+    const imgInner = p.thumbnail ? '' : `<span style="font-size:2.5rem">${p.icon||'📝'}</span>`;
+    return `
+<article class="blog-card" style="animation-delay:${i*.05}s" onclick="goBlogPost('${p.slug}')">
+  <div class="blog-card-img" ${bg}>${imgInner}</div>
+  <div class="blog-card-body">
+    ${blogTagHtml(p.cat)}
+    <h3 class="blog-card-title">${p.title}</h3>
+    <p class="blog-card-desc">${p.desc}</p>
+    <div class="blog-card-foot"><span class="blog-date">📅 ${p.date}</span><span class="blog-read">⏱ ${p.readTime}</span></div>
+  </div>
+</article>`;
+  }).join('');
+}
+
 function filterBlog(el, cat) {
   document.querySelectorAll('.blog-cat').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
-  document.querySelectorAll('.blog-card').forEach(card=>{
-    if(cat==='all' || card.dataset.cat===cat) card.classList.remove('hidden');
-    else card.classList.add('hidden');
-  });
+  renderBlog(cat);
+}
+
+function goBlogPost(slug) {
+  const post = BLOG_POSTS.find(p=>p.slug===slug);
+  if (!post) return;
+  curPage = 'blogpost';
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-blog-post').classList.add('active');
+  history.replaceState(null,'', location.pathname + '#blog/post/' + post.slug);
+  renderBlogPost(post);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderBlogPost(post) {
+  const el = document.getElementById('page-blog-post');
+  if (!el) return;
+  const catMeta = BLOG_CAT_META[post.cat]||{label:post.cat,color:'rgba(0,180,216,.15)',text:'var(--accent)'};
+  const heroBg = post.thumbnail
+    ? `<div class="bp-hero-bg" style="background-image:url(${post.thumbnail})"></div>`
+    : `<div class="bp-hero-bg" style="background:${post.gradient||'#111'}"></div>`;
+  // Related posts
+  const related = BLOG_POSTS.filter(p=>p.cat===post.cat && p.id!==post.id).slice(0,3);
+  const relatedHtml = related.length ? `
+<div class="bp-related">
+  <div class="bp-related-title">Bài viết liên quan</div>
+  <div class="blog-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+    ${related.map(p => {
+      const bg2 = p.thumbnail
+        ? `style="background-image:url(${p.thumbnail});background-size:cover;background-position:center"`
+        : `style="background:${p.gradient||'#111'}"`;
+      return `<article class="blog-card" onclick="goBlogPost('${p.slug}')">
+        <div class="blog-card-img" ${bg2}>${p.thumbnail?'':'<span style="font-size:2rem">'+(p.icon||'📝')+'</span>'}</div>
+        <div class="blog-card-body">${blogTagHtml(p.cat)}<h3 class="blog-card-title">${p.title}</h3>
+        <div class="blog-card-foot"><span class="blog-date">📅 ${p.date}</span><span class="blog-read">⏱ ${p.readTime}</span></div></div>
+      </article>`;
+    }).join('')}
+  </div>
+</div>` : '';
+
+  el.innerHTML = `
+<div class="bc"><div class="bc-inner">
+  <a onclick="go('home')">Trang chủ</a><span>›</span>
+  <a onclick="go('blog')">Blog</a><span>›</span>
+  <span>${post.title}</span>
+</div></div>
+<div class="detail-wrap">
+  <div class="bp-hero">
+    ${heroBg}
+    <div class="bp-hero-inner">
+      <div class="bp-hero-tag" style="background:${catMeta.color};color:${catMeta.text}">${catMeta.label}</div>
+      <h1 class="bp-hero-title">${post.title}</h1>
+    </div>
+  </div>
+  <div class="bp-meta-bar">
+    <span class="bp-meta-item">📅 ${post.date}</span>
+    <span class="bp-meta-item">⏱ ${post.readTime}</span>
+    <span class="bp-meta-item" style="color:${catMeta.text}">${catMeta.label}</span>
+  </div>
+  <div class="bp-content">${post.content}</div>
+  ${relatedHtml}
+</div>`;
 }
 
 // ══ 8. INIT ═══════════════════════════════════════════════
