@@ -136,8 +136,8 @@ function updateLangUI() {
   document.querySelectorAll('.flink-report').forEach(e=>e.textContent=ff.report);
   const fc=document.querySelectorAll('.footer-copy'); if(fc[0])fc[0].textContent=ff.copy; if(fc[1])fc[1].textContent=ff.made;
   // Drawer
-  const dIcons=['🏠','🎮','🗂','🌐','⚡','📈'];
-  const dTxts=[nl.home,nl.games,nl.genre,nl.viet,nl.new_,nl.top];
+  const dIcons=['🏠','🎮','🗂','🌐','⚡','📈','✍️'];
+  const dTxts=[nl.home,nl.games,nl.genre,nl.viet,nl.new_,nl.top,'Blog'];
   document.querySelectorAll('.drawer .nav-link').forEach((el,i)=>{ if(dTxts[i]) el.textContent=`${dIcons[i]} ${dTxts[i]}`; });
   // navCount lang
   const nc2=document.getElementById('navCount'); if(nc2) nc2.textContent=GAMES.length+' games';
@@ -160,9 +160,12 @@ const ROUTES = {
   new:    { hash:'game-moi',   el:'page-new',     nav:'nl-new'   },
   top:    { hash:'top-game',   el:'page-top',     nav:'nl-top'   },
   detail: { hash:'game/',      el:'page-detail',  nav:null       },
-  about:  { hash:'gioi-thieu', el:'page-about',   nav:null       },
-  contact:{ hash:'lien-he',    el:'page-contact', nav:null       },
-  report: { hash:'bao-loi',    el:'page-report',  nav:null       },
+  about:  { hash:'gioi-thieu',      el:'page-about',   nav:null       },
+  contact:{ hash:'lien-he',         el:'page-contact', nav:null       },
+  report: { hash:'bao-loi',         el:'page-report',  nav:null       },
+  blog:   { hash:'blog',            el:'page-blog',    nav:'nl-blog'  },
+  privacy:{ hash:'chinh-sach',      el:'page-privacy', nav:null       },
+  terms:  { hash:'dieu-khoan',      el:'page-terms',   nav:null       },
 };
 
 function go(page, param) {
@@ -515,6 +518,16 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){closeSearch();closeLb();closeLangMenu();document.getElementById('drawer').classList.remove('open');}
 });
 function toggleDrawer(){ document.getElementById('drawer').classList.toggle('open'); }
+
+// ══ 8. BLOG FILTER ═══════════════════════════════════════
+function filterBlog(el, cat) {
+  document.querySelectorAll('.blog-cat').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.blog-card').forEach(card=>{
+    if(cat==='all' || card.dataset.cat===cat) card.classList.remove('hidden');
+    else card.classList.add('hidden');
+  });
+}
 
 // ══ 8. INIT ═══════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded',()=>{ updateLangUI(); handleHash(); });
