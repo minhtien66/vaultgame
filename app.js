@@ -620,7 +620,7 @@ function renderBlogPost(post) {
   const heroBgId = 'bp-hero-bg-' + post.id;
   const heroBg = thumbSrc
     ? `<div class="bp-hero-bg" id="${heroBgId}" style="background:${fallbackBg}"></div>`
-    : `<div class="bp-hero-bg" style="background:${fallbackBg}"></div>`;
+    : `<div class="bp-hero-bg" style="background:${fallbackBg};display:${post.gradient||post.thumbnail?'block':'none'}"></div>`;
   // Related posts
   const related = BLOG_POSTS.filter(p=>p.cat===post.cat && p.id!==post.id).slice(0,3);
   const relatedHtml = related.length ? `
@@ -670,19 +670,18 @@ function renderBlogPost(post) {
   <a onclick="go('blog')">Blog</a><span>›</span>
   <span>${post.title}</span>
 </div></div>
-<div class="bp-hero">
-  ${heroBg}
-  <div class="bp-hero-inner">
-    <div class="bp-hero-tag" style="background:${catMeta.color};color:${catMeta.text}">${catMeta.label}</div>
-    <h1 class="bp-hero-title">${post.title}</h1>
-  </div>
-</div>
 <div class="bp-wrap">
   <div class="bp-main">
-    <div class="bp-meta-bar">
-      <span class="bp-meta-item">📅 ${post.date}</span>
-      <span class="bp-meta-item">⏱ ${post.readTime}</span>
-      <span class="bp-meta-item" style="color:${catMeta.text}">${catMeta.label}</span>
+    <div class="bp-pre-hero">
+      <div class="bp-pre-cat" style="color:${catMeta.text}">${catMeta.label}</div>
+      <h1 class="bp-pre-title">${post.title}</h1>
+      <div class="bp-meta-bar">
+        <span class="bp-meta-item">📅 ${post.date}</span>
+        <span class="bp-meta-item">⏱ ${post.readTime}</span>
+      </div>
+    </div>
+    <div class="bp-hero" id="${heroBgId}-wrap">
+      ${heroBg}
     </div>
     <div class="bp-content">${post.content}</div>
     ${relatedHtml}
