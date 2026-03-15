@@ -105,7 +105,7 @@ const GAMES = [
       "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/e7cc6361f338a81fa281ddba522f8060f82f782c/page_bg_raw.jpg?t=1764264528",
       "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/8b3076a8b6385185a572c81c33949c91fc192093/ss_8b3076a8b6385185a572c81c33949c91fc192093.1920x1080.jpg?t=1764264528",
     ],
-    trailer: "https://youtu.be/-fAITfOWMf0",
+    trailer: "https://www.youtube.com/watch?v=-fAITfOWMf0",
     tags: ["Chiến lược", "Mô phỏng", "Chính trị", "Thế giới mở"],
     sys_req: {
       min: {
