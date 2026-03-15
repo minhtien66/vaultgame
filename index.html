@@ -432,7 +432,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
 
 
 /* ── BLOG POST LAYOUT (sidebar) ── */
-.bp-hero{position:relative;aspect-ratio:21/7;max-height:360px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.bp-hero{position:relative;width:100%;height:320px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:0}
+.bp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.45);transition:background-image .4s}
+.bp-hero-inner{position:relative;z-index:2;text-align:center;padding:2rem;max-width:800px}
+.bp-hero-tag{display:inline-block;font-size:.62rem;font-weight:800;padding:.22rem .6rem;border-radius:4px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem}
+.bp-hero-title{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.4rem);font-weight:700;line-height:1.15;text-shadow:0 2px 16px rgba(0,0,0,.9);color:#fff}
 .bp-wrap{display:grid;grid-template-columns:1fr 320px;gap:2rem;max-width:1400px;margin:0 auto;padding:1.8rem 2rem 3rem}
 .bp-main{min-width:0}
 .bp-sidebar{display:flex;flex-direction:column;gap:1.2rem}
