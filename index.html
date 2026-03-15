@@ -347,6 +347,26 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
   /* Hide name on mobile lang button */
   #langBtn .lb-name{display:none}
 }
+
+/* ── LANG BTN COMPACT ── */
+#langBtn .lb-name{display:none}
+#langBtn .lb-flag{font-size:1rem;line-height:1}
+#langBtn .lb-code{font-family:var(--mono);font-size:.65rem;font-weight:800;color:var(--text);letter-spacing:.05em}
+
+/* ── STATIC INFO PAGES (about/contact/report) ── */
+.info-static-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem 2rem 1.75rem;margin-bottom:1.5rem;text-align:center}
+.isb-icon{font-size:2.8rem;margin-bottom:.75rem}
+.isb-title{font-family:var(--display);font-size:1.55rem;font-weight:700;letter-spacing:.04em;margin-bottom:.65rem;color:var(--text)}
+.isb-text{font-size:.84rem;color:var(--text2);line-height:1.75;max-width:600px;margin:0 auto}
+.isb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:1.5rem}
+.isb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.35rem;transition:border-color .17s,transform .17s}
+.isb-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.isb-card-icon{font-size:1.85rem;margin-bottom:.6rem}
+.isb-card-title{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:.03em;margin-bottom:.45rem;color:var(--text)}
+.isb-card-text{font-size:.76rem;color:var(--text2);line-height:1.65;margin-bottom:.9rem}
+.isb-btn{display:inline-block;font-size:.72rem;font-weight:800;background:rgba(0,180,216,.1);border:1px solid rgba(0,180,216,.28);color:var(--accent);padding:.38rem .9rem;border-radius:6px;transition:all .15s;cursor:pointer;text-decoration:none}
+.isb-btn:hover{background:var(--accent);color:#000}
+.contact-card{text-align:center}
 </style>
 </head>
 <body>
@@ -384,12 +404,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
       <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <span class="nav-search-txt">Tìm kiếm</span><kbd>K</kbd>
     </button>
-    <span class="nav-count" id="navCount">0 games</span>
 
     <!-- LANGUAGE SWITCHER -->
     <div class="lang-wrap">
       <button id="langBtn" onclick="toggleLangMenu(event)">
-        🇻🇳 <span class="lb-name">Tiếng Việt</span>
+        <span class="lb-flag">🇻🇳</span><span class="lb-code">VN</span>
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div id="langMenu">
@@ -560,6 +579,111 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
   </div>
 </div>
 
+<!-- ══ GIỚI THIỆU ══ -->
+<div class="page" id="page-about">
+  <div class="ph"><div class="ph-inner"><div class="ph-title">Giới Thiệu</div><div class="ph-sub">Về VaultGame và sứ mệnh của chúng tôi</div></div></div>
+  <div class="wrap" style="padding-top:2rem;padding-bottom:3rem;max-width:860px">
+    <div class="info-static-box">
+      <div class="isb-icon">🎮</div>
+      <h2 class="isb-title">VaultGame là gì?</h2>
+      <p class="isb-text">VaultGame là kho game PC miễn phí được xây dựng bởi cộng đồng game thủ Việt Nam. Chúng tôi tổng hợp và chia sẻ các tựa game PC chất lượng cao, hoàn toàn miễn phí, không quảng cáo, không cần đăng ký tài khoản.</p>
+    </div>
+    <div class="isb-grid">
+      <div class="isb-card">
+        <div class="isb-card-icon">⚡</div>
+        <div class="isb-card-title">Tốc độ cao</div>
+        <p class="isb-card-text">Tất cả link tải đều được host trên các máy chủ tốc độ cao, không giới hạn băng thông.</p>
+      </div>
+      <div class="isb-card">
+        <div class="isb-card-icon">🇻🇳</div>
+        <div class="isb-card-title">Việt Hóa</div>
+        <p class="isb-card-text">Chúng tôi ưu tiên các bản game đã được Việt hóa hoàn chỉnh bởi cộng đồng game thủ Việt.</p>
+      </div>
+      <div class="isb-card">
+        <div class="isb-card-icon">🔒</div>
+        <div class="isb-card-title">An toàn</div>
+        <p class="isb-card-text">Mọi file đều được kiểm tra virus trước khi đăng tải. Bạn có thể tải về an tâm.</p>
+      </div>
+      <div class="isb-card">
+        <div class="isb-card-icon">♾️</div>
+        <div class="isb-card-title">Miễn phí mãi mãi</div>
+        <p class="isb-card-text">VaultGame cam kết luôn miễn phí. Không có gói premium hay tính năng trả phí.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LIÊN HỆ ══ -->
+<div class="page" id="page-contact">
+  <div class="ph"><div class="ph-inner"><div class="ph-title">Liên Hệ</div><div class="ph-sub">Liên hệ với chúng tôi qua các kênh bên dưới</div></div></div>
+  <div class="wrap" style="padding-top:2rem;padding-bottom:3rem;max-width:760px">
+    <div class="isb-grid">
+      <div class="isb-card contact-card">
+        <div class="isb-card-icon">📧</div>
+        <div class="isb-card-title">Email</div>
+        <p class="isb-card-text">Gửi email cho chúng tôi để được hỗ trợ nhanh nhất.</p>
+        <a class="isb-btn" href="mailto:support@vaultgame.io">support@vaultgame.io</a>
+      </div>
+      <div class="isb-card contact-card">
+        <div class="isb-card-icon">💬</div>
+        <div class="isb-card-title">Facebook Group</div>
+        <p class="isb-card-text">Tham gia cộng đồng game thủ VaultGame trên Facebook.</p>
+        <a class="isb-btn" href="#" target="_blank">Tham gia nhóm →</a>
+      </div>
+      <div class="isb-card contact-card">
+        <div class="isb-card-icon">🎮</div>
+        <div class="isb-card-title">Discord</div>
+        <p class="isb-card-text">Chat trực tiếp với team và cộng đồng trên Discord server.</p>
+        <a class="isb-btn" href="#" target="_blank">Vào Discord →</a>
+      </div>
+      <div class="isb-card contact-card">
+        <div class="isb-card-icon">📱</div>
+        <div class="isb-card-title">Telegram</div>
+        <p class="isb-card-text">Nhận thông báo game mới ngay trên Telegram.</p>
+        <a class="isb-btn" href="#" target="_blank">Theo dõi →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BÁO LỖI ══ -->
+<div class="page" id="page-report">
+  <div class="ph"><div class="ph-inner"><div class="ph-title">Báo Lỗi</div><div class="ph-sub">Phát hiện lỗi? Hãy báo cho chúng tôi biết</div></div></div>
+  <div class="wrap" style="padding-top:2rem;padding-bottom:3rem;max-width:760px">
+    <div class="info-static-box" style="margin-bottom:1.5rem">
+      <div class="isb-icon">🐛</div>
+      <h2 class="isb-title">Gặp sự cố?</h2>
+      <p class="isb-text">Nếu bạn gặp link hỏng, game lỗi hoặc bất kỳ vấn đề nào khác, hãy báo cho chúng tôi qua một trong các cách sau. Chúng tôi sẽ xử lý trong vòng 24 giờ.</p>
+    </div>
+    <div class="isb-grid">
+      <div class="isb-card contact-card">
+        <div class="isb-card-icon">🔗</div>
+        <div class="isb-card-title">Link hỏng / 404</div>
+        <p class="isb-card-text">Link tải không hoạt động hoặc file bị xóa.</p>
+        <a class="isb-btn" href="mailto:report@vaultgame.io?subject=Link hỏng">Báo ngay →</a>
+      </div>
+      <div class="isb-card contact-card">
+        <div class="isb-card-icon">⚠️</div>
+        <div class="isb-card-title">Game bị lỗi</div>
+        <p class="isb-card-text">Game không chạy được, crash hoặc thiếu file.</p>
+        <a class="isb-btn" href="mailto:report@vaultgame.io?subject=Game lỗi">Báo ngay →</a>
+      </div>
+      <div class="isb-card contact-card">
+        <div class="isb-card-icon">📝</div>
+        <div class="isb-card-title">Nội dung sai</div>
+        <p class="isb-card-text">Thông tin game không chính xác hoặc ảnh bị lỗi.</p>
+        <a class="isb-btn" href="mailto:report@vaultgame.io?subject=Nội dung sai">Báo ngay →</a>
+      </div>
+      <div class="isb-card contact-card">
+        <div class="isb-card-icon">💡</div>
+        <div class="isb-card-title">Yêu cầu game</div>
+        <p class="isb-card-text">Muốn chúng tôi thêm một tựa game cụ thể vào kho.</p>
+        <a class="isb-btn" href="mailto:request@vaultgame.io?subject=Yêu cầu game">Gửi yêu cầu →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- LIGHTBOX -->
 <div id="lb"><button id="lb-close" onclick="closeLb()">✕</button><img id="lb-img" src="" alt=""></div>
 
@@ -589,9 +713,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
     <div>
       <div class="footer-ht">Thông tin</div>
       <div class="footer-links">
-        <span class="footer-link flink-about">Giới thiệu</span>
-        <span class="footer-link flink-contact">Liên hệ</span>
-        <span class="footer-link flink-report">Báo lỗi</span>
+        <span class="footer-link flink-about" onclick="go('about')">Giới thiệu</span>
+        <span class="footer-link flink-contact" onclick="go('contact')">Liên hệ</span>
+        <span class="footer-link flink-report" onclick="go('report')">Báo lỗi</span>
       </div>
     </div>
   </div>
