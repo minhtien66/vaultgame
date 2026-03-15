@@ -636,27 +636,67 @@ function renderBlogPost(post) {
   </div>
 </div>` : '';
 
+  // Build table of contents from h2 tags in content
+  const tocMatches = [...post.content.matchAll(/<h2[^>]*>(.*?)<\/h2>/gi)];
+  const tocHtml = tocMatches.length > 1 ? `
+<div class="bp-toc">
+  <div class="bp-toc-title">📋 Mục lục</div>
+  <ol class="bp-toc-list">
+    ${tocMatches.map((m,i)=>`<li><a onclick="document.querySelectorAll('.bp-content h2')[${i}]?.scrollIntoView({behavior:'smooth',block:'start'})">${m[1]}</a></li>`).join('')}
+  </ol>
+</div>` : '';
+
+  // All posts for sidebar
+  const sidebarPosts = BLOG_POSTS.filter(p=>p.id!==post.id).slice(0,5);
+
   el.innerHTML = `
 <div class="bc"><div class="bc-inner">
   <a onclick="go('home')">Trang chủ</a><span>›</span>
   <a onclick="go('blog')">Blog</a><span>›</span>
   <span>${post.title}</span>
 </div></div>
-<div class="detail-wrap">
-  <div class="bp-hero">
-    ${heroBg}
-    <div class="bp-hero-inner">
-      <div class="bp-hero-tag" style="background:${catMeta.color};color:${catMeta.text}">${catMeta.label}</div>
-      <h1 class="bp-hero-title">${post.title}</h1>
+<div class="bp-hero">
+  ${heroBg}
+  <div class="bp-hero-inner">
+    <div class="bp-hero-tag" style="background:${catMeta.color};color:${catMeta.text}">${catMeta.label}</div>
+    <h1 class="bp-hero-title">${post.title}</h1>
+  </div>
+</div>
+<div class="bp-wrap">
+  <div class="bp-main">
+    <div class="bp-meta-bar">
+      <span class="bp-meta-item">📅 ${post.date}</span>
+      <span class="bp-meta-item">⏱ ${post.readTime}</span>
+      <span class="bp-meta-item" style="color:${catMeta.text}">${catMeta.label}</span>
     </div>
+    <div class="bp-content">${post.content}</div>
+    ${relatedHtml}
   </div>
-  <div class="bp-meta-bar">
-    <span class="bp-meta-item">📅 ${post.date}</span>
-    <span class="bp-meta-item">⏱ ${post.readTime}</span>
-    <span class="bp-meta-item" style="color:${catMeta.text}">${catMeta.label}</span>
-  </div>
-  <div class="bp-content">${post.content}</div>
-  ${relatedHtml}
+  <aside class="bp-sidebar">
+    ${tocHtml}
+    <div class="bp-sidebar-box">
+      <div class="bp-sidebar-title">✍️ Bài viết mới nhất</div>
+      ${sidebarPosts.map(p=>{
+        const bg3 = p.thumbnail
+          ? `background-image:url(${p.thumbnail});background-size:cover;background-position:center`
+          : `background:${p.gradient||'#111'}`;
+        const cm = BLOG_CAT_META[p.cat]||{label:p.cat,color:'rgba(255,255,255,.1)',text:'var(--text2)'};
+        return `<div class="bp-sidebar-post" onclick="goBlogPost('${p.slug}')">
+          <div class="bp-sidebar-post-img" style="${bg3}">${p.thumbnail?'':'<span>'+( p.icon||'📝')+'</span>'}</div>
+          <div class="bp-sidebar-post-info">
+            <span class="bp-sidebar-post-cat" style="color:${cm.text}">${cm.label}</span>
+            <div class="bp-sidebar-post-title">${p.title}</div>
+            <span class="bp-sidebar-post-date">📅 ${p.date}</span>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="bp-sidebar-box" style="text-align:center">
+      <div class="bp-sidebar-title">🎮 Khám phá kho game</div>
+      <p style="font-size:.74rem;color:var(--text3);margin:.5rem 0 .85rem;line-height:1.6">Tải game PC miễn phí, Việt hóa đầy đủ, không quảng cáo.</p>
+      <button class="btn btn-primary" onclick="go('games')" style="width:100%;justify-content:center">Xem tất cả game →</button>
+    </div>
+  </aside>
 </div>`;
 }
 
