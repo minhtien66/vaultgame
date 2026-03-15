@@ -75,6 +75,9 @@ const LANGS = {
   },
 };
 
+// ── Flag images ──────────────────────────
+const FLAG_IMGS = { vi:'https://flagcdn.com/w40/vn.png', en:'https://flagcdn.com/w40/gb.png', es:'https://flagcdn.com/w40/es.png' };
+
 // ── Lang state ────────────────────────────
 let _lang = localStorage.getItem('vg_lang') || 'vi';
 const L = () => LANGS[_lang] || LANGS.vi;
@@ -92,7 +95,7 @@ function updateLangUI() {
   const cur = LANGS[_lang];
   // Button
   const btn = document.getElementById('langBtn');
-  if (btn) btn.innerHTML = `<span class="lb-flag-circle">${cur.flag}</span><span class="lb-code">${cur.code.toUpperCase()}</span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>`;
+  if (btn) btn.innerHTML = `<span class="lb-flag-circle"><img src="${FLAG_IMGS[cur.code]||cur.flag}" alt="${cur.code.toUpperCase()}"></span><span class="lb-code">${cur.code.toUpperCase()}</span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>`;
   // Dropdown active
   document.querySelectorAll('.lang-opt').forEach(o => o.classList.toggle('active', o.dataset.lang === _lang));
 
