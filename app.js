@@ -618,9 +618,11 @@ function renderBlogPost(post) {
   const thumbSrc = post.thumbnail;
   const fallbackBg = post.gradient || 'linear-gradient(135deg,#111318,#16181f)';
   const heroBgId = 'bp-hero-bg-' + post.id;
+  // Use <img> for thumbnail (natural size, no duplicate), gradient div as fallback
   const heroBg = thumbSrc
-    ? `<div class="bp-hero-bg" id="${heroBgId}" style="background:${fallbackBg}"></div>`
-    : `<div class="bp-hero-bg" style="background:${fallbackBg};display:${post.gradient||post.thumbnail?'block':'none'}"></div>`;
+    ? `<img class="bp-hero-img" id="${heroBgId}" src="${thumbSrc}" alt="${post.title}" onerror="this.style.display='none';document.getElementById('${heroBgId}-fb').style.display='block'">
+<div id="${heroBgId}-fb" class="bp-hero-bg" style="display:none;background:${fallbackBg}"></div>`
+    : (post.gradient ? `<div class="bp-hero-bg" style="background:${fallbackBg}"></div>` : '');
   // Related posts
   const related = BLOG_POSTS.filter(p=>p.cat===post.cat && p.id!==post.id).slice(0,3);
   const relatedHtml = related.length ? `
@@ -639,17 +641,6 @@ function renderBlogPost(post) {
     }).join('')}
   </div>
 </div>` : '';
-
-  // After render: preload thumbnail and set if loaded
-  if (thumbSrc) {
-    const probe = new window.Image();
-    probe.onload = () => {
-      const bgEl = document.getElementById(heroBgId);
-      if (bgEl) bgEl.style.backgroundImage = `url(${thumbSrc})`;
-    };
-    // on error keep gradient — no action needed
-    probe.src = thumbSrc;
-  }
 
   // Build table of contents from h2 tags in content
   const tocMatches = [...post.content.matchAll(/<h2[^>]*>(.*?)<\/h2>/gi)];
