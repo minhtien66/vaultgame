@@ -466,6 +466,55 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
 #page-blog-post .detail-wrap{display:none}
 @media(max-width:900px){.bp-wrap{grid-template-columns:1fr}.bp-sidebar{display:none}}
 
+
+/* ══ LIGHT MODE ══ */
+[data-theme="light"] {
+  --bg:#f0f2f7;
+  --bg2:#e4e8f0;
+  --bg3:#d8dde8;
+  --card:#ffffff;
+  --card2:#f5f7fc;
+  --border:#d0d5e8;
+  --border2:#bdc4d8;
+  --accent:#0077b6;
+  --accent2:#005f8e;
+  --accent3:#0096c7;
+  --orange:#e07000;
+  --green:#059669;
+  --red:#dc2626;
+  --yellow:#d97706;
+  --text:#0f172a;
+  --text2:#374151;
+  --text3:#6b7280;
+}
+[data-theme="light"] body { background:var(--bg); }
+[data-theme="light"] #navbar { background:rgba(240,242,247,.97); border-bottom-color:var(--border); }
+[data-theme="light"] .gcard { box-shadow:0 2px 8px rgba(0,0,0,.08); }
+[data-theme="light"] .gcard:hover { box-shadow:0 8px 24px rgba(0,0,0,.15); }
+[data-theme="light"] #langMenu { box-shadow:0 8px 32px rgba(0,0,0,.15); }
+[data-theme="light"] .hero-bg { filter:blur(3px) brightness(.55); }
+[data-theme="light"] .hero-overlay { background:linear-gradient(90deg,rgba(240,242,247,.96) 0%,rgba(240,242,247,.72) 55%,rgba(240,242,247,.18) 100%); }
+[data-theme="light"] .hero-title,[data-theme="light"] .hero-desc { color:var(--text); text-shadow:none; }
+[data-theme="light"] .stripe { background:var(--bg2); }
+[data-theme="light"] footer { background:var(--bg2); }
+[data-theme="light"] .drawer { background:var(--card); border-right-color:var(--border); }
+[data-theme="light"] .s-modal { background:var(--card); border-color:var(--border); }
+[data-theme="light"] .finput { background:var(--bg); }
+[data-theme="light"] .fsort { background:var(--bg); }
+[data-theme="light"] #searchOverlay { background:rgba(0,0,0,.35); }
+[data-theme="light"] .dl-box::before { background:linear-gradient(90deg,var(--accent),var(--green)); }
+[data-theme="light"] .bp-hero-bg { filter:brightness(.65); }
+[data-theme="light"] .nav-brand span { color:var(--accent); }
+/* Theme toggle button */
+#themeBtn {
+  display:flex;align-items:center;justify-content:center;
+  width:32px;height:32px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:7px;color:var(--text2);cursor:pointer;
+  transition:all .17s;flex-shrink:0;
+}
+#themeBtn:hover { border-color:var(--accent);color:var(--accent); }
+
 </style>
 </head>
 <body>
@@ -506,6 +555,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
       <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <span class="nav-search-txt">Tìm kiếm</span><kbd>K</kbd>
     </button>
+
+    <button id="themeBtn" onclick="toggleTheme()" title="Chuyển giao diện"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
 
     <!-- LANGUAGE SWITCHER -->
     <div class="lang-wrap">
