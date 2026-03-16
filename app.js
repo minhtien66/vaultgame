@@ -690,10 +690,13 @@ function renderBlogPost(post) {
   // Build table of contents from h2 tags in content
   const tocMatches = [...post.content.matchAll(/<h2[^>]*>(.*?)<\/h2>/gi)];
   const tocHtml = tocMatches.length > 1 ? `
-<div class="bp-toc">
-  <div class="bp-toc-title">📋 Mục lục</div>
-  <ol class="bp-toc-list">
-    ${tocMatches.map((m,i)=>`<li><a onclick="document.querySelectorAll('.bp-content h2')[${i}]?.scrollIntoView({behavior:'smooth',block:'start'})">${m[1]}</a></li>`).join('')}
+<div class="bp-toc-inline">
+  <div class="bp-toc-inline-head">
+    <span class="bp-toc-inline-icon">☰</span>
+    <span class="bp-toc-inline-label">Nội dung bài</span>
+  </div>
+  <ol class="bp-toc-inline-list">
+    ${tocMatches.map((m,i)=>`<li><a onclick="document.querySelectorAll('.bp-content h2')[${i}]?.scrollIntoView({behavior:'smooth',block:'start'})">${i+1}. ${m[1]}</a></li>`).join('')}
   </ol>
 </div>` : '';
 
@@ -719,11 +722,11 @@ function renderBlogPost(post) {
     <div class="bp-hero" id="${heroBgId}-wrap">
       ${heroBg}
     </div>
+    ${tocHtml}
     <div class="bp-content">${post.content}</div>
     ${relatedHtml}
   </div>
   <aside class="bp-sidebar">
-    ${tocHtml}
     <div class="bp-sidebar-box">
       <div class="bp-sidebar-title">✍️ Bài viết mới nhất</div>
       ${sidebarPosts.map(p=>{
