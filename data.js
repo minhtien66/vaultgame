@@ -389,7 +389,7 @@ const BLOG_POSTS = [
   desc: "Khám phá tựa game mô phỏng chính trị chân thực nhất, nơi bạn điều hành cả một quốc gia và định hình thế giới.",
   date: "17/03/2026",
   readTime: "6 phút đọc",
-  thumbnail: "",
+  thumbnail: "https://i.ibb.co/ZRw2hD4V/geo-political-simulator-2026-thumbnail.jpg",
   gradient: "linear-gradient(135deg,#0077b6,#00b4d8)",
   icon: "🌍",
   content: `
