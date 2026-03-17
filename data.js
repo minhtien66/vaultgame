@@ -47,7 +47,7 @@ const GAMES = [
       "https://www.gamereactor.eu/media/98/efootballpes2020_2959873b.jpg",
       "https://product.hstatic.net/200000992511/product/pes-2020-gameplay_3ea412c58c584274b298d5399d5fd16b_master.jpg",
     ],
-    trailer: "https://www.youtube.com/embed/4-ZStCPtYVE",
+    trailer: "https://www.youtube.com/embed/cHDfOQyabD0",
     tags: ["Bóng Đá", "Thể Thao", "Việt Hóa", "Multiplayer", "PES"],
     sys_req: {
       min: {
