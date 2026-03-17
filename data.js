@@ -380,6 +380,65 @@ const BLOG_POSTS = [
       <blockquote><p>Hãy ủng hộ game indie Việt bằng cách mua bản quyền chính thức — đó là cách tốt nhất để thúc đẩy nền công nghiệp game nội địa phát triển!</p></blockquote>
     `
   },
+  // bài 6
+  {
+  id: 6,
+  slug: "geo-political-simulator-2026-edition-la-gi",
+  cat: "review",
+  title: "Geo-Political Simulator 2026 Edition: Trải nghiệm làm tổng thống quyền lực nhất thế giới",
+  desc: "Khám phá tựa game mô phỏng chính trị chân thực nhất, nơi bạn điều hành cả một quốc gia và định hình thế giới.",
+  date: "17/03/2026",
+  readTime: "6 phút đọc",
+  thumbnail: "",
+  gradient: "linear-gradient(135deg,#0077b6,#00b4d8)",
+  icon: "🌍",
+  content: `
+    <p><strong>Geo-Political Simulator 2026 Edition</strong> là một trong những tựa game mô phỏng chính trị sâu sắc và phức tạp nhất hiện nay. Nếu bạn từng muốn thử cảm giác trở thành tổng thống, thủ tướng hoặc nhà lãnh đạo quốc gia, đây chính là game dành cho bạn.</p>
+
+    <h2>Gameplay: Điều hành cả một quốc gia</h2>
+    <p>Trong game, bạn sẽ vào vai lãnh đạo của một quốc gia bất kỳ trên thế giới. Nhiệm vụ của bạn không chỉ đơn giản là ra quyết định, mà còn phải cân bằng hàng loạt yếu tố như kinh tế, chính trị, quân sự và xã hội.</p>
+
+    <ul>
+      <li>Ban hành luật và chính sách mới</li>
+      <li>Quản lý ngân sách và thuế</li>
+      <li>Đối phó với khủng hoảng (biểu tình, suy thoái kinh tế, chiến tranh)</li>
+      <li>Thiết lập quan hệ ngoại giao với các quốc gia khác</li>
+    </ul>
+
+    <h2>Độ chân thực cực cao</h2>
+    <p>Điểm mạnh lớn nhất của Geo-Political Simulator 2026 Edition là tính chân thực. Game sử dụng dữ liệu thực tế về các quốc gia, từ dân số, GDP cho đến quan hệ quốc tế.</p>
+
+    <p>Mỗi quyết định bạn đưa ra đều có hậu quả rõ ràng. Ví dụ: tăng thuế có thể giúp ngân sách tăng, nhưng lại khiến người dân bất mãn và biểu tình.</p>
+
+    <h2>Hệ thống AI thông minh</h2>
+    <p>AI trong game được thiết kế để phản ứng như ngoài đời thật. Các quốc gia khác sẽ không “dễ dãi” mà sẽ phản ứng dựa trên lợi ích riêng của họ.</p>
+
+    <ul>
+      <li>Đàm phán hiệp định thương mại</li>
+      <li>Đối đầu quân sự hoặc ngoại giao</li>
+      <li>Tham gia các tổ chức quốc tế</li>
+    </ul>
+
+    <h2>Đồ họa & giao diện</h2>
+    <p>Game không tập trung vào đồ họa hoành tráng mà thiên về giao diện quản lý. Tuy nhiên, bản 2026 đã cải thiện UI rõ rệt, giúp người chơi dễ theo dõi thông tin hơn.</p>
+
+    <h2>Ai nên chơi game này?</h2>
+    <p>Đây không phải là game giải trí nhanh. Nếu bạn thích:</p>
+
+    <ul>
+      <li>Chiến lược sâu</li>
+      <li>Mô phỏng thực tế</li>
+      <li>Quản lý và ra quyết định</li>
+    </ul>
+
+    <p>→ Thì đây là một tựa game cực kỳ đáng thử.</p>
+
+    <h2>Kết luận</h2>
+    <p><strong>Geo-Political Simulator 2026 Edition</strong> là một trải nghiệm độc đáo, nơi mỗi quyết định đều có trọng lượng. Dù có độ khó cao và hơi “kén người chơi”, nhưng nếu bạn kiên nhẫn, game sẽ mang lại cảm giác cực kỳ thỏa mãn khi điều hành thành công một quốc gia.</p>
+
+    <p><em>Tip nhỏ:</em> Người mới nên chọn quốc gia dễ (như các nước phát triển) để làm quen trước khi thử sức với những quốc gia khó hơn.</p>
+  `
+},
 
   // ──────────────────────────────────────────────────────────
   // ► THÊM BÀI MỚI Ở ĐÂY — copy template bên dưới và dán lên trên
