@@ -744,4 +744,48 @@ function renderBlogPost(post) {
 }
 
 // ══ 8. INIT ═══════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded',()=>{ applyTheme(_theme); updateLangUI(); handlePath(); });
+
+// ══ SITEMAP GENERATOR ════════════════════════════════════
+// Truy cập /sitemap.xml để lấy sitemap tự động cập nhật
+function serveSitemap() {
+  if (location.pathname !== '/sitemap.xml') return false;
+  const domain = location.origin;
+  const today = new Date().toISOString().split('T')[0];
+  const staticPages = [
+    ['/', '1.0', 'daily'],
+    ['/games', '0.9', 'daily'],
+    ['/the-loai', '0.8', 'weekly'],
+    ['/viet-hoa', '0.8', 'weekly'],
+    ['/game-moi', '0.8', 'daily'],
+    ['/top-game', '0.7', 'weekly'],
+    ['/blog', '0.9', 'daily'],
+    ['/gioi-thieu', '0.5', 'monthly'],
+    ['/lien-he', '0.5', 'monthly'],
+    ['/bao-loi', '0.4', 'monthly'],
+    ['/chinh-sach', '0.3', 'monthly'],
+    ['/dieu-khoan', '0.3', 'monthly'],
+  ];
+  const urls = [
+    ...staticPages.map(([p,pri,freq]) =>
+      `<url><loc>${domain}${p}</loc><lastmod>${today}</lastmod><changefreq>${freq}</changefreq><priority>${pri}</priority></url>`
+    ),
+    ...GAMES.map(g =>
+      `<url><loc>${domain}/game/${g.slug}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`
+    ),
+    ...BLOG_POSTS.filter(p=>p.slug && p.slug !== 'ten-bai-viet-khong-dau').map(p =>
+      `<url><loc>${domain}/blog/${p.slug}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`
+    ),
+  ];
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.join('
+')}
+</urlset>`;
+  // Hiển thị XML thay vì render trang web
+  document.open('text/xml');
+  document.write(xml);
+  document.close();
+  return true;
+}
+
+document.addEventListener('DOMContentLoaded',()=>{ if(serveSitemap()) return; applyTheme(_theme); updateLangUI(); handlePath(); });
