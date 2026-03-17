@@ -197,41 +197,55 @@ let curPage = 'home';
 let genreFilter = 'all';
 let genrePageFilter = null;
 
+// Base path: '' cho domain riêng, '/repo-name' cho GitHub Pages subdomain
+const BASE_PATH = '';
+
 const ROUTES = {
-  home:   { hash:'',           el:'page-home',    nav:'nl-home'  },
-  games:  { hash:'games',      el:'page-games',   nav:'nl-games' },
-  genre:  { hash:'the-loai',   el:'page-genre',   nav:'nl-genre' },
-  viet:   { hash:'viet-hoa',   el:'page-viet',    nav:'nl-viet'  },
-  new:    { hash:'game-moi',   el:'page-new',     nav:'nl-new'   },
-  top:    { hash:'top-game',   el:'page-top',     nav:'nl-top'   },
-  detail: { hash:'game/',      el:'page-detail',  nav:null       },
-  about:  { hash:'gioi-thieu',      el:'page-about',   nav:null       },
-  contact:{ hash:'lien-he',         el:'page-contact', nav:null       },
-  report: { hash:'bao-loi',         el:'page-report',  nav:null       },
-  blog:   { hash:'blog',            el:'page-blog',    nav:'nl-blog'  },
-  privacy:  { hash:'chinh-sach',    el:'page-privacy',   nav:null       },
-  terms:    { hash:'dieu-khoan',    el:'page-terms',    nav:null       },
-  blogpost: { hash:'blog/',         el:'page-blog-post', nav:null       },
+  home:     { path:'/',           el:'page-home',      nav:'nl-home'  },
+  games:    { path:'/games',      el:'page-games',     nav:'nl-games' },
+  genre:    { path:'/the-loai',   el:'page-genre',     nav:'nl-genre' },
+  viet:     { path:'/viet-hoa',   el:'page-viet',      nav:'nl-viet'  },
+  new:      { path:'/game-moi',   el:'page-new',       nav:'nl-new'   },
+  top:      { path:'/top-game',   el:'page-top',       nav:'nl-top'   },
+  detail:   { path:'/game/',      el:'page-detail',    nav:null       },
+  about:    { path:'/gioi-thieu', el:'page-about',     nav:null       },
+  contact:  { path:'/lien-he',    el:'page-contact',   nav:null       },
+  report:   { path:'/bao-loi',    el:'page-report',    nav:null       },
+  blog:     { path:'/blog',       el:'page-blog',      nav:'nl-blog'  },
+  privacy:  { path:'/chinh-sach', el:'page-privacy',   nav:null       },
+  terms:    { path:'/dieu-khoan', el:'page-terms',     nav:null       },
+  blogpost: { path:'/blog/',      el:'page-blog-post', nav:null       },
 };
 
-function go(page, param) {
+function showPage(page) {
   curPage = page;
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-  closeLangMenu();
   const r = ROUTES[page]; if (!r) return;
   const el = document.getElementById(r.el); if (el) el.classList.add('active');
   if (r.nav) { const n=document.getElementById(r.nav); if(n) n.classList.add('active'); }
+}
+
+function go(page, param) {
+  closeLangMenu();
+  showPage(page);
   if (page==='detail' && param) {
     const g = GAMES.find(x=>x.id===+param);
     const urlSlug = g ? g.slug : param;
     history.pushState(null,'', BASE_PATH + '/game/' + urlSlug);
     renderDetail(+param);
   } else {
+    const r = ROUTES[page]; if(!r) return;
     history.pushState(null,'', BASE_PATH + r.path);
     reRender(page);
   }
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function getCleanPath() {
+  let p = location.pathname;
+  if (BASE_PATH && p.startsWith(BASE_PATH)) p = p.slice(BASE_PATH.length);
+  return p || '/';
 }
 
 function reRender(page) {
@@ -244,19 +258,42 @@ function reRender(page) {
     case 'top':      renderTop(); break;
     case 'blog':     renderBlog(); break;
     case 'blogpost': {
-      const slug = location.pathname.replace(BASE_PATH+'/blog/','');
+      const slug = getCleanPath().replace('/blog/','');
       const bp = BLOG_POSTS.find(x=>x.slug===slug);
       if (bp) renderBlogPost(bp);
       break;
     }
     case 'detail': {
-      const slug = location.pathname.replace(BASE_PATH+'/game/','');
+      const slug = getCleanPath().replace('/game/','');
       const g = GAMES.find(x=>x.slug===slug) || GAMES.find(x=>x.id===+slug);
       if (g) renderDetail(g.id);
       break;
     }
   }
 }
+
+function handlePath() {
+  const p = getCleanPath();
+  // Blog post: /blog/slug
+  const bp = p.match(/^\/blog\/(.+)$/);
+  if (bp) {
+    const post = BLOG_POSTS.find(x=>x.slug===bp[1]);
+    if (post) { showPage('blogpost'); renderBlogPost(post); return; }
+  }
+  // Game detail: /game/slug
+  const gm = p.match(/^\/game\/(.+)$/);
+  if (gm) {
+    const g = GAMES.find(x=>x.slug===gm[1]) || GAMES.find(x=>x.id===+gm[1]);
+    if (g) { showPage('detail'); renderDetail(g.id); return; }
+  }
+  // Static pages
+  const found = Object.entries(ROUTES).find(([k,r])=>!['detail','blogpost'].includes(k) && r.path===p);
+  const target = found ? found[0] : 'home';
+  showPage(target);
+  reRender(target);
+}
+
+window.addEventListener('popstate', handlePath);
 
 
 // ══ 3. HELPERS ═══════════════════════════════════════════
