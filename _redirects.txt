@@ -1,0 +1,13 @@
+/game/*        /index.html  200
+/blog/*        /index.html  200
+/games         /index.html  200
+/the-loai      /index.html  200
+/viet-hoa      /index.html  200
+/game-moi      /index.html  200
+/top-game      /index.html  200
+/blog          /index.html  200
+/gioi-thieu    /index.html  200
+/lien-he       /index.html  200
+/bao-loi       /index.html  200
+/chinh-sach    /index.html  200
+/dieu-khoan    /index.html  200
