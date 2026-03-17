@@ -225,10 +225,10 @@ function go(page, param) {
   if (page==='detail' && param) {
     const g = GAMES.find(x=>x.id===+param);
     const urlSlug = g ? g.slug : param;
-    history.pushState(null,'', location.pathname + '#game/' + urlSlug);
+    history.pushState(null,'', BASE_PATH + '/game/' + urlSlug);
     renderDetail(+param);
   } else {
-    history.pushState(null,'', location.pathname + (r.hash ? '#' + r.hash : '#'));
+    history.pushState(null,'', BASE_PATH + r.path);
     reRender(page);
   }
   window.scrollTo({top:0,behavior:'smooth'});
@@ -236,85 +236,28 @@ function go(page, param) {
 
 function reRender(page) {
   switch(page||curPage) {
-    case 'home':  renderHome(); break;
-    case 'games': renderGames(); break;
-    case 'genre': renderGenrePage(); break;
-    case 'viet':  renderViet(); break;
-    case 'new':   renderNew(); break;
-    case 'top':   renderTop(); break;
-    case 'blog':  renderBlog(); break;
+    case 'home':     renderHome(); break;
+    case 'games':    renderGames(); break;
+    case 'genre':    renderGenrePage(); break;
+    case 'viet':     renderViet(); break;
+    case 'new':      renderNew(); break;
+    case 'top':      renderTop(); break;
+    case 'blog':     renderBlog(); break;
     case 'blogpost': {
-      const bh = location.hash.replace('#','');
-      const bm = bh.match(/^blog\/post\/(.+)$/);
-      if (bm) { const bp = BLOG_POSTS.find(x=>x.slug===bm[1]||x.id===+bm[1]); if(bp) renderBlogPost(bp); }
+      const slug = location.pathname.replace(BASE_PATH+'/blog/','');
+      const bp = BLOG_POSTS.find(x=>x.slug===slug);
+      if (bp) renderBlogPost(bp);
       break;
     }
     case 'detail': {
-      const h = location.hash.replace('#','');
-      // Blog post detail: #blog/post/slug
-  const bp = h.match(/^blog\/post\/(.+)$/);
-  if (bp) {
-    const post = BLOG_POSTS.find(x=>x.slug===bp[1]||x.id===+bp[1]);
-    if (post) {
-      curPage = 'blogpost';
-      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-      document.getElementById('page-blog-post').classList.add('active');
-      renderBlogPost(post);
-      window.scrollTo({top:0,behavior:'smooth'});
-      return;
-    }
-  }
-  const m = h.match(/^game\/(.+)$/);
-      if (m) {
-        const raw = m[1];
-        const g = GAMES.find(x=>x.id===+raw) || GAMES.find(x=>x.slug===raw);
-        if (g) renderDetail(g.id);
-      }
+      const slug = location.pathname.replace(BASE_PATH+'/game/','');
+      const g = GAMES.find(x=>x.slug===slug) || GAMES.find(x=>x.id===+slug);
+      if (g) renderDetail(g.id);
       break;
     }
   }
 }
 
-function handleHash() {
-  const h = location.hash.replace('#','');
-  // Blog post detail: #blog/post/slug
-  const bp = h.match(/^blog\/post\/(.+)$/);
-  if (bp) {
-    const post = BLOG_POSTS.find(x=>x.slug===bp[1]||x.id===+bp[1]);
-    if (post) {
-      curPage = 'blogpost';
-      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-      document.getElementById('page-blog-post').classList.add('active');
-      renderBlogPost(post);
-      window.scrollTo({top:0,behavior:'smooth'});
-      return;
-    }
-  }
-  const m = h.match(/^game\/(.+)$/);
-  if (m) {
-    const raw = m[1];
-    const g = GAMES.find(x=>x.id===+raw) || GAMES.find(x=>x.slug===raw);
-    if (g) {
-      curPage = 'detail';
-      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-      document.getElementById('page-detail').classList.add('active');
-      renderDetail(g.id);
-      window.scrollTo({top:0,behavior:'smooth'});
-      return;
-    }
-  }
-  const found = Object.entries(ROUTES).find(([k,r])=>k!=='detail' && r.hash===h);
-  const target = found ? found[0] : 'home';
-  curPage = target;
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-  const r = ROUTES[target];
-  const el = document.getElementById(r.el); if (el) el.classList.add('active');
-  if (r.nav) { const n=document.getElementById(r.nav); if(n) n.classList.add('active'); }
-  reRender(target);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-window.addEventListener('hashchange', handleHash);
 
 // ══ 3. HELPERS ═══════════════════════════════════════════
 function starStr(r) { let s=''; for(let i=1;i<=5;i++) s+=i<=Math.floor(r)?'★':(i===Math.ceil(r)&&r%1>=.5?'½':'☆'); return s; }
@@ -652,7 +595,7 @@ function goBlogPost(slug) {
   curPage = 'blogpost';
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-blog-post').classList.add('active');
-  history.pushState(null,'', location.pathname + '#blog/post/' + post.slug);
+  history.pushState(null,'', BASE_PATH + '/blog/' + post.slug);
   renderBlogPost(post);
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -764,4 +707,4 @@ function renderBlogPost(post) {
 }
 
 // ══ 8. INIT ═══════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded',()=>{ applyTheme(_theme); updateLangUI(); handleHash(); });
+document.addEventListener('DOMContentLoaded',()=>{ applyTheme(_theme); updateLangUI(); handlePath(); });
