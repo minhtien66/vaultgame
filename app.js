@@ -617,7 +617,9 @@ function renderBlog(activeCat='all') {
   const grid = document.getElementById('blogGrid');
   const empty = document.getElementById('blogEmpty');
   if (!grid) return;
-  const list = activeCat==='all' ? BLOG_POSTS : BLOG_POSTS.filter(p=>p.cat===activeCat);
+  // Sort by id descending — bài mới nhất (id cao nhất) luôn ở trên đầu
+  const sorted = [...BLOG_POSTS].sort((a,b)=>b.id-a.id);
+  const list = activeCat==='all' ? sorted : sorted.filter(p=>p.cat===activeCat);
   if (!list.length) { grid.innerHTML=''; if(empty) empty.style.display='block'; return; }
   if(empty) empty.style.display='none';
   grid.innerHTML = list.map((p,i) => {
