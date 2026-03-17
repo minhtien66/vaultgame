@@ -673,16 +673,24 @@ function renderBlogPost(post) {
   const relatedHtml = related.length ? `
 <div class="bp-related">
   <div class="bp-related-title">Bài viết liên quan</div>
-  <div class="blog-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+  <div class="bp-related-grid">
     ${related.map(p => {
-      const bg2 = p.thumbnail
-        ? `style="background-image:url(${p.thumbnail});background-size:cover;background-position:center"`
-        : `style="background:${p.gradient||'#111'}"`;
-      return `<article class="blog-card" onclick="goBlogPost('${p.slug}')">
-        <div class="blog-card-img" ${bg2}>${p.thumbnail?'':'<span style="font-size:2rem">'+(p.icon||'📝')+'</span>'}</div>
-        <div class="blog-card-body">${blogTagHtml(p.cat)}<h3 class="blog-card-title">${p.title}</h3>
-        <div class="blog-card-foot"><span class="blog-date">📅 ${p.date}</span><span class="blog-read">⏱ ${p.readTime}</span></div></div>
-      </article>`;
+      const cm = BLOG_CAT_META[p.cat]||{label:p.cat,color:'rgba(255,255,255,.1)',text:'var(--text2)'};
+      const imgHtml = p.thumbnail
+        ? `<img src="${p.thumbnail}" alt="${p.title}" onerror="this.parentElement.style.background='${p.gradient||'#111'}';this.remove()">`
+        : `<span>${p.icon||'📝'}</span>`;
+      const imgBg = p.thumbnail ? '' : `style="background:${p.gradient||'#111'}"`;
+      return `<div class="bp-related-card" onclick="goBlogPost('${p.slug}')">
+        <div class="bp-related-card-img" ${imgBg}>${imgHtml}</div>
+        <div class="bp-related-card-body">
+          <span class="bp-related-card-cat" style="color:${cm.text}">${cm.label}</span>
+          <div class="bp-related-card-title">${p.title}</div>
+          <div class="bp-related-card-meta">
+            <span class="bp-related-card-date">📅 ${p.date}</span>
+            <span class="bp-related-card-read">⏱ ${p.readTime}</span>
+          </div>
+        </div>
+      </div>`;
     }).join('')}
   </div>
 </div>` : '';
