@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>VaultGame</title>
+<script>
+  // GitHub Pages SPA — redirect trick
+  // Lưu URL hiện tại, redirect về index.html, sau đó JS xử lý routing
+  var l = window.location;
+  // Detect base path (nếu host tại username.github.io/repo-name)
+  // Lưu toàn bộ path + search vào sessionStorage
+  sessionStorage.setItem('vg_redirect', l.pathname + l.search);
+  // Redirect về root (hoặc /repo-name nếu có)
+  var segments = l.pathname.split('/');
+  // Nếu đang ở /repo-name/... thì về /repo-name/
+  // Nếu đang ở /... thì về /
+  var base = segments.length > 2 && segments[1] !== 'game' && segments[1] !== 'blog' && segments[1] !== 'the-loai' && segments[1] !== 'games' && segments[1] !== 'top-game' && segments[1] !== 'game-moi' && segments[1] !== 'viet-hoa' && segments[1] !== 'gioi-thieu' && segments[1] !== 'lien-he' && segments[1] !== 'bao-loi' && segments[1] !== 'blog' && segments[1] !== 'chinh-sach' && segments[1] !== 'dieu-khoan'
+    ? '/' + segments[1] + '/'
+    : '/';
+  l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + base);
+</script>
+</head>
+<body></body>
+</html>
