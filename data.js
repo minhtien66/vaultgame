@@ -443,11 +443,11 @@ const BLOG_POSTS = [
     id: 7, 
     slug: "vibe-coding-ky-nguyen-moi-cua-nganh-game-2026", 
     cat: "dev", 
-    title: "Vibe-Coding: Cú Hích Chấn Động Ngành Game Ngày 18/03/2026",
+    title: "Vibe-Coding: Cú Hích Chấn Động Ngành Game",
     desc: "Không còn là những dòng code khô khan, lập trình game năm 2026 là cuộc chơi của cảm xúc và sự mô tả trực quan. Liệu AI có đang 'cướp' mất linh hồn của các Dev?",
     date: "18/03/2026", 
     readTime: "8 phút đọc",
-    thumbnail: "", 
+    thumbnail: "https://i.ibb.co/v6g3t2WW/Gemini-Generated-Image-m206xmm206xmm206.png", 
     gradient: "linear-gradient(135deg, #0f0c29, #302b63, #24243e)", 
     icon: "🚀", 
     content: `
