@@ -28,7 +28,7 @@ const GAMES = [
     rating: 4.6,
     downloads: 2100,
     emoji: "🏭",
-    badges: ["new"],
+    badges: ["hot", "new"],
     viet: true,
     download_links: [
       { label: "Gofile", url: "https://gofile.io/d/VICTORIA3DEMO", icon: "⬇️" },
