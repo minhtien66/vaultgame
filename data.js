@@ -4,6 +4,64 @@
 
 const GAMES = [
   {
+    id: 3,
+    title: "Victoria 3 v1.12.4 Việt Hóa",
+    slug: "victoria-3-v1124-viet-hoa",
+    genre: "strategy",
+    genre_label: "Chiến lược / Mô phỏng",
+    desc_short: "Điều hành đất nước trong thời đại Victoria, quản lý kinh tế, chính trị và xã hội. Bản Việt hóa toàn bộ giao diện và sự kiện.",
+    desc_full: `<p><strong>Victoria 3</strong> là tựa game đại chiến lược nổi tiếng của Paradox Interactive, đưa bạn vào vai người lãnh đạo của một quốc gia trong giai đoạn lịch sử đầy biến động từ 1836 đến 1936.</p>
+    <p>Game tập trung vào quản lý kinh tế, chính trị và xã hội sâu sắc. Bạn sẽ phải cân bằng giữa các tầng lớp dân cư, phát triển công nghiệp, thương mại, và đối phó với các cuộc cách mạng, xung đột quốc tế.</p>
+    <p>Phiên bản <strong>v1.12.4</strong> bao gồm các bản mở rộng và cập nhật mới nhất, được cộng đồng Việt hóa hoàn chỉnh – từ giao diện, mô tả công nghệ, cho đến các sự kiện lịch sử đều được dịch sang tiếng Việt.</p>`,
+    install_guide: `<ol>
+      <li>Tải game về và giải nén với mật khẩu nằm trong dấu [ ] ở tên file nén. Ví dụ: tên file "[vaultgame.com]_Victoria3.rar" → mật khẩu là: vaultgame.com</li>
+      <li>Vào thư mục game sau khi giải nén</li>
+      <li>Chạy file <strong>Victoria3.exe</strong> (có thể chạy với quyền Administrator nếu cần)</li>
+      <li>Trong game, vào Settings → Language chọn "Tiếng Việt" (nếu chưa tự động)</li>
+      <li>Bắt đầu trải nghiệm Victoria 3 bằng tiếng Việt!</li>
+    </ol>`,
+    size: "9.8 GB",
+    version: "v1.12.4 (Việt Hóa)",
+    year: 2022,
+    developer: "Paradox Development Studio",
+    publisher: "Paradox Interactive",
+    rating: 4.6,
+    downloads: 2100,
+    emoji: "🏭",
+    badges: ["new"],
+    viet: true,
+    download_links: [
+      { label: "Gofile", url: "https://gofile.io/d/VICTORIA3DEMO", icon: "⬇️" },
+    ],
+    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/header.jpg?t=1732030213",
+    screenshots: [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/ss_5f3b9d52539a2bdd54c338d2c22bfb1bc5858af6.1920x1080.jpg?t=1732030213",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/ss_6f54d3fc1927ce13a56d79f109ffd15459a44c51.1920x1080.jpg?t=1732030213",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/ss_05b15a7dc561a37e3e3971c114e4d9e4e5d53d73.1920x1080.jpg?t=1732030213",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/ss_bdcaec9ac49eb28d9cbdce262e73107a12fe5692.1920x1080.jpg?t=1732030213",
+    ],
+    trailer: "https://www.youtube.com/embed/M5T_0kz8JGs",
+    tags: ["Đại chiến lược", "Mô phỏng", "Lịch sử", "Kinh tế", "Việt Hóa", "Paradox"],
+    sys_req: {
+      min: {
+        os: "Windows 10 64-bit",
+        cpu: "Intel Core i5-6600 / AMD Ryzen 3 1200",
+        ram: "8 GB",
+        gpu: "NVIDIA GeForce GTX 660 / AMD Radeon R9 380",
+        storage: "10 GB",
+        directx: "Version 12",
+      },
+      rec: {
+        os: "Windows 10/11 64-bit",
+        cpu: "Intel Core i7-8700 / AMD Ryzen 5 3600",
+        ram: "16 GB",
+        gpu: "NVIDIA GeForce GTX 1060 / AMD RX 580",
+        storage: "10 GB SSD",
+        directx: "Version 12",
+      },
+    },
+  },
+  {
     id: 2,
     title: "eFootball PES 2020 Việt Hóa + Bình Luận Tiếng Việt",
     slug: "efootball-pes-2020-viet-hoa",
