@@ -335,6 +335,150 @@ function topRow(g,rank) {
 
 // ══ 4. RENDERS ═══════════════════════════════════════════
 
+// ── HERO SLIDESHOW ──────────────────────────────────────────
+let _heroIdx    = 0;
+let _heroTimer  = null;
+let _heroPaused = false;
+let _heroFill   = 0;
+let _heroFillTimer = null;
+const HERO_INTERVAL = 6000;
+const HERO_TICK     = 60;
+
+function _heroGames() { return GAMES.slice(0, 5); }
+
+function _renderHeroSlide(g) {
+  const l = L();
+  const games = _heroGames();
+  const idx   = games.findIndex(x => x.id === g.id);
+
+  // Background crossfade
+  const bg     = document.getElementById('heroBg');
+  const bgPrev = document.getElementById('heroBgPrev');
+  if (bg && g.thumbnail) {
+    if (bgPrev) {
+      bgPrev.style.backgroundImage = bg.style.backgroundImage;
+      bgPrev.style.opacity = '1';
+      setTimeout(() => { if(bgPrev) bgPrev.style.opacity = '0'; }, 50);
+    }
+    bg.style.backgroundImage = `url(${g.thumbnail})`;
+  }
+
+  // Title with slide-up animation
+  const titleEl = document.getElementById('heroTitle');
+  if (titleEl) {
+    titleEl.innerHTML = '';
+    const span = document.createElement('span');
+    span.className = 'hero-title-anim';
+    span.textContent = g.title;
+    titleEl.appendChild(span);
+  }
+
+  // Meta badges
+  const metaEl = document.getElementById('heroMeta');
+  if (metaEl) {
+    metaEl.innerHTML =
+      (g.badges.includes('hot') ? '<span class="hbadge hot">HOT</span>' : '') +
+      (g.badges.includes('new') ? `<span class="hbadge new">${l.card.newBadge}</span>` : '') +
+      (g.viet ? `<span class="hbadge viet">${l.card.vietBadge}</span>` : '') +
+      `<span class="hero-genre-pill">${g.genre_label}</span>` +
+      `<span class="hero-rating">★ ${g.rating.toFixed(1)}</span>`;
+  }
+
+  const descEl = document.getElementById('heroDesc');
+  if (descEl) descEl.textContent = g.desc_short;
+
+  const infoEl = document.getElementById('heroInfoRow');
+  if (infoEl) infoEl.innerHTML = `
+    <div class="hi-item"><span class="hi-val">${g.size}</span><span class="hi-key">${l.hero.size}</span></div>
+    <div class="hi-item"><span class="hi-val">${g.version}</span><span class="hi-key">${l.hero.version}</span></div>
+    <div class="hi-item"><span class="hi-val">${fmtN(g.downloads)}</span><span class="hi-key">${l.hero.downloads}</span></div>`;
+
+  const btnsEl = document.getElementById('heroBtns');
+  if (btnsEl) btnsEl.innerHTML = `
+    <button class="btn btn-primary" onclick="go('detail',${g.id})">${l.hero.dlBtn}</button>
+    <button class="btn btn-ghost"   onclick="go('detail',${g.id})">${l.hero.detailBtn}</button>`;
+
+  const imgEl = document.getElementById('heroImg');
+  if (imgEl) {
+    imgEl.innerHTML = (g.thumbnail
+      ? `<img src="${g.thumbnail}" alt="${g.title}" onerror="this.style.display='none'">`
+      : `<div class="hero-img-fb">${g.emoji}</div>`) +
+      `<div class="hero-img-num">${idx+1} / ${games.length}</div>`;
+  }
+
+  const siEl = document.getElementById('heroSlideInfo');
+  if (siEl) siEl.textContent = `${idx+1}/${games.length}`;
+
+  _renderHeroDots(idx);
+}
+
+function _renderHeroDots(activeIdx) {
+  const games = _heroGames();
+  const wrap  = document.getElementById('heroDots');
+  if (!wrap) return;
+  wrap.innerHTML = games.map((g, i) =>
+    `<div class="hdot ${i === activeIdx ? 'active' : 'inactive'}" onclick="_heroGoTo(${i})" title="${g.title}">
+      <div class="hdot-fill" id="hdotFill${i}"></div>
+    </div>`
+  ).join('');
+}
+
+function _heroStartFill() {
+  _heroFill = 0;
+  clearInterval(_heroFillTimer);
+  _heroFillTimer = setInterval(() => {
+    if (_heroPaused) return;
+    _heroFill += (HERO_TICK / HERO_INTERVAL) * 100;
+    if (_heroFill > 100) _heroFill = 100;
+    const el = document.getElementById(`hdotFill${_heroIdx}`);
+    if (el) el.style.width = _heroFill + '%';
+  }, HERO_TICK);
+}
+
+function _heroGoTo(idx) {
+  const games = _heroGames();
+  if (!games.length) return;
+  _heroIdx = ((idx % games.length) + games.length) % games.length;
+  _renderHeroSlide(games[_heroIdx]);
+  _heroStartFill();
+  clearInterval(_heroTimer);
+  if (!_heroPaused) {
+    _heroTimer = setInterval(_heroAutoNext, HERO_INTERVAL);
+  }
+}
+
+function _heroAutoNext() { _heroGoTo(_heroIdx + 1); }
+function heroNext() { _heroGoTo(_heroIdx + 1); }
+function heroPrev() { _heroGoTo(_heroIdx - 1); }
+
+function heroTogglePause() {
+  _heroPaused = !_heroPaused;
+  const btn = document.getElementById('heroPauseBtn');
+  if (btn) btn.classList.toggle('paused', _heroPaused);
+  if (_heroPaused) {
+    clearInterval(_heroTimer);
+  } else {
+    _heroTimer = setInterval(_heroAutoNext, HERO_INTERVAL);
+  }
+}
+
+function _heroInit() {
+  _heroIdx    = 0;
+  _heroPaused = false;
+  clearInterval(_heroTimer);
+  clearInterval(_heroFillTimer);
+  const games = _heroGames();
+  if (!games.length) return;
+  _renderHeroSlide(games[0]);
+  _heroStartFill();
+  _heroTimer = setInterval(_heroAutoNext, HERO_INTERVAL);
+}
+
+function switchHero(id, dotEl) {
+  const i = _heroGames().findIndex(x => x.id === id);
+  if (i >= 0) _heroGoTo(i);
+}
+
 function renderHome() {
   const l=L(); const total=GAMES.length; const vietN=GAMES.filter(g=>g.viet).length;
   const nc=document.getElementById('navCount'); if(nc) nc.textContent=total+' games';
@@ -342,29 +486,7 @@ function renderHome() {
   document.getElementById('stripViet').textContent=`${vietN} ${l.stripe.viet}`;
   const ey=document.getElementById('heroEyebrow'); if(ey) ey.textContent=l.hero.eyebrow;
 
-  const feat=GAMES[0];
-  if (feat) {
-    if(feat.thumbnail) document.getElementById('heroBg').style.backgroundImage=`url(${feat.thumbnail})`;
-    document.getElementById('heroTitle').textContent=feat.title;
-    document.getElementById('heroMeta').innerHTML=
-      (feat.badges.includes('hot')?'<span class="hbadge hot">HOT</span>':'')+
-      (feat.badges.includes('new')?`<span class="hbadge new">${l.card.newBadge}</span>`:'')+
-      (feat.viet?`<span class="hbadge viet">${l.card.vietBadge}</span>`:'')+
-      `<span class="hero-rating">★ ${feat.rating.toFixed(1)}</span>`;
-    document.getElementById('heroDesc').textContent=feat.desc_short;
-    document.getElementById('heroInfoRow').innerHTML=`
-      <div class="hi-item"><span class="hi-val">${feat.size}</span><span class="hi-key">${l.hero.size}</span></div>
-      <div class="hi-item"><span class="hi-val">${feat.version}</span><span class="hi-key">${l.hero.version}</span></div>
-      <div class="hi-item"><span class="hi-val">${fmtN(feat.downloads)}</span><span class="hi-key">${l.hero.downloads}</span></div>`;
-    document.getElementById('heroBtns').innerHTML=`
-      <button class="btn btn-primary" onclick="go('detail',${feat.id})">${l.hero.dlBtn}</button>
-      <button class="btn btn-ghost"   onclick="go('detail',${feat.id})">${l.hero.detailBtn}</button>`;
-    document.getElementById('heroImg').innerHTML=feat.thumbnail
-      ?`<img src="${feat.thumbnail}" alt="${feat.title}" onerror="this.style.display='none'">`
-      :`<div class="hero-img-fb">${feat.emoji}</div>`;
-    document.getElementById('heroDots').innerHTML=GAMES.slice(0,5).map((g,i)=>
-      `<div class="hdot ${i===0?'active':''}" onclick="switchHero(${g.id},this)"></div>`).join('');
-  }
+  _heroInit();
 
   const lh=l.home;
   const shl=document.getElementById('secHotLabel'); if(shl) shl.textContent=lh.hot;
@@ -376,19 +498,6 @@ function renderHome() {
   const newG=GAMES.filter(g=>g.badges.includes('new'));
   document.getElementById('homeHot').innerHTML=(hot.length?hot:GAMES).slice(0,8).map((g,i)=>gcard(g,i*.04)).join('')||emptyHtml(l.empty.noHot);
   document.getElementById('homeNew').innerHTML=(newG.length?newG:GAMES).slice(0,4).map((g,i)=>gcard(g,i*.05)).join('')||emptyHtml(l.empty.noNew);
-}
-
-function switchHero(id,dotEl) {
-  const l=L(); const g=GAMES.find(x=>x.id===id); if(!g) return;
-  if(g.thumbnail) document.getElementById('heroBg').style.backgroundImage=`url(${g.thumbnail})`;
-  document.getElementById('heroTitle').textContent=g.title;
-  document.getElementById('heroDesc').textContent=g.desc_short;
-  document.getElementById('heroBtns').innerHTML=`
-    <button class="btn btn-primary" onclick="go('detail',${g.id})">${l.hero.dlBtn}</button>
-    <button class="btn btn-ghost"   onclick="go('detail',${g.id})">${l.hero.detailBtn}</button>`;
-  document.getElementById('heroImg').innerHTML=g.thumbnail?`<img src="${g.thumbnail}" alt="${g.title}" onerror="this.style.display='none'">`:`<div class="hero-img-fb">${g.emoji}</div>`;
-  document.querySelectorAll('.hdot').forEach(d=>d.classList.remove('active'));
-  dotEl.classList.add('active');
 }
 
 function renderGames() {
