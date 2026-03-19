@@ -15,9 +15,7 @@ const GAMES = [
     <p>Điểm đặc sắc của Victoria 3 là hệ thống kinh tế cực kỳ chi tiết với chuỗi cung ứng hàng hóa, thị trường toàn cầu và cơ chế tăng trưởng GDP. Hệ thống Pops (dân số) theo dõi từng tầng lớp xã hội với nhu cầu và tư tưởng riêng — quyết định sự ổn định hay bất ổn của đất nước.</p>`,
     install_guide: `<ol>
       <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip (mật khẩu nằm trong dấu [ ] ở tên file nén)</li>
-      <li>Vào thư mục sau khi giải nén, chạy file <strong>Setup.exe</strong> với quyền Administrator</li>
-      <li>Chọn thư mục cài đặt và chờ quá trình hoàn tất</li>
-      <li>Copy toàn bộ nội dung trong thư mục <strong>CODEX / EMPRESS / SKIDROW</strong> vào thư mục cài game</li>
+      <li>Vào thư mục sau khi giải nén</li>
       <li>Chạy <strong>victoria3.exe</strong> để bắt đầu chơi</li>
       <li><strong>Lưu ý:</strong> Tắt Windows Defender / Antivirus trước khi cài để tránh bị xóa file crack</li>
     </ol>`,
@@ -37,9 +35,10 @@ const GAMES = [
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
     screenshots: [
       "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/529340/ss_a8f9b35a71f4b1a2e1d0c3f8b7e5d9c2a6f0b4e3.1920x1080.jpg",
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/529340/ss_b9f2a41c8e3d7f5b0e9c4a6d1f8e2b7c5a3d0f1.1920x1080.jpg",
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/529340/ss_c0e3b52d9f4e8a6c1d0b5f7e2c9a3b6d4e1f8a2.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/529340/4a1da4d1f072d157c25645ca8459c6573a0d5671/ss_4a1da4d1f072d157c25645ca8459c6573a0d5671.1920x1080.jpg?t=1773335146",
+      "https://daominhha.net/wp-content/uploads/2022/10/download-mien-phi-VICTORIA-3-daominhha.net_.jpg",
+      "https://daominhha.net/wp-content/uploads/2022/10/tai-full-game-VICTORIA-3-daominhha.jpg",
+     "https://images.squarespace-cdn.com/content/v1/55ef0e29e4b099e22cdc9eea/36daaad5-13d6-4aeb-b44e-cda172934142/Victoria+3+World.jpg",
     ],
     trailer: "https://www.youtube.com/embed/WOlfY-FsL9I",
     tags: ["Chiến lược", "Mô phỏng", "Lịch sử", "Grand Strategy", "Paradox", "Kinh tế", "Thế kỷ 19"],
