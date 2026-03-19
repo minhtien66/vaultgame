@@ -90,7 +90,7 @@ img{display:block;max-width:100%}
 /* ── HERO ── */
 .hero{position:relative;overflow:hidden}
 .hero-inner{position:relative;min-height:520px;display:grid;grid-template-columns:1fr 420px;max-width:1400px;margin:0 auto;padding:2.5rem 2rem 2rem;gap:2.5rem;align-items:center}
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:background-image .05s;filter:brightness(.18)}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.18)}
 .hero-bg-prev{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.18);opacity:0;pointer-events:none;transition:opacity .7s ease}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(11,12,16,1) 0%,rgba(11,12,16,.88) 42%,rgba(11,12,16,.45) 70%,rgba(11,12,16,.1) 100%)}
 .hero-overlay-bottom{position:absolute;bottom:0;left:0;right:0;height:160px;background:linear-gradient(to top,var(--bg),transparent);z-index:1;pointer-events:none}
@@ -99,8 +99,8 @@ img{display:block;max-width:100%}
 .hero-dot-anim{width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 1.4s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
 .hero-title{font-family:var(--display);font-size:clamp(1.9rem,3.5vw,3.2rem);font-weight:700;letter-spacing:.02em;line-height:1.06;margin-bottom:.8rem;text-shadow:0 2px 30px rgba(0,0,0,.9)}
-.hero-title-anim{display:block;animation:htitleIn .35s ease both}
-@keyframes htitleIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.hero-title-anim{display:block;animation:htIn .35s ease both}
+@keyframes htIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .hero-meta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.9rem}
 .hbadge{font-size:.56rem;font-weight:800;padding:.15rem .46rem;border-radius:3px;letter-spacing:.09em;text-transform:uppercase}
 .hbadge.hot{background:var(--red);color:#fff}
@@ -283,7 +283,7 @@ img{display:block;max-width:100%}
 .drawer-lang-btn{font-size:.72rem;font-weight:800;padding:.32rem .7rem;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;transition:all .14s;font-family:var(--body)}
 .drawer-lang-btn:hover,.drawer-lang-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(0,180,216,.08)}
 
-/* ── DETAIL v2 (daominhha style) ── */
+/* ── DETAIL v2 ── */
 .dv2-wrap{max-width:1280px;margin:0 auto;padding:1.4rem 2rem 4rem;display:grid;grid-template-columns:1fr 310px;gap:1.6rem;align-items:flex-start}
 .dv2-main{min-width:0}
 .dv2-side{position:sticky;top:calc(var(--nav-h) + 1rem);display:flex;flex-direction:column;gap:1rem}
@@ -293,9 +293,8 @@ img{display:block;max-width:100%}
 .dv2-bc-inner a:hover{color:var(--accent)}
 .dv2-ptitle{font-family:var(--display);font-size:clamp(1.2rem,2.2vw,1.75rem);font-weight:700;line-height:1.25;color:var(--text);padding:1rem 2rem .7rem;max-width:1280px;margin:0 auto}
 .dv2-sec{display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid var(--red)}
-.dv2-sec-icon{width:26px;height:26px;background:var(--red);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;color:#fff}
+.dv2-sec-icon{width:26px;height:26px;background:var(--red);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;color:#fff;font-weight:700}
 .dv2-sec-title{font-family:var(--display);font-size:.9rem;font-weight:700;letter-spacing:.03em;color:var(--text)}
-/* Slideshow */
 .dv2-slideshow{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:16/9;background:var(--card2);margin-bottom:.65rem}
 .dv2-slideshow img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .dv2-slide-prev,.dv2-slide-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.55);border:none;color:#fff;width:34px;height:50px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .15s;z-index:5;font-family:var(--body)}
@@ -306,7 +305,6 @@ img{display:block;max-width:100%}
 .dv2-sdot{width:10px;height:10px;border-radius:50%;background:var(--border2);cursor:pointer;transition:background .15s;border:none}
 .dv2-sdot.active{background:var(--red)}
 .dv2-slide-counter{position:absolute;bottom:.5rem;right:.6rem;background:rgba(0,0,0,.65);color:#fff;font-size:.6rem;font-family:var(--mono);padding:.14rem .42rem;border-radius:4px;z-index:4}
-/* Info grid */
 .dv2-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.3rem}
 .dv2-info-box{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:.8rem 1rem}
 .dv2-info-row{display:flex;align-items:flex-start;gap:.45rem;padding:.28rem 0;border-bottom:1px solid var(--border);font-size:.76rem}
@@ -316,7 +314,6 @@ img{display:block;max-width:100%}
 .dv2-info-check{display:flex;align-items:flex-start;gap:.45rem;padding:.26rem 0;font-size:.76rem;color:var(--text2);border-bottom:1px solid var(--border)}
 .dv2-info-check:last-child{border-bottom:none}
 .dv2-info-check::before{content:"✔";color:var(--green);font-size:.72rem;flex-shrink:0;margin-top:.07rem}
-/* TOC */
 .dv2-toc{background:var(--card2);border:1px solid var(--border);border-radius:9px;padding:.9rem 1.1rem;margin-bottom:1.3rem}
 .dv2-toc-head{font-family:var(--display);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:.7rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.4rem}
 .dv2-toc ol{padding-left:1.25rem;display:flex;flex-direction:column;gap:.35rem}
@@ -326,7 +323,6 @@ img{display:block;max-width:100%}
 .dv2-toc ol ol{margin-top:.25rem;padding-left:.9rem;list-style:none}
 .dv2-toc ol ol li{font-size:.71rem;color:var(--text3)}
 .dv2-toc ol ol li::before{content:"↳ ";color:var(--red);font-size:.62rem}
-/* Body */
 .dv2-body{font-size:.88rem;color:var(--text2);line-height:1.85;margin-bottom:1.3rem}
 .dv2-body p{margin-bottom:.8rem}
 .dv2-body h2{font-family:var(--display);font-size:.96rem;font-weight:700;color:var(--text);margin:1.5rem 0 .55rem;padding:.5rem .85rem;background:var(--card);border-left:4px solid var(--red);border-radius:0 6px 6px 0;display:flex;align-items:center;gap:.45rem}
@@ -336,11 +332,9 @@ img{display:block;max-width:100%}
 .dv2-body ul li{font-size:.84rem;padding-left:1.1rem;position:relative;line-height:1.65}
 .dv2-body ul li::before{content:"•";position:absolute;left:0;color:var(--accent);font-weight:900}
 .dv2-body strong{color:var(--text);font-weight:700}
-/* Warn box */
 .dv2-warn{background:rgba(239,35,60,.07);border:1px solid rgba(239,35,60,.22);border-radius:8px;padding:.65rem .95rem;margin-bottom:.9rem;font-size:.76rem;color:var(--text2);display:flex;align-items:flex-start;gap:.5rem}
 .dv2-warn::before{content:"⚠";color:var(--red);font-size:.85rem;flex-shrink:0;margin-top:.02rem}
 .dv2-warn strong{color:var(--red)}
-/* Steps */
 .dv2-steps{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:.9rem 1.1rem;margin-bottom:1.3rem}
 .dv2-steps ol{padding-left:1.25rem;display:flex;flex-direction:column;gap:.4rem}
 .dv2-steps li{font-size:.8rem;color:var(--text2);line-height:1.6}
@@ -348,16 +342,13 @@ img{display:block;max-width:100%}
 .dv2-steps-note{display:flex;flex-direction:column;gap:.3rem;margin-top:.75rem;padding-top:.7rem;border-top:1px solid var(--border)}
 .dv2-steps-note-item{font-size:.75rem;color:var(--text2);padding-left:.85rem;position:relative;line-height:1.6}
 .dv2-steps-note-item::before{content:"•";position:absolute;left:0;color:var(--accent)}
-/* Install */
 .dv2-install{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:.9rem 1.1rem;margin-bottom:1.3rem}
 .dv2-install ol{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
 .dv2-install li{font-size:.8rem;color:var(--text2);line-height:1.65}
 .dv2-install strong{color:var(--text)}
 .dv2-install h3{font-size:.76rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.07em;margin:.9rem 0 .45rem;padding:.35rem .65rem;background:rgba(239,35,60,.06);border-left:3px solid var(--red);border-radius:0 5px 5px 0}
-/* Trailer */
 .dv2-trailer{border-radius:10px;overflow:hidden;aspect-ratio:16/9;background:#000;margin-bottom:1.3rem}
 .dv2-trailer iframe{width:100%;height:100%;border:none}
-/* Req */
 .dv2-req-tabs{display:flex;border-radius:7px;overflow:hidden;border:1px solid var(--border);margin-bottom:.7rem}
 .dv2-req-tab{flex:1;text-align:center;padding:.4rem;font-size:.68rem;font-weight:800;cursor:pointer;background:var(--bg2);color:var(--text2);transition:all .14s;text-transform:uppercase;letter-spacing:.05em;border:none;font-family:var(--body)}
 .dv2-req-tab.active{background:var(--red);color:#fff}
@@ -366,7 +357,6 @@ img{display:block;max-width:100%}
 .dv2-req-row:last-child{border-bottom:none}
 .dv2-req-k{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--red);padding:.42rem .75rem;min-width:72px;background:rgba(239,35,60,.04);display:flex;align-items:center}
 .dv2-req-v{font-size:.71rem;color:var(--text2);padding:.42rem .75rem;display:flex;align-items:center}
-/* Score */
 .dv2-score-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.1rem;margin-bottom:1.3rem}
 .dv2-score-head{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
 .dv2-score-circle{width:76px;height:76px;border-radius:50%;border:4px solid var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;background:var(--card2)}
@@ -378,7 +368,6 @@ img{display:block;max-width:100%}
 .dv2-score-bar-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
 .dv2-score-bar-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--orange));border-radius:3px;transition:width .9s ease}
 .dv2-score-bar-val{font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--text);min-width:52px;text-align:right}
-/* Series */
 .dv2-series{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.3rem}
 .dv2-series-item{display:flex;flex-direction:column;align-items:center;gap:.3rem;cursor:pointer;transition:transform .15s}
 .dv2-series-item:hover{transform:translateY(-2px)}
@@ -386,7 +375,6 @@ img{display:block;max-width:100%}
 .dv2-series-thumb img{width:100%;height:100%;object-fit:cover}
 .dv2-series-item:hover .dv2-series-thumb{border-color:var(--accent)}
 .dv2-series-name{font-size:.58rem;font-weight:700;color:var(--text2);text-align:center;max-width:86px;line-height:1.3;text-transform:uppercase}
-/* Sidebar DL box */
 .dv2-dl-box{background:var(--card);border:1px solid var(--border2);border-radius:11px;overflow:hidden;position:relative}
 .dv2-dl-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--orange))}
 .dv2-dl-inner{padding:.95rem}
@@ -403,7 +391,6 @@ img{display:block;max-width:100%}
 .dv2-dl-free-note{text-align:center;font-size:.63rem;color:var(--green);font-weight:800;margin-bottom:.22rem}
 .dv2-dl-warn{font-size:.62rem;color:var(--text3);text-align:center;line-height:1.5;margin-top:.3rem}
 .dv2-dl-viet{margin-top:.45rem;font-size:.63rem;font-weight:800;color:#ef4444;text-align:center;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:5px;padding:.26rem .45rem}
-/* Sidebar info */
 .dv2-sinfo{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.8rem .95rem}
 .dv2-sinfo-title{font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:var(--text3);margin-bottom:.6rem;padding-bottom:.38rem;border-bottom:1px solid var(--border)}
 .dv2-sinfo-row{display:flex;justify-content:space-between;align-items:flex-start;padding:.32rem 0;border-bottom:1px solid var(--border);font-size:.72rem;gap:.5rem}
@@ -412,7 +399,6 @@ img{display:block;max-width:100%}
 .dv2-sinfo-v{color:var(--text);font-weight:700;text-align:right;max-width:58%;word-break:break-word}
 .dv2-tags{display:flex;flex-wrap:wrap;gap:.2rem;justify-content:flex-end}
 .dv2-tag{font-size:.54rem;background:var(--card2);border:1px solid var(--border);padding:.06rem .3rem;border-radius:3px;color:var(--text2)}
-/* Related sidebar */
 .dv2-related-list{display:flex;flex-direction:column;gap:.45rem}
 .dv2-related-item{display:flex;gap:.6rem;cursor:pointer;padding:.4rem;border-radius:7px;transition:background .13s}
 .dv2-related-item:hover{background:var(--card2)}
@@ -915,7 +901,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
 
     <div class="isb-section-title">Liên hệ & Cộng đồng</div>
     <div class="isb-grid">
-      <div class="isb-card contact-card"><div class="isb-card-icon">📧</div><div class="isb-card-title">Email</div><p class="isb-card-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="55262025253a2721152334203921323438307b3c3a">[email&#160;protected]</a></p><a class="isb-btn" href="/cdn-cgi/l/email-protection#afdcdadfdfc0dddbefd9cedac3dbc8cec2ca81c6c0">Gửi email →</a></div>
+      <div class="isb-card contact-card"><div class="isb-card-icon">📧</div><div class="isb-card-title">Email</div><p class="isb-card-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f784828787988583b78196829b8390969a92d99e98">[email&#160;protected]</a></p><a class="isb-btn" href="/cdn-cgi/l/email-protection#daa9afaaaab5a8ae9aacbbafb6aebdbbb7bff4b3b5">Gửi email →</a></div>
       <div class="isb-card contact-card"><div class="isb-card-icon">✍️</div><div class="isb-card-title">Blog</div><p class="isb-card-text">Tin tức, thủ thuật và bài viết về gaming.</p><a class="isb-btn" onclick="go('blog')">Đọc Blog →</a></div>
     </div>
   </div>
@@ -938,13 +924,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
         <div class="isb-card-icon">📧</div>
         <div class="isb-card-title">Email hỗ trợ</div>
         <p class="isb-card-text">Phù hợp cho các vấn đề cần giải quyết chi tiết, đính kèm file log hoặc screenshot.</p>
-        <a class="isb-btn" href="/cdn-cgi/l/email-protection#4635333636293432063027332a3221272b23682f29"><span class="__cf_email__" data-cfemail="03707673736c7177437562766f7764626e662d6a6c">[email&#160;protected]</span></a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#e4979194948b9690a4928591889083858981ca8d8b"><span class="__cf_email__" data-cfemail="1d6e686d6d726f695d6b7c6871697a7c7078337472">[email&#160;protected]</span></a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">🐛</div>
         <div class="isb-card-title">Báo lỗi / Link hỏng</div>
         <p class="isb-card-text">Phát hiện link chết hoặc game lỗi? Báo ngay để chúng tôi xử lý trong 24h.</p>
-        <a class="isb-btn" href="/cdn-cgi/l/email-protection#95e7f0e5fae7e1d5e3f4e0f9e1f2f4f8f0bbfcfa"><span class="__cf_email__" data-cfemail="552730253a2721152334203921323438307b3c3a">[email&#160;protected]</span></a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#80f2e5f0eff2f4c0f6e1f5ecf4e7e1ede5aee9ef"><span class="__cf_email__" data-cfemail="85f7e0f5eaf7f1c5f3e4f0e9f1e2e4e8e0abecea">[email&#160;protected]</span></a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">💬</div>
@@ -968,7 +954,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
         <div class="isb-card-icon">💡</div>
         <div class="isb-card-title">Yêu cầu game</div>
         <p class="isb-card-text">Muốn chúng tôi thêm một tựa game? Gửi yêu cầu và chúng tôi sẽ cố gắng đáp ứng sớm nhất.</p>
-        <a class="isb-btn" href="/cdn-cgi/l/email-protection#6a180f1b1f0f191e2a1c0b1f061e0d0b070f440305">Gửi yêu cầu →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#daa8bfabafbfa9ae9aacbbafb6aebdbbb7bff4b3b5">Gửi yêu cầu →</a>
       </div>
     </div>
 
@@ -1000,37 +986,37 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
         <div class="isb-card-icon">🔗</div>
         <div class="isb-card-title">Link hỏng / 404</div>
         <p class="isb-card-text">Link tải trả về lỗi 404, file bị xóa khỏi server hoặc link đã hết hạn.</p>
-        <a class="isb-btn" href="/cdn-cgi/l/email-protection#f58790859a8781b5839480998192949890db9c9aca8680979f909681c8b99c9b9ed59d144e7a9b92d5d8d5aea1365f9bd592949890a8d3979a918cc8b2949890cfd5d0c5b4a1365f9bd599144e629ccfd5b99c9b9ed59d144e7a9b92d0c5b4b99c9b9ecfd5d0c5b4b83641d581144f56cf">Báo ngay →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#94e6f1e4fbe6e0d4e2f5e1f8e0f3f5f9f1bafdfbabe7e1f6fef1f7e0a9d8fdfaffb4fc752f1bfaf3b4b9b4cfc0573efab4f3f5f9f1c9b2f6fbf0eda9d3f5f9f1aeb4b1a4d5c0573efab4f8752f03fdaeb4d8fdfaffb4fc752f1bfaf3b1a4d5d8fdfaffaeb4b1a4d5d95720b4e0752e37ae">Báo ngay →</a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">💥</div>
         <div class="isb-card-title">Game crash / không chạy</div>
         <p class="isb-card-text">Game không khởi động được, crash ngay khi mở, màn hình đen hoặc thiếu file DLL.</p>
-        <a class="isb-btn" href="/cdn-cgi/l/email-protection#95e7f0e5fae7e1d5e3f4e0f9e1f2f4f8f0bbfcfaaae6e0f7fff0f6e1a8d2f4f8f0b5f9742e02fcb5b8b5cec1563ffbb5f2f4f8f0c8b3f7faf1eca8d2f4f8f0afb5b0a5d4d9742e02fcb5f2742f22e5b5e5fd742f36fcafb5b0a5d4dd742e12b55104fc742e14e0b5fd5635fbfdafb5b0a5d4d6c5c0bac7d4d8bad2c5c0afb5">Báo ngay →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#addfc8ddc2dfd9eddbccd8c1d9caccc0c883c4c292ded8cfc7c8ced990eaccc0c88dc14c163ac48d808df6f96e07c38dcaccc0c8f08bcfc2c9d490eaccc0c8978d889dece14c163ac48dca4c171add8dddc54c170ec4978d889dece54c162a8d693cc44c162cd88dc56e0dc3c5978d889deceefdf882ffece082eafdf8978d">Báo ngay →</a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">🌐</div>
         <div class="isb-card-title">Lỗi Việt hóa</div>
         <p class="isb-card-text">Chữ hiển thị sai, bị lỗi font, thiếu bản dịch hoặc bình luận tiếng Việt không hoạt động.</p>
-        <a class="isb-btn" href="/cdn-cgi/l/email-protection#4e3c2b3e213c3a0e382f3b223a292f232b602721713d3b2c242b2d3a7302aff5d9276e1827aff5c93a6e268dfd2f6e636e151a8de4206e292f232b13682c212a3773092f232b746e6b7e0f038dfa6e3aaff4ed6e22aff5d927746e6b7e0f1d2d3c2b2b203d26213a6e6620aff4f13b6e2d8dfd6774">Báo ngay →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#c3b1a6b3acb1b783b5a2b6afb7a4a2aea6edaaacfcb0b6a1a9a6a0b7fe8f227854aae395aa227844b7e3ab0070a2e3eee398970069ade3a4a2aea69ee5a1aca7bafe84a2aea6f9e3e6f3828e0077e3b7227960e3af227854aaf9e3e6f38290a0b1a6a6adb0abacb7e3ebad22797cb6e3a00070eaf9">Báo ngay →</a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">📝</div>
         <div class="isb-card-title">Thông tin sai</div>
         <p class="isb-card-text">Ảnh, mô tả, cấu hình hoặc thông tin game không chính xác, hướng dẫn cài đặt sai.</p>
-        <a class="isb-btn" href="/cdn-cgi/l/email-protection#b8caddc8d7caccf8ced9cdd4ccdfd9d5dd96d1d787cbcddad2dddbcc85ecd07b0cd6df98ccd1d698cbd9d1989598e3ec7b12d698dfd9d5dde59edad7dcc185ffd9d5dd82989d88f9ecd07b0cd6df98ccd1d698cbd9d182989d88f9ecd07b0cd6df98ccd1d6987c297b02d6df82">Báo ngay →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#cab8afbaa5b8be8abcabbfa6beadaba7afe4a3a5f5b9bfa8a0afa9bef79ea2097ea4adeabea3a4eab9aba3eae7ea919e0960a4eaadaba7af97eca8a5aeb3f78daba7aff0eaeffa8b9ea2097ea4adeabea3a4eab9aba3f0eaeffa8b9ea2097ea4adeabea3a4ea0e5b0970a4adf0">Báo ngay →</a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">🔐</div>
         <div class="isb-card-title">Nghi ngờ virus / malware</div>
         <p class="isb-card-text">Antivirus cảnh báo, file có hành vi lạ hoặc bạn nghi ngờ file bị nhiễm độc.</p>
-        <a class="isb-btn" href="/cdn-cgi/l/email-protection#cbb9aebba4b9bf8bbdaabea7bfacaaa6aee5a2a4f4b8bea9a1aea8bff685aca3a2eba5ac2a7056eba6aaa7bcaab9aeebe6eb909f0861a5ebacaaa6ae96eda9a4afb2f68caaa6aef1ebeefb8a9ba32a716ca5eba62a704aa6eb8a9deba82a7168a5a3eba9086aa4f1ebeefb8a86087febbf2a7168f1">Báo gấp! →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#532136233c2127132532263f2734323e367d3a3c6c202631393630276e1d343b3a733d34b2e8ce733e323f24322136737e73080790f93d7334323e360e75313c372a6e14323e366973766312033bb2e9f43d733eb2e8d23e7312057330b2e9f03d3b733190f23c69737663121e90e77327b2e9f069">Báo gấp! →</a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">💡</div>
         <div class="isb-card-title">Yêu cầu game mới</div>
         <p class="isb-card-text">Tựa game bạn muốn chơi chưa có trong kho — gửi yêu cầu để chúng tôi xem xét thêm vào.</p>
-        <a class="isb-btn" href="/cdn-cgi/l/email-protection#d5a7b0a4a0b0a6a195a3b4a0b9a1b2b4b8b0fbbcbaeaa6a0b7bfb0b6a1e88c167fa0f5b6346f72a0f5a1bd167fb8f5b2b4b8b0f3b7bab1ace881167fbbf5b2b4b8b0eff5f0e5949bbd1675f5a5bd1674a1f5a1a7bc346e56bbeff5f0e59499bcbbbef586a1b0b4b8faa1bdb4b8f5bebd346f76baef">Gửi yêu cầu →</a>
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#96e4f3e7e3f3e5e2d6e0f7e3fae2f1f7fbf3b8fff9a9e5e3f4fcf3f5e2abcf553ce3b6f5772c31e3b6e2fe553cfbb6f1f7fbf3b0f4f9f2efabc2553cf8b6f1f7fbf3acb6b3a6d7d8fe5536b6e6fe5537e2b6e2e4ff772d15f8acb6b3a6d7dafff8fdb6c5e2f3f7fbb9e2fef7fbb6fdfe772c35f9ac">Gửi yêu cầu →</a>
       </div>
     </div>
 
@@ -1098,7 +1084,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
       </div>
       <div class="policy-section">
         <h3 class="policy-h">7. Liên hệ</h3>
-        <p>Nếu có thắc mắc về chính sách bảo mật, vui lòng liên hệ: <a href="/cdn-cgi/l/email-protection#7c0c0e150a1d1f053c0a1d0910081b1d1119521513" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="3444465d4255574d744255415840535559511a5d5b">[email&#160;protected]</span></a></p>
+        <p>Nếu có thắc mắc về chính sách bảo mật, vui lòng liên hệ: <a href="/cdn-cgi/l/email-protection#7e0e0c17081f1d073e081f0b120a191f131b501711" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="c2b2b0abb4a3a1bb82b4a3b7aeb6a5a3afa7ecabad">[email&#160;protected]</span></a></p>
       </div>
     </div>
   </div>
@@ -1148,7 +1134,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
       </div>
       <div class="policy-section" style="border-bottom:none">
         <h3 class="policy-h">7. Liên hệ</h3>
-        <p>Mọi thắc mắc về điều khoản: <a href="/cdn-cgi/l/email-protection#dab6bfbdbbb69aacbbafb6aebdbbb7bff4b3b5" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="a4c8c1c3c5c8e4d2c5d1c8d0c3c5c9c18acdcb">[email&#160;protected]</span></a></p>
+        <p>Mọi thắc mắc về điều khoản: <a href="/cdn-cgi/l/email-protection#acc0c9cbcdc0ecdacdd9c0d8cbcdc1c982c5c3" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="513d3436303d112730243d2536303c347f383e">[email&#160;protected]</span></a></p>
       </div>
     </div>
   </div>
