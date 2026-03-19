@@ -335,80 +335,60 @@ function topRow(g,rank) {
 
 // ══ 4. RENDERS ═══════════════════════════════════════════
 
-// ── HERO SLIDESHOW ──────────────────────────────────────────
-let _heroIdx=0,_heroTimer=null,_heroPaused=false,_heroFill=0,_heroFillTimer=null;
-const HERO_INTERVAL=6000,HERO_TICK=60;
-function _heroGames(){return GAMES.slice(0,5);}
-function _renderHeroSlide(g){
-  const l=L(),games=_heroGames(),idx=games.findIndex(x=>x.id===g.id);
-  const bg=document.getElementById('heroBg'),bgP=document.getElementById('heroBgPrev');
-  if(bg&&g.thumbnail){
-    if(bgP){bgP.style.backgroundImage=bg.style.backgroundImage;bgP.style.opacity='1';setTimeout(()=>{if(bgP)bgP.style.opacity='0';},50);}
-    bg.style.backgroundImage=`url(${g.thumbnail})`;
-  }
-  const tEl=document.getElementById('heroTitle');
-  if(tEl){tEl.innerHTML='';const s=document.createElement('span');s.className='hero-title-anim';s.textContent=g.title;tEl.appendChild(s);}
-  const mEl=document.getElementById('heroMeta');
-  if(mEl)mEl.innerHTML=(g.badges.includes('hot')?'<span class="hbadge hot">HOT</span>':'')+(g.badges.includes('new')?`<span class="hbadge new">${l.card.newBadge}</span>`:'')+( g.viet?`<span class="hbadge viet">${l.card.vietBadge}</span>`:'')+`<span class="hero-genre-pill">${g.genre_label}</span><span class="hero-rating">★ ${g.rating.toFixed(1)}</span>`;
-  const dEl=document.getElementById('heroDesc');if(dEl)dEl.textContent=g.desc_short;
-  const iEl=document.getElementById('heroInfoRow');
-  if(iEl)iEl.innerHTML=`<div class="hi-item"><span class="hi-val">${g.size}</span><span class="hi-key">${l.hero.size}</span></div><div class="hi-item"><span class="hi-val">${g.version}</span><span class="hi-key">${l.hero.version}</span></div><div class="hi-item"><span class="hi-val">${fmtN(g.downloads)}</span><span class="hi-key">${l.hero.downloads}</span></div>`;
-  const bEl=document.getElementById('heroBtns');
-  if(bEl)bEl.innerHTML=`<button class="btn btn-primary" onclick="go('detail',${g.id})">${l.hero.dlBtn}</button><button class="btn btn-ghost" onclick="go('detail',${g.id})">${l.hero.detailBtn}</button>`;
-  const imgEl=document.getElementById('heroImg');
-  if(imgEl)imgEl.innerHTML=(g.thumbnail?`<img src="${g.thumbnail}" alt="${g.title}" onerror="this.style.display='none'">`:`<div class="hero-img-fb">${g.emoji}</div>`)+`<div style="position:absolute;bottom:.55rem;right:.65rem;background:rgba(0,0,0,.65);color:#fff;font-size:.6rem;font-family:var(--mono);padding:.15rem .45rem;border-radius:4px;z-index:3">${idx+1} / ${games.length}</div>`;
-  const siEl=document.getElementById('heroSlideInfo');if(siEl)siEl.textContent=`${idx+1}/${games.length}`;
-  _renderHeroDots(idx);
-}
-function _renderHeroDots(activeIdx){
-  const games=_heroGames(),wrap=document.getElementById('heroDots');if(!wrap)return;
-  wrap.innerHTML=games.map((g,i)=>`<div class="hdot ${i===activeIdx?'active':'inactive'}" onclick="_heroGoTo(${i})" title="${g.title}"><div class="hdot-fill" id="hdotFill${i}"></div></div>`).join('');
-}
-function _heroStartFill(){
-  _heroFill=0;clearInterval(_heroFillTimer);
-  _heroFillTimer=setInterval(()=>{
-    if(_heroPaused)return;
-    _heroFill=Math.min(100,_heroFill+(HERO_TICK/HERO_INTERVAL)*100);
-    const el=document.getElementById(`hdotFill${_heroIdx}`);if(el)el.style.width=_heroFill+'%';
-  },HERO_TICK);
-}
-function _heroGoTo(idx){
-  const games=_heroGames();if(!games.length)return;
-  _heroIdx=((idx%games.length)+games.length)%games.length;
-  _renderHeroSlide(games[_heroIdx]);_heroStartFill();
-  clearInterval(_heroTimer);if(!_heroPaused)_heroTimer=setInterval(_heroAutoNext,HERO_INTERVAL);
-}
-function _heroAutoNext(){_heroGoTo(_heroIdx+1);}
-function heroNext(){_heroGoTo(_heroIdx+1);}
-function heroPrev(){_heroGoTo(_heroIdx-1);}
-function heroTogglePause(){
-  _heroPaused=!_heroPaused;
-  const btn=document.getElementById('heroPauseBtn');if(btn)btn.classList.toggle('paused',_heroPaused);
-  if(_heroPaused){clearInterval(_heroTimer);}else{_heroTimer=setInterval(_heroAutoNext,HERO_INTERVAL);}
-}
-function _heroInit(){
-  _heroIdx=0;_heroPaused=false;clearInterval(_heroTimer);clearInterval(_heroFillTimer);
-  const games=_heroGames();if(!games.length)return;
-  _renderHeroSlide(games[0]);_heroStartFill();_heroTimer=setInterval(_heroAutoNext,HERO_INTERVAL);
-}
-function switchHero(id){const i=_heroGames().findIndex(x=>x.id===id);if(i>=0)_heroGoTo(i);}
-
-function renderHome(){
-  const l=L();const total=GAMES.length;const vietN=GAMES.filter(g=>g.viet).length;
-  const nc=document.getElementById('navCount');if(nc)nc.textContent=total+' games';
+function renderHome() {
+  const l=L(); const total=GAMES.length; const vietN=GAMES.filter(g=>g.viet).length;
+  const nc=document.getElementById('navCount'); if(nc) nc.textContent=total+' games';
   document.getElementById('stripTotal').textContent=`${total} ${l.stripe.games}`;
   document.getElementById('stripViet').textContent=`${vietN} ${l.stripe.viet}`;
-  const ey=document.getElementById('heroEyebrow');if(ey)ey.textContent=l.hero.eyebrow;
-  _heroInit();
+  const ey=document.getElementById('heroEyebrow'); if(ey) ey.textContent=l.hero.eyebrow;
+
+  const feat=[...GAMES].sort((a,b)=>b.downloads-a.downloads)[0];
+  if (feat) {
+    if(feat.thumbnail) document.getElementById('heroBg').style.backgroundImage=`url(${feat.thumbnail})`;
+    document.getElementById('heroTitle').textContent=feat.title;
+    document.getElementById('heroMeta').innerHTML=
+      (feat.badges.includes('hot')?'<span class="hbadge hot">HOT</span>':'')+
+      (feat.badges.includes('new')?`<span class="hbadge new">${l.card.newBadge}</span>`:'')+
+      (feat.viet?`<span class="hbadge viet">${l.card.vietBadge}</span>`:'')+
+      `<span class="hero-rating">★ ${feat.rating.toFixed(1)}</span>`;
+    document.getElementById('heroDesc').textContent=feat.desc_short;
+    document.getElementById('heroInfoRow').innerHTML=`
+      <div class="hi-item"><span class="hi-val">${feat.size}</span><span class="hi-key">${l.hero.size}</span></div>
+      <div class="hi-item"><span class="hi-val">${feat.version}</span><span class="hi-key">${l.hero.version}</span></div>
+      <div class="hi-item"><span class="hi-val">${fmtN(feat.downloads)}</span><span class="hi-key">${l.hero.downloads}</span></div>`;
+    document.getElementById('heroBtns').innerHTML=`
+      <button class="btn btn-primary" onclick="go('detail',${feat.id})">${l.hero.dlBtn}</button>
+      <button class="btn btn-ghost"   onclick="go('detail',${feat.id})">${l.hero.detailBtn}</button>`;
+    document.getElementById('heroImg').innerHTML=feat.thumbnail
+      ?`<img src="${feat.thumbnail}" alt="${feat.title}" onerror="this.style.display='none'">`
+      :`<div class="hero-img-fb">${feat.emoji}</div>`;
+    document.getElementById('heroDots').innerHTML=GAMES.slice(0,5).map((g,i)=>
+      `<div class="hdot ${i===0?'active':''}" onclick="switchHero(${g.id},this)"></div>`).join('');
+  }
+
   const lh=l.home;
-  const shl=document.getElementById('secHotLabel');if(shl)shl.textContent=lh.hot;
-  const shm=document.getElementById('secHotMore');if(shm)shm.textContent=lh.hotMore;
-  const snl=document.getElementById('secNewLabel');if(snl)snl.textContent=lh.new_;
-  const snm=document.getElementById('secNewMore');if(snm)snm.textContent=lh.newMore;
+  const shl=document.getElementById('secHotLabel'); if(shl) shl.textContent=lh.hot;
+  const shm=document.getElementById('secHotMore');  if(shm) shm.textContent=lh.hotMore;
+  const snl=document.getElementById('secNewLabel'); if(snl) snl.textContent=lh.new_;
+  const snm=document.getElementById('secNewMore');  if(snm) snm.textContent=lh.newMore;
+
   const hot=GAMES.filter(g=>g.badges.includes('hot'));
   const newG=GAMES.filter(g=>g.badges.includes('new'));
   document.getElementById('homeHot').innerHTML=(hot.length?hot:GAMES).slice(0,8).map((g,i)=>gcard(g,i*.04)).join('')||emptyHtml(l.empty.noHot);
   document.getElementById('homeNew').innerHTML=(newG.length?newG:GAMES).slice(0,4).map((g,i)=>gcard(g,i*.05)).join('')||emptyHtml(l.empty.noNew);
+}
+
+function switchHero(id,dotEl) {
+  const l=L(); const g=GAMES.find(x=>x.id===id); if(!g) return;
+  if(g.thumbnail) document.getElementById('heroBg').style.backgroundImage=`url(${g.thumbnail})`;
+  document.getElementById('heroTitle').textContent=g.title;
+  document.getElementById('heroDesc').textContent=g.desc_short;
+  document.getElementById('heroBtns').innerHTML=`
+    <button class="btn btn-primary" onclick="go('detail',${g.id})">${l.hero.dlBtn}</button>
+    <button class="btn btn-ghost"   onclick="go('detail',${g.id})">${l.hero.detailBtn}</button>`;
+  document.getElementById('heroImg').innerHTML=g.thumbnail?`<img src="${g.thumbnail}" alt="${g.title}" onerror="this.style.display='none'">`:`<div class="hero-img-fb">${g.emoji}</div>`;
+  document.querySelectorAll('.hdot').forEach(d=>d.classList.remove('active'));
+  dotEl.classList.add('active');
 }
 
 function renderGames() {
@@ -463,82 +443,120 @@ function renderTop() {
   document.getElementById('topDl').innerHTML=[...GAMES].sort((a,b)=>b.downloads-a.downloads).slice(0,10).map((g,i)=>topRow(g,i+1)).join('');
 }
 
-
-function renderDetail(id){
-  const ld=L().detail;const g=GAMES.find(x=>x.id===id);const el=document.getElementById('page-detail');
-  if(!g){el.innerHTML=`<div style="padding:8rem 2rem;text-align:center;color:var(--text3)"><div style="font-size:3rem">😕</div><h2 style="margin:.75rem 0 .5rem;font-family:var(--display)">${L().empty.notFound}</h2><button class="btn btn-primary" onclick="go('games')" style="margin-top:1rem">${L().empty.back}</button></div>`;return;}
-  const shots=g.screenshots||(g.thumbnail?[g.thumbnail]:[]);
+function renderDetail(id) {
+  const ld=L().detail; const g=GAMES.find(x=>x.id===id); const el=document.getElementById('page-detail');
+  if(!g){ el.innerHTML=`<div style="padding:8rem 2rem;text-align:center;color:var(--text3)"><div style="font-size:3rem">😕</div><h2 style="margin:.75rem 0 .5rem;font-family:var(--display)">${L().empty.notFound}</h2><button class="btn btn-primary" onclick="go('games')" style="margin-top:1rem">${L().empty.back}</button></div>`; return; }
+  const shots=g.screenshots||(g.thumbnail?[g.thumbnail]:[]); const mainShot=shots[0]||'';
   const related=GAMES.filter(x=>x.genre===g.genre&&x.id!==g.id).slice(0,4);
-  const s100=Math.round(g.rating*20);
 
-  const ssHtml=shots.length?`<div style="margin-bottom:1.2rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128444;</div><div class="dv2-sec-title">&#7842;NH GAME ${g.title}</div></div><div class="dv2-slideshow" id="dv2ss"><img id="dv2ss-img" src="${shots[0]}" alt="${g.title}" onerror="this.style.display='none'"><button class="dv2-slide-prev" onclick="dv2SlidePrev()">&#8249;</button><button class="dv2-slide-next" onclick="dv2SlideNext()">&#8250;</button><div class="dv2-slide-counter" id="dv2ss-ctr">1 / ${shots.length}</div></div><div class="dv2-slide-dots">${shots.map((_,i)=>`<button class="dv2-sdot ${i===0?'active':''}" onclick="dv2SlideTo(${i})"></button>`).join('')}</div></div>`:'';
+  const galleryHtml=shots.length?`
+<div class="gallery">
+  <div class="dt">${ld.screenshots}</div>
+  <div class="gal-main" onclick="openLb('${mainShot}')"><img id="galMain" src="${mainShot}" alt="${g.title}" onerror="this.style.display='none'"></div>
+  ${shots.length>1?`<div class="gal-thumbs">${shots.map((s,i)=>`<div class="gal-thumb ${i===0?'active':''}" onclick="switchGal(this,'${s}')"><img src="${s}" alt="" onerror="this.parentElement.style.display='none'"></div>`).join('')}</div>`:''}
+</div>`:'';
 
-  const igHtml=`<div class="dv2-info-grid"><div class="dv2-info-box"><div class="dv2-info-row"><span class="dv2-info-key">&#128203; T&#234;n:</span><span class="dv2-info-val">${g.title}</span></div><div class="dv2-info-row"><span class="dv2-info-key">&#128197; N&#259;m:</span><span class="dv2-info-val">${g.year}</span></div><div class="dv2-info-row"><span class="dv2-info-key">&#127918; Th&#7875; lo&#7841;i:</span><span class="dv2-info-val" style="color:var(--accent)">${g.genre_label}</span></div><div class="dv2-info-row"><span class="dv2-info-key">&#128190; Dung l&#432;&#7907;ng:</span><span class="dv2-info-val">${g.size}</span></div><div class="dv2-info-row"><span class="dv2-info-key">Phi&#234;n b&#7843;n:</span><span class="dv2-info-val">${g.version}</span></div></div><div class="dv2-info-box"><div class="dv2-info-check">Ch&#417;i &#273;&#417;n l&#7867;</div><div class="dv2-info-check">Ng&#244;n ng&#7919;: ${g.viet?'Ti&#7871;ng Vi&#7879;t':'Ti&#7871;ng Anh'}</div><div class="dv2-info-check">H&#7879; &#273;i&#7873;u h&#224;nh: Windows</div><div class="dv2-info-check">B&#224;n ph&#237;m / Chu&#7897;t</div><div class="dv2-info-check">Developer: ${g.developer||'&#8212;'}</div><div class="dv2-info-check">Publisher: ${g.publisher||'&#8212;'}</div></div></div>`;
+  const trailerHtml=g.trailer?`<div class="d-trailer"><div class="dt">${ld.trailer}</div><div class="trailer-wrap"><iframe src="${g.trailer}" allowfullscreen allow="autoplay;encrypted-media"></iframe></div></div>`:'';
 
-  const tocHtml=`<div class="dv2-toc"><div class="dv2-toc-head">&#128203; N&#7897;i dung b&#224;i</div><ol><li><a onclick="document.getElementById('dv2-intro')?.scrollIntoView({behavior:'smooth'})">Gi&#7899;i thi&#7879;u ${g.title}</a><ol><li><a>T&#7893;ng quan &amp; n&#7893;i b&#7853;t</a></li><li><a>Gameplay &amp; c&#417; ch&#7871;</a></li></ol></li>${shots.length?`<li><a onclick="document.getElementById('dv2-shots')?.scrollIntoView({behavior:'smooth'})">H&#236;nh &#7843;nh game</a></li>`:''}<li><a onclick="document.getElementById('dv2-process')?.scrollIntoView({behavior:'smooth'})">Quy tr&#236;nh c&#224;i &#273;&#7863;t A-Z</a></li><li><a onclick="document.getElementById('dv2-install')?.scrollIntoView({behavior:'smooth'})">H&#432;&#7899;ng d&#7851;n c&#224;i &#273;&#7863;t</a></li>${g.trailer?`<li><a onclick="document.getElementById('dv2-trailer')?.scrollIntoView({behavior:'smooth'})">Video Trailer</a></li>`:''}<li><a onclick="document.getElementById('dv2-sysreq')?.scrollIntoView({behavior:'smooth'})">C&#7845;u h&#236;nh y&#234;u c&#7847;u</a></li><li><a onclick="document.getElementById('dv2-score')?.scrollIntoView({behavior:'smooth'})">&#272;&#225;nh gi&#225; game</a></li></ol></div>`;
+  const srHtml=g.sys_req?`
+<div>
+  <div class="dt">${ld.sysreq}</div>
+  <div class="sr-tabs">
+    <button class="sr-tab active" id="srt-min" onclick="switchSr('min')">${ld.min}</button>
+    <button class="sr-tab" id="srt-rec" onclick="switchSr('rec')">${ld.rec}</button>
+  </div>
+  <div id="sr-min" class="sr-table">${srRows(g.sys_req.min)}</div>
+  <div id="sr-rec" class="sr-table" style="display:none">${srRows(g.sys_req.rec)}</div>
+</div>`:'';
 
-  const introHtml=`<div id="dv2-intro" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">i</div><div class="dv2-sec-title">Gi&#7899;i thi&#7879;u game ${g.title}</div></div><div class="dv2-body">${g.desc_full||`<p>${g.desc_short}</p>`}</div></div>`;
-
-  const processHtml=`<div id="dv2-process" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#9881;</div><div class="dv2-sec-title">Quy tr&#236;nh c&#224;i &#273;&#7863;t Game t&#7915; A-Z</div></div><div class="dv2-warn"><strong>QUY TR&#204;NH B&#7854;T BU&#7896;C</strong> &#8212; l&#224;m theo &#273;&#7875; tr&#225;nh l&#7895;i khi c&#224;i.</div><div class="dv2-steps"><ol><li><strong>&#431;U TI&#202;N KI&#7�64;M TRA C&#7844;U H&#204;NH TR&#431;&#7898;C KHI T&#7842;I GAME.</strong></li><li>T&#7855;t Windows Defender / antivirus tr&#432;&#7899;c khi c&#224;i &#273;&#7863;t.</li><li>C&#224;i ph&#7847;n m&#7873;m h&#7895; tr&#7907; (Visual C++, DirectX...).</li><li>T&#7843;i, gi&#7843;i n&#233;n v&#224; ch&#7841;y theo h&#432;&#7899;ng d&#7851;n b&#234;n d&#432;&#7899;i.</li></ol><div class="dv2-steps-note"><div class="dv2-steps-note-item">&#272;&#432;&#7901;ng d&#7851;n, th&#432; m&#7909;c kh&#244;ng d&#249;ng k&#253; t&#7921; c&#243; d&#7845;u ho&#7863;c ti&#7871;ng Vi&#7879;t.</div><div class="dv2-steps-note-item">Khi t&#7843;i nhi&#7873;u PART, b&#7887; chung v&#224;o 1 th&#432; m&#7909;c v&#224; gi&#7843;i n&#233;n ch&#7881; t&#7915; 1 file.</div></div></div></div>`;
-
-  const installHtml=g.install_guide?`<div id="dv2-install" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128230;</div><div class="dv2-sec-title">H&#432;&#7899;ng d&#7851;n c&#224;i &#273;&#7863;t ${g.title}</div></div><div class="dv2-warn"><strong>L&#431;U &#221;: T&#7855;t Di&#7879;t Virus Tr&#432;&#7899;c Khi C&#224;i &#272;&#7863;t Game</strong></div><div class="dv2-install">${g.install_guide}</div></div>`:'';
-
-  const trailerHtml=g.trailer?`<div id="dv2-trailer" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#9654;</div><div class="dv2-sec-title">Video Trailer &amp; Gameplay</div></div><div class="dv2-trailer"><iframe src="${g.trailer}" allowfullscreen allow="autoplay;encrypted-media"></iframe></div></div>`:'';
-
-  const srHtml=g.sys_req?`<div id="dv2-sysreq" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128187;</div><div class="dv2-sec-title">C&#7845;u h&#236;nh y&#234;u c&#7847;u</div></div><div class="dv2-req-tabs"><button class="dv2-req-tab active" id="dv2rt-min" onclick="dv2SR('min')">T&#7889;i thi&#7875;u</button><button class="dv2-req-tab" id="dv2rt-rec" onclick="dv2SR('rec')">&#272;&#7873; ngh&#7883;</button></div><div id="dv2-req-min" class="dv2-req-table">${dv2Rows(g.sys_req.min)}</div><div id="dv2-req-rec" class="dv2-req-table" style="display:none">${dv2Rows(g.sys_req.rec)}</div></div>`:'';
-
-  const scoreHtml=`<div id="dv2-score" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#11088;</div><div class="dv2-sec-title">&#272;&#225;nh gi&#225; game ${g.title}</div></div><div class="dv2-score-box"><div class="dv2-score-head"><div class="dv2-score-circle"><span class="dv2-score-num">${s100}</span><span class="dv2-score-lbl">VaultGame</span></div><div class="dv2-score-bars">${[['C&#7889;t Truy&#7879;n',Math.round(g.rating*18.5)],['Gameplay',Math.round(g.rating*19)],['&#272;&#7891; H&#7885;a',s100],['&#194;m Thanh',Math.round(g.rating*18)],['T&#7893;ng Th&#7875;',Math.min(100,Math.round(g.rating*21))]].map(([n,v])=>`<div class="dv2-score-bar-row"><span class="dv2-score-bar-name">${n}</span><div class="dv2-score-bar-track"><div class="dv2-score-bar-fill" style="width:${v}%"></div></div><span class="dv2-score-bar-val">${v} &#273;i&#7875;m</span></div>`).join('')}</div></div><div style="font-size:.72rem;color:var(--text3);text-align:center">${starStr(g.rating)} ${g.rating.toFixed(1)}/5.0 &middot; ${fmtN(g.downloads)} l&#432;&#7907;t t&#7843;i</div></div></div>`;
-
-  const relatedHtml=related.length?`<div style="margin-top:1.4rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#127918;</div><div class="dv2-sec-title">Game li&#234;n quan</div></div><div class="game-grid lg">${related.map((r,i)=>gcard(r,i*.05)).join('')}</div></div>`:'';
-
-  const seriesGames=GAMES.filter(x=>x.genre===g.genre&&x.id!==g.id).slice(0,5);
-  const seriesHtml=seriesGames.length?`<div style="margin-bottom:1.2rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128279;</div><div class="dv2-sec-title">Game c&#249;ng th&#7875; lo&#7841;i</div></div><div class="dv2-series">${seriesGames.map(s=>`<div class="dv2-series-item" onclick="go('detail',${s.id})"><div class="dv2-series-thumb">${s.thumbnail?`<img src="${s.thumbnail}" alt="${s.title}" onerror="this.style.display='none'">`:`<span style="font-size:1.2rem">${s.emoji}</span>`}</div><div class="dv2-series-name">${s.title.substring(0,20)}</div></div>`).join('')}</div></div>`:'';
-
-  const dlBtns=(g.download_links||[]).map(lk=>`<a href="${lk.url}" class="dv2-dl-btn" target="_blank" rel="noopener">${lk.icon||'&#11015;'} T&#7842;I GAME &#8212; ${lk.label}</a>`).join('')||`<div style="opacity:.5;font-size:.8rem;text-align:center;padding:.5rem">&#9203; S&#7855;p c&#243; link t&#7843;i</div>`;
-  const sideGames=GAMES.filter(x=>x.id!==g.id).slice(0,5);
+  const installHtml=g.install_guide?`<div><div class="dt">${ld.install}</div><div class="install-box">${g.install_guide}</div></div>`:'';
+  const dlLinks=(g.download_links||[]).map(lk=>`<a href="${lk.url}" class="btn btn-dl" target="_blank" rel="noopener">${lk.icon} ${ld.dlBtn} — ${lk.label}</a>`).join('');
 
   el.innerHTML=`
-<div class="dv2-bc"><div class="dv2-bc-inner"><a onclick="go('home')">Trang ch&#7911;</a><span>&#8250;</span><a onclick="go('games')">T&#7845;t c&#7843; Game</a><span>&#8250;</span><a onclick="go('genre')">${g.genre_label}</a><span>&#8250;</span><span>${g.title}</span></div></div>
-<div class="dv2-ptitle">T&#7843;i Game ${g.title} &#8212; PC Download Full</div>
-<div class="dv2-wrap">
-  <div class="dv2-main">
-    ${ssHtml}${seriesHtml}
-    <div class="dv2-sec" style="margin-bottom:.75rem"><div class="dv2-sec-icon">i</div><div class="dv2-sec-title">Chi ti&#7871;t game ${g.title}</div></div>
-    ${igHtml}${tocHtml}${introHtml}
-    <div id="dv2-shots"></div>
-    ${processHtml}${installHtml}${trailerHtml}${srHtml}${scoreHtml}${relatedHtml}
+<div class="bc"><div class="bc-inner">
+  <a onclick="go('home')">${ld.breadHome}</a><span>›</span>
+  <a onclick="go('games')">${ld.breadGames}</a><span>›</span>
+  <span>${g.title}</span>
+</div></div>
+<div class="detail-wrap">
+  <div class="d-hero">
+    ${mainShot?`<img src="${mainShot}" alt="${g.title}" onerror="this.style.display='none'">`:`<div class="d-hero-fb">${g.emoji}</div>`}
+    <div class="d-hero-ov"></div>
+    <div class="d-hero-bottom"><div class="d-hero-title">${g.title}</div></div>
   </div>
-  <div class="dv2-side">
-    <div class="dv2-dl-box"><div class="dv2-dl-inner">
-      <div class="dv2-dl-badge">&#10004; Ki&#7875;m tra an to&#224;n</div>
-      <div class="dv2-dl-title">${g.title}</div>
-      <div class="dv2-dl-ver">${g.version}</div>
-      <div class="dv2-dl-stats"><div class="dv2-dl-stat"><span class="dv2-dl-stat-val">${g.size}</span><span class="dv2-dl-stat-key">Dung l&#432;&#7907;ng</span></div><div class="dv2-dl-stat"><span class="dv2-dl-stat-val">${g.year}</span><span class="dv2-dl-stat-key">N&#259;m</span></div><div class="dv2-dl-stat"><span class="dv2-dl-stat-val">${fmtN(g.downloads)}</span><span class="dv2-dl-stat-key">L&#432;&#7907;t t&#7843;i</span></div></div>
-      ${dlBtns}
-      <div class="dv2-dl-free-note">&#10003; Ho&#224;n to&#224;n mi&#7877;n ph&#237;</div>
-      <div class="dv2-dl-warn">T&#7855;t antivirus tr&#432;&#7899;c khi c&#224;i. Link Gofile t&#7889;c &#273;&#7897; cao.</div>
-      ${g.viet?`<div class="dv2-dl-viet">&#127992; &#272;&#227; Vi&#7879;t H&#243;a ho&#224;n ch&#7881;nh</div>`:''}
-    </div></div>
-    <div class="dv2-sinfo">
-      <div class="dv2-sinfo-title">Th&#244;ng tin game</div>
-      <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">Developer</span><span class="dv2-sinfo-v">${g.developer||'&#8212;'}</span></div>
-      <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">Publisher</span><span class="dv2-sinfo-v">${g.publisher||'&#8212;'}</span></div>
-      <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">Th&#7875; lo&#7841;i</span><span class="dv2-sinfo-v">${g.genre_label}</span></div>
-      <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">N&#259;m</span><span class="dv2-sinfo-v">${g.year}</span></div>
-      <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">&#272;&#225;nh gi&#225;</span><span class="dv2-sinfo-v" style="color:var(--yellow)">&#9733; ${g.rating.toFixed(1)} / 5.0</span></div>
-      <div class="dv2-sinfo-row" style="flex-direction:column;gap:.3rem;align-items:flex-start"><span class="dv2-sinfo-k">Tags</span><div class="dv2-tags">${g.tags.map(t=>`<span class="dv2-tag">${t}</span>`).join('')}</div></div>
+  <div class="d-layout">
+    <div class="d-left">
+      <div class="d-meta">
+        <span class="d-genre">${g.genre_label}</span>
+        <span class="d-stars">${starStr(g.rating)}</span>
+        <span class="d-rnum">${g.rating.toFixed(1)}</span>
+        ${badgeHtml(g.badges,g.viet)}
+        <span class="d-dlcount">⬇ ${fmtN(g.downloads)} ${ld.dlcountLabel}</span>
+      </div>
+      <div style="margin-bottom:1.5rem"><div class="dt">${ld.intro}</div><div class="d-desc">${g.desc_full||`<p>${g.desc_short}</p>`}</div></div>
+      ${galleryHtml}${trailerHtml}
+      <div style="margin-bottom:1.5rem">
+        <div class="dt">${ld.info}</div>
+        <div class="d-specs">
+          <div class="spec-box"><div class="spec-k">${ld.version}</div><div class="spec-v">${g.version}</div></div>
+          <div class="spec-box"><div class="spec-k">${ld.year}</div><div class="spec-v">${g.year}</div></div>
+          <div class="spec-box"><div class="spec-k">${ld.size}</div><div class="spec-v">${g.size}</div></div>
+          <div class="spec-box"><div class="spec-k">${ld.genre}</div><div class="spec-v">${g.genre_label}</div></div>
+          <div class="spec-box"><div class="spec-k">${ld.dev}</div><div class="spec-v">${g.developer||'—'}</div></div>
+          <div class="spec-box"><div class="spec-k">${ld.viet}</div><div class="spec-v">${g.viet?ld.vietYes:ld.vietNo}</div></div>
+        </div>
+      </div>
+      ${srHtml}${installHtml}
+      ${related.length?`<div style="margin-top:1.5rem"><div class="dt">${ld.related}</div><div class="game-grid lg">${related.map((r,i)=>gcard(r,i*.05)).join('')}</div></div>`:''}
     </div>
-    ${sideGames.length?`<div class="dv2-sinfo"><div class="dv2-sinfo-title">Game kh&#225;c</div><div class="dv2-related-list">${sideGames.map(r=>`<div class="dv2-related-item" onclick="go('detail',${r.id})"><div class="dv2-related-thumb">${r.thumbnail?`<img src="${r.thumbnail}" alt="${r.title}" onerror="this.style.display='none'">`:`${r.emoji}`}</div><div class="dv2-related-info"><div class="dv2-related-genre">${r.genre_label}</div><div class="dv2-related-title">${r.title}</div><div class="dv2-related-size">${r.size} &middot; ${r.year}</div></div></div>`).join('')}</div></div>`:''}
+    <div class="d-right">
+      <div class="dl-box">
+        <div class="dl-head">
+          <div class="dl-label">${ld.dlFree}</div>
+          <div class="dl-name">${g.title}</div>
+          <div class="dl-ver">${g.version}</div>
+          <div class="dl-rows">
+            <div class="dl-row"><span class="dl-rk">${ld.size}</span><span class="dl-rv">${g.size}</span></div>
+            <div class="dl-row"><span class="dl-rk">${ld.dlYear}</span><span class="dl-rv">${g.year}</span></div>
+            <div class="dl-row"><span class="dl-rk">${ld.dlDownloads}</span><span class="dl-rv">${fmtN(g.downloads)}</span></div>
+          </div>
+        </div>
+        <div class="dl-body">
+          <div class="dl-size-big"><span class="dl-size-num">${g.size}</span><span class="dl-size-lbl">${ld.dlSizeLbl}</span></div>
+          ${dlLinks}
+          <div class="dl-free">${ld.dlFreeTag}</div>
+          <div class="dl-note">${ld.dlNote}</div>
+          ${g.viet?`<div class="dl-viet">${ld.dlViet}</div>`:''}
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-t">${ld.infoTitle}</div>
+        <div class="info-r"><span class="info-k">Developer</span><span class="info-v">${g.developer||'—'}</span></div>
+        <div class="info-r"><span class="info-k">${ld.publisher}</span><span class="info-v">${g.publisher||'—'}</span></div>
+        <div class="info-r"><span class="info-k">${ld.genre}</span><span class="info-v">${g.genre_label}</span></div>
+        <div class="info-r"><span class="info-k">${ld.year}</span><span class="info-v">${g.year}</span></div>
+        <div class="info-r"><span class="info-k">${ld.rating}</span><span class="info-v" style="color:var(--yellow)">★ ${g.rating.toFixed(1)} / 5.0</span></div>
+        <div class="info-r" style="flex-direction:column;gap:.4rem;align-items:flex-start"><span class="info-k">${ld.tags}</span><div class="info-tags">${g.tags.map(t=>`<span class="itag">${t}</span>`).join('')}</div></div>
+      </div>
+    </div>
   </div>
 </div>`;
-  window._dv2Shots=shots;window._dv2Idx=0;
 }
-function dv2Rows(req){const lb={os:'OS',cpu:'CPU',ram:'RAM',gpu:'GPU',storage:'&#7840; c&#7913;ng',directx:'DirectX'};return Object.entries(req).map(([k,v])=>`<div class="dv2-req-row"><div class="dv2-req-k">${lb[k]||k}</div><div class="dv2-req-v">${v}</div></div>`).join('');}
-function dv2SR(tab){document.getElementById('dv2-req-min').style.display=tab==='min'?'block':'none';document.getElementById('dv2-req-rec').style.display=tab==='rec'?'block':'none';document.getElementById('dv2rt-min').classList.toggle('active',tab==='min');document.getElementById('dv2rt-rec').classList.toggle('active',tab==='rec');}
-function dv2SlideTo(idx){const s=window._dv2Shots||[];if(!s.length)return;window._dv2Idx=((idx%s.length)+s.length)%s.length;const img=document.getElementById('dv2ss-img');if(img)img.src=s[window._dv2Idx];const ctr=document.getElementById('dv2ss-ctr');if(ctr)ctr.textContent=`${window._dv2Idx+1} / ${s.length}`;document.querySelectorAll('.dv2-sdot').forEach((d,i)=>d.classList.toggle('active',i===window._dv2Idx));}
-function dv2SlideNext(){dv2SlideTo((window._dv2Idx||0)+1);}
-function dv2SlidePrev(){dv2SlideTo((window._dv2Idx||0)-1);}
 
+function srRows(req) {
+  const lbl=L().sr;
+  return Object.entries(req).map(([k,v])=>`<div class="sr-row"><div class="sr-k">${lbl[k]||k}</div><div class="sr-v">${v}</div></div>`).join('');
+}
+function switchSr(tab) {
+  document.getElementById('sr-min').style.display=tab==='min'?'block':'none';
+  document.getElementById('sr-rec').style.display=tab==='rec'?'block':'none';
+  document.getElementById('srt-min').classList.toggle('active',tab==='min');
+  document.getElementById('srt-rec').classList.toggle('active',tab==='rec');
+}
+
+// ══ 5. GALLERY / LIGHTBOX ════════════════════════════════
+function switchGal(el,src) { const m=document.getElementById('galMain'); if(m){m.src=src;m.onclick=()=>openLb(src);} document.querySelectorAll('.gal-thumb').forEach(t=>t.classList.remove('active')); el.classList.add('active'); }
+function openLb(src) { document.getElementById('lb-img').src=src; document.getElementById('lb').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeLb()   { document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
 document.getElementById('lb').addEventListener('click',function(e){if(e.target===this)closeLb();});
 
