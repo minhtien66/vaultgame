@@ -921,7 +921,8 @@ function _cmtSubmit(gameId) {
   var submitBtn = document.getElementById('cmt-submit-btn');
   if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Đang gửi...'; }
 
-  var db = window._db || firebase.firestore();
+  var db = window._db || (typeof firebase !== 'undefined' && firebase.firestore ? firebase.firestore() : null);
+  if(!db){ alert('Lỗi kết nối Firebase!'); if(submitBtn){submitBtn.disabled=false;submitBtn.textContent='💬 Gửi bình luận';} return; }
   db.collection('comments').add({
     gameId: gameId,
     name: name,
@@ -956,7 +957,8 @@ function _cmtRender(gameId) {
     return;
   }
 
-  var db = window._db || firebase.firestore();
+  var db = window._db || (typeof firebase !== 'undefined' && firebase.firestore ? firebase.firestore() : null);
+  if(!db){ wrap.innerHTML = _cmtFormHtml(gameId) + '<div class="cmt-empty">Không thể kết nối Firebase.</div>'; return; }
 
   // Realtime listener
   _cmtUnsub = db.collection('comments')
