@@ -4,6 +4,65 @@
 
 const GAMES = [
   {
+    id: 3,
+    title: "Victoria 3",
+    slug: "victoria-3",
+    genre: "strategy",
+    genre_label: "Chiến lược / Mô phỏng",
+    desc_short: "Xây dựng đế chế của bạn trong thế kỷ 19 đầy biến động — quản lý kinh tế, xã hội, ngoại giao và chiến tranh trong tựa game chiến lược vĩ mô đỉnh cao của Paradox Interactive.",
+    desc_full: `<p>Victoria 3 là tựa game chiến lược vĩ mô được phát triển bởi Paradox Development Studio và phát hành năm 2022. Đây là phần tiếp theo của loạt game Victoria nổi tiếng, đưa người chơi trở về kỷ nguyên 1836–1936 — thời đại của Cách mạng Công nghiệp, chủ nghĩa thực dân và sự trỗi dậy của các cường quốc.</p>
+    <p>Trong Victoria 3, bạn sẽ lãnh đạo một quốc gia từ đầu thế kỷ 19 đến đầu thế kỷ 20, đưa ra các quyết định chiến lược về kinh tế (xây dựng ngành công nghiệp, thương mại quốc tế), chính trị (cải cách xã hội, hệ thống chính trị), ngoại giao (liên minh, chiến tranh, thuộc địa) và phát triển dân số.</p>
+    <p>Điểm đặc sắc của Victoria 3 là hệ thống kinh tế cực kỳ chi tiết với chuỗi cung ứng hàng hóa, thị trường toàn cầu và cơ chế tăng trưởng GDP. Hệ thống Pops (dân số) theo dõi từng tầng lớp xã hội với nhu cầu và tư tưởng riêng — quyết định sự ổn định hay bất ổn của đất nước.</p>`,
+    install_guide: `<ol>
+      <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip (mật khẩu nằm trong dấu [ ] ở tên file nén)</li>
+      <li>Vào thư mục sau khi giải nén, chạy file <strong>Setup.exe</strong> với quyền Administrator</li>
+      <li>Chọn thư mục cài đặt và chờ quá trình hoàn tất</li>
+      <li>Copy toàn bộ nội dung trong thư mục <strong>CODEX / EMPRESS / SKIDROW</strong> vào thư mục cài game</li>
+      <li>Chạy <strong>victoria3.exe</strong> để bắt đầu chơi</li>
+      <li><strong>Lưu ý:</strong> Tắt Windows Defender / Antivirus trước khi cài để tránh bị xóa file crack</li>
+    </ol>`,
+    size: "9.5 GB",
+    version: "v1.12.4",
+    year: 2022,
+    developer: "Paradox Development Studio",
+    publisher: "Paradox Interactive",
+    rating: 4.4,
+    downloads: 2100,
+    emoji: "🏭",
+    badges: ["hot", "new"],
+    viet: false,
+    download_links: [
+      { label: "Gofile", url: "https://gofile.io/d/jg1uxC", icon: "⬇️" },
+    ],
+    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
+    screenshots: [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/529340/ss_a8f9b35a71f4b1a2e1d0c3f8b7e5d9c2a6f0b4e3.1920x1080.jpg",
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/529340/ss_b9f2a41c8e3d7f5b0e9c4a6d1f8e2b7c5a3d0f1.1920x1080.jpg",
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/529340/ss_c0e3b52d9f4e8a6c1d0b5f7e2c9a3b6d4e1f8a2.1920x1080.jpg",
+    ],
+    trailer: "https://www.youtube.com/embed/WOlfY-FsL9I",
+    tags: ["Chiến lược", "Mô phỏng", "Lịch sử", "Grand Strategy", "Paradox", "Kinh tế", "Thế kỷ 19"],
+    sys_req: {
+      min: {
+        os: "Windows 10 Home 64-bit",
+        cpu: "Intel Core i5-6600K / AMD Ryzen 5 2600X",
+        ram: "8 GB",
+        gpu: "NVIDIA GeForce GTX 970 / AMD Radeon RX 470 (4GB VRAM)",
+        storage: "10 GB",
+        directx: "Version 11",
+      },
+      rec: {
+        os: "Windows 10/11 64-bit",
+        cpu: "Intel Core i7-8700K / AMD Ryzen 5 3600X",
+        ram: "16 GB",
+        gpu: "NVIDIA GeForce GTX 1070 / AMD Radeon RX 5700 (8GB VRAM)",
+        storage: "10 GB SSD",
+        directx: "Version 12",
+      },
+    },
+  },
+  {
     id: 2,
     title: "eFootball PES 2020 Việt Hóa + Bình Luận Tiếng Việt",
     slug: "efootball-pes-2020-viet-hoa",
@@ -439,49 +498,7 @@ const BLOG_POSTS = [
     <p><em>Tip nhỏ:</em> Người mới nên chọn quốc gia dễ (như các nước phát triển) để làm quen trước khi thử sức với những quốc gia khó hơn.</p>
   `
 },
-{
-    id: 7, 
-    slug: "vibe-coding-ky-nguyen-moi-cua-nganh-game-2026", 
-    cat: "dev", 
-    title: "Vibe-Coding: Cú Hích Chấn Động Ngành Game",
-    desc: "Không còn là những dòng code khô khan, lập trình game năm 2026 là cuộc chơi của cảm xúc và sự mô tả trực quan. Liệu AI có đang 'cướp' mất linh hồn của các Dev?",
-    date: "18/03/2026", 
-    readTime: "8 phút đọc",
-    thumbnail: "https://i.ibb.co/v6g3t2WW/Gemini-Generated-Image-m206xmm206xmm206.png", 
-    gradient: "linear-gradient(135deg, #0f0c29, #302b63, #24243e)", 
-    icon: "🚀", 
-    content: `
-      <p>Sáng nay, ngày 18/03/2026, các diễn đàn như Reddit GameDev và Stack Overflow đang bùng nổ sau bài phát biểu bế mạc GDC. Một thuật ngữ vốn dĩ chỉ là tiếng lóng của giới Indie - <strong>"Vibe-Coding"</strong> - đã chính thức được các ông lớn như Unity và Epic Games đưa vào tài liệu hướng dẫn kỹ thuật (Documentation). Đây không còn là xu hướng nhất thời, mà là một cuộc cách mạng về tư duy sản xuất.</p>
 
-      <h2>1. Vibe-Coding thực sự là gì?</h2>
-      <p>Nếu năm 2024 chúng ta dùng Copilot để gợi ý code, thì năm 2026, chúng ta "Vibe". Thay vì ngồi cắm mặt vào debug hàng trăm dòng logic vật lý cho một quả bóng nảy trong môi trường không trọng lực, các Dev hiện nay sử dụng các <em>Prompt-Engine</em> tích hợp sâu vào nhân của Game Engine. </p>
-      <p>Bạn chỉ cần mô tả: <em>"Tôi muốn cơ chế nhảy của nhân vật mang hơi hướng của Celeste nhưng phải có độ trễ quán tính giống như đang di chuyển trong đầm lầy"</em>. Hệ thống sẽ tự động cấu hình các tham số về Vector3, Gravity Scale, và Friction ngay lập tức. Đó chính là Vibe-Coding - lập trình bằng sự cảm nhận (Vibe) thay vì cú pháp (Syntax).</p>
-
-      <h2>2. Tại sao ngày 18/03/2026 lại là cột mốc quan trọng?</h2>
-      <p>Tại sao lại là hôm nay? Vì sáng nay bản cập nhật <strong>Unity 6.2 Alpha</strong> đã chính thức tích hợp <em>Neural Bridge</em>. Đây là lần đầu tiên một Engine thương mại cho phép nhà phát triển can thiệp vào Logic trung tâm thông qua sóng não (với thiết bị hỗ trợ) hoặc ngôn ngữ tự nhiên cấp độ cao.</p>
-      <ul>
-        <li><strong>Xóa bỏ rào cản kỹ thuật:</strong> Những người có tư duy thiết kế tốt (Game Designer) nhưng yếu về toán học/logic nay đã có thể tự tay tạo ra Prototype trong vài giờ.</li>
-        <li><strong>Tốc độ sản xuất kinh hoàng:</strong> Một studio 3 người hiện nay có năng suất tương đương một đội ngũ 20 người của năm 2022.</li>
-        <li><strong>Thị trường Indie bùng nổ:</strong> Chỉ tính riêng trong 24 giờ qua, hơn 500 bản demo được tạo ra từ Vibe-Coding đã xuất hiện trên itch.io.</li>
-      </ul>
-
-      <h2>3. "Mặt tối" đằng sau những dòng code tự động</h2>
-      <p>Tuy nhiên, không phải mọi thứ đều màu hồng. Cộng đồng Dev đang chia làm hai phe cực đoan. Một bên ủng hộ sự tự do sáng tạo, bên còn lại lo sợ về sự "đồng hóa".</p>
-      <blockquote>
-        "Nếu ai cũng dùng chung một mô hình AI để 'Vibe' ra cơ chế game, liệu 1000 trò chơi ra mắt tới đây có cảm giác giống hệt nhau không?" 
-        <br>— <em>Một ý kiến tâm huyết trên diễn đàn Dev Việt Nam sáng nay.</em>
-      </blockquote>
-      <p>Vấn đề bản quyền của các đoạn mã "Vibe" cũng đang là một mớ hỗn độn pháp lý. Ai là chủ sở hữu của đoạn code đó? Bạn, người viết Prompt, hay công ty sở hữu AI?</p>
-
-      <h2>4. Lời khuyên cho các Dev trẻ trong kỷ nguyên mới</h2>
-      <p>Đừng để công cụ điều khiển bạn. Vibe-Coding giúp bạn đi nhanh hơn, nhưng để đi xa, bạn vẫn cần hiểu bản chất. Đừng bỏ qua việc học logic căn bản, vì khi AI "hallucinate" (ảo tưởng), chỉ những người có kiến thức nền tảng mới biết cách sửa sai.</p>
-      <p><strong>Kết luận:</strong> Thế giới game ngày 18/03/2026 đang mở ra cánh cửa cho những kẻ mộng mơ. Nếu bạn có một ý tưởng điên rồ, đừng đợi nữa. Hãy cầm máy lên và "Vibe" nó ra thế giới!</p>
-
-      <hr>
-      <p><i>Bài viết được tổng hợp từ dữ liệu GDC 2026 và các xu hướng tech mới nhất trong ngày.</i></p>
-    `
-  },
-  
   // ──────────────────────────────────────────────────────────
   // ► THÊM BÀI MỚI Ở ĐÂY — copy template bên dưới và dán lên trên
   // ──────────────────────────────────────────────────────────
