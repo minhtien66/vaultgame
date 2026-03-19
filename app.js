@@ -342,7 +342,7 @@ function renderHome() {
   document.getElementById('stripViet').textContent=`${vietN} ${l.stripe.viet}`;
   const ey=document.getElementById('heroEyebrow'); if(ey) ey.textContent=l.hero.eyebrow;
 
-  const feat=[...GAMES].sort((a,b)=>b.downloads-a.downloads)[0];
+  const feat=GAMES[0];
   if (feat) {
     if(feat.thumbnail) document.getElementById('heroBg').style.backgroundImage=`url(${feat.thumbnail})`;
     document.getElementById('heroTitle').textContent=feat.title;
