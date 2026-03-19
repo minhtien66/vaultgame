@@ -492,7 +492,7 @@ function renderTop() {
 function renderDetail(id){
   var ld=L().detail; var g=GAMES.find(function(x){return x.id===id;}); var el=document.getElementById('page-detail');
   if(!g){
-    el.innerHTML='<div style="padding:8rem 2rem;text-align:center;color:var(--text3)"><div style="font-size:3rem">\u{1F615}</div><h2 style="margin:.75rem 0 .5rem;font-family:var(--display)">'+L().empty.notFound+'</h2><button class="btn btn-primary" onclick="go(\'games\')" style="margin-top:1rem">'+L().empty.back+'</button></div>';
+    el.innerHTML='<div style="padding:8rem 2rem;text-align:center;color:var(--text3)"><div style="font-size:3rem">&#128533;</div><h2 style="margin:.75rem 0 .5rem;font-family:var(--display)">'+L().empty.notFound+'</h2><button class="btn btn-primary" onclick="go(\'games\')" style="margin-top:1rem">'+L().empty.back+'</button></div>';
     return;
   }
   var shots=g.screenshots||(g.thumbnail?[g.thumbnail]:[]);
@@ -647,6 +647,7 @@ function renderDetail(id){
     +igH+tocH+introH
     +'<div id="dv2-shots"></div>'
     +processH+installH+trailerH+srH+scoreH+relatedH
+    +"<div class=\"cmt-wrap\"><div class=\"cmt-sec\"><div class=\"cmt-sec-icon\">&#128172;</div><div class=\"cmt-sec-title\">B&igrave;nh lu&#7853;n</div></div><div id=\"cmt-section\"><div class=\"cmt-empty\">&#8987; &#272;ang t&#7843;i...</div></div></div>"
     +'</div>'
     +'<div class="dv2-side">'
     +'<div class="dv2-dl-box"><div class="dv2-dl-inner">'
@@ -676,6 +677,7 @@ function renderDetail(id){
     +'</div></div>';
 
   window._dv2Shots=shots; window._dv2Idx=0;
+  setTimeout(function(){ _cmtRender(g.id); }, 100);
 }
 
 function dv2Rows(req){
@@ -893,3 +895,155 @@ function renderBlogPost(post) {
 // ══ 8. INIT ═══════════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded',()=>{ applyTheme(_theme); updateLangUI(); handlePath(); });
+
+
+// ── COMMENTS (Firebase Firestore) ──────────────────────────
+var _cmtRating = 0;
+var _cmtUnsub = null; // realtime listener unsubscribe
+
+function _cmtSetStar(n) {
+  _cmtRating = n;
+  var stars = document.querySelectorAll('.cmt-star');
+  for (var i = 0; i < stars.length; i++) {
+    stars[i].classList.toggle('on', i < n);
+  }
+}
+
+function _cmtSubmit(gameId) {
+  var nameEl = document.getElementById('cmt-name-input');
+  var textEl = document.getElementById('cmt-text-input');
+  if (!nameEl || !textEl) return;
+  var name = nameEl.value.trim();
+  var text = textEl.value.trim();
+  if (!name) { alert('Vui lòng nhập tên!'); nameEl.focus(); return; }
+  if (!text) { alert('Vui lòng nhập nội dung bình luận!'); textEl.focus(); return; }
+
+  var submitBtn = document.getElementById('cmt-submit-btn');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Đang gửi...'; }
+
+  var db = window._db || firebase.firestore();
+  db.collection('comments').add({
+    gameId: gameId,
+    name: name,
+    text: text,
+    rating: _cmtRating,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function() {
+    nameEl.value = '';
+    textEl.value = '';
+    _cmtSetStar(0);
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '💬 Gửi bình luận'; }
+  }).catch(function(err) {
+    console.error('Comment error:', err);
+    alert('Gửi thất bại, thử lại nhé!');
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '💬 Gửi bình luận'; }
+  });
+}
+
+function _cmtRender(gameId) {
+  var wrap = document.getElementById('cmt-section');
+  if (!wrap) return;
+
+  // Show loading
+  wrap.innerHTML = '<div class="cmt-empty">⏳ Đang tải bình luận...</div>';
+
+  // Unsubscribe previous listener if any
+  if (_cmtUnsub) { try { _cmtUnsub(); } catch(e){} _cmtUnsub = null; }
+
+  // Check Firebase available
+  if (typeof firebase === 'undefined' || !firebase.firestore) {
+    wrap.innerHTML = _cmtFormHtml(gameId) + '<div class="cmt-empty">Không thể tải bình luận.</div>';
+    return;
+  }
+
+  var db = window._db || firebase.firestore();
+
+  // Realtime listener
+  _cmtUnsub = db.collection('comments')
+    .where('gameId', '==', gameId)
+    .orderBy('createdAt', 'desc')
+    .limit(50)
+    .onSnapshot(function(snap) {
+      var list = [];
+      snap.forEach(function(doc) { list.push(doc.data()); });
+      _cmtDraw(gameId, list);
+    }, function(err) {
+      console.error('Firestore error:', err);
+      // Fallback: try one-time fetch
+      db.collection('comments')
+        .where('gameId', '==', gameId)
+        .orderBy('createdAt', 'desc')
+        .limit(50)
+        .get().then(function(snap) {
+          var list = [];
+          snap.forEach(function(doc) { list.push(doc.data()); });
+          _cmtDraw(gameId, list);
+        }).catch(function() {
+          wrap.innerHTML = _cmtFormHtml(gameId) + '<div class="cmt-empty">Lỗi tải bình luận.</div>';
+        });
+    });
+}
+
+function _cmtFormHtml(gameId) {
+  return '<div class="cmt-form">'
+    + '<div class="cmt-form-row">'
+    + '<input class="cmt-input" id="cmt-name-input" placeholder="Tên của bạn *" maxlength="40">'
+    + '<input class="cmt-input" id="cmt-email-input" placeholder="Email (không bắt buộc)" maxlength="80">'
+    + '</div>'
+    + '<div class="cmt-stars">'
+    + '<span style="font-size:.75rem;color:var(--text3);margin-right:.3rem">Đánh giá:</span>'
+    + '<span class="cmt-star" onclick="_cmtSetStar(1)">&#9733;</span>'
+    + '<span class="cmt-star" onclick="_cmtSetStar(2)">&#9733;</span>'
+    + '<span class="cmt-star" onclick="_cmtSetStar(3)">&#9733;</span>'
+    + '<span class="cmt-star" onclick="_cmtSetStar(4)">&#9733;</span>'
+    + '<span class="cmt-star" onclick="_cmtSetStar(5)">&#9733;</span>'
+    + '</div>'
+    + '<textarea class="cmt-textarea" id="cmt-text-input" placeholder="Chia sẻ trải nghiệm của bạn về game này..." maxlength="1000"></textarea>'
+    + '<button class="cmt-submit" id="cmt-submit-btn" onclick="_cmtSubmit(' + gameId + ')">&#128172; Gửi bình luận</button>'
+    + '<div class="cmt-note">&#127759; Bình luận của bạn sẽ hiển thị cho tất cả mọi người.</div>'
+    + '</div>';
+}
+
+function _cmtDraw(gameId, list) {
+  var wrap = document.getElementById('cmt-section');
+  if (!wrap) return;
+
+  var countH = '<div class="cmt-count">&#128172; <strong>' + list.length + '</strong> bình luận</div>';
+  var formH  = _cmtFormHtml(gameId);
+
+  var listH = '';
+  if (list.length === 0) {
+    listH = '<div class="cmt-empty">Chưa có bình luận nào. Hãy là người đầu tiên! &#128515;</div>';
+  } else {
+    listH = '<div class="cmt-list">';
+    for (var i = 0; i < list.length; i++) {
+      var c = list[i];
+      var av = (c.name || '?').charAt(0).toUpperCase();
+      // Format date
+      var dateStr = '';
+      if (c.createdAt && c.createdAt.toDate) {
+        var d = c.createdAt.toDate();
+        dateStr = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()
+          + ' ' + d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes();
+      }
+      var starsH = '';
+      if (c.rating > 0) {
+        for (var s = 1; s <= 5; s++) starsH += (s <= c.rating ? '&#9733;' : '&#9734;');
+      }
+      var safeText = (c.text||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+      listH += '<div class="cmt-item">'
+        + '<div class="cmt-item-head">'
+        + '<div class="cmt-avatar">' + av + '</div>'
+        + '<div class="cmt-meta"><div class="cmt-name">' + (c.name||'Ẩn danh') + '</div>'
+        + (dateStr ? '<div class="cmt-date">' + dateStr + '</div>' : '')
+        + '</div>'
+        + (starsH ? '<div class="cmt-rating">' + starsH + '</div>' : '')
+        + '</div>'
+        + '<div class="cmt-text">' + safeText + '</div>'
+        + '</div>';
+    }
+    listH += '</div>';
+  }
+
+  wrap.innerHTML = countH + formH + listH;
+}
