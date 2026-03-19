@@ -336,80 +336,75 @@ function topRow(g,rank) {
 // ══ 4. RENDERS ═══════════════════════════════════════════
 
 // ── HERO SLIDESHOW ──────────────────────────────────────────
-let _heroIdx=0, _heroTimer=null, _heroPaused=false, _heroFill=0, _heroFillTimer=null;
-const HERO_INTERVAL=6000, HERO_TICK=60;
-function _heroGames(){ return GAMES.slice(0,5); }
-
+let _heroIdx=0,_heroTimer=null,_heroPaused=false,_heroFill=0,_heroFillTimer=null;
+const HERO_INTERVAL=6000,HERO_TICK=60;
+function _heroGames(){return GAMES.slice(0,5);}
 function _renderHeroSlide(g){
-  const l=L(), games=_heroGames(), idx=games.findIndex(x=>x.id===g.id);
-  const bg=document.getElementById('heroBg'), bgP=document.getElementById('heroBgPrev');
-  if(bg && g.thumbnail){
-    if(bgP){ bgP.style.backgroundImage=bg.style.backgroundImage; bgP.style.opacity='1'; setTimeout(()=>{if(bgP)bgP.style.opacity='0';},50); }
+  const l=L(),games=_heroGames(),idx=games.findIndex(x=>x.id===g.id);
+  const bg=document.getElementById('heroBg'),bgP=document.getElementById('heroBgPrev');
+  if(bg&&g.thumbnail){
+    if(bgP){bgP.style.backgroundImage=bg.style.backgroundImage;bgP.style.opacity='1';setTimeout(()=>{if(bgP)bgP.style.opacity='0';},50);}
     bg.style.backgroundImage=`url(${g.thumbnail})`;
   }
   const tEl=document.getElementById('heroTitle');
-  if(tEl){ tEl.innerHTML=''; const s=document.createElement('span'); s.className='hero-title-anim'; s.textContent=g.title; tEl.appendChild(s); }
+  if(tEl){tEl.innerHTML='';const s=document.createElement('span');s.className='hero-title-anim';s.textContent=g.title;tEl.appendChild(s);}
   const mEl=document.getElementById('heroMeta');
-  if(mEl) mEl.innerHTML=(g.badges.includes('hot')?'<span class="hbadge hot">HOT</span>':'')+(g.badges.includes('new')?`<span class="hbadge new">${l.card.newBadge}</span>`:'')+( g.viet?`<span class="hbadge viet">${l.card.vietBadge}</span>`:'')+`<span class="hero-genre-pill">${g.genre_label}</span><span class="hero-rating">★ ${g.rating.toFixed(1)}</span>`;
-  const dEl=document.getElementById('heroDesc'); if(dEl) dEl.textContent=g.desc_short;
+  if(mEl)mEl.innerHTML=(g.badges.includes('hot')?'<span class="hbadge hot">HOT</span>':'')+(g.badges.includes('new')?`<span class="hbadge new">${l.card.newBadge}</span>`:'')+( g.viet?`<span class="hbadge viet">${l.card.vietBadge}</span>`:'')+`<span class="hero-genre-pill">${g.genre_label}</span><span class="hero-rating">★ ${g.rating.toFixed(1)}</span>`;
+  const dEl=document.getElementById('heroDesc');if(dEl)dEl.textContent=g.desc_short;
   const iEl=document.getElementById('heroInfoRow');
-  if(iEl) iEl.innerHTML=`<div class="hi-item"><span class="hi-val">${g.size}</span><span class="hi-key">${l.hero.size}</span></div><div class="hi-item"><span class="hi-val">${g.version}</span><span class="hi-key">${l.hero.version}</span></div><div class="hi-item"><span class="hi-val">${fmtN(g.downloads)}</span><span class="hi-key">${l.hero.downloads}</span></div>`;
+  if(iEl)iEl.innerHTML=`<div class="hi-item"><span class="hi-val">${g.size}</span><span class="hi-key">${l.hero.size}</span></div><div class="hi-item"><span class="hi-val">${g.version}</span><span class="hi-key">${l.hero.version}</span></div><div class="hi-item"><span class="hi-val">${fmtN(g.downloads)}</span><span class="hi-key">${l.hero.downloads}</span></div>`;
   const bEl=document.getElementById('heroBtns');
-  if(bEl) bEl.innerHTML=`<button class="btn btn-primary" onclick="go('detail',${g.id})">${l.hero.dlBtn}</button><button class="btn btn-ghost" onclick="go('detail',${g.id})">${l.hero.detailBtn}</button>`;
+  if(bEl)bEl.innerHTML=`<button class="btn btn-primary" onclick="go('detail',${g.id})">${l.hero.dlBtn}</button><button class="btn btn-ghost" onclick="go('detail',${g.id})">${l.hero.detailBtn}</button>`;
   const imgEl=document.getElementById('heroImg');
-  if(imgEl) imgEl.innerHTML=(g.thumbnail?`<img src="${g.thumbnail}" alt="${g.title}" onerror="this.style.display='none'">`:`<div class="hero-img-fb">${g.emoji}</div>`)+`<div style="position:absolute;bottom:.55rem;right:.65rem;background:rgba(0,0,0,.65);color:#fff;font-size:.6rem;font-family:var(--mono);padding:.15rem .45rem;border-radius:4px;z-index:3">${idx+1} / ${games.length}</div>`;
-  const siEl=document.getElementById('heroSlideInfo'); if(siEl) siEl.textContent=`${idx+1}/${games.length}`;
+  if(imgEl)imgEl.innerHTML=(g.thumbnail?`<img src="${g.thumbnail}" alt="${g.title}" onerror="this.style.display='none'">`:`<div class="hero-img-fb">${g.emoji}</div>`)+`<div style="position:absolute;bottom:.55rem;right:.65rem;background:rgba(0,0,0,.65);color:#fff;font-size:.6rem;font-family:var(--mono);padding:.15rem .45rem;border-radius:4px;z-index:3">${idx+1} / ${games.length}</div>`;
+  const siEl=document.getElementById('heroSlideInfo');if(siEl)siEl.textContent=`${idx+1}/${games.length}`;
   _renderHeroDots(idx);
 }
-
 function _renderHeroDots(activeIdx){
-  const games=_heroGames(), wrap=document.getElementById('heroDots'); if(!wrap) return;
+  const games=_heroGames(),wrap=document.getElementById('heroDots');if(!wrap)return;
   wrap.innerHTML=games.map((g,i)=>`<div class="hdot ${i===activeIdx?'active':'inactive'}" onclick="_heroGoTo(${i})" title="${g.title}"><div class="hdot-fill" id="hdotFill${i}"></div></div>`).join('');
 }
-
 function _heroStartFill(){
-  _heroFill=0; clearInterval(_heroFillTimer);
+  _heroFill=0;clearInterval(_heroFillTimer);
   _heroFillTimer=setInterval(()=>{
-    if(_heroPaused) return;
+    if(_heroPaused)return;
     _heroFill=Math.min(100,_heroFill+(HERO_TICK/HERO_INTERVAL)*100);
-    const el=document.getElementById(`hdotFill${_heroIdx}`); if(el) el.style.width=_heroFill+'%';
+    const el=document.getElementById(`hdotFill${_heroIdx}`);if(el)el.style.width=_heroFill+'%';
   },HERO_TICK);
 }
-
 function _heroGoTo(idx){
-  const games=_heroGames(); if(!games.length) return;
+  const games=_heroGames();if(!games.length)return;
   _heroIdx=((idx%games.length)+games.length)%games.length;
-  _renderHeroSlide(games[_heroIdx]); _heroStartFill();
-  clearInterval(_heroTimer); if(!_heroPaused) _heroTimer=setInterval(_heroAutoNext,HERO_INTERVAL);
+  _renderHeroSlide(games[_heroIdx]);_heroStartFill();
+  clearInterval(_heroTimer);if(!_heroPaused)_heroTimer=setInterval(_heroAutoNext,HERO_INTERVAL);
 }
-
-function _heroAutoNext(){ _heroGoTo(_heroIdx+1); }
-function heroNext(){ _heroGoTo(_heroIdx+1); }
-function heroPrev(){ _heroGoTo(_heroIdx-1); }
+function _heroAutoNext(){_heroGoTo(_heroIdx+1);}
+function heroNext(){_heroGoTo(_heroIdx+1);}
+function heroPrev(){_heroGoTo(_heroIdx-1);}
 function heroTogglePause(){
   _heroPaused=!_heroPaused;
-  const btn=document.getElementById('heroPauseBtn'); if(btn) btn.classList.toggle('paused',_heroPaused);
-  if(_heroPaused){ clearInterval(_heroTimer); } else { _heroTimer=setInterval(_heroAutoNext,HERO_INTERVAL); }
+  const btn=document.getElementById('heroPauseBtn');if(btn)btn.classList.toggle('paused',_heroPaused);
+  if(_heroPaused){clearInterval(_heroTimer);}else{_heroTimer=setInterval(_heroAutoNext,HERO_INTERVAL);}
 }
 function _heroInit(){
-  _heroIdx=0; _heroPaused=false; clearInterval(_heroTimer); clearInterval(_heroFillTimer);
-  const games=_heroGames(); if(!games.length) return;
-  _renderHeroSlide(games[0]); _heroStartFill(); _heroTimer=setInterval(_heroAutoNext,HERO_INTERVAL);
+  _heroIdx=0;_heroPaused=false;clearInterval(_heroTimer);clearInterval(_heroFillTimer);
+  const games=_heroGames();if(!games.length)return;
+  _renderHeroSlide(games[0]);_heroStartFill();_heroTimer=setInterval(_heroAutoNext,HERO_INTERVAL);
 }
-function switchHero(id){ const i=_heroGames().findIndex(x=>x.id===id); if(i>=0) _heroGoTo(i); }
+function switchHero(id){const i=_heroGames().findIndex(x=>x.id===id);if(i>=0)_heroGoTo(i);}
 
-function renderHome() {
-  const l=L(); const total=GAMES.length; const vietN=GAMES.filter(g=>g.viet).length;
-  const nc=document.getElementById('navCount'); if(nc) nc.textContent=total+' games';
+function renderHome(){
+  const l=L();const total=GAMES.length;const vietN=GAMES.filter(g=>g.viet).length;
+  const nc=document.getElementById('navCount');if(nc)nc.textContent=total+' games';
   document.getElementById('stripTotal').textContent=`${total} ${l.stripe.games}`;
   document.getElementById('stripViet').textContent=`${vietN} ${l.stripe.viet}`;
-  const ey=document.getElementById('heroEyebrow'); if(ey) ey.textContent=l.hero.eyebrow;
+  const ey=document.getElementById('heroEyebrow');if(ey)ey.textContent=l.hero.eyebrow;
   _heroInit();
   const lh=l.home;
-  const shl=document.getElementById('secHotLabel'); if(shl) shl.textContent=lh.hot;
-  const shm=document.getElementById('secHotMore');  if(shm) shm.textContent=lh.hotMore;
-  const snl=document.getElementById('secNewLabel'); if(snl) snl.textContent=lh.new_;
-  const snm=document.getElementById('secNewMore');  if(snm) snm.textContent=lh.newMore;
+  const shl=document.getElementById('secHotLabel');if(shl)shl.textContent=lh.hot;
+  const shm=document.getElementById('secHotMore');if(shm)shm.textContent=lh.hotMore;
+  const snl=document.getElementById('secNewLabel');if(snl)snl.textContent=lh.new_;
+  const snm=document.getElementById('secNewMore');if(snm)snm.textContent=lh.newMore;
   const hot=GAMES.filter(g=>g.badges.includes('hot'));
   const newG=GAMES.filter(g=>g.badges.includes('new'));
   document.getElementById('homeHot').innerHTML=(hot.length?hot:GAMES).slice(0,8).map((g,i)=>gcard(g,i*.04)).join('')||emptyHtml(l.empty.noHot);
@@ -468,61 +463,23 @@ function renderTop() {
   document.getElementById('topDl').innerHTML=[...GAMES].sort((a,b)=>b.downloads-a.downloads).slice(0,10).map((g,i)=>topRow(g,i+1)).join('');
 }
 
+
 function renderDetail(id){
-  const ld=L().detail; const g=GAMES.find(x=>x.id===id); const el=document.getElementById('page-detail');
-  if(!g){ el.innerHTML=`<div style="padding:8rem 2rem;text-align:center;color:var(--text3)"><div style="font-size:3rem">😕</div><h2 style="margin:.75rem 0 .5rem;font-family:var(--display)">${L().empty.notFound}</h2><button class="btn btn-primary" onclick="go('games')" style="margin-top:1rem">${L().empty.back}</button></div>`; return; }
+  const ld=L().detail;const g=GAMES.find(x=>x.id===id);const el=document.getElementById('page-detail');
+  if(!g){el.innerHTML=`<div style="padding:8rem 2rem;text-align:center;color:var(--text3)"><div style="font-size:3rem">😕</div><h2 style="margin:.75rem 0 .5rem;font-family:var(--display)">${L().empty.notFound}</h2><button class="btn btn-primary" onclick="go('games')" style="margin-top:1rem">${L().empty.back}</button></div>`;return;}
   const shots=g.screenshots||(g.thumbnail?[g.thumbnail]:[]);
   const related=GAMES.filter(x=>x.genre===g.genre&&x.id!==g.id).slice(0,4);
-  const score100=Math.round(g.rating*20);
+  const s100=Math.round(g.rating*20);
 
-  const slideshowHtml=shots.length?`
-<div style="margin-bottom:1.2rem">
-  <div class="dv2-sec"><div class="dv2-sec-icon">&#128444;</div><div class="dv2-sec-title">&#7842;NH GAME ${g.title}</div></div>
-  <div class="dv2-slideshow" id="dv2ss">
-    <img id="dv2ss-img" src="${shots[0]}" alt="${g.title}" onerror="this.style.display='none'">
-    <button class="dv2-slide-prev" onclick="dv2SlidePrev()">&#8249;</button>
-    <button class="dv2-slide-next" onclick="dv2SlideNext()">&#8250;</button>
-    <div class="dv2-slide-counter" id="dv2ss-ctr">1 / ${shots.length}</div>
-  </div>
-  <div class="dv2-slide-dots">${shots.map((_,i)=>`<button class="dv2-sdot ${i===0?'active':''}" onclick="dv2SlideTo(${i})"></button>`).join('')}</div>
-</div>`:'';
+  const ssHtml=shots.length?`<div style="margin-bottom:1.2rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128444;</div><div class="dv2-sec-title">&#7842;NH GAME ${g.title}</div></div><div class="dv2-slideshow" id="dv2ss"><img id="dv2ss-img" src="${shots[0]}" alt="${g.title}" onerror="this.style.display='none'"><button class="dv2-slide-prev" onclick="dv2SlidePrev()">&#8249;</button><button class="dv2-slide-next" onclick="dv2SlideNext()">&#8250;</button><div class="dv2-slide-counter" id="dv2ss-ctr">1 / ${shots.length}</div></div><div class="dv2-slide-dots">${shots.map((_,i)=>`<button class="dv2-sdot ${i===0?'active':''}" onclick="dv2SlideTo(${i})"></button>`).join('')}</div></div>`:'';
 
-  const infoGrid=`
-<div class="dv2-info-grid">
-  <div class="dv2-info-box">
-    <div class="dv2-info-row"><span class="dv2-info-key">&#128203; T&#234;n:</span><span class="dv2-info-val">${g.title}</span></div>
-    <div class="dv2-info-row"><span class="dv2-info-key">&#128197; N&#259;m:</span><span class="dv2-info-val">${g.year}</span></div>
-    <div class="dv2-info-row"><span class="dv2-info-key">&#127918; Th&#7875; lo&#7841;i:</span><span class="dv2-info-val" style="color:var(--accent)">${g.genre_label}</span></div>
-    <div class="dv2-info-row"><span class="dv2-info-key">&#128190; Dung l&#432;&#7907;ng:</span><span class="dv2-info-val">${g.size}</span></div>
-    <div class="dv2-info-row"><span class="dv2-info-key">&#128266; Phi&#234;n b&#7843;n:</span><span class="dv2-info-val">${g.version}</span></div>
-  </div>
-  <div class="dv2-info-box">
-    <div class="dv2-info-check">Ch&#417;i &#273;&#417;n l&#7867;</div>
-    <div class="dv2-info-check">Ng&#244;n ng&#7919;: ${g.viet?'Ti&#7871;ng Vi&#7879;t':'Ti&#7871;ng Anh'}</div>
-    <div class="dv2-info-check">H&#7879; &#273;i&#7873;u h&#224;nh: Windows</div>
-    <div class="dv2-info-check">B&#224;n ph&#237;m / Chu&#7897;t</div>
-    <div class="dv2-info-check">Dev: ${g.developer||'&#8212;'}</div>
-    <div class="dv2-info-check">Pub: ${g.publisher||'&#8212;'}</div>
-  </div>
-</div>`;
+  const igHtml=`<div class="dv2-info-grid"><div class="dv2-info-box"><div class="dv2-info-row"><span class="dv2-info-key">&#128203; T&#234;n:</span><span class="dv2-info-val">${g.title}</span></div><div class="dv2-info-row"><span class="dv2-info-key">&#128197; N&#259;m:</span><span class="dv2-info-val">${g.year}</span></div><div class="dv2-info-row"><span class="dv2-info-key">&#127918; Th&#7875; lo&#7841;i:</span><span class="dv2-info-val" style="color:var(--accent)">${g.genre_label}</span></div><div class="dv2-info-row"><span class="dv2-info-key">&#128190; Dung l&#432;&#7907;ng:</span><span class="dv2-info-val">${g.size}</span></div><div class="dv2-info-row"><span class="dv2-info-key">Phi&#234;n b&#7843;n:</span><span class="dv2-info-val">${g.version}</span></div></div><div class="dv2-info-box"><div class="dv2-info-check">Ch&#417;i &#273;&#417;n l&#7867;</div><div class="dv2-info-check">Ng&#244;n ng&#7919;: ${g.viet?'Ti&#7871;ng Vi&#7879;t':'Ti&#7871;ng Anh'}</div><div class="dv2-info-check">H&#7879; &#273;i&#7873;u h&#224;nh: Windows</div><div class="dv2-info-check">B&#224;n ph&#237;m / Chu&#7897;t</div><div class="dv2-info-check">Developer: ${g.developer||'&#8212;'}</div><div class="dv2-info-check">Publisher: ${g.publisher||'&#8212;'}</div></div></div>`;
 
-  const tocHtml=`
-<div class="dv2-toc">
-  <div class="dv2-toc-head">&#128203; N&#7897;i dung b&#224;i</div>
-  <ol>
-    <li><a onclick="document.getElementById('dv2-intro')?.scrollIntoView({behavior:'smooth'})">Gi&#7899;i thi&#7879;u ${g.title}</a><ol><li><a>T&#7893;ng quan &amp; n&#7893;i b&#7853;t</a></li><li><a>Gameplay &amp; c&#417; ch&#7871;</a></li></ol></li>
-    <li><a onclick="document.getElementById('dv2-shots')?.scrollIntoView({behavior:'smooth'})">H&#236;nh &#7843;nh game</a></li>
-    <li><a onclick="document.getElementById('dv2-process')?.scrollIntoView({behavior:'smooth'})">Quy tr&#236;nh c&#224;i &#273;&#7863;t A-Z</a></li>
-    <li><a onclick="document.getElementById('dv2-install')?.scrollIntoView({behavior:'smooth'})">H&#432;&#7899;ng d&#7851;n c&#224;i &#273;&#7863;t</a></li>
-    ${g.trailer?`<li><a onclick="document.getElementById('dv2-trailer')?.scrollIntoView({behavior:'smooth'})">Video Trailer</a></li>`:''}
-    <li><a onclick="document.getElementById('dv2-sysreq')?.scrollIntoView({behavior:'smooth'})">C&#7845;u h&#236;nh y&#234;u c&#7847;u</a></li>
-    <li><a onclick="document.getElementById('dv2-score')?.scrollIntoView({behavior:'smooth'})">&#272;&#225;nh gi&#225; game</a></li>
-  </ol>
-</div>`;
+  const tocHtml=`<div class="dv2-toc"><div class="dv2-toc-head">&#128203; N&#7897;i dung b&#224;i</div><ol><li><a onclick="document.getElementById('dv2-intro')?.scrollIntoView({behavior:'smooth'})">Gi&#7899;i thi&#7879;u ${g.title}</a><ol><li><a>T&#7893;ng quan &amp; n&#7893;i b&#7853;t</a></li><li><a>Gameplay &amp; c&#417; ch&#7871;</a></li></ol></li>${shots.length?`<li><a onclick="document.getElementById('dv2-shots')?.scrollIntoView({behavior:'smooth'})">H&#236;nh &#7843;nh game</a></li>`:''}<li><a onclick="document.getElementById('dv2-process')?.scrollIntoView({behavior:'smooth'})">Quy tr&#236;nh c&#224;i &#273;&#7863;t A-Z</a></li><li><a onclick="document.getElementById('dv2-install')?.scrollIntoView({behavior:'smooth'})">H&#432;&#7899;ng d&#7851;n c&#224;i &#273;&#7863;t</a></li>${g.trailer?`<li><a onclick="document.getElementById('dv2-trailer')?.scrollIntoView({behavior:'smooth'})">Video Trailer</a></li>`:''}<li><a onclick="document.getElementById('dv2-sysreq')?.scrollIntoView({behavior:'smooth'})">C&#7845;u h&#236;nh y&#234;u c&#7847;u</a></li><li><a onclick="document.getElementById('dv2-score')?.scrollIntoView({behavior:'smooth'})">&#272;&#225;nh gi&#225; game</a></li></ol></div>`;
 
   const introHtml=`<div id="dv2-intro" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">i</div><div class="dv2-sec-title">Gi&#7899;i thi&#7879;u game ${g.title}</div></div><div class="dv2-body">${g.desc_full||`<p>${g.desc_short}</p>`}</div></div>`;
 
-  const processHtml=`<div id="dv2-process" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#9881;</div><div class="dv2-sec-title">Quy tr&#236;nh c&#224;i &#273;&#7863;t Game t&#7915; A-Z</div></div><div class="dv2-warn"><strong>QUY TR&#204;NH B&#7854;T BU&#7896;C</strong> — l&#224;m theo &#273;&#7875; tr&#225;nh l&#7895;i khi c&#224;i.</div><div class="dv2-steps"><ol><li><strong>&#431;U TI&#202;N KI&#7�64;M TRA C&#7844;U H&#204;NH TR&#431;&#7898;C KHI T&#7842;I GAME.</strong></li><li>T&#7855;t Windows Defender / antivirus tr&#432;&#7899;c khi c&#224;i.</li><li>C&#224;i ph&#7847;n m&#7873;m h&#7895; tr&#7907; (Visual C++, DirectX...).</li><li>T&#7843;i, gi&#7843;i n&#233;n v&#224; ch&#7841;y theo h&#432;&#7899;ng d&#7851;n b&#234;n d&#432;&#7899;i.</li></ol><div class="dv2-steps-note"><div class="dv2-steps-note-item">&#272;&#432;&#7901;ng d&#7851;n, th&#432; m&#7909;c kh&#244;ng d&#249;ng k&#253; t&#7921; c&#243; d&#7845;u ho&#7863;c ti&#7871;ng Vi&#7879;t.</div><div class="dv2-steps-note-item">Khi t&#7843;i nhi&#7873;u PART, b&#7887; chung v&#224;o 1 th&#432; m&#7909;c v&#224; gi&#7843;i n&#233;n ch&#7881; t&#7915; 1 file.</div></div></div></div>`;
+  const processHtml=`<div id="dv2-process" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#9881;</div><div class="dv2-sec-title">Quy tr&#236;nh c&#224;i &#273;&#7863;t Game t&#7915; A-Z</div></div><div class="dv2-warn"><strong>QUY TR&#204;NH B&#7854;T BU&#7896;C</strong> &#8212; l&#224;m theo &#273;&#7875; tr&#225;nh l&#7895;i khi c&#224;i.</div><div class="dv2-steps"><ol><li><strong>&#431;U TI&#202;N KI&#7�64;M TRA C&#7844;U H&#204;NH TR&#431;&#7898;C KHI T&#7842;I GAME.</strong></li><li>T&#7855;t Windows Defender / antivirus tr&#432;&#7899;c khi c&#224;i &#273;&#7863;t.</li><li>C&#224;i ph&#7847;n m&#7873;m h&#7895; tr&#7907; (Visual C++, DirectX...).</li><li>T&#7843;i, gi&#7843;i n&#233;n v&#224; ch&#7841;y theo h&#432;&#7899;ng d&#7851;n b&#234;n d&#432;&#7899;i.</li></ol><div class="dv2-steps-note"><div class="dv2-steps-note-item">&#272;&#432;&#7901;ng d&#7851;n, th&#432; m&#7909;c kh&#244;ng d&#249;ng k&#253; t&#7921; c&#243; d&#7845;u ho&#7863;c ti&#7871;ng Vi&#7879;t.</div><div class="dv2-steps-note-item">Khi t&#7843;i nhi&#7873;u PART, b&#7887; chung v&#224;o 1 th&#432; m&#7909;c v&#224; gi&#7843;i n&#233;n ch&#7881; t&#7915; 1 file.</div></div></div></div>`;
 
   const installHtml=g.install_guide?`<div id="dv2-install" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128230;</div><div class="dv2-sec-title">H&#432;&#7899;ng d&#7851;n c&#224;i &#273;&#7863;t ${g.title}</div></div><div class="dv2-warn"><strong>L&#431;U &#221;: T&#7855;t Di&#7879;t Virus Tr&#432;&#7899;c Khi C&#224;i &#272;&#7863;t Game</strong></div><div class="dv2-install">${g.install_guide}</div></div>`:'';
 
@@ -530,7 +487,7 @@ function renderDetail(id){
 
   const srHtml=g.sys_req?`<div id="dv2-sysreq" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128187;</div><div class="dv2-sec-title">C&#7845;u h&#236;nh y&#234;u c&#7847;u</div></div><div class="dv2-req-tabs"><button class="dv2-req-tab active" id="dv2rt-min" onclick="dv2SR('min')">T&#7889;i thi&#7875;u</button><button class="dv2-req-tab" id="dv2rt-rec" onclick="dv2SR('rec')">&#272;&#7873; ngh&#7883;</button></div><div id="dv2-req-min" class="dv2-req-table">${dv2Rows(g.sys_req.min)}</div><div id="dv2-req-rec" class="dv2-req-table" style="display:none">${dv2Rows(g.sys_req.rec)}</div></div>`:'';
 
-  const scoreHtml=`<div id="dv2-score" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#11088;</div><div class="dv2-sec-title">&#272;&#225;nh gi&#225; game ${g.title}</div></div><div class="dv2-score-box"><div class="dv2-score-head"><div class="dv2-score-circle"><span class="dv2-score-num">${score100}</span><span class="dv2-score-lbl">VaultGame</span></div><div class="dv2-score-bars">${[['C&#7889;t Truy&#7879;n',Math.round(g.rating*18.5)],['Gameplay',Math.round(g.rating*19)],['&#272;&#7891; H&#7885;a',score100],['&#194;m Thanh',Math.round(g.rating*18)],['T&#7893;ng Th&#7875;',Math.min(100,Math.round(g.rating*21))]].map(([n,v])=>`<div class="dv2-score-bar-row"><span class="dv2-score-bar-name">${n}</span><div class="dv2-score-bar-track"><div class="dv2-score-bar-fill" style="width:${v}%"></div></div><span class="dv2-score-bar-val">${v} &#273;i&#7875;m</span></div>`).join('')}</div></div><div style="font-size:.72rem;color:var(--text3);text-align:center">${starStr(g.rating)} ${g.rating.toFixed(1)}/5.0 &middot; ${fmtN(g.downloads)} l&#432;&#7907;t t&#7843;i</div></div></div>`;
+  const scoreHtml=`<div id="dv2-score" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#11088;</div><div class="dv2-sec-title">&#272;&#225;nh gi&#225; game ${g.title}</div></div><div class="dv2-score-box"><div class="dv2-score-head"><div class="dv2-score-circle"><span class="dv2-score-num">${s100}</span><span class="dv2-score-lbl">VaultGame</span></div><div class="dv2-score-bars">${[['C&#7889;t Truy&#7879;n',Math.round(g.rating*18.5)],['Gameplay',Math.round(g.rating*19)],['&#272;&#7891; H&#7885;a',s100],['&#194;m Thanh',Math.round(g.rating*18)],['T&#7893;ng Th&#7875;',Math.min(100,Math.round(g.rating*21))]].map(([n,v])=>`<div class="dv2-score-bar-row"><span class="dv2-score-bar-name">${n}</span><div class="dv2-score-bar-track"><div class="dv2-score-bar-fill" style="width:${v}%"></div></div><span class="dv2-score-bar-val">${v} &#273;i&#7875;m</span></div>`).join('')}</div></div><div style="font-size:.72rem;color:var(--text3);text-align:center">${starStr(g.rating)} ${g.rating.toFixed(1)}/5.0 &middot; ${fmtN(g.downloads)} l&#432;&#7907;t t&#7843;i</div></div></div>`;
 
   const relatedHtml=related.length?`<div style="margin-top:1.4rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#127918;</div><div class="dv2-sec-title">Game li&#234;n quan</div></div><div class="game-grid lg">${related.map((r,i)=>gcard(r,i*.05)).join('')}</div></div>`:'';
 
@@ -538,87 +495,50 @@ function renderDetail(id){
   const seriesHtml=seriesGames.length?`<div style="margin-bottom:1.2rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128279;</div><div class="dv2-sec-title">Game c&#249;ng th&#7875; lo&#7841;i</div></div><div class="dv2-series">${seriesGames.map(s=>`<div class="dv2-series-item" onclick="go('detail',${s.id})"><div class="dv2-series-thumb">${s.thumbnail?`<img src="${s.thumbnail}" alt="${s.title}" onerror="this.style.display='none'">`:`<span style="font-size:1.2rem">${s.emoji}</span>`}</div><div class="dv2-series-name">${s.title.substring(0,20)}</div></div>`).join('')}</div></div>`:'';
 
   const dlBtns=(g.download_links||[]).map(lk=>`<a href="${lk.url}" class="dv2-dl-btn" target="_blank" rel="noopener">${lk.icon||'&#11015;'} T&#7842;I GAME &#8212; ${lk.label}</a>`).join('')||`<div style="opacity:.5;font-size:.8rem;text-align:center;padding:.5rem">&#9203; S&#7855;p c&#243; link t&#7843;i</div>`;
-
   const sideGames=GAMES.filter(x=>x.id!==g.id).slice(0,5);
 
   el.innerHTML=`
-<div class="dv2-bc"><div class="dv2-bc-inner">
-  <a onclick="go('home')">Trang ch&#7911;</a><span>&#8250;</span>
-  <a onclick="go('games')">T&#7845;t c&#7843; Game</a><span>&#8250;</span>
-  <a onclick="go('genre')">${g.genre_label}</a><span>&#8250;</span>
-  <span>${g.title}</span>
-</div></div>
+<div class="dv2-bc"><div class="dv2-bc-inner"><a onclick="go('home')">Trang ch&#7911;</a><span>&#8250;</span><a onclick="go('games')">T&#7845;t c&#7843; Game</a><span>&#8250;</span><a onclick="go('genre')">${g.genre_label}</a><span>&#8250;</span><span>${g.title}</span></div></div>
 <div class="dv2-ptitle">T&#7843;i Game ${g.title} &#8212; PC Download Full</div>
 <div class="dv2-wrap">
   <div class="dv2-main">
-    ${slideshowHtml}
-    ${seriesHtml}
+    ${ssHtml}${seriesHtml}
     <div class="dv2-sec" style="margin-bottom:.75rem"><div class="dv2-sec-icon">i</div><div class="dv2-sec-title">Chi ti&#7871;t game ${g.title}</div></div>
-    ${infoGrid}
-    ${tocHtml}
-    ${introHtml}
+    ${igHtml}${tocHtml}${introHtml}
     <div id="dv2-shots"></div>
-    ${processHtml}
-    ${installHtml}
-    ${trailerHtml}
-    ${srHtml}
-    ${scoreHtml}
-    ${relatedHtml}
+    ${processHtml}${installHtml}${trailerHtml}${srHtml}${scoreHtml}${relatedHtml}
   </div>
   <div class="dv2-side">
     <div class="dv2-dl-box"><div class="dv2-dl-inner">
       <div class="dv2-dl-badge">&#10004; Ki&#7875;m tra an to&#224;n</div>
       <div class="dv2-dl-title">${g.title}</div>
       <div class="dv2-dl-ver">${g.version}</div>
-      <div class="dv2-dl-stats">
-        <div class="dv2-dl-stat"><span class="dv2-dl-stat-val">${g.size}</span><span class="dv2-dl-stat-key">Dung l&#432;&#7907;ng</span></div>
-        <div class="dv2-dl-stat"><span class="dv2-dl-stat-val">${g.year}</span><span class="dv2-dl-stat-key">N&#259;m</span></div>
-        <div class="dv2-dl-stat"><span class="dv2-dl-stat-val">${fmtN(g.downloads)}</span><span class="dv2-dl-stat-key">L&#432;&#7907;t t&#7843;i</span></div>
-      </div>
+      <div class="dv2-dl-stats"><div class="dv2-dl-stat"><span class="dv2-dl-stat-val">${g.size}</span><span class="dv2-dl-stat-key">Dung l&#432;&#7907;ng</span></div><div class="dv2-dl-stat"><span class="dv2-dl-stat-val">${g.year}</span><span class="dv2-dl-stat-key">N&#259;m</span></div><div class="dv2-dl-stat"><span class="dv2-dl-stat-val">${fmtN(g.downloads)}</span><span class="dv2-dl-stat-key">L&#432;&#7907;t t&#7843;i</span></div></div>
       ${dlBtns}
-      <div class="dv2-dl-free-note">&#10003; Ho&#224;n to&#224;n mi&#7877;n ph&#237; &#8212; Kh&#244;ng c&#7847;n &#273;&#259;ng k&#253;</div>
+      <div class="dv2-dl-free-note">&#10003; Ho&#224;n to&#224;n mi&#7877;n ph&#237;</div>
       <div class="dv2-dl-warn">T&#7855;t antivirus tr&#432;&#7899;c khi c&#224;i. Link Gofile t&#7889;c &#273;&#7897; cao.</div>
-      ${g.viet?`<div class="dv2-dl-viet">&#127992; &#272;&#227; &#273;&#432;&#7907;c Vi&#7879;t H&#243;a ho&#224;n ch&#7881;nh</div>`:''}
+      ${g.viet?`<div class="dv2-dl-viet">&#127992; &#272;&#227; Vi&#7879;t H&#243;a ho&#224;n ch&#7881;nh</div>`:''}
     </div></div>
     <div class="dv2-sinfo">
       <div class="dv2-sinfo-title">Th&#244;ng tin game</div>
       <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">Developer</span><span class="dv2-sinfo-v">${g.developer||'&#8212;'}</span></div>
       <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">Publisher</span><span class="dv2-sinfo-v">${g.publisher||'&#8212;'}</span></div>
       <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">Th&#7875; lo&#7841;i</span><span class="dv2-sinfo-v">${g.genre_label}</span></div>
-      <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">N&#259;m ph&#225;t h&#224;nh</span><span class="dv2-sinfo-v">${g.year}</span></div>
+      <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">N&#259;m</span><span class="dv2-sinfo-v">${g.year}</span></div>
       <div class="dv2-sinfo-row"><span class="dv2-sinfo-k">&#272;&#225;nh gi&#225;</span><span class="dv2-sinfo-v" style="color:var(--yellow)">&#9733; ${g.rating.toFixed(1)} / 5.0</span></div>
       <div class="dv2-sinfo-row" style="flex-direction:column;gap:.3rem;align-items:flex-start"><span class="dv2-sinfo-k">Tags</span><div class="dv2-tags">${g.tags.map(t=>`<span class="dv2-tag">${t}</span>`).join('')}</div></div>
     </div>
     ${sideGames.length?`<div class="dv2-sinfo"><div class="dv2-sinfo-title">Game kh&#225;c</div><div class="dv2-related-list">${sideGames.map(r=>`<div class="dv2-related-item" onclick="go('detail',${r.id})"><div class="dv2-related-thumb">${r.thumbnail?`<img src="${r.thumbnail}" alt="${r.title}" onerror="this.style.display='none'">`:`${r.emoji}`}</div><div class="dv2-related-info"><div class="dv2-related-genre">${r.genre_label}</div><div class="dv2-related-title">${r.title}</div><div class="dv2-related-size">${r.size} &middot; ${r.year}</div></div></div>`).join('')}</div></div>`:''}
   </div>
 </div>`;
-  window._dv2Shots=shots; window._dv2Idx=0;
+  window._dv2Shots=shots;window._dv2Idx=0;
 }
+function dv2Rows(req){const lb={os:'OS',cpu:'CPU',ram:'RAM',gpu:'GPU',storage:'&#7840; c&#7913;ng',directx:'DirectX'};return Object.entries(req).map(([k,v])=>`<div class="dv2-req-row"><div class="dv2-req-k">${lb[k]||k}</div><div class="dv2-req-v">${v}</div></div>`).join('');}
+function dv2SR(tab){document.getElementById('dv2-req-min').style.display=tab==='min'?'block':'none';document.getElementById('dv2-req-rec').style.display=tab==='rec'?'block':'none';document.getElementById('dv2rt-min').classList.toggle('active',tab==='min');document.getElementById('dv2rt-rec').classList.toggle('active',tab==='rec');}
+function dv2SlideTo(idx){const s=window._dv2Shots||[];if(!s.length)return;window._dv2Idx=((idx%s.length)+s.length)%s.length;const img=document.getElementById('dv2ss-img');if(img)img.src=s[window._dv2Idx];const ctr=document.getElementById('dv2ss-ctr');if(ctr)ctr.textContent=`${window._dv2Idx+1} / ${s.length}`;document.querySelectorAll('.dv2-sdot').forEach((d,i)=>d.classList.toggle('active',i===window._dv2Idx));}
+function dv2SlideNext(){dv2SlideTo((window._dv2Idx||0)+1);}
+function dv2SlidePrev(){dv2SlideTo((window._dv2Idx||0)-1);}
 
-function dv2Rows(req){
-  const lb={os:'OS',cpu:'CPU',ram:'RAM',gpu:'GPU',storage:'&#7840; c&#7913;ng',directx:'DirectX'};
-  return Object.entries(req).map(([k,v])=>`<div class="dv2-req-row"><div class="dv2-req-k">${lb[k]||k}</div><div class="dv2-req-v">${v}</div></div>`).join('');
-}
-function dv2SR(tab){
-  document.getElementById('dv2-req-min').style.display=tab==='min'?'block':'none';
-  document.getElementById('dv2-req-rec').style.display=tab==='rec'?'block':'none';
-  document.getElementById('dv2rt-min').classList.toggle('active',tab==='min');
-  document.getElementById('dv2rt-rec').classList.toggle('active',tab==='rec');
-}
-function dv2SlideTo(idx){
-  const shots=window._dv2Shots||[]; if(!shots.length) return;
-  window._dv2Idx=((idx%shots.length)+shots.length)%shots.length;
-  const img=document.getElementById('dv2ss-img'); if(img) img.src=shots[window._dv2Idx];
-  const ctr=document.getElementById('dv2ss-ctr'); if(ctr) ctr.textContent=`${window._dv2Idx+1} / ${shots.length}`;
-  document.querySelectorAll('.dv2-sdot').forEach((d,i)=>d.classList.toggle('active',i===window._dv2Idx));
-}
-function dv2SlideNext(){ dv2SlideTo((window._dv2Idx||0)+1); }
-function dv2SlidePrev(){ dv2SlideTo((window._dv2Idx||0)-1); }
-
-
-
-// ══ 5. GALLERY / LIGHTBOX ════════════════════════════════
-function openLb(src) { document.getElementById('lb-img').src=src; document.getElementById('lb').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeLb()   { document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
 document.getElementById('lb').addEventListener('click',function(e){if(e.target===this)closeLb();});
 
