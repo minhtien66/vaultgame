@@ -609,35 +609,8 @@ function renderDetail(id){
   var dlBtnsH='';
   var dlinks=g.download_links||[];
   if(dlinks.length){
-    // Kiểm tra có link nào dùng group không
-    var hasGroup=dlinks.some(function(d){return d.group;});
-    if(!hasGroup){
-      // Game cũ: render nút đơn như cũ
-      for(var dli=0;dli<dlinks.length;dli++){
-        dlBtnsH+='<a href="'+dlinks[dli].url+'" class="dv2-dl-btn" target="_blank" rel="noopener">'+(dlinks[dli].icon||'&#11015;')+' T&#7842;I GAME &mdash; '+dlinks[dli].label+'</a>';
-      }
-    }else{
-      // Game mới: nhóm theo host
-      var groups={}, groupOrder=[];
-      for(var dli=0;dli<dlinks.length;dli++){
-        var d=dlinks[dli];
-        var grpName=d.group||'Khác';
-        if(!groups[grpName]){groups[grpName]=[];groupOrder.push(grpName);}
-        groups[grpName].push(d);
-      }
-      dlBtnsH='<div class="dv2-dl-groups">';
-      for(var gi=0;gi<groupOrder.length;gi++){
-        var grp=groupOrder[gi];
-        var grpLinks=groups[grp];
-        dlBtnsH+='<div class="dv2-dl-group">';
-        dlBtnsH+='<div class="dv2-dl-group-label">'+grpLinks[0].icon+' '+grp+'</div>';
-        dlBtnsH+='<div class="dv2-dl-group-btns">';
-        for(var gli=0;gli<grpLinks.length;gli++){
-          dlBtnsH+='<a href="'+grpLinks[gli].url+'" class="dv2-dl-part-btn" target="_blank" rel="noopener">&#11015; '+grpLinks[gli].label+'</a>';
-        }
-        dlBtnsH+='</div></div>';
-      }
-      dlBtnsH+='</div>';
+    for(var dli=0;dli<dlinks.length;dli++){
+      dlBtnsH+='<a href="'+dlinks[dli].url+'" class="dv2-dl-btn" target="_blank" rel="noopener">'+(dlinks[dli].icon||'&#11015;')+' T&#7842;I GAME &mdash; '+dlinks[dli].label+'</a>';
     }
   }else{
     dlBtnsH='<div style="opacity:.5;font-size:.8rem;text-align:center;padding:.5rem">&#9203; S&#7855;p c&oacute; link t&#7843;i</div>';
@@ -704,6 +677,26 @@ function renderDetail(id){
     +'</div></div>';
 
   window._dv2Shots=shots; window._dv2Idx=0;
+
+  // Render gallery ảnh in-game
+  var shotsEl=document.getElementById('dv2-shots');
+  if(shotsEl){
+    var gallery=g.gallery||[];
+    if(gallery.length){
+      var galH='<div id="dv2-gallery" style="margin-bottom:1.3rem">'
+        +'<div class="dv2-sec"><div class="dv2-sec-icon">&#128444;</div><div class="dv2-sec-title">H&igrave;nh &#7843;nh game '+g.title+'</div></div>'
+        +'<div class="dv2-gal-grid">';
+      for(var gai=0;gai<gallery.length;gai++){
+        galH+='<div class="dv2-gal-item" onclick="openLb(\''+gallery[gai]+'\')">'
+          +'<img src="'+gallery[gai]+'" alt="Screenshot '+(gai+1)+'" loading="lazy" onerror="this.parentElement.style.display=\'none\'">'
+          +'<div class="dv2-gal-overlay"><span>&#128269;</span></div>'
+          +'</div>';
+      }
+      galH+='</div></div>';
+      shotsEl.innerHTML=galH;
+    }
+  }
+
   setTimeout(function(){ _cmtRender(g.id); }, 100);
 }
 
