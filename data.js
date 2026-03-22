@@ -32,7 +32,7 @@ const GAMES = [
       <li><strong>Tạo máy chủ:</strong> Vào game => nhấn phím ESC => Hộ tống => Tạo một đoàn xe => Xác nhận => Chúng tôi đang chờ đợi những người chơi khác tham gia</li>
       <li><strong>Tham gia:</strong> Vào game => nhấn phím ESC => Hộ tống => Kết nối với máy chủ của bạn bè.</li>
     </ol>`,
-    size: "32.3 GB",
+    size: "15 GB",
     version: "v1.58.1.1-VH",
     year: 2012,
     developer: "SCS Software",
