@@ -136,10 +136,10 @@ img{display:block;max-width:100%}
 .hero-pause-btn .icon-play{display:none}
 .hero-pause-btn.paused .icon-pause{display:none}
 .hero-pause-btn.paused .icon-play{display:flex}
-[data-theme="light"] .hero-bg{filter:brightness(.45)}
-[data-theme="light"] .hero-overlay{background:linear-gradient(105deg,rgba(240,242,247,1) 0%,rgba(240,242,247,.9) 42%,rgba(240,242,247,.5) 70%,rgba(240,242,247,.08) 100%)}
+[data-theme="light"] .hero-bg{filter:brightness(.25) saturate(1.2)}
+[data-theme="light"] .hero-overlay{background:linear-gradient(105deg,rgba(15,20,40,.97) 0%,rgba(15,20,40,.88) 42%,rgba(15,20,40,.5) 70%,rgba(15,20,40,.08) 100%)}
 [data-theme="light"] .hero-overlay-bottom{background:linear-gradient(to top,var(--bg),transparent)}
-[data-theme="light"] .hero-title,[data-theme="light"] .hero-desc{text-shadow:none}
+[data-theme="light"] .hero-title,[data-theme="light"] .hero-desc{text-shadow:0 2px 20px rgba(0,0,0,.7)}
 @media(max-width:1100px){.hero-inner{grid-template-columns:1fr;min-height:auto}.hero-img{display:none}}
 @media(max-width:640px){.hero-inner{padding:1.5rem 1rem 1.2rem}.hero-controls{padding:.6rem 1rem 1.2rem}.hi-item{padding:.5rem .7rem}}
 
@@ -391,24 +391,6 @@ img{display:block;max-width:100%}
 .dv2-dl-free-note{text-align:center;font-size:.63rem;color:var(--green);font-weight:800;margin-bottom:.22rem}
 .dv2-dl-warn{font-size:.62rem;color:var(--text3);text-align:center;line-height:1.5;margin-top:.3rem}
 .dv2-dl-viet{margin-top:.45rem;font-size:.63rem;font-weight:800;color:#ef4444;text-align:center;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:5px;padding:.26rem .45rem}
-.dv2-cd-hint{font-size:.75rem;color:var(--text2);text-align:center;padding:.6rem .5rem;background:rgba(255,255,255,.04);border:1px dashed var(--border);border-radius:7px;margin-bottom:.4rem;line-height:1.5}
-.dv2-cd-timer{padding:.5rem 0 .3rem}
-.dv2-cd-bar-track{height:4px;background:var(--card2);border-radius:2px;overflow:hidden;margin-bottom:.4rem}
-.dv2-cd-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width 1s linear}
-.dv2-cd-text{font-size:.73rem;color:var(--text2);text-align:center}
-.dv2-gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
-@media(max-width:600px){.dv2-gal-grid{grid-template-columns:repeat(2,1fr)}}
-.dv2-gal-item{position:relative;aspect-ratio:16/9;border-radius:7px;overflow:hidden;cursor:pointer;background:var(--card2)}
-.dv2-gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
-.dv2-gal-item:hover img{transform:scale(1.06)}
-.dv2-gal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;font-size:1.4rem}
-.dv2-gal-item:hover .dv2-gal-overlay{opacity:1}
-.dv2-dl-groups{display:flex;flex-direction:column;gap:.6rem;margin-bottom:.45rem}
-.dv2-dl-group{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:.55rem .6rem}
-.dv2-dl-group-label{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);margin-bottom:.4rem;display:flex;align-items:center;gap:.35rem}
-.dv2-dl-group-btns{display:flex;flex-direction:column;gap:.3rem}
-.dv2-dl-part-btn{display:flex;align-items:center;justify-content:center;gap:.4rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:.78rem;padding:.55rem .85rem;border-radius:6px;text-decoration:none;transition:all .15s}
-.dv2-dl-part-btn:hover{filter:brightness(1.12);transform:translateY(-1px);box-shadow:0 6px 16px rgba(239,35,60,.3)}
 .dv2-sinfo{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.8rem .95rem}
 .dv2-sinfo-title{font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:var(--text3);margin-bottom:.6rem;padding-bottom:.38rem;border-bottom:1px solid var(--border)}
 .dv2-sinfo-row{display:flex;justify-content:space-between;align-items:flex-start;padding:.32rem 0;border-bottom:1px solid var(--border);font-size:.72rem;gap:.5rem}
