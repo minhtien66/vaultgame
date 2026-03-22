@@ -42,7 +42,14 @@ const LANGS = {
     vietBanner:{ title:'Game đã được Việt hóa hoàn chỉnh',sub:'Dịch bởi cộng đồng game thủ Việt Nam — giao diện & lời thoại đầy đủ tiếng Việt.',count:'game đã được Việt hóa' },
     top:{ rating:'Đánh Giá Cao Nhất',dl:'Tải Nhiều Nhất' },
     card:{ detail:'Chi tiết →',newBadge:'MỚI',vietBadge:'VIỆT HÓA' },
-    detail:{ intro:'Giới thiệu game',screenshots:'Ảnh chụp màn hình',trailer:'Trailer',info:'Thông tin game',sysreq:'Cấu hình yêu cầu',install:'Hướng dẫn cài đặt',related:'Game cùng thể loại',min:'Tối thiểu',rec:'Khuyến nghị',version:'Phiên bản',year:'Năm phát hành',size:'Dung lượng',genre:'Thể loại',dev:'Nhà phát triển',viet:'Việt hóa',vietYes:'✅ Có',vietNo:'❌ Chưa có',dlFree:'Tải miễn phí',dlBtn:'Tải xuống',dlFreeTag:'✅ Hoàn toàn miễn phí',dlNote:'Không quảng cáo · Không đăng ký · Tốc độ cao',dlViet:'🇻🇳 Bản này đã có tiếng Việt',dlSizeLbl:'Dung lượng tải về',dlDownloads:'Lượt tải',dlYear:'Năm',infoTitle:'Thông tin chi tiết',publisher:'Publisher',rating:'Đánh giá',tags:'Tags',breadHome:'Trang chủ',breadGames:'Tất cả game',dlcountLabel:'lượt tải' },
+    detail:{ intro:'Giới thiệu game',screenshots:'Ảnh chụp màn hình',trailer:'Trailer',info:'Thông tin game',sysreq:'Cấu hình yêu cầu',install:'Hướng dẫn cài đặt',related:'Game cùng thể loại',min:'Tối thiểu',rec:'Khuyến nghị',version:'Phiên bản',year:'Năm phát hành',size:'Dung lượng',genre:'Thể loại',dev:'Nhà phát triển',viet:'Việt hóa',vietYes:'✅ Có',vietNo:'❌ Chưa có',dlFree:'Tải miễn phí',dlBtn:'Tải xuống',dlFreeTag:'✅ Hoàn toàn miễn phí',dlNote:'Không quảng cáo · Không đăng ký · Tốc độ cao',dlViet:'🇻🇳 Bản này đã có tiếng Việt',dlSizeLbl:'Dung lượng tải về',dlDownloads:'Lượt tải',dlYear:'Năm',infoTitle:'Thông tin chi tiết',publisher:'Publisher',rating:'Đánh giá',tags:'Tags',breadHome:'Trang chủ',breadGames:'Tất cả game',dlcountLabel:'lượt tải',
+      galTitle:'Hình ảnh game',tocIntro:'Giới thiệu',tocOverview:'Tổng quan & nổi bật',tocGameplay:'Gameplay & cơ chế',tocShots:'Hình ảnh game',tocProcess:'Quy trình cài đặt A-Z',tocInstall:'Hướng dẫn cài đặt',tocTrailer:'Video Trailer',tocSysreq:'Cấu hình yêu cầu',tocScore:'Đánh giá game',
+      secDetail:'Chi tiết game',secIntro:'Giới thiệu game',secProcess:'Quy trình cài đặt Game từ A-Z',secInstall:'Hướng dẫn cài đặt',secTrailer:'Video Trailer & Gameplay',secSysreq:'Cấu hình yêu cầu',secScore:'Đánh giá game',secRelated:'Game liên quan',secSeries:'Game cùng thể loại',secOther:'Game khác',secInfo:'Thông tin game',
+      infoName:'Tên:',infoYear:'Năm:',infoSize:'Dung lượng:',infoVersion:'Phiên bản:',infoSingle:'Chơi đơn lẻ',infoLangVi:'Tiếng Việt',infoLangEn:'Tiếng Anh',infoOS:'Hệ điều hành: Windows',infoInput:'Bàn phím / Chuột',
+      dlStatSize:'Dung lượng',dlStatYear:'Năm',dlStatDl:'Lượt tải',dlFreeNote:'✓ Hoàn toàn miễn phí',dlWarn:'Tắt antivirus trước khi cài. Link Gofile tốc độ cao.',dlVietBadge:'🎮 Đã Việt Hóa hoàn chỉnh',
+      cdScrollHint:'Cuộn xuống hướng dẫn cài đặt để mở khoá link tải',cdWaiting:'Đang chuẩn bị link tải...',cdSeconds:'giây',cdReady:'Link đã sẵn sàng!',
+      processWarn:'QUY TRÌNH BẮT BUỘC — làm theo để tránh lỗi khi cài.',processStep1:'ƯU TIÊN KIỂM TRA CẤU HÌNH TRƯỚC KHI TẢI GAME.',processStep2:'Tắt Windows Defender / antivirus trước khi cài đặt.',processStep3:'Cài phần mềm hỗ trợ (Visual C++, DirectX...).',processStep4:'Tải, giải nén và chạy theo hướng dẫn bên dưới.',processNote1:'Đường dẫn, thư mục không dùng ký tự có dấu hoặc Tiếng Việt.',processNote2:'Khi tải nhiều PART, bỏ chung vào 1 thư mục và giải nén chỉ từ 1 file.',
+      scoreStory:'Cốt Truyện',scoreGameplay:'Gameplay',scoreGraphics:'Đồ Họa',scoreAudio:'Âm Thanh',scoreTotal:'Tổng Thể',scorePoints:'điểm' },
     search:{ placeholder:'Tìm kiếm game...',hint:'Nhập tên game để tìm kiếm...',notFound:'Không tìm thấy' },
     empty:{ title:'Chưa có dữ liệu',notFound:'Không tìm thấy game',back:'← Quay lại',noHot:'Chưa có game nổi bật',noNew:'Chưa có game mới',noViet:'Chưa có game Việt hóa, sắp cập nhật...',noSearch:'Thử từ khóa khác hoặc bỏ bộ lọc' },
     footer:{ explore:'Khám phá',list:'Danh sách',info:'Thông tin',about:'Giới thiệu',contact:'Liên hệ',report:'Báo lỗi',copy:'© 2025 VaultGame — All rights reserved',made:'Made with ❤️ for VN gamers' },
@@ -72,7 +79,14 @@ const LANGS = {
     vietBanner:{ title:'These games are fully localised in Vietnamese',sub:'Translated by the Vietnamese gaming community — full UI & dialogue.',count:'games localised in Vietnamese' },
     top:{ rating:'Highest Rated',dl:'Most Downloaded' },
     card:{ detail:'Details →',newBadge:'NEW',vietBadge:'VIET' },
-    detail:{ intro:'About this game',screenshots:'Screenshots',trailer:'Trailer',info:'Game info',sysreq:'System requirements',install:'Installation guide',related:'More like this',min:'Minimum',rec:'Recommended',version:'Version',year:'Release year',size:'File size',genre:'Genre',dev:'Developer',viet:'Vietnamese patch',vietYes:'✅ Available',vietNo:'❌ Not available',dlFree:'Free Download',dlBtn:'Download',dlFreeTag:'✅ Completely free',dlNote:'No ads · No sign-up · High speed',dlViet:'🇻🇳 Vietnamese patch included',dlSizeLbl:'Download size',dlDownloads:'Downloads',dlYear:'Year',infoTitle:'Details',publisher:'Publisher',rating:'Rating',tags:'Tags',breadHome:'Home',breadGames:'All games',dlcountLabel:'downloads' },
+    detail:{ intro:'About this game',screenshots:'Screenshots',trailer:'Trailer',info:'Game info',sysreq:'System requirements',install:'Installation guide',related:'More like this',min:'Minimum',rec:'Recommended',version:'Version',year:'Release year',size:'File size',genre:'Genre',dev:'Developer',viet:'Vietnamese patch',vietYes:'✅ Available',vietNo:'❌ Not available',dlFree:'Free Download',dlBtn:'Download',dlFreeTag:'✅ Completely free',dlNote:'No ads · No sign-up · High speed',dlViet:'🇻🇳 Vietnamese patch included',dlSizeLbl:'Download size',dlDownloads:'Downloads',dlYear:'Year',infoTitle:'Details',publisher:'Publisher',rating:'Rating',tags:'Tags',breadHome:'Home',breadGames:'All games',dlcountLabel:'downloads',
+      galTitle:'Game Screenshots',tocIntro:'Introduction',tocOverview:'Overview & highlights',tocGameplay:'Gameplay & mechanics',tocShots:'Screenshots',tocProcess:'Installation process A-Z',tocInstall:'Installation guide',tocTrailer:'Video Trailer',tocSysreq:'System requirements',tocScore:'Game rating',
+      secDetail:'Game details',secIntro:'About this game',secProcess:'Full Installation Process A-Z',secInstall:'Installation guide',secTrailer:'Video Trailer & Gameplay',secSysreq:'System requirements',secScore:'Game rating',secRelated:'Related games',secSeries:'More in this genre',secOther:'Other games',secInfo:'Game info',
+      infoName:'Title:',infoYear:'Year:',infoSize:'File size:',infoVersion:'Version:',infoSingle:'Single-player',infoLangVi:'Vietnamese',infoLangEn:'English',infoOS:'OS: Windows',infoInput:'Keyboard / Mouse',
+      dlStatSize:'File size',dlStatYear:'Year',dlStatDl:'Downloads',dlFreeNote:'✓ Completely free',dlWarn:'Disable antivirus before installing. Gofile links are high speed.',dlVietBadge:'🎮 Vietnamese patch included',
+      cdScrollHint:'Scroll down to the install guide to unlock the download link',cdWaiting:'Preparing download link...',cdSeconds:'seconds',cdReady:'Link is ready!',
+      processWarn:'REQUIRED STEPS — follow these to avoid installation errors.',processStep1:'CHECK YOUR SYSTEM REQUIREMENTS BEFORE DOWNLOADING.',processStep2:'Disable Windows Defender / antivirus before installing.',processStep3:'Install required software (Visual C++, DirectX...).',processStep4:'Download, extract and follow the guide below.',processNote1:'Avoid accented characters or spaces in folder paths.',processNote2:'When downloading multiple PARTs, put them all in one folder and extract from the first file only.',
+      scoreStory:'Story',scoreGameplay:'Gameplay',scoreGraphics:'Graphics',scoreAudio:'Audio',scoreTotal:'Overall',scorePoints:'pts' },
     search:{ placeholder:'Search games...',hint:'Type a game name to search...',notFound:'Not found' },
     empty:{ title:'No data yet',notFound:'Game not found',back:'← Go back',noHot:'No featured games yet',noNew:'No new games yet',noViet:'No Vietnamese games yet, coming soon...',noSearch:'Try a different keyword or remove filters' },
     footer:{ explore:'Explore',list:'Browse',info:'Info',about:'About us',contact:'Contact',report:'Report issue',copy:'© 2025 VaultGame — All rights reserved',made:'Made with ❤️ for VN gamers' },
@@ -102,7 +116,14 @@ const LANGS = {
     vietBanner:{ title:'Todos los juegos están localizados en vietnamita',sub:'Traducido por la comunidad gamer vietnamita — interfaz y diálogos completos.',count:'juegos localizados en vietnamita' },
     top:{ rating:'Mejor Valorados',dl:'Más Descargados' },
     card:{ detail:'Detalles →',newBadge:'NUEVO',vietBadge:'VIET' },
-    detail:{ intro:'Sobre este juego',screenshots:'Capturas de pantalla',trailer:'Tráiler',info:'Información del juego',sysreq:'Requisitos del sistema',install:'Guía de instalación',related:'Juegos similares',min:'Mínimos',rec:'Recomendados',version:'Versión',year:'Año de lanzamiento',size:'Tamaño',genre:'Género',dev:'Desarrollador',viet:'Parche vietnamita',vietYes:'✅ Disponible',vietNo:'❌ No disponible',dlFree:'Descarga Gratuita',dlBtn:'Descargar',dlFreeTag:'✅ Completamente gratis',dlNote:'Sin anuncios · Sin registro · Alta velocidad',dlViet:'🇻🇳 Incluye parche en vietnamita',dlSizeLbl:'Tamaño de descarga',dlDownloads:'Descargas',dlYear:'Año',infoTitle:'Detalles',publisher:'Editor',rating:'Puntuación',tags:'Etiquetas',breadHome:'Inicio',breadGames:'Todos los juegos',dlcountLabel:'descargas' },
+    detail:{ intro:'Sobre este juego',screenshots:'Capturas de pantalla',trailer:'Tráiler',info:'Información del juego',sysreq:'Requisitos del sistema',install:'Guía de instalación',related:'Juegos similares',min:'Mínimos',rec:'Recomendados',version:'Versión',year:'Año de lanzamiento',size:'Tamaño',genre:'Género',dev:'Desarrollador',viet:'Parche vietnamita',vietYes:'✅ Disponible',vietNo:'❌ No disponible',dlFree:'Descarga Gratuita',dlBtn:'Descargar',dlFreeTag:'✅ Completamente gratis',dlNote:'Sin anuncios · Sin registro · Alta velocidad',dlViet:'🇻🇳 Incluye parche en vietnamita',dlSizeLbl:'Tamaño de descarga',dlDownloads:'Descargas',dlYear:'Año',infoTitle:'Detalles',publisher:'Editor',rating:'Puntuación',tags:'Etiquetas',breadHome:'Inicio',breadGames:'Todos los juegos',dlcountLabel:'descargas',
+      galTitle:'Imágenes del juego',tocIntro:'Introducción',tocOverview:'Visión general',tocGameplay:'Gameplay y mecánicas',tocShots:'Imágenes',tocProcess:'Proceso de instalación A-Z',tocInstall:'Guía de instalación',tocTrailer:'Video Tráiler',tocSysreq:'Requisitos del sistema',tocScore:'Valoración',
+      secDetail:'Detalles del juego',secIntro:'Sobre este juego',secProcess:'Proceso de instalación completo A-Z',secInstall:'Guía de instalación',secTrailer:'Video Tráiler & Gameplay',secSysreq:'Requisitos del sistema',secScore:'Valoración del juego',secRelated:'Juegos relacionados',secSeries:'Más de este género',secOther:'Otros juegos',secInfo:'Información del juego',
+      infoName:'Título:',infoYear:'Año:',infoSize:'Tamaño:',infoVersion:'Versión:',infoSingle:'Un jugador',infoLangVi:'Vietnamita',infoLangEn:'Inglés',infoOS:'SO: Windows',infoInput:'Teclado / Ratón',
+      dlStatSize:'Tamaño',dlStatYear:'Año',dlStatDl:'Descargas',dlFreeNote:'✓ Completamente gratis',dlWarn:'Desactiva el antivirus antes de instalar. Los enlaces Gofile son de alta velocidad.',dlVietBadge:'🎮 Parche vietnamita incluido',
+      cdScrollHint:'Desplázate hasta la guía de instalación para desbloquear el enlace',cdWaiting:'Preparando enlace de descarga...',cdSeconds:'segundos',cdReady:'¡Enlace listo!',
+      processWarn:'PASOS OBLIGATORIOS — síguelos para evitar errores de instalación.',processStep1:'COMPRUEBA LOS REQUISITOS DEL SISTEMA ANTES DE DESCARGAR.',processStep2:'Desactiva Windows Defender / antivirus antes de instalar.',processStep3:'Instala el software necesario (Visual C++, DirectX...).',processStep4:'Descarga, extrae y sigue la guía a continuación.',processNote1:'Evita caracteres acentuados o espacios en las rutas de carpetas.',processNote2:'Si descargas varios PARTs, colócalos en una misma carpeta y extrae solo desde el primer archivo.',
+      scoreStory:'Historia',scoreGameplay:'Gameplay',scoreGraphics:'Gráficos',scoreAudio:'Audio',scoreTotal:'Global',scorePoints:'pts' },
     search:{ placeholder:'Buscar juegos...',hint:'Escribe un nombre para buscar...',notFound:'No encontrado' },
     empty:{ title:'Sin datos',notFound:'Juego no encontrado',back:'← Volver',noHot:'Sin juegos destacados todavía',noNew:'Sin juegos nuevos todavía',noViet:'Sin juegos en vietnamita todavía, próximamente...',noSearch:'Prueba otra palabra clave o quita los filtros' },
     footer:{ explore:'Explorar',list:'Catálogo',info:'Info',about:'Sobre nosotros',contact:'Contacto',report:'Reportar error',copy:'© 2025 VaultGame — Todos los derechos reservados',made:'Hecho con ❤️ para gamers VN' },
@@ -505,7 +526,7 @@ function renderDetail(id){
     var dotsH2='';
     for(var si=0;si<shots.length;si++) dotsH2+='<button class="dv2-sdot '+(si===0?'active':'')+'" onclick="dv2SlideTo('+si+')"></button>';
     ssH='<div style="margin-bottom:1.2rem">'
-      +'<div class="dv2-sec"><div class="dv2-sec-icon">&#128444;</div><div class="dv2-sec-title">&#7842;NH GAME '+g.title+'</div></div>'
+      +'<div class="dv2-sec"><div class="dv2-sec-icon">&#128444;</div><div class="dv2-sec-title">'+ld.galTitle+' — '+g.title+'</div></div>'
       +'<div class="dv2-slideshow" id="dv2ss"><img id="dv2ss-img" src="'+shots[0]+'" alt="'+g.title+'" onerror="this.style.display=\'none\'">'
       +'<button class="dv2-slide-prev" onclick="dv2SlidePrev()">&#8249;</button>'
       +'<button class="dv2-slide-next" onclick="dv2SlideNext()">&#8250;</button>'
@@ -516,80 +537,80 @@ function renderDetail(id){
   // Info grid
   var igH='<div class="dv2-info-grid">'
     +'<div class="dv2-info-box">'
-    +'<div class="dv2-info-row"><span class="dv2-info-key">&#128203; T&ecirc;n:</span><span class="dv2-info-val">'+g.title+'</span></div>'
-    +'<div class="dv2-info-row"><span class="dv2-info-key">&#128197; N&#259;m:</span><span class="dv2-info-val">'+g.year+'</span></div>'
-    +'<div class="dv2-info-row"><span class="dv2-info-key">&#127918; Th&#7875; lo&#7841;i:</span><span class="dv2-info-val" style="color:var(--accent)">'+g.genre_label+'</span></div>'
-    +'<div class="dv2-info-row"><span class="dv2-info-key">&#128190; Dung l&#432;&#7907;ng:</span><span class="dv2-info-val">'+g.size+'</span></div>'
-    +'<div class="dv2-info-row"><span class="dv2-info-key">Phi&ecirc;n b&#7843;n:</span><span class="dv2-info-val">'+g.version+'</span></div>'
+    +'<div class="dv2-info-row"><span class="dv2-info-key">&#128203; '+ld.infoName+'</span><span class="dv2-info-val">'+g.title+'</span></div>'
+    +'<div class="dv2-info-row"><span class="dv2-info-key">&#128197; '+ld.infoYear+'</span><span class="dv2-info-val">'+g.year+'</span></div>'
+    +'<div class="dv2-info-row"><span class="dv2-info-key">&#127918; '+ld.genre+':</span><span class="dv2-info-val" style="color:var(--accent)">'+g.genre_label+'</span></div>'
+    +'<div class="dv2-info-row"><span class="dv2-info-key">&#128190; '+ld.infoSize+'</span><span class="dv2-info-val">'+g.size+'</span></div>'
+    +'<div class="dv2-info-row"><span class="dv2-info-key">'+ld.version+':</span><span class="dv2-info-val">'+g.version+'</span></div>'
     +'</div>'
     +'<div class="dv2-info-box">'
-    +'<div class="dv2-info-check">Ch&#417;i &#273;&#417;n l&#7867;</div>'
-    +'<div class="dv2-info-check">Ng&ocirc;n ng&#7919;: '+(g.viet?'Ti&#7871;ng Vi&#7879;t':'Ti&#7871;ng Anh')+'</div>'
-    +'<div class="dv2-info-check">H&#7879; &#273;i&#7873;u h&agrave;nh: Windows</div>'
-    +'<div class="dv2-info-check">B&agrave;n ph&iacute;m / Chu&#7897;t</div>'
+    +'<div class="dv2-info-check">'+ld.infoSingle+'</div>'
+    +'<div class="dv2-info-check">'+ld.viet+': '+(g.viet?ld.infoLangVi:ld.infoLangEn)+'</div>'
+    +'<div class="dv2-info-check">'+ld.infoOS+'</div>'
+    +'<div class="dv2-info-check">'+ld.infoInput+'</div>'
     +'<div class="dv2-info-check">Developer: '+(g.developer||'&mdash;')+'</div>'
     +'<div class="dv2-info-check">Publisher: '+(g.publisher||'&mdash;')+'</div>'
     +'</div></div>';
 
   // TOC
-  var tocH='<div class="dv2-toc"><div class="dv2-toc-head">&#128203; N&#7897;i dung b&agrave;i</div><ol>'
-    +'<li><a onclick="document.getElementById(\'dv2-intro\')&&document.getElementById(\'dv2-intro\').scrollIntoView({behavior:\'smooth\'})">Gi&#7899;i thi&#7879;u '+g.title+'</a><ol><li><a>T&#7893;ng quan &amp; n&#7893;i b&#7853;t</a></li><li><a>Gameplay &amp; c&#417; ch&#7871;</a></li></ol></li>'
-    +(shots.length?'<li><a onclick="document.getElementById(\'dv2-shots\')&&document.getElementById(\'dv2-shots\').scrollIntoView({behavior:\'smooth\'})">H&igrave;nh &#7843;nh game</a></li>':'')
-    +'<li><a onclick="document.getElementById(\'dv2-process\')&&document.getElementById(\'dv2-process\').scrollIntoView({behavior:\'smooth\'})">Quy tr&igrave;nh c&agrave;i &#273;&#7863;t A-Z</a></li>'
-    +'<li><a onclick="document.getElementById(\'dv2-install\')&&document.getElementById(\'dv2-install\').scrollIntoView({behavior:\'smooth\'})">H&#432;&#7899;ng d&#7851;n c&agrave;i &#273;&#7863;t</a></li>'
-    +(g.trailer?'<li><a onclick="document.getElementById(\'dv2-trailer\')&&document.getElementById(\'dv2-trailer\').scrollIntoView({behavior:\'smooth\'})">Video Trailer</a></li>':'')
-    +'<li><a onclick="document.getElementById(\'dv2-sysreq\')&&document.getElementById(\'dv2-sysreq\').scrollIntoView({behavior:\'smooth\'})">C&#7845;u h&igrave;nh y&ecirc;u c&#7847;u</a></li>'
-    +'<li><a onclick="document.getElementById(\'dv2-score\')&&document.getElementById(\'dv2-score\').scrollIntoView({behavior:\'smooth\'})">&#272;&aacute;nh gi&aacute; game</a></li>'
+  var tocH='<div class="dv2-toc"><div class="dv2-toc-head">&#128203; '+ld.info+'</div><ol>'
+    +'<li><a onclick="document.getElementById(\'dv2-intro\')&&document.getElementById(\'dv2-intro\').scrollIntoView({behavior:\'smooth\'})">'+ld.tocIntro+' '+g.title+'</a><ol><li><a>'+ld.tocOverview+'</a></li><li><a>'+ld.tocGameplay+'</a></li></ol></li>'
+    +(shots.length?'<li><a onclick="document.getElementById(\'dv2-shots\')&&document.getElementById(\'dv2-shots\').scrollIntoView({behavior:\'smooth\'})">'+ld.tocShots+'</a></li>':'')
+    +'<li><a onclick="document.getElementById(\'dv2-process\')&&document.getElementById(\'dv2-process\').scrollIntoView({behavior:\'smooth\'})">'+ld.tocProcess+'</a></li>'
+    +'<li><a onclick="document.getElementById(\'dv2-install\')&&document.getElementById(\'dv2-install\').scrollIntoView({behavior:\'smooth\'})">'+ld.tocInstall+'</a></li>'
+    +(g.trailer?'<li><a onclick="document.getElementById(\'dv2-trailer\')&&document.getElementById(\'dv2-trailer\').scrollIntoView({behavior:\'smooth\'})">'+ld.tocTrailer+'</a></li>':'')
+    +'<li><a onclick="document.getElementById(\'dv2-sysreq\')&&document.getElementById(\'dv2-sysreq\').scrollIntoView({behavior:\'smooth\'})">'+ld.tocSysreq+'</a></li>'
+    +'<li><a onclick="document.getElementById(\'dv2-score\')&&document.getElementById(\'dv2-score\').scrollIntoView({behavior:\'smooth\'})">'+ld.tocScore+'</a></li>'
     +'</ol></div>';
 
-  var introH='<div id="dv2-intro" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">i</div><div class="dv2-sec-title">Gi&#7899;i thi&#7879;u game '+g.title+'</div></div><div class="dv2-body">'+(g.desc_full||'<p>'+g.desc_short+'</p>')+'</div></div>';
+  var introH='<div id="dv2-intro" style="margin-bottom:1.3rem"><div class="dv2-sec"><div class="dv2-sec-icon">i</div><div class="dv2-sec-title">'+ld.secIntro+' '+g.title+'</div></div><div class="dv2-body">'+(g.desc_full||'<p>'+g.desc_short+'</p>')+'</div></div>';
 
   var processH='<div id="dv2-process" style="margin-bottom:1.3rem">'
-    +'<div class="dv2-sec"><div class="dv2-sec-icon">&#9881;</div><div class="dv2-sec-title">Quy tr&igrave;nh c&agrave;i &#273;&#7863;t Game t&#7915; A-Z</div></div>'
-    +'<div class="dv2-warn"><strong>QUY TR&Igrave;NH B&#7854;T BU&#7896;C</strong> &mdash; l&agrave;m theo &#273;&#7875; tr&aacute;nh l&#7895;i khi c&agrave;i.</div>'
+    +'<div class="dv2-sec"><div class="dv2-sec-icon">&#9881;</div><div class="dv2-sec-title">'+ld.secProcess+'</div></div>'
+    +'<div class="dv2-warn"><strong>'+ld.processWarn+'</strong></div>'
     +'<div class="dv2-steps"><ol>'
-    +'<li><strong>&#431;U TI&Ecirc;N KI&#7EC4;M TRA C&#7844;U H&Igrave;NH TR&#431;&#7898;C KHI T&#7842;I GAME.</strong></li>'
-    +'<li>T&#7855;t Windows Defender / antivirus tr&#432;&#7899;c khi c&agrave;i &#273;&#7863;t.</li>'
-    +'<li>C&agrave;i ph&#7847;n m&#7873;m h&#7895; tr&#7907; (Visual C++, DirectX...).</li>'
-    +'<li>T&#7843;i, gi&#7843;i n&eacute;n v&agrave; ch&#7841;y theo h&#432;&#7899;ng d&#7851;n b&ecirc;n d&#432;&#7899;i.</li>'
+    +'<li><strong>'+ld.processStep1+'</strong></li>'
+    +'<li>'+ld.processStep2+'</li>'
+    +'<li>'+ld.processStep3+'</li>'
+    +'<li>'+ld.processStep4+'</li>'
     +'</ol><div class="dv2-steps-note">'
-    +'<div class="dv2-steps-note-item">&#272;&#432;&#7901;ng d&#7851;n, th&#432; m&#7909;c kh&ocirc;ng d&ugrave;ng k&yacute; t&#7921; c&oacute; d&#7845;u ho&#7863;c Ti&#7871;ng Vi&#7879;t.</div>'
-    +'<div class="dv2-steps-note-item">Khi t&#7843;i nhi&#7873;u PART, b&#7887; chung v&agrave;o 1 th&#432; m&#7909;c v&agrave; gi&#7843;i n&eacute;n ch&#7881; t&#7915; 1 file.</div>'
+    +'<div class="dv2-steps-note-item">'+ld.processNote1+'</div>'
+    +'<div class="dv2-steps-note-item">'+ld.processNote2+'</div>'
     +'</div></div></div>';
 
   var installH=g.install_guide?'<div id="dv2-install" style="margin-bottom:1.3rem">'
-    +'<div class="dv2-sec"><div class="dv2-sec-icon">&#128230;</div><div class="dv2-sec-title">H&#432;&#7899;ng d&#7851;n c&agrave;i &#273;&#7863;t '+g.title+'</div></div>'
-    +'<div class="dv2-warn"><strong>L&#431;U &Yacute;: T&#7855;t Di&#7879;t Virus Tr&#432;&#7899;c Khi C&agrave;i &#272;&#7863;t Game</strong></div>'
+    +'<div class="dv2-sec"><div class="dv2-sec-icon">&#128230;</div><div class="dv2-sec-title">'+ld.secInstall+' '+g.title+'</div></div>'
+    +'<div class="dv2-warn"><strong>'+ld.dlWarn+'</strong></div>'
     +'<div class="dv2-install">'+g.install_guide+'</div></div>':'';
 
   var trailerH=g.trailer?'<div id="dv2-trailer" style="margin-bottom:1.3rem">'
-    +'<div class="dv2-sec"><div class="dv2-sec-icon">&#9654;</div><div class="dv2-sec-title">Video Trailer &amp; Gameplay</div></div>'
+    +'<div class="dv2-sec"><div class="dv2-sec-icon">&#9654;</div><div class="dv2-sec-title">'+ld.secTrailer+'</div></div>'
     +'<div class="dv2-trailer"><iframe src="'+g.trailer+'" allowfullscreen allow="autoplay;encrypted-media"></iframe></div></div>':'';
 
   var srH='';
   if(g.sys_req){
     srH='<div id="dv2-sysreq" style="margin-bottom:1.3rem">'
-      +'<div class="dv2-sec"><div class="dv2-sec-icon">&#128187;</div><div class="dv2-sec-title">C&#7845;u h&igrave;nh y&ecirc;u c&#7847;u</div></div>'
-      +'<div class="dv2-req-tabs"><button class="dv2-req-tab active" id="dv2rt-min" onclick="dv2SR(\'min\')">T&#7889;i thi&#7875;u</button><button class="dv2-req-tab" id="dv2rt-rec" onclick="dv2SR(\'rec\')">&#272;&#7873; ngh&#7883;</button></div>'
+      +'<div class="dv2-sec"><div class="dv2-sec-icon">&#128187;</div><div class="dv2-sec-title">'+ld.secSysreq+'</div></div>'
+      +'<div class="dv2-req-tabs"><button class="dv2-req-tab active" id="dv2rt-min" onclick="dv2SR(\'min\')">'+ld.min+'</button><button class="dv2-req-tab" id="dv2rt-rec" onclick="dv2SR(\'rec\')">'+ld.rec+'</button></div>'
       +'<div id="dv2-req-min" class="dv2-req-table">'+dv2Rows(g.sys_req.min)+'</div>'
       +'<div id="dv2-req-rec" class="dv2-req-table" style="display:none">'+dv2Rows(g.sys_req.rec)+'</div></div>';
   }
 
-  var scoreRows=[['C&#7889;t Truy&#7879;n',Math.round(g.rating*18.5)],['Gameplay',Math.round(g.rating*19)],['&#272;&#7891; H&#7885;a',s100],['&Acirc;m Thanh',Math.round(g.rating*18)],['T&#7893;ng Th&#7875;',Math.min(100,Math.round(g.rating*21))]];
+  var scoreRows=[[ld.scoreStory,Math.round(g.rating*18.5)],[ld.scoreGameplay,Math.round(g.rating*19)],[ld.scoreGraphics,s100],[ld.scoreAudio,Math.round(g.rating*18)],[ld.scoreTotal,Math.min(100,Math.round(g.rating*21))]];
   var scoreBarsH='';
   for(var sri=0;sri<scoreRows.length;sri++){
-    scoreBarsH+='<div class="dv2-score-bar-row"><span class="dv2-score-bar-name">'+scoreRows[sri][0]+'</span><div class="dv2-score-bar-track"><div class="dv2-score-bar-fill" style="width:'+scoreRows[sri][1]+'%"></div></div><span class="dv2-score-bar-val">'+scoreRows[sri][1]+' &#273;i&#7875;m</span></div>';
+    scoreBarsH+='<div class="dv2-score-bar-row"><span class="dv2-score-bar-name">'+scoreRows[sri][0]+'</span><div class="dv2-score-bar-track"><div class="dv2-score-bar-fill" style="width:'+scoreRows[sri][1]+'%"></div></div><span class="dv2-score-bar-val">'+scoreRows[sri][1]+' '+ld.scorePoints+'</span></div>';
   }
   var scoreH='<div id="dv2-score" style="margin-bottom:1.3rem">'
-    +'<div class="dv2-sec"><div class="dv2-sec-icon">&#11088;</div><div class="dv2-sec-title">&#272;&aacute;nh gi&aacute; game '+g.title+'</div></div>'
+    +'<div class="dv2-sec"><div class="dv2-sec-icon">&#11088;</div><div class="dv2-sec-title">'+ld.secScore+' '+g.title+'</div></div>'
     +'<div class="dv2-score-box"><div class="dv2-score-head">'
     +'<div class="dv2-score-circle"><span class="dv2-score-num">'+s100+'</span><span class="dv2-score-lbl">VaultGame</span></div>'
     +'<div class="dv2-score-bars">'+scoreBarsH+'</div></div>'
-    +'<div style="font-size:.72rem;color:var(--text3);text-align:center">'+starStr(g.rating)+' '+g.rating.toFixed(1)+'/5.0 &middot; '+fmtN(g.downloads)+' l&#432;&#7907;t t&#7843;i</div></div></div>';
+    +'<div style="font-size:.72rem;color:var(--text3);text-align:center">'+starStr(g.rating)+' '+g.rating.toFixed(1)+'/5.0 &middot; '+fmtN(g.downloads)+' '+ld.dlcountLabel+'</div></div></div>';
 
   var relatedH='';
   if(related.length){
-    relatedH='<div style="margin-top:1.4rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#127918;</div><div class="dv2-sec-title">Game li&ecirc;n quan</div></div>'
+    relatedH='<div style="margin-top:1.4rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#127918;</div><div class="dv2-sec-title">'+ld.secRelated+'</div></div>'
       +'<div class="game-grid lg">'+related.map(function(r,i){return gcard(r,i*.05);}).join('')+'</div></div>';
   }
 
@@ -603,18 +624,49 @@ function renderDetail(id){
         +'<div class="dv2-series-thumb">'+(sg.thumbnail?'<img src="'+sg.thumbnail+'" alt="" onerror="this.style.display=\'none\'">':'<span style="font-size:1.2rem">'+sg.emoji+'</span>')+'</div>'
         +'<div class="dv2-series-name">'+sg.title.substring(0,20)+'</div></div>';
     }
-    seriesH='<div style="margin-bottom:1.2rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128279;</div><div class="dv2-sec-title">Game c&ugrave;ng th&#7875; lo&#7841;i</div></div><div class="dv2-series">'+sItemsH+'</div></div>';
+    seriesH='<div style="margin-bottom:1.2rem"><div class="dv2-sec"><div class="dv2-sec-icon">&#128279;</div><div class="dv2-sec-title">'+ld.secSeries+'</div></div><div class="dv2-series">'+sItemsH+'</div></div>';
   }
 
-  var dlBtnsH='';
+  // Download links — ẩn, scroll tới install rồi đếm ngược 10 giây mới hiện
   var dlinks=g.download_links||[];
+  var dlLinksHtml='';
   if(dlinks.length){
-    for(var dli=0;dli<dlinks.length;dli++){
-      dlBtnsH+='<a href="'+dlinks[dli].url+'" class="dv2-dl-btn" target="_blank" rel="noopener">'+(dlinks[dli].icon||'&#11015;')+' T&#7842;I GAME &mdash; '+dlinks[dli].label+'</a>';
+    var hasGroup=dlinks.some(function(d){return d.group;});
+    if(!hasGroup){
+      for(var dli=0;dli<dlinks.length;dli++){
+        dlLinksHtml+='<a href="'+dlinks[dli].url+'" class="dv2-dl-btn" target="_blank" rel="noopener">'+(dlinks[dli].icon||'&#11015;')+' '+ld.dlBtn+' — '+dlinks[dli].label+'</a>';
+      }
+    }else{
+      var groups={},groupOrder=[];
+      for(var dli=0;dli<dlinks.length;dli++){
+        var d=dlinks[dli];var grpName=d.group||'Other';
+        if(!groups[grpName]){groups[grpName]=[];groupOrder.push(grpName);}
+        groups[grpName].push(d);
+      }
+      dlLinksHtml='<div class="dv2-dl-groups">';
+      for(var gi=0;gi<groupOrder.length;gi++){
+        var grp=groupOrder[gi];var grpLinks=groups[grp];
+        dlLinksHtml+='<div class="dv2-dl-group"><div class="dv2-dl-group-label">'+grpLinks[0].icon+' '+grp+'</div><div class="dv2-dl-group-btns">';
+        for(var gli=0;gli<grpLinks.length;gli++){
+          dlLinksHtml+='<a href="'+grpLinks[gli].url+'" class="dv2-dl-part-btn" target="_blank" rel="noopener">&#11015; '+grpLinks[gli].label+'</a>';
+        }
+        dlLinksHtml+='</div></div>';
+      }
+      dlLinksHtml+='</div>';
     }
   }else{
-    dlBtnsH='<div style="opacity:.5;font-size:.8rem;text-align:center;padding:.5rem">&#9203; S&#7855;p c&oacute; link t&#7843;i</div>';
+    dlLinksHtml='<div style="opacity:.5;font-size:.8rem;text-align:center;padding:.5rem">&#9203; '+ld.dlFree+'...</div>';
   }
+
+  // Countdown gate HTML
+  var dlBtnsH='<div id="dv2-cd-wrap">'
+    +'<div id="dv2-cd-hint" class="dv2-cd-hint">&#128071; '+ld.cdScrollHint+'</div>'
+    +'<div id="dv2-cd-timer" class="dv2-cd-timer" style="display:none">'
+    +'<div class="dv2-cd-bar-track"><div class="dv2-cd-bar-fill" id="dv2-cd-bar"></div></div>'
+    +'<div class="dv2-cd-text"><span id="dv2-cd-num">10</span> '+ld.cdSeconds+'... '+ld.cdWaiting+'</div>'
+    +'</div>'
+    +'<div id="dv2-cd-links" style="display:none">'+dlLinksHtml+'</div>'
+    +'</div>';
 
   var sideGames=GAMES.filter(function(x){return x.id!==g.id;}).slice(0,5);
   var sideRelH='';
@@ -627,7 +679,7 @@ function renderDetail(id){
         +'<div class="dv2-related-info"><div class="dv2-related-genre">'+rg.genre_label+'</div><div class="dv2-related-title">'+rg.title+'</div><div class="dv2-related-size">'+rg.size+' &middot; '+rg.year+'</div></div>'
         +'</div>';
     }
-    sideRelH='<div class="dv2-sinfo"><div class="dv2-sinfo-title">Game kh&aacute;c</div><div class="dv2-related-list">'+sideItemsH+'</div></div>';
+    sideRelH='<div class="dv2-sinfo"><div class="dv2-sinfo-title">'+ld.secOther+'</div><div class="dv2-related-list">'+sideItemsH+'</div></div>';
   }
 
   var tagsH='';
@@ -635,48 +687,107 @@ function renderDetail(id){
 
   el.innerHTML=
     '<div class="dv2-bc"><div class="dv2-bc-inner">'
-    +'<a onclick="go(\'home\')">Trang ch&#7911;</a><span>&#8250;</span>'
-    +'<a onclick="go(\'games\')">T&#7845;t c&#7843; Game</a><span>&#8250;</span>'
+    +'<a onclick="go(\'home\')">'+ld.breadHome+'</a><span>&#8250;</span>'
+    +'<a onclick="go(\'games\')">'+ld.breadGames+'</a><span>&#8250;</span>'
     +'<a onclick="go(\'genre\')">'+g.genre_label+'</a><span>&#8250;</span>'
     +'<span>'+g.title+'</span></div></div>'
-    +'<div class="dv2-ptitle">T&#7843;i Game '+g.title+' &mdash; PC Download Full</div>'
+    +'<div class="dv2-ptitle">'+ld.dlFree+' '+g.title+' — PC Download Full</div>'
     +'<div class="dv2-wrap">'
     +'<div class="dv2-main">'
     +ssH+seriesH
-    +'<div class="dv2-sec" style="margin-bottom:.75rem"><div class="dv2-sec-icon">i</div><div class="dv2-sec-title">Chi ti&#7871;t game '+g.title+'</div></div>'
+    +'<div class="dv2-sec" style="margin-bottom:.75rem"><div class="dv2-sec-icon">i</div><div class="dv2-sec-title">'+ld.secDetail+' '+g.title+'</div></div>'
     +igH+tocH+introH
     +'<div id="dv2-shots"></div>'
     +processH+installH+trailerH+srH+scoreH+relatedH
-    +"<div class=\"cmt-wrap\"><div class=\"cmt-sec\"><div class=\"cmt-sec-icon\">&#128172;</div><div class=\"cmt-sec-title\">B&igrave;nh lu&#7853;n</div></div><div id=\"cmt-section\"><div class=\"cmt-empty\">&#8987; &#272;ang t&#7843;i...</div></div></div>"
+    +'<div class="cmt-wrap"><div class="cmt-sec"><div class="cmt-sec-icon">&#128172;</div><div class="cmt-sec-title">'+ld.intro+'</div></div><div id="cmt-section"><div class="cmt-empty">&#8987; '+ld.cdWaiting+'</div></div></div>'
     +'</div>'
     +'<div class="dv2-side">'
     +'<div class="dv2-dl-box"><div class="dv2-dl-inner">'
-    +'<div class="dv2-dl-badge">&#10004; Ki&#7875;m tra an to&agrave;n</div>'
+    +'<div class="dv2-dl-badge">&#10004; '+ld.dlFreeTag+'</div>'
     +'<div class="dv2-dl-title">'+g.title+'</div>'
     +'<div class="dv2-dl-ver">'+g.version+'</div>'
     +'<div class="dv2-dl-stats">'
-    +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val">'+g.size+'</span><span class="dv2-dl-stat-key">Dung l&#432;&#7907;ng</span></div>'
-    +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val">'+g.year+'</span><span class="dv2-dl-stat-key">N&#259;m</span></div>'
-    +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val">'+fmtN(g.downloads)+'</span><span class="dv2-dl-stat-key">L&#432;&#7907;t t&#7843;i</span></div>'
+    +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val">'+g.size+'</span><span class="dv2-dl-stat-key">'+ld.dlStatSize+'</span></div>'
+    +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val">'+g.year+'</span><span class="dv2-dl-stat-key">'+ld.dlStatYear+'</span></div>'
+    +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val">'+fmtN(g.downloads)+'</span><span class="dv2-dl-stat-key">'+ld.dlStatDl+'</span></div>'
     +'</div>'
     +dlBtnsH
-    +'<div class="dv2-dl-free-note">&#10003; Ho&agrave;n to&agrave;n mi&#7877;n ph&iacute;</div>'
-    +'<div class="dv2-dl-warn">T&#7855;t antivirus tr&#432;&#7899;c khi c&agrave;i. Link Gofile t&#7889;c &#273;&#7897; cao.</div>'
-    +(g.viet?'<div class="dv2-dl-viet">&#127992; &#272;&atilde; Vi&#7879;t H&oacute;a ho&agrave;n ch&#7881;nh</div>':'')
+    +'<div class="dv2-dl-free-note">'+ld.dlFreeNote+'</div>'
+    +'<div class="dv2-dl-warn">'+ld.dlWarn+'</div>'
+    +(g.viet?'<div class="dv2-dl-viet">'+ld.dlVietBadge+'</div>':'')
     +'</div></div>'
     +'<div class="dv2-sinfo">'
-    +'<div class="dv2-sinfo-title">Th&ocirc;ng tin game</div>'
+    +'<div class="dv2-sinfo-title">'+ld.secInfo+'</div>'
     +'<div class="dv2-sinfo-row"><span class="dv2-sinfo-k">Developer</span><span class="dv2-sinfo-v">'+(g.developer||'&mdash;')+'</span></div>'
     +'<div class="dv2-sinfo-row"><span class="dv2-sinfo-k">Publisher</span><span class="dv2-sinfo-v">'+(g.publisher||'&mdash;')+'</span></div>'
-    +'<div class="dv2-sinfo-row"><span class="dv2-sinfo-k">Th&#7875; lo&#7841;i</span><span class="dv2-sinfo-v">'+g.genre_label+'</span></div>'
-    +'<div class="dv2-sinfo-row"><span class="dv2-sinfo-k">N&#259;m</span><span class="dv2-sinfo-v">'+g.year+'</span></div>'
-    +'<div class="dv2-sinfo-row"><span class="dv2-sinfo-k">&#272;&aacute;nh gi&aacute;</span><span class="dv2-sinfo-v" style="color:var(--yellow)">&#9733; '+g.rating.toFixed(1)+' / 5.0</span></div>'
-    +'<div class="dv2-sinfo-row" style="flex-direction:column;gap:.3rem;align-items:flex-start"><span class="dv2-sinfo-k">Tags</span><div class="dv2-tags">'+tagsH+'</div></div>'
+    +'<div class="dv2-sinfo-row"><span class="dv2-sinfo-k">'+ld.genre+'</span><span class="dv2-sinfo-v">'+g.genre_label+'</span></div>'
+    +'<div class="dv2-sinfo-row"><span class="dv2-sinfo-k">'+ld.year+'</span><span class="dv2-sinfo-v">'+g.year+'</span></div>'
+    +'<div class="dv2-sinfo-row"><span class="dv2-sinfo-k">'+ld.rating+'</span><span class="dv2-sinfo-v" style="color:var(--yellow)">&#9733; '+g.rating.toFixed(1)+' / 5.0</span></div>'
+    +'<div class="dv2-sinfo-row" style="flex-direction:column;gap:.3rem;align-items:flex-start"><span class="dv2-sinfo-k">'+ld.tags+'</span><div class="dv2-tags">'+tagsH+'</div></div>'
     +'</div>'
     +sideRelH
     +'</div></div>';
 
   window._dv2Shots=shots; window._dv2Idx=0;
+
+  // Gallery
+  var shotsEl=document.getElementById('dv2-shots');
+  if(shotsEl){
+    var gallery=g.gallery||[];
+    if(gallery.length){
+      var galH='<div id="dv2-gallery" style="margin-bottom:1.3rem">'
+        +'<div class="dv2-sec"><div class="dv2-sec-icon">&#128444;</div><div class="dv2-sec-title">'+ld.galTitle+' '+g.title+'</div></div>'
+        +'<div class="dv2-gal-grid">';
+      for(var gai=0;gai<gallery.length;gai++){
+        galH+='<div class="dv2-gal-item" onclick="openLb(\''+gallery[gai]+'\')">'
+          +'<img src="'+gallery[gai]+'" alt="Screenshot '+(gai+1)+'" loading="lazy" onerror="this.parentElement.style.display=\'none\'">'
+          +'<div class="dv2-gal-overlay"><span>&#128269;</span></div>'
+          +'</div>';
+      }
+      galH+='</div></div>';
+      shotsEl.innerHTML=galH;
+    }
+  }
+
+  // Scroll + countdown 10 giây
+  window._dv2CdDone=false;
+  window._dv2CdTimer=null;
+  var _cdObs=null;
+  function _dv2StartCd(){
+    if(window._dv2CdDone)return;
+    window._dv2CdDone=true;
+    if(_cdObs){_cdObs.disconnect();_cdObs=null;}
+    var hint=document.getElementById('dv2-cd-hint');
+    var timerEl=document.getElementById('dv2-cd-timer');
+    var linksEl=document.getElementById('dv2-cd-links');
+    var numEl=document.getElementById('dv2-cd-num');
+    var barEl=document.getElementById('dv2-cd-bar');
+    if(!timerEl||!linksEl)return;
+    if(hint)hint.style.display='none';
+    timerEl.style.display='block';
+    var sec=10;
+    if(numEl)numEl.textContent=sec;
+    if(barEl)barEl.style.width='100%';
+    window._dv2CdTimer=setInterval(function(){
+      sec--;
+      if(numEl)numEl.textContent=sec;
+      if(barEl)barEl.style.width=(sec/10*100)+'%';
+      if(sec<=0){
+        clearInterval(window._dv2CdTimer);
+        timerEl.style.display='none';
+        linksEl.style.display='block';
+      }
+    },1000);
+  }
+  // Quan sát khi #dv2-install vào viewport
+  var installEl=document.getElementById('dv2-install')||document.getElementById('dv2-process');
+  if(installEl&&'IntersectionObserver' in window){
+    _cdObs=new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting)_dv2StartCd();
+    },{threshold:0.15});
+    _cdObs.observe(installEl);
+  }
+
   setTimeout(function(){ _cmtRender(g.id); }, 100);
 }
 
