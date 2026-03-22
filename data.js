@@ -4,6 +4,77 @@
  
 const GAMES = [
   {
+    id: 4,
+    title: "Euro Truck Simulator 2 Việt Hóa + Online Multiplayer",
+    slug: "euro-truck-simulator-2-viet-hoa",
+    genre: "simulation",
+    genre_label: "Mô Phỏng / Lái Xe",
+    desc_short: "Trải nghiệm lái xe tải xuyên châu Âu với bản Việt Hóa hoàn chỉnh, hỗ trợ chơi Online Multiplayer cùng bạn bè — phiên bản v1.58.1.1 mới nhất.",
+    desc_full: `<p>Euro Truck Simulator 2 (ETS2) là tựa game mô phỏng lái xe tải nổi tiếng thế giới của SCS Software, nay được cộng đồng Việt Nam Việt hóa hoàn chỉnh với giao diện tiếng Việt đầy đủ.</p>
+    <p>Trong ETS2, bạn sẽ lái xe tải qua hơn 60 thành phố châu Âu — từ Anh, Đức, Pháp, Ý, Ba Lan đến nhiều quốc gia khác — vận chuyển hàng hóa đa dạng với các loại xe tải từ Volvo, Scania, MAN, Mercedes đến DAF. Xây dựng công ty vận tải riêng, thuê tài xế, mở rộng garage và trở thành ông trùm logistics châu Âu.</p>
+    <p>Phiên bản này hỗ trợ chơi <strong>Online Multiplayer</strong> — tạo hoặc tham gia đoàn xe cùng bạn bè, convoy xuyên châu Âu trên cùng một server. Bản Việt Hóa v1.58.1.1 được tích hợp sẵn, chỉ cần đổi ngôn ngữ sang Tiếng Việt trong game là xong.</p>`,
+    install_guide: `<h3>HƯỚNG DẪN CÀI ĐẶT EURO TRUCK SIMULATOR 2 VIỆT HÓA</h3>
+    <ol>
+      <li>Tải Game về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén<br>Ví Dụ tên file nén là "<strong>[tamhongame.com]</strong>_RDR2.rar" => pass là: <strong>tamhongame.com</strong></li>
+      <li>Với Win 64bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x64" chạy file "eurotrucks2.exe" để vào game</li>
+      <li>Với Win 32bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x86" chạy file "eurotrucks2.exe" để vào game</li>
+      <li>Vào game chỉnh ngôn ngữ sang <strong>Tiếng Việt</strong></li>
+      <li>Việt Hóa đã được tích hợp sẵn trong game</li>
+      <li>Play game</li>
+    </ol>
+    <h3>HƯỚNG DẪN CHƠI ONLINE MULTIPLAYER</h3>
+    <ol>
+      <li>Tải Steam fix online và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén<br>Ví Dụ tên file nén là "<strong>[tamhongame.com]</strong>_RDR2.rar" => pass là: <strong>tamhongame.com</strong></li>
+      <li>Copy tất cả các file trong đó bỏ vào thư mục chứa game</li>
+      <li>Mở ứng dụng Steam và đăng nhập tài khoản (Để cho nó chạy nền)</li>
+      <li>Với Win 64bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x64" chạy file "eurotrucks2.exe" để vào game</li>
+      <li>Với Win 32bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x86" chạy file "eurotrucks2.exe" để vào game</li>
+      <li><strong>Tạo máy chủ:</strong> Vào game => nhấn phím ESC => Hộ tống => Tạo một đoàn xe => Xác nhận => Chúng tôi đang chờ đợi những người chơi khác tham gia</li>
+      <li><strong>Tham gia:</strong> Vào game => nhấn phím ESC => Hộ tống => Kết nối với máy chủ của bạn bè.</li>
+    </ol>`,
+    size: "15 GB",
+    version: "v1.58.1.1-VH",
+    year: 2012,
+    developer: "SCS Software",
+    publisher: "SCS Software",
+    rating: 4.8,
+    downloads: 4500,
+    emoji: "🚛",
+    badges: ["hot", "new"],
+    viet: true,
+    download_links: [
+      { label: "Game chính", url: "#", icon: "⬇️", group: "Gofile" },
+      { label: "Steam Fix Online", url: "#", icon: "⬇️", group: "Gofile" },
+    ],
+    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
+    screenshots: [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/ss_7fa5fb40a8bd5ae8dad71aad7ab9c48e0da44568.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/ss_f1ce31d3e4eb15f06c0714ed00f96ab88c6a0609.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/ss_2a8d2abf25ef8cbc56cffc66fbdf97c3b607f2ee.1920x1080.jpg",
+    ],
+    trailer: "https://www.youtube.com/embed/RHGAfgKMRiI",
+    tags: ["Lái Xe", "Mô Phỏng", "Việt Hóa", "Multiplayer", "Online", "Châu Âu", "SCS Software"],
+    sys_req: {
+      min: {
+        os: "Windows 10 64-bit",
+        cpu: "Intel Core i5-6400 / AMD Ryzen 3 1200",
+        ram: "8 GB",
+        gpu: "NVIDIA GeForce GTX 660 / AMD Radeon RX 460 (2GB VRAM)",
+        storage: "25 GB",
+        directx: "Version 11",
+      },
+      rec: {
+        os: "Windows 10/11 64-bit",
+        cpu: "Intel Core i5-9600 / AMD Ryzen 5 3600",
+        ram: "12 GB",
+        gpu: "NVIDIA GeForce GTX 1660 / AMD Radeon RX 590 (2GB VRAM)",
+        storage: "25 GB SSD",
+        directx: "Version 11",
+      },
+    },
+  },
+  {
     id: 3,
     title: "Victoria 3",
     slug: "victoria-3",
