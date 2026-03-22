@@ -466,8 +466,9 @@ function renderHome() {
   blogEl.innerHTML=sorted.map((p,i)=>{
     const cat=BLOG_CAT_LABELS[p.cat]||p.cat;
     const bg=p.thumbnail?`url(${p.thumbnail})`:(p.gradient||'linear-gradient(135deg,var(--accent),var(--accent2))');
-    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="go('blogpost');history.pushState(null,'','/blog/${p.slug}');renderBlogPost(BLOG_POSTS.find(x=>x.slug==='${p.slug}'))">
-      <div class="hbc-img" style="background-image:${bg}"></div>
+    const iconH=!p.thumbnail?`<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem">${p.icon||'📝'}</div>`:'';
+    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="showPage('blogpost');history.pushState(null,'','/blog/${p.slug}');renderBlogPost(BLOG_POSTS.find(x=>x.slug==='${p.slug}'))">
+      <div class="hbc-img" style="background:${bg};background-size:cover;background-position:center;position:relative">${iconH}</div>
       <div class="hbc-body">
         <span class="hbc-cat hbc-cat-${p.cat}">${cat}</span>
         <div class="hbc-title">${p.title}</div>
