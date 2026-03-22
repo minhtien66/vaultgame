@@ -23,7 +23,7 @@ const LANGS = {
     nav:{ home:'Trang chủ',games:'Tất cả Game',genre:'Thể loại',viet:'Việt Hóa',new_:'Game Mới',top:'Top Game',search:'Tìm kiếm',blog:'Blog' },
     hero:{ eyebrow:'Cập nhật liên tục — 100% miễn phí',size:'Dung lượng',version:'Phiên bản',downloads:'Lượt tải',dlBtn:'⬇ Tải ngay — Miễn phí',detailBtn:'Xem chi tiết →' },
     stripe:{ updated:'Cập nhật thường xuyên',speed:'Tốc độ cao không giới hạn',noads:'Không quảng cáo',viet:'Việt hóa',games:'game' },
-    home:{ hot:'Game Nổi Bật',hotMore:'Xem tất cả →',new_:'Mới Cập Nhật',newMore:'Xem thêm →',blog:'Bài Viết Mới Nhất',blogMore:'Xem tất cả →' },
+    home:{ hot:'Game Nổi Bật',hotMore:'Xem tất cả →',new_:'Mới Cập Nhật',newMore:'Xem thêm →' },
     pages:{
       games:   { title:'Tất Cả Game PC',          sub:'Toàn bộ kho game — tìm kiếm và lọc theo nhu cầu' },
       genre:   { title:'Thể Loại Game',            sub:'Chọn thể loại yêu thích để khám phá' },
@@ -34,8 +34,8 @@ const LANGS = {
       about:   { title:'Giới Thiệu',               sub:'Về VaultGame và sứ mệnh của chúng tôi' },
       contact: { title:'Liên Hệ',                  sub:'Chúng tôi luôn sẵn sàng hỗ trợ bạn' },
       report:  { title:'Báo Lỗi',                  sub:'Giúp chúng tôi cải thiện VaultGame mỗi ngày' },
-      privacy: { title:'Chính Sách Bảo Mật',       sub:'Cập nhật lần cuối: Tháng 1, 2025' },
-      terms:   { title:'Điều Khoản Sử Dụng',       sub:'Cập nhật lần cuối: Tháng 1, 2025' },
+      privacy: { title:'Chính Sách Bảo Mật',       sub:'Cập nhật lần cuối: Tháng 3, 2026' },
+      terms:   { title:'Điều Khoản Sử Dụng',       sub:'Cập nhật lần cuối: Tháng 3, 2026' },
     },
     filter:{ all:'Tất cả',action:'Action',rpg:'RPG',strategy:'Chiến thuật',puzzle:'Đố trí',shooter:'Bắn súng',adventure:'Phiêu lưu',simulation:'Mô phỏng',horror:'Kinh dị',sports:'Thể Thao',sortNew:'Mới nhất',sortName:'Tên A→Z',sortRating:'Đánh giá',sortDl:'Lượt tải',placeholder:'Tìm theo tên, thể loại, tags...',found:'Tìm thấy',gameUnit:'game' },
     blogCats:{ all:'Tất cả',news:'Tin tức',guide:'Hướng dẫn',review:'Đánh giá',viet:'Việt hóa',dev:'Phát triển game' },
@@ -60,7 +60,7 @@ const LANGS = {
     nav:{ home:'Home',games:'All Games',genre:'Genres',viet:'Vietnamese',new_:'New Games',top:'Top Games',search:'Search',blog:'Blog' },
     hero:{ eyebrow:'Updated constantly — 100% free',size:'File size',version:'Version',downloads:'Downloads',dlBtn:'⬇ Download Free',detailBtn:'View details →' },
     stripe:{ updated:'Regular updates',speed:'Unlimited high speed',noads:'No ads',viet:'Vietnamese patch',games:'games' },
-    home:{ hot:'Featured Games',hotMore:'View all →',new_:'Recently Added',newMore:'View more →',blog:'Latest Blog Posts',blogMore:'View all →' },
+    home:{ hot:'Featured Games',hotMore:'View all →',new_:'Recently Added',newMore:'View more →' },
     pages:{
       games:   { title:'All PC Games',          sub:'Full game library — search and filter as needed' },
       genre:   { title:'Game Genres',            sub:'Pick your favourite genre and explore' },
@@ -71,8 +71,8 @@ const LANGS = {
       about:   { title:'About Us',                sub:'About VaultGame and our mission' },
       contact: { title:'Contact',                 sub:'Get in touch with our team' },
       report:  { title:'Report an Issue',         sub:'Help us improve VaultGame every day' },
-      privacy: { title:'Privacy Policy',          sub:'Last updated: January 2025' },
-      terms:   { title:'Terms of Service',        sub:'Last updated: January 2025' },
+      privacy: { title:'Privacy Policy',          sub:'Last updated: March 2026' },
+      terms:   { title:'Terms of Service',        sub:'Last updated: March 2026' },
     },
     filter:{ all:'All',action:'Action',rpg:'RPG',strategy:'Strategy',puzzle:'Puzzle',shooter:'Shooter',adventure:'Adventure',simulation:'Simulation',horror:'Horror',sports:'Sports',sortNew:'Newest',sortName:'Name A→Z',sortRating:'Rating',sortDl:'Downloads',placeholder:'Search by name, genre, tags...',found:'Found',gameUnit:'games' },
     blogCats:{ all:'All',news:'News',guide:'Guides',review:'Reviews',viet:'Vietnamese',dev:'Game Dev' },
@@ -97,7 +97,7 @@ const LANGS = {
     nav:{ home:'Inicio',games:'Todos los Juegos',genre:'Géneros',viet:'Vietnamita',new_:'Novedades',top:'Top Juegos',search:'Buscar',blog:'Blog' },
     hero:{ eyebrow:'Actualizado constantemente — 100% gratis',size:'Tamaño',version:'Versión',downloads:'Descargas',dlBtn:'⬇ Descargar Gratis',detailBtn:'Ver detalles →' },
     stripe:{ updated:'Actualizaciones frecuentes',speed:'Velocidad ilimitada',noads:'Sin publicidad',viet:'Parche vietnamita',games:'juegos' },
-    home:{ hot:'Juegos Destacados',hotMore:'Ver todos →',new_:'Recién Añadidos',newMore:'Ver más →',blog:'Últimas Entradas del Blog',blogMore:'Ver todo →' },
+    home:{ hot:'Juegos Destacados',hotMore:'Ver todos →',new_:'Recién Añadidos',newMore:'Ver más →' },
     pages:{
       games:   { title:'Todos los Juegos PC',     sub:'Biblioteca completa — busca y filtra a tu gusto' },
       genre:   { title:'Géneros de Juegos',        sub:'Elige tu género favorito y explora' },
@@ -108,8 +108,8 @@ const LANGS = {
       about:   { title:'Sobre Nosotros',            sub:'Acerca de VaultGame y nuestra misión' },
       contact: { title:'Contacto',                  sub:'Ponte en contacto con nuestro equipo' },
       report:  { title:'Reportar Problema',         sub:'Ayúdanos a mejorar VaultGame cada día' },
-      privacy: { title:'Política de Privacidad',    sub:'Última actualización: Enero 2025' },
-      terms:   { title:'Términos de Uso',           sub:'Última actualización: Enero 2025' },
+      privacy: { title:'Política de Privacidad',    sub:'Última actualización: Marzo 2026' },
+      terms:   { title:'Términos de Uso',           sub:'Última actualización: Marzo 2026' },
     },
     filter:{ all:'Todos',action:'Acción',rpg:'RPG',strategy:'Estrategia',puzzle:'Puzzle',shooter:'Shooter',adventure:'Aventura',simulation:'Simulación',horror:'Terror',sports:'Deportes',sortNew:'Más nuevos',sortName:'Nombre A→Z',sortRating:'Puntuación',sortDl:'Descargas',placeholder:'Buscar por nombre, género, etiquetas...',found:'Encontrados',gameUnit:'juegos' },
     blogCats:{ all:'Todos',news:'Noticias',guide:'Guías',review:'Reseñas',viet:'Vietnamita',dev:'Desarrollo' },
@@ -456,26 +456,6 @@ function renderHome() {
   const newG=GAMES.filter(g=>g.badges.includes('new'));
   document.getElementById('homeHot').innerHTML=(hot.length?hot:GAMES).slice(0,8).map((g,i)=>gcard(g,i*.04)).join('')||emptyHtml(l.empty.noHot);
   document.getElementById('homeNew').innerHTML=(newG.length?newG:GAMES).slice(0,4).map((g,i)=>gcard(g,i*.05)).join('')||emptyHtml(l.empty.noNew);
-
-  // Blog section
-  const sbl=document.getElementById('secBlogLabel'); if(sbl) sbl.textContent=lh.blog;
-  const sbm=document.getElementById('secBlogMore');  if(sbm) sbm.textContent=lh.blogMore;
-  const blogEl=document.getElementById('homeBlog'); if(!blogEl) return;
-  const sorted=[...BLOG_POSTS].sort((a,b)=>b.id-a.id).slice(0,3);
-  const BLOG_CAT_LABELS={news:'Tin tức',guide:'Hướng dẫn',review:'Đánh giá',viet:'Việt hóa',dev:'Phát triển game'};
-  blogEl.innerHTML=sorted.map((p,i)=>{
-    const cat=BLOG_CAT_LABELS[p.cat]||p.cat;
-    const bg=p.thumbnail?`url(${p.thumbnail})`:(p.gradient||'linear-gradient(135deg,var(--accent),var(--accent2))');
-    const iconH=!p.thumbnail?`<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem">${p.icon||'📝'}</div>`:'';
-    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="showPage('blogpost');history.pushState(null,'','/blog/${p.slug}');renderBlogPost(BLOG_POSTS.find(x=>x.slug==='${p.slug}'))">
-      <div class="hbc-img" style="background:${bg};background-size:cover;background-position:center;position:relative">${iconH}</div>
-      <div class="hbc-body">
-        <span class="hbc-cat hbc-cat-${p.cat}">${cat}</span>
-        <div class="hbc-title">${p.title}</div>
-        <div class="hbc-meta">${p.date} · ${p.readTime}</div>
-      </div>
-    </div>`;
-  }).join('');
 }
 
 function renderGames() {
