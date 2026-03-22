@@ -15,7 +15,7 @@ const GAMES = [
     <p>Phiên bản này hỗ trợ chơi <strong>Online Multiplayer</strong> — tạo hoặc tham gia đoàn xe cùng bạn bè, convoy xuyên châu Âu trên cùng một server. Bản Việt Hóa v1.58.1.1 được tích hợp sẵn, chỉ cần đổi ngôn ngữ sang Tiếng Việt trong game là xong.</p>`,
     install_guide: `<h3>HƯỚNG DẪN CÀI ĐẶT EURO TRUCK SIMULATOR 2 VIỆT HÓA</h3>
     <ol>
-      <li>Tải Game về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén<br>Ví Dụ tên file nén là "<strong>[tamhongame.com]</strong>_RDR2.rar" => pass là: <strong>tamhongame.com</strong></li>
+      <li>Tải Game về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén<br>Ví Dụ tên file nén là "<strong>[vaultgame]</strong>_RDR2.rar" => pass là: <strong>vaultgame</strong></li>
       <li>Với Win 64bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x64" chạy file "eurotrucks2.exe" để vào game</li>
       <li>Với Win 32bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x86" chạy file "eurotrucks2.exe" để vào game</li>
       <li>Vào game chỉnh ngôn ngữ sang <strong>Tiếng Việt</strong></li>
@@ -24,7 +24,7 @@ const GAMES = [
     </ol>
     <h3>HƯỚNG DẪN CHƠI ONLINE MULTIPLAYER</h3>
     <ol>
-      <li>Tải Steam fix online và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén<br>Ví Dụ tên file nén là "<strong>[tamhongame.com]</strong>_RDR2.rar" => pass là: <strong>tamhongame.com</strong></li>
+      <li>Tải Steam fix online và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén<br>Ví Dụ tên file nén là "<strong>[vaultgame]</strong>_RDR2.rar" => pass là: <strong>vaultgame</strong></li>
       <li>Copy tất cả các file trong đó bỏ vào thư mục chứa game</li>
       <li>Mở ứng dụng Steam và đăng nhập tài khoản (Để cho nó chạy nền)</li>
       <li>Với Win 64bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x64" chạy file "eurotrucks2.exe" để vào game</li>
@@ -32,7 +32,7 @@ const GAMES = [
       <li><strong>Tạo máy chủ:</strong> Vào game => nhấn phím ESC => Hộ tống => Tạo một đoàn xe => Xác nhận => Chúng tôi đang chờ đợi những người chơi khác tham gia</li>
       <li><strong>Tham gia:</strong> Vào game => nhấn phím ESC => Hộ tống => Kết nối với máy chủ của bạn bè.</li>
     </ol>`,
-    size: "15 GB",
+    size: "32.3 GB",
     version: "v1.58.1.1-VH",
     year: 2012,
     developer: "SCS Software",
@@ -156,13 +156,13 @@ const GAMES = [
     <p>Được tối ưu hóa để chạy tốt trên cấu hình máy tính phổ thông tại Việt Nam, đây là lựa chọn hoàn hảo cho những ai yêu thích bóng đá muốn trải nghiệm bằng tiếng mẹ đẻ.</p>`,
     install_guide: `<ol>
 <h3>HƯỚNG DẪN CÀI ĐẶT eFootball PES 2020</h3>
-<li>Tải Game về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén Ví Dụ tên file nén là "[tamhongame.com]_RDR2.rar" => pass là: tamhongame.com</li>
+<li>Tải Game về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén Ví Dụ tên file nén là "[vaultgame]_RDR2.rar" => pass là: vaultgame</li>
 <li>Vào "thư mục chứa game sau khi đã giải nén" Chạy file "PES2020.exe" để vào game</li>
 <li>Chỉnh cài đặt game bằng file "Settings.exe"</li>
 <li>Play game</li>
 
 <h3>HƯỚNG DẪN CÀI Việt Hóa + Bình Luận Tiếng Việt</h3>
-<li>Tải File Patch Việt Hóa + BLTV về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén Ví Dụ tên file nén là "[tamhongame.com]_RDR2.rar" => pass là: tamhongame.com</li>
+<li>Tải File Patch Việt Hóa + BLTV về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén Ví Dụ tên file nén là "[vaultgame]_RDR2.rar" => pass là: vaultgame</li>
 <li>Vào thư mục "eFootball PES 2020 Patch Viet Hoa + BLTV" Copy 2 file "pes 20 viet hoa.cpk" và "Pham Hung Tien Offcial BLTV.cpk" bỏ vào trong "thư mục chứa game sau khi đã giải nén\download" (Có thể Copy 1 trong 2 file tùy nhu cầu của bạn)</li>
 <li>Vẫn ở trong thư mục "eFootball PES 2020 Patch Viet Hoa + BLTV" => Vào tiếp thư mục "DpFileList_Generator" => Mở file "DpFileList Generator.exe" lên => Ở dòng CPK Path chọn đường dẫn tới "thư mục chứa game sau khi đã giải nén\download" => Ở dòng DpFileList chọn đường dẫn tới "thư mục chứa game sau khi đã giải nén\download" và Open vào file "DpFileList.bin" có trong này => Ở dòng DLC thì chọn "DLC v5.00" => Tiếp tục trong bảng mod ở dưới ta sẽ tích vào 2 ô (màu đen) là "Pham Hung Tien Offcial BLTV.cpk" và "pes 20 viet hoa.cpk" rồi nhấn vào nút "Take a break" đợi khoảng vài giây thì nhấn vào "Generate DpFileList.bin" => Sau khi thành công có thể tắt phần mềm đi</li>
 <li>Vào "thư mục chứa game sau khi đã giải nén" Chạy file "PES2020.exe" để vào game</li>
