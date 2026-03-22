@@ -43,8 +43,10 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: true,
     download_links: [
-      { label: "Game chính", url: "#", icon: "⬇️", group: "Gofile" },
-      { label: "Steam Fix Online", url: "#", icon: "⬇️", group: "Gofile" },
+      { label: "Part 1", url: "https://gofile.io/d/NuM1Cb", icon: "⬇️", group: "Gofile" },
+      { label: "Part 2", url: "https://gofile.io/d/DdLZbG", icon: "⬇️", group: "Gofile" },
+      { label: "Part 3", url: "https://gofile.io/d/XcMB4I", icon: "⬇️", group: "Gofile" },
+      { label: "Steam Fix Online", url: "https://gofile.io/d/XUQ4iP", icon: "🔧", group: "Gofile" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
     screenshots: [
