@@ -609,8 +609,35 @@ function renderDetail(id){
   var dlBtnsH='';
   var dlinks=g.download_links||[];
   if(dlinks.length){
-    for(var dli=0;dli<dlinks.length;dli++){
-      dlBtnsH+='<a href="'+dlinks[dli].url+'" class="dv2-dl-btn" target="_blank" rel="noopener">'+(dlinks[dli].icon||'&#11015;')+' T&#7842;I GAME &mdash; '+dlinks[dli].label+'</a>';
+    // Kiểm tra có link nào dùng group không
+    var hasGroup=dlinks.some(function(d){return d.group;});
+    if(!hasGroup){
+      // Game cũ: render nút đơn như cũ
+      for(var dli=0;dli<dlinks.length;dli++){
+        dlBtnsH+='<a href="'+dlinks[dli].url+'" class="dv2-dl-btn" target="_blank" rel="noopener">'+(dlinks[dli].icon||'&#11015;')+' T&#7842;I GAME &mdash; '+dlinks[dli].label+'</a>';
+      }
+    }else{
+      // Game mới: nhóm theo host
+      var groups={}, groupOrder=[];
+      for(var dli=0;dli<dlinks.length;dli++){
+        var d=dlinks[dli];
+        var grpName=d.group||'Khác';
+        if(!groups[grpName]){groups[grpName]=[];groupOrder.push(grpName);}
+        groups[grpName].push(d);
+      }
+      dlBtnsH='<div class="dv2-dl-groups">';
+      for(var gi=0;gi<groupOrder.length;gi++){
+        var grp=groupOrder[gi];
+        var grpLinks=groups[grp];
+        dlBtnsH+='<div class="dv2-dl-group">';
+        dlBtnsH+='<div class="dv2-dl-group-label">'+grpLinks[0].icon+' '+grp+'</div>';
+        dlBtnsH+='<div class="dv2-dl-group-btns">';
+        for(var gli=0;gli<grpLinks.length;gli++){
+          dlBtnsH+='<a href="'+grpLinks[gli].url+'" class="dv2-dl-part-btn" target="_blank" rel="noopener">&#11015; '+grpLinks[gli].label+'</a>';
+        }
+        dlBtnsH+='</div></div>';
+      }
+      dlBtnsH+='</div>';
     }
   }else{
     dlBtnsH='<div style="opacity:.5;font-size:.8rem;text-align:center;padding:.5rem">&#9203; S&#7855;p c&oacute; link t&#7843;i</div>';
