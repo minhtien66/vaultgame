@@ -1,5 +1,5 @@
 // ══ 0. THEME (Light / Dark) ══════════════════════════════
-let _theme = localStorage.getItem('vg_theme') || 'light';
+let _theme = localStorage.getItem('vg_theme') || 'dark';
 
 function applyTheme(t) {
   _theme = t;
@@ -23,7 +23,7 @@ const LANGS = {
     nav:{ home:'Trang chủ',games:'Tất cả Game',genre:'Thể loại',viet:'Việt Hóa',new_:'Game Mới',top:'Top Game',search:'Tìm kiếm',blog:'Blog' },
     hero:{ eyebrow:'Cập nhật liên tục — 100% miễn phí',size:'Dung lượng',version:'Phiên bản',downloads:'Lượt tải',dlBtn:'⬇ Tải ngay — Miễn phí',detailBtn:'Xem chi tiết →' },
     stripe:{ updated:'Cập nhật thường xuyên',speed:'Tốc độ cao không giới hạn',noads:'Không quảng cáo',viet:'Việt hóa',games:'game' },
-    home:{ hot:'Game Nổi Bật',hotMore:'Xem tất cả →',new_:'Mới Cập Nhật',newMore:'Xem thêm →' },
+    home:{ hot:'Game Nổi Bật',hotMore:'Xem tất cả →',new_:'Mới Cập Nhật',newMore:'Xem thêm →',blog:'Bài Viết Mới Nhất',blogMore:'Xem tất cả →' },
     pages:{
       games:   { title:'Tất Cả Game PC',          sub:'Toàn bộ kho game — tìm kiếm và lọc theo nhu cầu' },
       genre:   { title:'Thể Loại Game',            sub:'Chọn thể loại yêu thích để khám phá' },
@@ -60,7 +60,7 @@ const LANGS = {
     nav:{ home:'Home',games:'All Games',genre:'Genres',viet:'Vietnamese',new_:'New Games',top:'Top Games',search:'Search',blog:'Blog' },
     hero:{ eyebrow:'Updated constantly — 100% free',size:'File size',version:'Version',downloads:'Downloads',dlBtn:'⬇ Download Free',detailBtn:'View details →' },
     stripe:{ updated:'Regular updates',speed:'Unlimited high speed',noads:'No ads',viet:'Vietnamese patch',games:'games' },
-    home:{ hot:'Featured Games',hotMore:'View all →',new_:'Recently Added',newMore:'View more →' },
+    home:{ hot:'Featured Games',hotMore:'View all →',new_:'Recently Added',newMore:'View more →',blog:'Latest Blog Posts',blogMore:'View all →' },
     pages:{
       games:   { title:'All PC Games',          sub:'Full game library — search and filter as needed' },
       genre:   { title:'Game Genres',            sub:'Pick your favourite genre and explore' },
@@ -97,7 +97,7 @@ const LANGS = {
     nav:{ home:'Inicio',games:'Todos los Juegos',genre:'Géneros',viet:'Vietnamita',new_:'Novedades',top:'Top Juegos',search:'Buscar',blog:'Blog' },
     hero:{ eyebrow:'Actualizado constantemente — 100% gratis',size:'Tamaño',version:'Versión',downloads:'Descargas',dlBtn:'⬇ Descargar Gratis',detailBtn:'Ver detalles →' },
     stripe:{ updated:'Actualizaciones frecuentes',speed:'Velocidad ilimitada',noads:'Sin publicidad',viet:'Parche vietnamita',games:'juegos' },
-    home:{ hot:'Juegos Destacados',hotMore:'Ver todos →',new_:'Recién Añadidos',newMore:'Ver más →' },
+    home:{ hot:'Juegos Destacados',hotMore:'Ver todos →',new_:'Recién Añadidos',newMore:'Ver más →',blog:'Últimas Entradas del Blog',blogMore:'Ver todo →' },
     pages:{
       games:   { title:'Todos los Juegos PC',     sub:'Biblioteca completa — busca y filtra a tu gusto' },
       genre:   { title:'Géneros de Juegos',        sub:'Elige tu género favorito y explora' },
@@ -456,6 +456,25 @@ function renderHome() {
   const newG=GAMES.filter(g=>g.badges.includes('new'));
   document.getElementById('homeHot').innerHTML=(hot.length?hot:GAMES).slice(0,8).map((g,i)=>gcard(g,i*.04)).join('')||emptyHtml(l.empty.noHot);
   document.getElementById('homeNew').innerHTML=(newG.length?newG:GAMES).slice(0,4).map((g,i)=>gcard(g,i*.05)).join('')||emptyHtml(l.empty.noNew);
+
+  // Blog section
+  const sbl=document.getElementById('secBlogLabel'); if(sbl) sbl.textContent=lh.blog;
+  const sbm=document.getElementById('secBlogMore');  if(sbm) sbm.textContent=lh.blogMore;
+  const blogEl=document.getElementById('homeBlog'); if(!blogEl) return;
+  const sorted=[...BLOG_POSTS].sort((a,b)=>b.id-a.id).slice(0,3);
+  const BLOG_CAT_LABELS={news:'Tin tức',guide:'Hướng dẫn',review:'Đánh giá',viet:'Việt hóa',dev:'Phát triển game'};
+  blogEl.innerHTML=sorted.map((p,i)=>{
+    const cat=BLOG_CAT_LABELS[p.cat]||p.cat;
+    const bg=p.thumbnail?`url(${p.thumbnail})`:(p.gradient||'linear-gradient(135deg,var(--accent),var(--accent2))');
+    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="go('blogpost');history.pushState(null,'','/blog/${p.slug}');renderBlogPost(BLOG_POSTS.find(x=>x.slug==='${p.slug}'))">
+      <div class="hbc-img" style="background-image:${bg}"></div>
+      <div class="hbc-body">
+        <span class="hbc-cat hbc-cat-${p.cat}">${cat}</span>
+        <div class="hbc-title">${p.title}</div>
+        <div class="hbc-meta">${p.date} · ${p.readTime}</div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function renderGames() {
