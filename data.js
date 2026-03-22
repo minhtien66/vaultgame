@@ -32,7 +32,7 @@ const GAMES = [
       <li><strong>Tạo máy chủ:</strong> Vào game => nhấn phím ESC => Hộ tống => Tạo một đoàn xe => Xác nhận => Chúng tôi đang chờ đợi những người chơi khác tham gia</li>
       <li><strong>Tham gia:</strong> Vào game => nhấn phím ESC => Hộ tống => Kết nối với máy chủ của bạn bè.</li>
     </ol>`,
-    size: "32.3 GB",
+    size: "15 GB",
     version: "v1.58.1.1-VH",
     year: 2012,
     developer: "SCS Software",
@@ -48,10 +48,20 @@ const GAMES = [
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
     screenshots: [
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
-      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/ss_7fa5fb40a8bd5ae8dad71aad7ab9c48e0da44568.1920x1080.jpg",
-      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/ss_f1ce31d3e4eb15f06c0714ed00f96ab88c6a0609.1920x1080.jpg",
-      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/ss_2a8d2abf25ef8cbc56cffc66fbdf97c3b607f2ee.1920x1080.jpg",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/ss_bd8b2b2f6a1a595afab14f398de836e6010563c7.1920x1080.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_03.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_05.jpg",
+    ],
+    gallery: [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/ss_bd8b2b2f6a1a595afab14f398de836e6010563c7.1920x1080.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_01.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_02.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_03.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_04.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_05.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_06.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_07.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_08.jpg",
     ],
     trailer: "https://www.youtube.com/embed/RHGAfgKMRiI",
     tags: ["Lái Xe", "Mô Phỏng", "Việt Hóa", "Multiplayer", "Online", "Châu Âu", "SCS Software"],
