@@ -247,17 +247,6 @@ function showPage(page) {
   if (r.nav) { const n=document.getElementById(r.nav); if(n) n.classList.add('active'); }
 }
 
-function updateCanonical(path) {
-  let el = document.getElementById('canonical-url');
-  if (!el) {
-    el = document.createElement('link');
-    el.rel = 'canonical';
-    el.id = 'canonical-url';
-    document.head.appendChild(el);
-  }
-  el.href = 'https://vaultgame.qzz.io' + path;
-}
-
 function go(page, param) {
   closeLangMenu();
   showPage(page);
@@ -279,7 +268,20 @@ function go(page, param) {
 function getCleanPath() {
   let p = location.pathname;
   if (BASE_PATH && p.startsWith(BASE_PATH)) p = p.slice(BASE_PATH.length);
+  // Xóa trailing slash (trừ root '/') để tránh lỗi Cloudflare redirect /blog → /blog/
+  if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
   return p || '/';
+}
+
+function updateCanonical(path) {
+  let el = document.getElementById('canonical-url');
+  if (!el) {
+    el = document.createElement('link');
+    el.rel = 'canonical';
+    el.id = 'canonical-url';
+    document.head.appendChild(el);
+  }
+  el.href = 'https://vaultgame.qzz.io' + path;
 }
 
 function reRender(page) {
