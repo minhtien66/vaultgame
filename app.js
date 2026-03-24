@@ -254,10 +254,12 @@ function go(page, param) {
     const g = GAMES.find(x=>x.id===+param);
     const urlSlug = g ? g.slug : param;
     history.pushState(null,'', BASE_PATH + '/game/' + urlSlug);
+    setCanonical('/game/' + urlSlug);
     renderDetail(+param);
   } else {
     const r = ROUTES[page]; if(!r) return;
     history.pushState(null,'', BASE_PATH + r.path);
+    setCanonical(r.path);
     reRender(page);
   }
   window.scrollTo({top:0,behavior:'smooth'});
@@ -267,6 +269,16 @@ function getCleanPath() {
   let p = location.pathname;
   if (BASE_PATH && p.startsWith(BASE_PATH)) p = p.slice(BASE_PATH.length);
   return p || '/';
+}
+
+function setCanonical(path) {
+  let el = document.querySelector('link[rel="canonical"]');
+  if (!el) {
+    el = document.createElement('link');
+    el.rel = 'canonical';
+    document.head.appendChild(el);
+  }
+  el.href = 'https://vaultgame.qzz.io' + path;
 }
 
 function reRender(page) {
@@ -299,17 +311,19 @@ function handlePath() {
   const bp = p.match(/^\/blog\/(.+)$/);
   if (bp) {
     const post = BLOG_POSTS.find(x=>x.slug===bp[1]);
-    if (post) { showPage('blogpost'); renderBlogPost(post); return; }
+    if (post) { showPage('blogpost'); setCanonical('/blog/' + bp[1]); renderBlogPost(post); return; }
   }
   // Game detail: /game/slug
   const gm = p.match(/^\/game\/(.+)$/);
   if (gm) {
     const g = GAMES.find(x=>x.slug===gm[1]) || GAMES.find(x=>x.id===+gm[1]);
-    if (g) { showPage('detail'); renderDetail(g.id); return; }
+    if (g) { showPage('detail'); setCanonical('/game/' + g.slug); renderDetail(g.id); return; }
   }
   // Static pages
   const found = Object.entries(ROUTES).find(([k,r])=>!['detail','blogpost'].includes(k) && r.path===p);
   const target = found ? found[0] : 'home';
+  const targetRoute = ROUTES[target];
+  setCanonical(targetRoute ? targetRoute.path : '/');
   showPage(target);
   reRender(target);
 }
