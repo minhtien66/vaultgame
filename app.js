@@ -483,7 +483,7 @@ function renderHome() {
     const cat=BLOG_CAT_LABELS[p.cat]||p.cat;
     const bg=p.thumbnail?`url(${p.thumbnail})`:(p.gradient||'linear-gradient(135deg,var(--accent),var(--accent2))');
     const iconH=!p.thumbnail?`<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem">${p.icon||'📝'}</div>`:'';
-    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="showPage('blogpost');history.pushState(null,'','/blog/${p.slug}');renderBlogPost(BLOG_POSTS.find(x=>x.slug==='${p.slug}'))">
+    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="goBlogPost('${p.slug}')">`
       <div class="hbc-img" style="background:${bg};background-size:cover;background-position:center;position:relative">${iconH}</div>
       <div class="hbc-body">
         <span class="hbc-cat hbc-cat-${p.cat}">${cat}</span>
@@ -929,6 +929,7 @@ function goBlogPost(slug) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-blog-post').classList.add('active');
   history.pushState(null,'', BASE_PATH + '/blog/' + post.slug);
+  updateCanonical('/blog/' + post.slug);
   renderBlogPost(post);
   window.scrollTo({top:0,behavior:'smooth'});
 }
