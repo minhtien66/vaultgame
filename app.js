@@ -247,6 +247,17 @@ function showPage(page) {
   if (r.nav) { const n=document.getElementById(r.nav); if(n) n.classList.add('active'); }
 }
 
+function updateCanonical(path) {
+  let el = document.getElementById('canonical-url');
+  if (!el) {
+    el = document.createElement('link');
+    el.rel = 'canonical';
+    el.id = 'canonical-url';
+    document.head.appendChild(el);
+  }
+  el.href = 'https://vaultgame.qzz.io' + path;
+}
+
 function go(page, param) {
   closeLangMenu();
   showPage(page);
@@ -268,20 +279,7 @@ function go(page, param) {
 function getCleanPath() {
   let p = location.pathname;
   if (BASE_PATH && p.startsWith(BASE_PATH)) p = p.slice(BASE_PATH.length);
-  // Xóa trailing slash (trừ root '/') để tránh lỗi Cloudflare redirect /blog → /blog/
-  if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
   return p || '/';
-}
-
-function updateCanonical(path) {
-  let el = document.getElementById('canonical-url');
-  if (!el) {
-    el = document.createElement('link');
-    el.rel = 'canonical';
-    el.id = 'canonical-url';
-    document.head.appendChild(el);
-  }
-  el.href = 'https://vaultgame.qzz.io' + path;
 }
 
 function reRender(page) {
@@ -483,7 +481,7 @@ function renderHome() {
     const cat=BLOG_CAT_LABELS[p.cat]||p.cat;
     const bg=p.thumbnail?`url(${p.thumbnail})`:(p.gradient||'linear-gradient(135deg,var(--accent),var(--accent2))');
     const iconH=!p.thumbnail?`<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem">${p.icon||'📝'}</div>`:'';
-    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="goBlogPost('${p.slug}')">`
+    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="showPage('blogpost');history.pushState(null,'','/blog/${p.slug}');renderBlogPost(BLOG_POSTS.find(x=>x.slug==='${p.slug}'))">
       <div class="hbc-img" style="background:${bg};background-size:cover;background-position:center;position:relative">${iconH}</div>
       <div class="hbc-body">
         <span class="hbc-cat hbc-cat-${p.cat}">${cat}</span>
@@ -929,7 +927,6 @@ function goBlogPost(slug) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-blog-post').classList.add('active');
   history.pushState(null,'', BASE_PATH + '/blog/' + post.slug);
-  updateCanonical('/blog/' + post.slug);
   renderBlogPost(post);
   window.scrollTo({top:0,behavior:'smooth'});
 }
