@@ -9,31 +9,46 @@ const GAMES = [
     slug: "euro-truck-simulator-2-viet-hoa",
     genre: "simulation",
     genre_label: "Mô Phỏng / Lái Xe",
-    desc_short: "Trải nghiệm lái xe tải xuyên châu Âu với bản Việt Hóa hoàn chỉnh, hỗ trợ chơi Online Multiplayer cùng bạn bè — phiên bản v1.58.1.1 mới nhất.",
-    desc_full: `<p>Euro Truck Simulator 2 (ETS2) là tựa game mô phỏng lái xe tải nổi tiếng thế giới của SCS Software, nay được cộng đồng Việt Nam Việt hóa hoàn chỉnh với giao diện tiếng Việt đầy đủ.</p>
-    <p>Trong ETS2, bạn sẽ lái xe tải qua hơn 60 thành phố châu Âu — từ Anh, Đức, Pháp, Ý, Ba Lan đến nhiều quốc gia khác — vận chuyển hàng hóa đa dạng với các loại xe tải từ Volvo, Scania, MAN, Mercedes đến DAF. Xây dựng công ty vận tải riêng, thuê tài xế, mở rộng garage và trở thành ông trùm logistics châu Âu.</p>
-    <p>Phiên bản này hỗ trợ chơi <strong>Online Multiplayer</strong> — tạo hoặc tham gia đoàn xe cùng bạn bè, convoy xuyên châu Âu trên cùng một server. Bản Việt Hóa v1.58.1.1 được tích hợp sẵn, chỉ cần đổi ngôn ngữ sang Tiếng Việt trong game là xong.</p>`,
-    install_guide: `<h3>HƯỚNG DẪN CÀI ĐẶT EURO TRUCK SIMULATOR 2 VIỆT HÓA</h3>
+    desc_short: "Đánh giá chi tiết Euro Truck Simulator 2 — tựa game mô phỏng lái xe tải huyền thoại với bản Việt Hóa hoàn chỉnh và hỗ trợ chơi Online Multiplayer cùng bạn bè.",
+    desc_full: `
+<h2>Euro Truck Simulator 2 là gì?</h2>
+<p>Euro Truck Simulator 2 (ETS2) là tựa game mô phỏng lái xe tải nổi tiếng thế giới của SCS Software, lần đầu ra mắt năm 2012 và đến nay vẫn là một trong những game mô phỏng được yêu thích nhất trên Steam với hơn 200.000 đánh giá tích cực. Tại Việt Nam, cộng đồng game thủ đã Việt hóa hoàn chỉnh giao diện và phụ đề tiếng Việt, giúp người chơi trong nước trải nghiệm tựa game này dễ dàng hơn bao giờ hết.</p>
+
+<h2>Khám phá châu Âu sau tay lái</h2>
+<p>Trong ETS2, bạn sẽ lái xe tải qua hơn 60 thành phố châu Âu — từ London (Anh), Paris (Pháp), Berlin (Đức), Rome (Ý), Warsaw (Ba Lan) đến hàng chục quốc gia châu Âu khác. Mỗi thành phố được tái hiện với kiến trúc đặc trưng, hệ thống đường xá chi tiết và các biển hiệu giao thông đúng chuẩn châu Âu.</p>
+<p>Nhiệm vụ chính là vận chuyển hàng hóa đa dạng — từ hàng nông sản, vật liệu xây dựng đến hàng công nghiệp — với nhiều loại xe tải từ các thương hiệu danh tiếng như Volvo, Scania, MAN, Mercedes-Benz và DAF. Mỗi loại xe có đặc tính lái và thông số kỹ thuật riêng, tạo ra sự phong phú trong trải nghiệm.</p>
+
+<h2>Xây dựng đế chế vận tải của riêng bạn</h2>
+<p>ETS2 không chỉ là game lái xe đơn thuần — đây còn là game quản lý kinh doanh thú vị. Bắt đầu từ một tài xế làm thuê, bạn sẽ dần tích lũy tiền để mua xe tải đầu tiên, mở garage riêng, thuê thêm tài xế AI và mở rộng công ty vận tải xuyên châu Âu. Hệ thống kinh tế trong game rất logic: chi phí nhiên liệu, sửa chữa xe, lương nhân viên và lợi nhuận từ mỗi chuyến hàng đều được tính toán chi tiết.</p>
+
+<h2>Chơi Online Multiplayer — Convoy cùng bạn bè</h2>
+<p>Một trong những điểm hấp dẫn nhất của phiên bản này là hỗ trợ chơi Online Multiplayer. Bạn có thể tạo hoặc tham gia đoàn xe convoy cùng bạn bè, cùng nhau vận chuyển hàng hóa và khám phá châu Âu trên cùng một server. Trải nghiệm convoy 5-10 người trên cao tốc châu Âu về đêm là một trong những khoảnh khắc đáng nhớ nhất trong game.</p>
+
+<h2>Bản Việt Hóa — Trải nghiệm game bằng tiếng mẹ đẻ</h2>
+<p>Cộng đồng game thủ Việt Nam đã dày công Việt hóa toàn bộ giao diện game, từ menu chính, bản đồ, thông báo nhiệm vụ đến các thông số kỹ thuật của xe. Chỉ cần vào phần cài đặt ngôn ngữ trong game và chọn Tiếng Việt — bản dịch sẽ được áp dụng ngay lập tức mà không cần thao tác thêm.</p>
+
+<h2>Tại sao nên trải nghiệm ETS2?</h2>
+<p>Nếu bạn đang tìm kiếm một tựa game thư giãn sau những giờ làm việc căng thẳng, ETS2 là lựa chọn hoàn hảo. Cảm giác lái xe xuyên đêm trên những cung đường châu Âu với âm nhạc yêu thích, ngắm cảnh bình minh ló dạng sau dãy núi Alps — đó là điều mà ít game nào có thể mang lại. Đây cũng là một trong những game có cộng đồng mod lớn nhất thế giới, với hàng chục nghìn mod miễn phí từ bản đồ mở rộng, xe mới đến thay đổi thời tiết và đồ họa.</p>
+<p>Nếu bạn muốn ủng hộ nhà phát triển, hãy mua bản quyền chính thức trên <strong>Steam</strong> — SCS Software thường xuyên có khuyến mãi giảm giá rất hấp dẫn.</p>`,
+    install_guide: `<h3>HƯỚNG DẪN TRẢI NGHIỆM EURO TRUCK SIMULATOR 2 VIỆT HÓA</h3>
     <ol>
-      <li>Tải Game về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén<br>Ví Dụ tên file nén là "<strong>[vaultgame]</strong>_RDR2.rar" => pass là: <strong>vaultgame</strong></li>
-      <li>Với Win 64bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x64" chạy file "eurotrucks2.exe" để vào game</li>
-      <li>Với Win 32bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x86" chạy file "eurotrucks2.exe" để vào game</li>
-      <li>Vào game chỉnh ngôn ngữ sang <strong>Tiếng Việt</strong></li>
-      <li>Việt Hóa đã được tích hợp sẵn trong game</li>
-      <li>Play game</li>
+      <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip (mật khẩu nằm trong dấu [ ] ở tên file nén)</li>
+      <li>Với Win 64bit: vào thư mục <code>Euro Truck Simulator 2\bin\win_x64</code>, chạy file <strong>eurotrucks2.exe</strong></li>
+      <li>Với Win 32bit: vào thư mục <code>Euro Truck Simulator 2\bin\win_x86</code>, chạy file <strong>eurotrucks2.exe</strong></li>
+      <li>Vào phần cài đặt trong game, chọn ngôn ngữ <strong>Tiếng Việt</strong></li>
+      <li>Bản Việt Hóa đã được tích hợp sẵn — khởi động game và tận hưởng!</li>
     </ol>
     <h3>HƯỚNG DẪN CHƠI ONLINE MULTIPLAYER</h3>
     <ol>
-      <li>Tải Steam fix online và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén<br>Ví Dụ tên file nén là "<strong>[vaultgame]</strong>_RDR2.rar" => pass là: <strong>vaultgame</strong></li>
-      <li>Copy tất cả các file trong đó bỏ vào thư mục chứa game</li>
-      <li>Mở ứng dụng Steam và đăng nhập tài khoản (Để cho nó chạy nền)</li>
-      <li>Với Win 64bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x64" chạy file "eurotrucks2.exe" để vào game</li>
-      <li>Với Win 32bit: vào thư mục theo đường dẫn "Euro Truck Simulator 2\bin\win_x86" chạy file "eurotrucks2.exe" để vào game</li>
-      <li><strong>Tạo máy chủ:</strong> Vào game => nhấn phím ESC => Hộ tống => Tạo một đoàn xe => Xác nhận => Chúng tôi đang chờ đợi những người chơi khác tham gia</li>
-      <li><strong>Tham gia:</strong> Vào game => nhấn phím ESC => Hộ tống => Kết nối với máy chủ của bạn bè.</li>
+      <li>Tải Steam fix online và giải nén (mật khẩu tương tự file game)</li>
+      <li>Copy toàn bộ file trong thư mục vừa giải nén vào thư mục chứa game</li>
+      <li>Mở Steam và đăng nhập tài khoản (để chạy nền)</li>
+      <li>Chạy <strong>eurotrucks2.exe</strong> như hướng dẫn bên trên</li>
+      <li><strong>Tạo phòng:</strong> ESC → Hộ tống → Tạo một đoàn xe → Xác nhận</li>
+      <li><strong>Tham gia:</strong> ESC → Hộ tống → Kết nối với máy chủ của bạn bè</li>
     </ol>`,
     size: "32.3 GB",
-    version: "v1.58.1.1-VH",
+    version: "Phiên bản mới nhất (Việt Hóa)",
     year: 2012,
     developer: "SCS Software",
     publisher: "SCS Software",
@@ -43,10 +58,10 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: true,
     download_links: [
-      { label: "Part 1", url: "https://gofile.io/d/NuM1Cb", icon: "⬇️", group: "Gofile" },
-      { label: "Part 2", url: "https://gofile.io/d/DdLZbG", icon: "⬇️", group: "Gofile" },
-      { label: "Part 3", url: "https://gofile.io/d/XcMB4I", icon: "⬇️", group: "Gofile" },
-      { label: "Steam Fix Online", url: "https://gofile.io/d/XUQ4iP", icon: "🔧", group: "Gofile" },
+      { label: "Part 1", url: "https://gofile.io/d/NuM1Cb", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 2", url: "https://gofile.io/d/DdLZbG", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 3", url: "https://gofile.io/d/XcMB4I", icon: "⬇️", group: "Mirror Link" },
+      { label: "Steam Fix Online", url: "https://gofile.io/d/XUQ4iP", icon: "🔧", group: "Mirror Link" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
     screenshots: [
@@ -93,17 +108,31 @@ const GAMES = [
     genre: "strategy",
     genre_label: "Chiến lược / Mô phỏng",
     desc_short: "Xây dựng đế chế của bạn trong thế kỷ 19 đầy biến động — quản lý kinh tế, xã hội, ngoại giao và chiến tranh trong tựa game chiến lược vĩ mô đỉnh cao của Paradox Interactive.",
-    desc_full: `<p>Victoria 3 là tựa game chiến lược vĩ mô được phát triển bởi Paradox Development Studio và phát hành năm 2022. Đây là phần tiếp theo của loạt game Victoria nổi tiếng, đưa người chơi trở về kỷ nguyên 1836–1936 — thời đại của Cách mạng Công nghiệp, chủ nghĩa thực dân và sự trỗi dậy của các cường quốc.</p>
-    <p>Trong Victoria 3, bạn sẽ lãnh đạo một quốc gia từ đầu thế kỷ 19 đến đầu thế kỷ 20, đưa ra các quyết định chiến lược về kinh tế (xây dựng ngành công nghiệp, thương mại quốc tế), chính trị (cải cách xã hội, hệ thống chính trị), ngoại giao (liên minh, chiến tranh, thuộc địa) và phát triển dân số.</p>
-    <p>Điểm đặc sắc của Victoria 3 là hệ thống kinh tế cực kỳ chi tiết với chuỗi cung ứng hàng hóa, thị trường toàn cầu và cơ chế tăng trưởng GDP. Hệ thống Pops (dân số) theo dõi từng tầng lớp xã hội với nhu cầu và tư tưởng riêng — quyết định sự ổn định hay bất ổn của đất nước.</p>`,
+    desc_full: `
+<h2>Victoria 3 — Đỉnh cao của dòng game chiến lược vĩ mô</h2>
+<p>Victoria 3 là tựa game chiến lược vĩ mô được phát triển bởi Paradox Development Studio và phát hành năm 2022. Đây là phần tiếp theo được mong chờ suốt hơn 10 năm của loạt game Victoria nổi tiếng, đưa người chơi trở về kỷ nguyên 1836–1936 — thời đại của Cách mạng Công nghiệp, chủ nghĩa thực dân và sự trỗi dậy của các cường quốc.</p>
+
+<h2>Cốt truyện và bối cảnh</h2>
+<p>Không có một "cốt truyện" cố định trong Victoria 3 — thay vào đó, chính lịch sử do bạn viết nên mới là cốt truyện thật sự. Bạn bắt đầu năm 1836, khi thế giới đang đứng trước ngưỡng cửa của cuộc Cách mạng Công nghiệp. Từ đây, mọi quyết định đều định hình lịch sử: liệu nước Anh có duy trì vị thế bá chủ thế giới? Liệu Việt Nam có thể kháng cự chủ nghĩa thực dân Pháp? Hay một quốc gia nhỏ bé ở châu Phi có thể vươn lên thành cường quốc toàn cầu?</p>
+
+<h2>Đồ họa và âm thanh</h2>
+<p>Victoria 3 có giao diện bản đồ thế giới chi tiết với nhiều lớp thông tin — từ chính trị, kinh tế, dân số đến địa hình và tài nguyên. Phong cách đồ họa nghiêng về bản đồ chiến lược thay vì hiệu ứng hình ảnh hoành tráng, phù hợp với tính chất của dòng game grand strategy. Âm nhạc được thiết kế theo từng thời kỳ lịch sử, tạo không khí cực kỳ ăn nhập.</p>
+
+<h2>Gameplay và cơ chế độc đáo</h2>
+<p>Điểm đặc sắc nhất của Victoria 3 là hệ thống kinh tế cực kỳ chi tiết. Mỗi quốc gia có hàng chục loại hàng hóa trong chuỗi cung ứng — bông → vải → quần áo; sắt → thép → đường sắt → tàu hỏa. Bạn phải xây dựng các tòa nhà sản xuất đúng thứ tự, đảm bảo chuỗi cung ứng liền mạch để nền kinh tế phát triển bền vững.</p>
+<p>Hệ thống Pops (dân số) là cơ chế độc đáo nhất của Victoria: mỗi tầng lớp xã hội (nông dân, công nhân, tiểu tư sản, quý tộc...) có nhu cầu tiêu dùng, tư tưởng chính trị và mức độ hài lòng riêng. Nếu công nhân quá bất mãn, họ sẽ ủng hộ các phong trào cách mạng; nếu quý tộc mất đặc quyền, họ sẽ cản trở cải cách.</p>
+
+<h2>Tại sao nên trải nghiệm Victoria 3?</h2>
+<p>Nếu bạn yêu thích lịch sử và muốn "viết lại lịch sử" theo cách của mình, Victoria 3 là trải nghiệm không thể bỏ qua. Mỗi ván chơi là một câu chuyện hoàn toàn khác nhau — đôi khi bạn xây dựng đế chế công nghiệp hùng mạnh, đôi khi đưa một quốc gia nhỏ bé vươn lên sân khấu thế giới, đôi khi chứng kiến cuộc cách mạng xã hội lật đổ chính quyền do mình điều hành. Độ sâu của game gần như vô hạn và cộng đồng mod rất phong phú, đảm bảo trải nghiệm luôn mới mẻ sau hàng trăm giờ chơi.</p>
+<p>Hãy ủng hộ Paradox Development Studio bằng cách mua bản quyền chính thức trên <strong>Steam</strong> nếu bạn thích tựa game này!</p>`,
     install_guide: `<ol>
       <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip (mật khẩu nằm trong dấu [ ] ở tên file nén)</li>
-      <li>Vào thư mục sau khi giải nén</li>
-      <li>Chạy <strong>victoria3.exe</strong> để bắt đầu chơi</li>
-      <li><strong>Lưu ý:</strong> Tắt Windows Defender / Antivirus trước khi cài để tránh bị xóa file crack</li>
+      <li>Mở thư mục sau khi giải nén</li>
+      <li>Chạy <strong>victoria3.exe</strong> để bắt đầu trải nghiệm</li>
+      <li><strong>Lưu ý:</strong> Tắt Windows Defender / phần mềm diệt virus tạm thời nếu gặp cảnh báo nhầm</li>
     </ol>`,
     size: "9.5 GB",
-    version: "v1.12.4",
+    version: "Phiên bản mới nhất",
     year: 2022,
     developer: "Paradox Development Studio",
     publisher: "Paradox Interactive",
@@ -113,7 +142,7 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: false,
     download_links: [
-      { label: "Gofile", url: "https://gofile.io/d/jg1uxC", icon: "⬇️" },
+      { label: "Mirror Link", url: "https://gofile.io/d/jg1uxC", icon: "⬇️" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
     screenshots: [
@@ -121,7 +150,7 @@ const GAMES = [
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/529340/4a1da4d1f072d157c25645ca8459c6573a0d5671/ss_4a1da4d1f072d157c25645ca8459c6573a0d5671.1920x1080.jpg?t=1773335146",
       "https://daominhha.net/wp-content/uploads/2022/10/download-mien-phi-VICTORIA-3-daominhha.net_.jpg",
       "https://daominhha.net/wp-content/uploads/2022/10/tai-full-game-VICTORIA-3-daominhha.jpg",
-     "https://images.squarespace-cdn.com/content/v1/55ef0e29e4b099e22cdc9eea/36daaad5-13d6-4aeb-b44e-cda172934142/Victoria+3+World.jpg",
+      "https://images.squarespace-cdn.com/content/v1/55ef0e29e4b099e22cdc9eea/36daaad5-13d6-4aeb-b44e-cda172934142/Victoria+3+World.jpg",
     ],
     trailer: "https://www.youtube.com/embed/WOlfY-FsL9I",
     tags: ["Chiến lược", "Mô phỏng", "Lịch sử", "Grand Strategy", "Paradox", "Kinh tế", "Thế kỷ 19"],
@@ -150,26 +179,44 @@ const GAMES = [
     slug: "efootball-pes-2020-viet-hoa",
     genre: "sports",
     genre_label: "Thể Thao / Bóng Đá",
-    desc_short: "Trải nghiệm bóng đá đỉnh cao với bình luận tiếng Việt hoàn chỉnh, đội tuyển Việt Nam cập nhật, và lối chơi mượt mà được Việt hóa 100% bởi cộng đồng.",
-    desc_full: `<p>eFootball PES 2020 (Pro Evolution Soccer 2020) là tựa game bóng đá huyền thoại của Konami, nay được cộng đồng game thủ Việt Nam Việt hóa hoàn chỉnh với bình luận tiếng Việt sống động.</p>
-    <p>Phiên bản Việt hóa này bao gồm lời bình luận tiếng Việt được thu âm chuyên nghiệp, giao diện menu hoàn toàn tiếng Việt, và đội tuyển quốc gia Việt Nam với đội hình cập nhật. Gameplay mượt mà, vật lý bóng chân thực, và chế độ Master League hấp dẫn là những điểm nhấn của tựa game này.</p>
-    <p>Được tối ưu hóa để chạy tốt trên cấu hình máy tính phổ thông tại Việt Nam, đây là lựa chọn hoàn hảo cho những ai yêu thích bóng đá muốn trải nghiệm bằng tiếng mẹ đẻ.</p>`,
+    desc_short: "Đánh giá eFootball PES 2020 bản Việt Hóa — trải nghiệm bóng đá đỉnh cao với bình luận tiếng Việt hoàn chỉnh, đội tuyển Việt Nam cập nhật và lối chơi mượt mà huyền thoại của Konami.",
+    desc_full: `
+<h2>eFootball PES 2020 — Đỉnh cao bóng đá PC trước khi Konami đổi hướng</h2>
+<p>eFootball PES 2020 (Pro Evolution Soccer 2020) được nhiều người coi là tựa game bóng đá hay nhất mà Konami từng tạo ra trước khi chuyển sang mô hình free-to-play với eFootball gây nhiều tranh cãi. Ra mắt năm 2019, PES 2020 vẫn đang được hàng nghìn game thủ Việt Nam chơi đến tận hôm nay — đặc biệt với bản Việt hóa chất lượng cao kèm bình luận tiếng Việt của BLV Phạm Hùng Tiến.</p>
+
+<h2>Cốt truyện và chế độ chơi</h2>
+<p>PES 2020 không có "cốt truyện" theo nghĩa truyền thống, nhưng chế độ <strong>Master League</strong> chính là nơi để người chơi viết nên hành trình của riêng mình. Bạn sẽ tiếp quản một câu lạc bộ đang gặp khó khăn, từng bước xây dựng đội hình, ký hợp đồng cầu thủ, thiết lập chiến thuật và dẫn dắt CLB từ giải hạng dưới lên đến đỉnh cao Champions League.</p>
+
+<h2>Đồ họa và âm thanh</h2>
+<p>PES 2020 sử dụng engine Fox Engine với chất lượng đồ họa ấn tượng. Khuôn mặt các siêu sao như Messi, Ronaldo, Neymar được quét 3D chi tiết đến từng sợi tóc. Animation di chuyển của cầu thủ cực kỳ tự nhiên — các pha dribble, va chạm cơ thể và phản ứng của thủ môn đều mượt mà hơn nhiều so với đối thủ cùng thời.</p>
+<p>Điểm nhấn lớn nhất là <strong>bình luận tiếng Việt</strong> của BLV Phạm Hùng Tiến — với hàng nghìn câu được thu âm chuyên nghiệp, giọng bình luận sôi động đúng cảm xúc trận đấu.</p>
+
+<h2>Gameplay — Vì sao PES 2020 vẫn là tiêu chuẩn vàng?</h2>
+<p>Vật lý bóng của PES 2020 đến nay vẫn được đánh giá là chân thực nhất trong lịch sử game bóng đá. Mỗi đường chuyền, mỗi cú sút đều có trọng lượng riêng — không có cảm giác "cứng đơ" hay "trượt băng" như một số game bóng đá khác. AI đồng đội thông minh, biết di chuyển tạo không gian và hỗ trợ đúng lúc. Hệ thống "Magic Moments" — khả năng đặc biệt riêng của từng siêu sao — tái hiện rất chính xác phong cách chơi thực tế của họ.</p>
+
+<h2>Bản Việt Hóa — Trọn vẹn từ menu đến sân cỏ</h2>
+<p>Bản Việt hóa này bao gồm: giao diện menu hoàn toàn tiếng Việt, đội tuyển quốc gia Việt Nam với đội hình được cập nhật, và đặc biệt là bản patch bình luận tiếng Việt của BLV Phạm Hùng Tiến. Cộng đồng game thủ Việt Nam đã đầu tư rất nhiều công sức để mang lại trải nghiệm bóng đá hoàn chỉnh nhất bằng tiếng mẹ đẻ.</p>
+
+<h2>Tại sao nên trải nghiệm PES 2020?</h2>
+<p>Dù đã ra mắt hơn 5 năm, PES 2020 vẫn là lựa chọn hàng đầu cho những ai yêu bóng đá và muốn trải nghiệm gameplay mượt mà, chiều sâu chiến thuật và cảm giác bóng chân thực. Nếu bạn chưa từng thử PES 2020, đây là cơ hội tuyệt vời. Và nếu bạn muốn ủng hộ Konami, hãy tìm mua bản quyền trên <strong>Steam</strong>!</p>`,
     install_guide: `<ol>
 <h3>HƯỚNG DẪN CÀI ĐẶT eFootball PES 2020</h3>
-<li>Tải Game về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén Ví Dụ tên file nén là "[vaultgame]_RDR2.rar" => pass là: vaultgame</li>
-<li>Vào "thư mục chứa game sau khi đã giải nén" Chạy file "PES2020.exe" để vào game</li>
-<li>Chỉnh cài đặt game bằng file "Settings.exe"</li>
-<li>Play game</li>
+<li>Tải file về và giải nén (mật khẩu nằm trong dấu [ ] ở tên file nén, ví dụ: tên file "[vaultgame]_PES2020.rar" thì mật khẩu là <strong>vaultgame</strong>)</li>
+<li>Vào thư mục sau khi giải nén, chạy file <strong>PES2020.exe</strong> để vào game</li>
+<li>Điều chỉnh cài đặt đồ họa qua file <strong>Settings.exe</strong></li>
+<li>Bắt đầu trải nghiệm</li>
 
 <h3>HƯỚNG DẪN CÀI Việt Hóa + Bình Luận Tiếng Việt</h3>
-<li>Tải File Patch Việt Hóa + BLTV về và giải nén với mật khẩu nằm trong dấu [ ] ở tên của file nén Ví Dụ tên file nén là "[vaultgame]_RDR2.rar" => pass là: vaultgame</li>
-<li>Vào thư mục "eFootball PES 2020 Patch Viet Hoa + BLTV" Copy 2 file "pes 20 viet hoa.cpk" và "Pham Hung Tien Offcial BLTV.cpk" bỏ vào trong "thư mục chứa game sau khi đã giải nén\download" (Có thể Copy 1 trong 2 file tùy nhu cầu của bạn)</li>
-<li>Vẫn ở trong thư mục "eFootball PES 2020 Patch Viet Hoa + BLTV" => Vào tiếp thư mục "DpFileList_Generator" => Mở file "DpFileList Generator.exe" lên => Ở dòng CPK Path chọn đường dẫn tới "thư mục chứa game sau khi đã giải nén\download" => Ở dòng DpFileList chọn đường dẫn tới "thư mục chứa game sau khi đã giải nén\download" và Open vào file "DpFileList.bin" có trong này => Ở dòng DLC thì chọn "DLC v5.00" => Tiếp tục trong bảng mod ở dưới ta sẽ tích vào 2 ô (màu đen) là "Pham Hung Tien Offcial BLTV.cpk" và "pes 20 viet hoa.cpk" rồi nhấn vào nút "Take a break" đợi khoảng vài giây thì nhấn vào "Generate DpFileList.bin" => Sau khi thành công có thể tắt phần mềm đi</li>
-<li>Vào "thư mục chứa game sau khi đã giải nén" Chạy file "PES2020.exe" để vào game</li>
-<li>Trong game nhớ chọn ngôn ngữ là "English" để hiển thị Việt Hóa</li>
+<li>Tải file Patch Việt Hóa về và giải nén (mật khẩu tương tự file game)</li>
+<li>Copy 2 file <code>pes 20 viet hoa.cpk</code> và <code>Pham Hung Tien Official BLTV.cpk</code> vào thư mục <code>[thư mục game]\download</code></li>
+<li>Mở thư mục <code>DpFileList_Generator</code>, chạy <strong>DpFileList Generator.exe</strong></li>
+<li>Ở dòng CPK Path: chọn đường dẫn tới <code>[thư mục game]\download</code></li>
+<li>Ở dòng DpFileList: chọn đường dẫn tới <code>[thư mục game]\download</code> và chọn file <code>DpFileList.bin</code></li>
+<li>Chọn DLC v5.00, tích vào 2 file .cpk trong bảng mod, nhấn <strong>Generate DpFileList.bin</strong></li>
+<li>Khởi động game và chọn ngôn ngữ <strong>English</strong> để Việt Hóa hiển thị đúng</li>
     </ol>`,
     size: "36.1 GB",
-    version: "v1.06.00-VH",
+    version: "Phiên bản đầy đủ (Việt Hóa)",
     year: 2019,
     developer: "Konami",
     publisher: "Konami",
@@ -179,7 +226,7 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: true,
     download_links: [
-      { label: "Gofile", url: "https://gofile.io/d/4OYOvy", icon: "⬇️" },
+      { label: "Mirror Link", url: "https://gofile.io/d/4OYOvy", icon: "⬇️" },
     ],
     thumbnail: "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
     screenshots: [
@@ -215,19 +262,40 @@ const GAMES = [
     slug: "geo-political-simulator-2026",
     genre: "strategy",
     genre_label: "Chiến lược / Mô phỏng",
-    desc_short: "Trở thành lãnh đạo của bất kỳ quốc gia nào trên thế giới, quản lý kinh tế, ngoại giao, quân sự và chính trị trong thời đại hiện đại.",
-    desc_full: `<p>Geo-Political Simulator 2026 là tựa game mô phỏng chính trị - địa lý chân thực nhất hiện nay. Bạn sẽ đảm nhận vai trò nguyên thủ quốc gia (Tổng thống, Thủ tướng, Quốc vương...) của bất kỳ quốc gia nào trong số hơn 175 quốc gia trên thế giới.</p>
-    <p>Game tái hiện thế giới thực tế với dữ liệu kinh tế, dân số, địa lý và chính trị cập nhật đến năm 2026. Mọi quyết định của bạn đều có hậu quả thực sự — từ việc ký kết hiệp ước thương mại, phát động chiến tranh, quản lý ngân sách quốc gia đến đối phó với thiên tai và khủng hoảng.</p>
-    <p>Phiên bản 2026 bổ sung nhiều tính năng mới: AI ngoại giao nâng cao, hệ thống biến đổi khí hậu, khủng hoảng năng lượng toàn cầu và nhiều sự kiện lịch sử có thể thay đổi.</p>`,
+    desc_short: "Đánh giá Geo-Political Simulator 2026 — tựa game mô phỏng địa chính trị chân thực nhất, nơi bạn trải nghiệm vai trò lãnh đạo quốc gia với hệ thống kinh tế, ngoại giao và quân sự phức tạp.",
+    desc_full: `
+<h2>Geo-Political Simulator 2026 — Cầm quyền cả một quốc gia</h2>
+<p>Geo-Political Simulator 2026 là tựa game mô phỏng chính trị - địa lý chân thực và phức tạp nhất hiện nay do Eversim phát triển. Trong game, bạn sẽ đảm nhận vai trò nguyên thủ quốc gia — Tổng thống, Thủ tướng hoặc Quốc vương — của bất kỳ quốc gia nào trong số hơn 175 quốc gia trên thế giới. Đây không phải game giải trí nhanh, mà là một trải nghiệm chiến lược sâu sắc cho những ai muốn hiểu cách thế giới thực sự vận hành.</p>
+
+<h2>Cốt truyện — Lịch sử do bạn quyết định</h2>
+<p>GPS 2026 không có cốt truyện theo kiểu truyền thống — câu chuyện chính là nhiệm kỳ lãnh đạo của bạn. Game tái hiện thế giới thực tế với dữ liệu kinh tế, dân số, địa lý và quan hệ ngoại giao được cập nhật đến năm 2026. Mọi quyết định đều có hậu quả cụ thể: ký kết hiệp ước thương mại, phát động xung đột quân sự, cải cách hệ thống thuế, đối phó với khủng hoảng khí hậu hay quản lý dư luận trong nước.</p>
+<p>Bạn có thể chọn lãnh đạo Việt Nam và thực hiện những cải cách kinh tế táo bạo, thiết lập liên minh mới trong khu vực Đông Nam Á — hoặc chọn Mỹ, Trung Quốc, Nga và định hình lại trật tự thế giới theo ý mình.</p>
+
+<h2>Đồ họa và giao diện</h2>
+<p>Phiên bản 2026 có giao diện quản lý được cải tiến đáng kể so với các phiên bản trước. Bản đồ thế giới chi tiết với nhiều lớp thông tin có thể bật/tắt linh hoạt. Mặc dù không phải game tập trung vào đồ họa hình ảnh, GPS 2026 bù đắp bằng chiều sâu dữ liệu và tính minh bạch của các hệ thống — bạn luôn biết tại sao một quyết định lại dẫn đến hậu quả cụ thể.</p>
+
+<h2>Gameplay và các cơ chế nổi bật</h2>
+<p>Hệ thống game được chia thành nhiều mảng quản lý chính:</p>
+<p><strong>Kinh tế:</strong> Quản lý ngân sách quốc gia, đặt mức thuế, đầu tư vào cơ sở hạ tầng, năng lượng, giáo dục và y tế. Mỗi quyết định chi tiêu ảnh hưởng trực tiếp đến GDP, tỷ lệ thất nghiệp và mức độ hài lòng của người dân.</p>
+<p><strong>Ngoại giao:</strong> Đàm phán hiệp ước thương mại, tham gia hoặc rút khỏi các tổ chức quốc tế (LHQ, NATO, ASEAN...), thiết lập liên minh chiến lược và giải quyết tranh chấp lãnh thổ bằng con đường ngoại giao hoặc áp lực kinh tế.</p>
+<p><strong>Quân sự:</strong> Xây dựng và hiện đại hóa lực lượng quân sự, điều phối hoạt động gìn giữ hòa bình quốc tế, hoặc triển khai lực lượng trong các cuộc xung đột khu vực.</p>
+<p><strong>Chính trị nội địa:</strong> Duy trì tỷ lệ ủng hộ cao trong dân, cân bằng lợi ích giữa các nhóm xã hội, tổ chức bầu cử và đối phó với phe đối lập.</p>
+
+<h2>Phiên bản 2026 — Những tính năng mới</h2>
+<p>GPS 2026 bổ sung hàng loạt tính năng mới: AI ngoại giao nâng cao với phản ứng thực tế hơn từ các quốc gia khác; hệ thống biến đổi khí hậu với các sự kiện thiên tai ngày càng thường xuyên; khủng hoảng năng lượng toàn cầu đòi hỏi chiến lược chuyển đổi năng lượng tái tạo; và hàng trăm sự kiện lịch sử có thể xảy ra tùy theo quyết định của người chơi.</p>
+
+<h2>Tại sao nên trải nghiệm GPS 2026?</h2>
+<p>Nếu bạn yêu thích địa chính trị, kinh tế quốc tế hoặc đơn giản là tò mò về cách các quốc gia vận hành, GPS 2026 là cơ hội để "thực hành" những kiến thức đó trong môi trường mô phỏng an toàn. Game không có câu trả lời đúng duy nhất — có hàng nghìn cách để dẫn dắt một quốc gia, và mỗi lần chơi là một thử nghiệm chính sách hoàn toàn mới.</p>
+<p>Hãy ủng hộ Eversim bằng cách mua bản quyền chính thức trên <strong>Steam</strong> nếu bạn thích tựa game này!</p>`,
     install_guide: `<ol>
-      <li>Giải nén file .rar vừa tải về</li>
+      <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip</li>
       <li>Chạy file <strong>Setup.exe</strong> với quyền Administrator</li>
-      <li>Chọn thư mục cài đặt, bấm <strong>Next</strong> và chờ cài xong</li>
-      <li>Copy file crack trong thư mục <strong>CODEX</strong> vào thư mục game</li>
-      <li>Chạy <strong>GPS2026.exe</strong> để chơi</li>
+      <li>Chọn thư mục cài đặt, nhấn <strong>Next</strong> và chờ cài xong</li>
+      <li>Sao chép các file hỗ trợ trong thư mục <strong>Support</strong> vào thư mục game</li>
+      <li>Chạy <strong>GPS2026.exe</strong> để bắt đầu trải nghiệm</li>
     </ol>`,
     size: "6.5 GB",
-    version: "v2.14-P2P",
+    version: "Phiên bản mới nhất",
     year: 2025,
     developer: "Eversim",
     publisher: "Eversim",
@@ -236,9 +304,8 @@ const GAMES = [
     emoji: "🌍",
     badges: ["hot", "new"],
     viet: false,
-    // Link tải — thay bằng link Gofile thật
     download_links: [
-      { label: "Gofile", url: "https://gofile.io/d/7iU3Fi", icon: "⬇️" },
+      { label: "Mirror Link", url: "https://gofile.io/d/7iU3Fi", icon: "⬇️" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
     screenshots: [
@@ -282,76 +349,40 @@ const GENRES = [
 ];
 
 // ============================================================
-// BLOG_POSTS — Dữ liệu bài viết Blog
+// BLOG_POSTS
 // ============================================================
-// ► CÁCH THÊM BÀI VIẾT MỚI:
-//   1. Copy một object từ danh sách bên dưới
-//   2. Dán lên ĐẦU mảng (bài mới nhất hiển thị trước)
-//   3. Sửa các trường theo nội dung bài của bạn
-//   4. Lưu file và reload web — bài sẽ hiện ngay
-//
-// ► CÁC TRƯỜNG BẮT BUỘC: id, slug, cat, title, desc, date, readTime, content
-// ► CÁC TRƯỜNG TUỲ CHỌN: thumbnail (URL ảnh), gradient (màu nền nếu ko có ảnh)
-//
-// ► DANH SÁCH CAT (thể loại):
-//   "news"    → 📰 Tin tức
-//   "guide"   → 📖 Hướng dẫn
-//   "review"  → ⭐ Đánh giá
-//   "viet"    → 🇻🇳 Việt hóa
-//   "dev"     → 💻 Phát triển game
-//
-// ► CONTENT hỗ trợ HTML đơn giản:
-//   <h2>Tiêu đề lớn</h2>
-//   <h3>Tiêu đề nhỏ</h3>
-//   <p>Đoạn văn</p>
-//   <ul><li>Mục 1</li><li>Mục 2</li></ul>
-//   <ol><li>Bước 1</li><li>Bước 2</li></ol>
-//   <strong>Chữ đậm</strong>
-//   <blockquote><p>Trích dẫn nổi bật</p></blockquote>
-//   <code>đoạn code</code>
-// ============================================================
-
 const BLOG_POSTS = [
-  // ──────────────────────────────────────────────────────────
-  // BÀI 1
-  // ──────────────────────────────────────────────────────────
   {
     id: 1,
     slug: "vaultgame-ra-mat",
     cat: "news",
-    title: "VaultGame ra mắt — Kho game PC miễn phí lớn nhất Việt Nam",
-    desc: "Chúng tôi chính thức ra mắt VaultGame với kho game ngày càng mở rộng, ưu tiên Việt hóa và hoàn toàn miễn phí cho cộng đồng game thủ Việt.",
+    title: "VaultGame ra mắt — Trang review game PC lớn nhất Việt Nam",
+    desc: "Chúng tôi chính thức ra mắt VaultGame với kho review game ngày càng mở rộng, ưu tiên Việt hóa và hoàn toàn miễn phí cho cộng đồng game thủ Việt.",
     date: "01/01/2025",
     readTime: "3 phút đọc",
-    thumbnail: "",  // Để trống nếu dùng gradient
+    thumbnail: "",
     gradient: "linear-gradient(135deg,#0077b6,#00b4d8)",
     icon: "📰",
     content: `
-      <p>Hôm nay chúng tôi chính thức ra mắt <strong>VaultGame</strong> — kho game PC miễn phí được xây dựng bởi cộng đồng game thủ Việt Nam.</p>
+      <p>Hôm nay chúng tôi chính thức ra mắt <strong>VaultGame</strong> — trang review và giới thiệu game PC được xây dựng bởi cộng đồng game thủ Việt Nam.</p>
 
       <h2>VaultGame là gì?</h2>
-      <p>VaultGame là nền tảng tổng hợp và chia sẻ game PC hoàn toàn miễn phí. Chúng tôi không thu phí, không có quảng cáo pop-up, không yêu cầu đăng ký tài khoản.</p>
+      <p>VaultGame là nền tảng đánh giá, giới thiệu và hướng dẫn trải nghiệm game PC. Chúng tôi cung cấp thông tin chi tiết về từng tựa game, hướng dẫn cài đặt và cấu hình yêu cầu để người chơi có thể đưa ra quyết định đúng đắn trước khi trải nghiệm.</p>
 
       <h2>Điểm nổi bật khi ra mắt</h2>
       <ul>
-        <li>Kho game với các tựa game chất lượng cao, cập nhật liên tục</li>
-        <li>Ưu tiên các bản game đã được <strong>Việt hóa hoàn chỉnh</strong></li>
-        <li>Link tải tốc độ cao qua Gofile — không giới hạn băng thông</li>
-        <li>Hướng dẫn cài đặt chi tiết cho từng game</li>
+        <li>Đánh giá chi tiết các tựa game chất lượng cao, cập nhật liên tục</li>
+        <li>Ưu tiên các game đã được <strong>Việt hóa hoàn chỉnh</strong></li>
+        <li>Hướng dẫn cài đặt và cấu hình yêu cầu cho từng game</li>
         <li>Giao diện tối giản, thân thiện, hoạt động tốt trên mọi thiết bị</li>
       </ul>
 
-      <blockquote><p>"Chúng tôi tin rằng mọi game thủ Việt Nam đều xứng đáng được trải nghiệm game tốt nhất bằng tiếng mẹ đẻ — hoàn toàn miễn phí."</p></blockquote>
+      <blockquote><p>"Chúng tôi tin rằng mọi game thủ Việt Nam đều xứng đáng được trải nghiệm game tốt nhất bằng tiếng mẹ đẻ."</p></blockquote>
 
       <h2>Kế hoạch tương lai</h2>
-      <p>Chúng tôi sẽ tiếp tục mở rộng kho game, thêm nhiều tựa game Việt hóa, và xây dựng cộng đồng game thủ Việt Nam ngày càng lớn mạnh hơn.</p>
-      <p>Hãy theo dõi VaultGame qua Telegram và Facebook để không bỏ lỡ game mới nhé!</p>
+      <p>Chúng tôi sẽ tiếp tục mở rộng kho nội dung, thêm nhiều bài review game Việt hóa, và xây dựng cộng đồng game thủ Việt Nam ngày càng lớn mạnh hơn. Hãy theo dõi VaultGame để không bỏ lỡ các bài review game mới nhé!</p>
     `
   },
-
-  // ──────────────────────────────────────────────────────────
-  // BÀI 2
-  // ──────────────────────────────────────────────────────────
   {
     id: 2,
     slug: "huong-dan-cai-dat-game-pc",
@@ -364,10 +395,9 @@ const BLOG_POSTS = [
     gradient: "linear-gradient(135deg,#7b2d8b,#c41e3a)",
     icon: "📖",
     content: `
-      <p>Bài viết này sẽ hướng dẫn bạn toàn bộ quy trình tải và cài đặt game PC từ VaultGame — từ bước đầu tiên cho đến khi game chạy được.</p>
+      <p>Bài viết này sẽ hướng dẫn bạn toàn bộ quy trình cài đặt game PC từ A đến Z.</p>
 
       <h2>Chuẩn bị trước khi bắt đầu</h2>
-      <p>Trước tiên, bạn cần cài đặt một số phần mềm cần thiết:</p>
       <ul>
         <li><strong>WinRAR hoặc 7-Zip</strong> — để giải nén file .rar/.zip</li>
         <li><strong>DirectX & Visual C++ Redistributable</strong> — thư viện hệ thống cần thiết</li>
@@ -375,17 +405,16 @@ const BLOG_POSTS = [
       </ul>
 
       <h2>Bước 1: Tải game</h2>
-      <p>Trên trang chi tiết game, bấm nút <strong>"Tải xuống"</strong>. Bạn sẽ được chuyển đến Gofile — bấm nút Download màu xanh lá để bắt đầu tải.</p>
+      <p>Trên trang chi tiết game, cuộn xuống phần hướng dẫn để xem link tham khảo và nhấn tải file về máy.</p>
 
       <h2>Bước 2: Giải nén</h2>
-      <p>Sau khi tải xong, click chuột phải vào file .rar → <strong>Extract Here</strong> hoặc <strong>Extract to [tên folder]</strong>. Nếu file yêu cầu mật khẩu, mật khẩu thường nằm trong tên file hoặc mô tả trang tải.</p>
+      <p>Click chuột phải vào file .rar → <strong>Extract Here</strong>. Nếu file yêu cầu mật khẩu, mật khẩu thường nằm trong tên file.</p>
 
       <h2>Bước 3: Cài đặt</h2>
-      <p>Mỗi game có cách cài khác nhau. Đọc kỹ <strong>Hướng dẫn cài đặt</strong> trên trang game VaultGame. Thông thường:</p>
       <ol>
         <li>Chạy file <code>Setup.exe</code> với quyền Administrator</li>
         <li>Chọn thư mục cài đặt và nhấn Next/Install</li>
-        <li>Copy file crack (nếu có) vào thư mục game</li>
+        <li>Sao chép các file hỗ trợ vào thư mục game theo hướng dẫn</li>
         <li>Chạy file <code>.exe</code> chính của game</li>
       </ol>
 
@@ -396,13 +425,9 @@ const BLOG_POSTS = [
         <li><strong>Màn hình đen:</strong> Thử chạy ở chế độ Windowed hoặc cập nhật driver GPU</li>
       </ul>
 
-      <blockquote><p>Nếu vẫn gặp lỗi sau khi thử các bước trên, hãy báo lỗi qua trang <strong>Báo Lỗi</strong> — chúng tôi sẽ hỗ trợ bạn!</p></blockquote>
+      <blockquote><p>Nếu vẫn gặp lỗi, hãy báo qua trang <strong>Báo Lỗi</strong> — chúng tôi sẽ hỗ trợ bạn!</p></blockquote>
     `
   },
-
-  // ──────────────────────────────────────────────────────────
-  // BÀI 3
-  // ──────────────────────────────────────────────────────────
   {
     id: 3,
     slug: "top-10-game-viet-hoa-2025",
@@ -427,9 +452,9 @@ const BLOG_POSTS = [
 
       <h2>Top 10</h2>
       <ol>
-        <li><strong>eFootball PES 2020</strong> — Bình luận tiếng Việt của BLV Phạm Hùng Tiến, UI hoàn chỉnh</li>
-        <li><strong>Grand Theft Auto V</strong> — Việt hóa toàn bộ subtitles và radio</li>
-        <li><strong>The Witcher 3</strong> — Bản dịch chất lượng cao, đúng văn phong</li>
+        <li><strong>eFootball PES 2020</strong> — Bình luận tiếng Việt đầy đủ, UI hoàn chỉnh</li>
+        <li><strong>Grand Theft Auto V</strong> — Việt hóa toàn bộ subtitles</li>
+        <li><strong>The Witcher 3</strong> — Bản dịch chất lượng cao</li>
         <li><strong>Red Dead Redemption 2</strong> — Subtitles và giao diện đầy đủ</li>
         <li><strong>Cyberpunk 2077</strong> — Việt hóa community bản 2.0</li>
         <li><strong>Dark Souls III</strong> — Toàn bộ lore và UI</li>
@@ -442,10 +467,6 @@ const BLOG_POSTS = [
       <blockquote><p>Bạn muốn thấy game nào trong danh sách? Gửi yêu cầu qua trang Liên hệ nhé!</p></blockquote>
     `
   },
-
-  // ──────────────────────────────────────────────────────────
-  // BÀI 4
-  // ──────────────────────────────────────────────────────────
   {
     id: 4,
     slug: "review-pes-2020-viet-hoa",
@@ -458,38 +479,26 @@ const BLOG_POSTS = [
     gradient: "linear-gradient(135deg,#f77f00,#ffd60a)",
     icon: "⚽",
     content: `
-      <p>PES 2020 (eFootball PES 2020) ra mắt năm 2019 và được nhiều người coi là đỉnh cao của dòng game bóng đá Konami trước khi chuyển sang eFootball free-to-play gây tranh cãi. Năm 2025, bản Việt hóa với bình luận của BLV Phạm Hùng Tiến vẫn đang được tải về và chơi bởi hàng nghìn game thủ Việt.</p>
+      <p>PES 2020 ra mắt năm 2019 và được nhiều người coi là đỉnh cao của dòng game bóng đá Konami. Năm 2025, bản Việt hóa với bình luận của BLV Phạm Hùng Tiến vẫn đang được hàng nghìn game thủ Việt yêu thích.</p>
 
       <h2>Gameplay — Vẫn mượt mà sau 5 năm</h2>
-      <p>Điểm mạnh nhất của PES 2020 chính là vật lý bóng. Cảm giác chạm bóng, các pha dribble và shoot đều cực kỳ tự nhiên. So với FIFA cùng thời điểm, PES 2020 vượt trội về:</p>
       <ul>
-        <li>Vật lý bóng chân thực hơn nhiều</li>
+        <li>Vật lý bóng chân thực hơn nhiều so với các đối thủ</li>
         <li>AI đồng đội thông minh, biết hỗ trợ hợp lý</li>
         <li>Chế độ Master League sâu sắc, đầy chiều sâu chiến thuật</li>
         <li>Animation mượt mà, không bị lag frame</li>
       </ul>
 
       <h2>Bình luận tiếng Việt — Điểm cộng lớn</h2>
-      <p>BLV Phạm Hùng Tiến đã thu âm hàng nghìn câu bình luận cho bản Việt hóa này. Giọng bình luận sôi động, đúng cảm xúc và khá đồng bộ với hành động trên sân.</p>
+      <p>BLV Phạm Hùng Tiến đã thu âm hàng nghìn câu bình luận chuyên nghiệp, sôi động và đúng cảm xúc trận đấu.</p>
 
-      <blockquote><p>"Nghe bình luận tiếng Việt mà cứ tưởng đang xem trực tiếp VTV6, cảm giác cực kỳ gần gũi!" — Người dùng VaultGame</p></blockquote>
-
-      <h2>Hạn chế</h2>
-      <ul>
-        <li>Dung lượng lớn (36GB) — cần ổ cứng rộng</li>
-        <li>License cầu thủ không đầy đủ (một số đội dùng tên giả)</li>
-        <li>Không có cập nhật đội hình mới sau 2020</li>
-      </ul>
+      <blockquote><p>"Nghe bình luận tiếng Việt mà cứ tưởng đang xem trực tiếp VTV6!" — Người dùng VaultGame</p></blockquote>
 
       <h2>Điểm số tổng thể</h2>
       <p><strong>Gameplay:</strong> 9.5/10 | <strong>Bình luận VN:</strong> 8.5/10 | <strong>Đồ họa:</strong> 8/10 | <strong>Tổng thể: 4.7/5 ⭐</strong></p>
-      <p>Nếu bạn chưa từng chơi PES 2020, đây vẫn là một trong những trải nghiệm bóng đá tốt nhất trên PC — đặc biệt với bản Việt hóa chất lượng cao này.</p>
+      <p>Hãy mua bản quyền trên <strong>Steam</strong> để ủng hộ Konami nếu bạn yêu thích tựa game này!</p>
     `
   },
-
-  // ──────────────────────────────────────────────────────────
-  // BÀI 5
-  // ──────────────────────────────────────────────────────────
   {
     id: 5,
     slug: "indie-game-viet-nam-2025",
@@ -502,111 +511,49 @@ const BLOG_POSTS = [
     gradient: "linear-gradient(135deg,#06d6a0,#0077b6)",
     icon: "💻",
     content: `
-      <p>Trong vài năm gần đây, cộng đồng phát triển game indie Việt Nam đã có những bước tiến đáng kể. Từ những game mobile đơn giản, các studio Việt đã bắt đầu tạo ra những tựa game PC chất lượng cao, được cộng đồng quốc tế chú ý.</p>
-
-      <h2>Những studio đáng chú ý</h2>
-      <p>Nhiều studio indie Việt đang phát triển game dựa trên văn hóa và lịch sử Việt Nam — một hướng đi độc đáo và tiềm năng trong thị trường game quốc tế.</p>
+      <p>Trong vài năm gần đây, cộng đồng phát triển game indie Việt Nam đã có những bước tiến đáng kể.</p>
 
       <h2>Xu hướng nổi bật năm 2025</h2>
       <ul>
-        <li><strong>RPG lấy bối cảnh lịch sử Việt:</strong> Khai thác thần thoại và lịch sử phong phú của Việt Nam</li>
-        <li><strong>Pixel Art đậm chất Á Đông:</strong> Phong cách nghệ thuật độc đáo kết hợp hiện đại</li>
-        <li><strong>Game di động lên PC:</strong> Nhiều tựa game mobile thành công đang ra bản PC</li>
+        <li><strong>RPG lấy bối cảnh lịch sử Việt:</strong> Khai thác thần thoại và lịch sử phong phú</li>
+        <li><strong>Pixel Art đậm chất Á Đông:</strong> Phong cách nghệ thuật độc đáo</li>
+        <li><strong>Game di động lên PC:</strong> Nhiều tựa game mobile thành công ra bản PC</li>
         <li><strong>Sử dụng Unreal Engine 5:</strong> Chất lượng đồ họa ngày càng cao</li>
       </ul>
 
       <h2>Thách thức và cơ hội</h2>
-      <p>Thị trường game Việt Nam vẫn còn nhiều thách thức: nguồn vốn hạn chế, thiếu nhân lực chuyên môn cao, và cạnh tranh khốc liệt từ game nước ngoài. Tuy nhiên, với sự phát triển của các công cụ như Unity và Unreal Engine, cùng cộng đồng game thủ ngày càng lớn mạnh, tương lai của ngành game Việt Nam rất hứa hẹn.</p>
+      <p>Thị trường game Việt Nam vẫn còn nhiều thách thức: nguồn vốn hạn chế, thiếu nhân lực chuyên môn cao, và cạnh tranh khốc liệt từ game nước ngoài. Tuy nhiên với sự phát triển của Unity và Unreal Engine, tương lai rất hứa hẹn.</p>
 
-      <blockquote><p>Hãy ủng hộ game indie Việt bằng cách mua bản quyền chính thức — đó là cách tốt nhất để thúc đẩy nền công nghiệp game nội địa phát triển!</p></blockquote>
+      <blockquote><p>Hãy ủng hộ game indie Việt bằng cách mua bản quyền chính thức — đó là cách tốt nhất để thúc đẩy nền công nghiệp game nội địa!</p></blockquote>
     `
   },
-  // bài 6
   {
-  id: 6,
-  slug: "geo-political-simulator-2026-edition-la-gi",
-  cat: "review",
-  title: "Geo-Political Simulator 2026 Edition: Trải nghiệm làm tổng thống quyền lực nhất thế giới",
-  desc: "Khám phá tựa game mô phỏng chính trị chân thực nhất, nơi bạn điều hành cả một quốc gia và định hình thế giới.",
-  date: "17/03/2026",
-  readTime: "6 phút đọc",
-  thumbnail: "https://i.ibb.co/ZRw2hD4V/geo-political-simulator-2026-thumbnail.jpg",
-  gradient: "linear-gradient(135deg,#0077b6,#00b4d8)",
-  icon: "🌍",
-  content: `
-    <p><strong>Geo-Political Simulator 2026 Edition</strong> là một trong những tựa game mô phỏng chính trị sâu sắc và phức tạp nhất hiện nay. Nếu bạn từng muốn thử cảm giác trở thành tổng thống, thủ tướng hoặc nhà lãnh đạo quốc gia, đây chính là game dành cho bạn.</p>
+    id: 6,
+    slug: "geo-political-simulator-2026-edition-la-gi",
+    cat: "review",
+    title: "Geo-Political Simulator 2026 Edition: Trải nghiệm làm tổng thống quyền lực nhất thế giới",
+    desc: "Khám phá tựa game mô phỏng chính trị chân thực nhất, nơi bạn điều hành cả một quốc gia và định hình thế giới.",
+    date: "17/03/2026",
+    readTime: "6 phút đọc",
+    thumbnail: "https://i.ibb.co/ZRw2hD4V/geo-political-simulator-2026-thumbnail.jpg",
+    gradient: "linear-gradient(135deg,#0077b6,#00b4d8)",
+    icon: "🌍",
+    content: `
+    <p><strong>Geo-Political Simulator 2026 Edition</strong> là một trong những tựa game mô phỏng chính trị sâu sắc nhất hiện nay.</p>
 
     <h2>Gameplay: Điều hành cả một quốc gia</h2>
-    <p>Trong game, bạn sẽ vào vai lãnh đạo của một quốc gia bất kỳ trên thế giới. Nhiệm vụ của bạn không chỉ đơn giản là ra quyết định, mà còn phải cân bằng hàng loạt yếu tố như kinh tế, chính trị, quân sự và xã hội.</p>
-
     <ul>
       <li>Ban hành luật và chính sách mới</li>
       <li>Quản lý ngân sách và thuế</li>
-      <li>Đối phó với khủng hoảng (biểu tình, suy thoái kinh tế, chiến tranh)</li>
+      <li>Đối phó với khủng hoảng kinh tế, xã hội</li>
       <li>Thiết lập quan hệ ngoại giao với các quốc gia khác</li>
     </ul>
 
     <h2>Độ chân thực cực cao</h2>
-    <p>Điểm mạnh lớn nhất của Geo-Political Simulator 2026 Edition là tính chân thực. Game sử dụng dữ liệu thực tế về các quốc gia, từ dân số, GDP cho đến quan hệ quốc tế.</p>
-
-    <p>Mỗi quyết định bạn đưa ra đều có hậu quả rõ ràng. Ví dụ: tăng thuế có thể giúp ngân sách tăng, nhưng lại khiến người dân bất mãn và biểu tình.</p>
-
-    <h2>Hệ thống AI thông minh</h2>
-    <p>AI trong game được thiết kế để phản ứng như ngoài đời thật. Các quốc gia khác sẽ không “dễ dãi” mà sẽ phản ứng dựa trên lợi ích riêng của họ.</p>
-
-    <ul>
-      <li>Đàm phán hiệp định thương mại</li>
-      <li>Đối đầu quân sự hoặc ngoại giao</li>
-      <li>Tham gia các tổ chức quốc tế</li>
-    </ul>
-
-    <h2>Đồ họa & giao diện</h2>
-    <p>Game không tập trung vào đồ họa hoành tráng mà thiên về giao diện quản lý. Tuy nhiên, bản 2026 đã cải thiện UI rõ rệt, giúp người chơi dễ theo dõi thông tin hơn.</p>
-
-    <h2>Ai nên chơi game này?</h2>
-    <p>Đây không phải là game giải trí nhanh. Nếu bạn thích:</p>
-
-    <ul>
-      <li>Chiến lược sâu</li>
-      <li>Mô phỏng thực tế</li>
-      <li>Quản lý và ra quyết định</li>
-    </ul>
-
-    <p>→ Thì đây là một tựa game cực kỳ đáng thử.</p>
+    <p>Game sử dụng dữ liệu thực tế về các quốc gia — dân số, GDP, quan hệ quốc tế. Mỗi quyết định đều có hậu quả rõ ràng và logic.</p>
 
     <h2>Kết luận</h2>
-    <p><strong>Geo-Political Simulator 2026 Edition</strong> là một trải nghiệm độc đáo, nơi mỗi quyết định đều có trọng lượng. Dù có độ khó cao và hơi “kén người chơi”, nhưng nếu bạn kiên nhẫn, game sẽ mang lại cảm giác cực kỳ thỏa mãn khi điều hành thành công một quốc gia.</p>
-
-    <p><em>Tip nhỏ:</em> Người mới nên chọn quốc gia dễ (như các nước phát triển) để làm quen trước khi thử sức với những quốc gia khó hơn.</p>
+    <p><strong>GPS 2026</strong> là trải nghiệm độc đáo dành cho những ai yêu thích chiến lược sâu và địa chính trị. Hãy ủng hộ Eversim bằng cách mua bản quyền trên <strong>Steam</strong>!</p>
   `
-},
-
-  // ──────────────────────────────────────────────────────────
-  // ► THÊM BÀI MỚI Ở ĐÂY — copy template bên dưới và dán lên trên
-  // ──────────────────────────────────────────────────────────
-  /*
-  {
-    id: 6,                          // ← Tăng số lên (luôn unique)
-    slug: "ten-bai-viet-khong-dau", // ← URL của bài (không dấu, dùng dấu -)
-    cat: "news",                    // ← news | guide | review | viet | dev
-    title: "Tiêu đề bài viết",
-    desc: "Mô tả ngắn hiển thị trên card (1-2 câu).",
-    date: "01/03/2025",             // ← Ngày đăng DD/MM/YYYY
-    readTime: "5 phút đọc",
-    thumbnail: "",                  // ← URL ảnh thumbnail (để trống dùng gradient)
-    gradient: "linear-gradient(135deg,#0077b6,#00b4d8)", // ← Màu nền nếu không có ảnh
-    icon: "📰",                     // ← Emoji hiển thị khi không có thumbnail
-    content: `
-      <p>Nội dung bài viết...</p>
-
-      <h2>Tiêu đề mục</h2>
-      <p>Đoạn văn bản...</p>
-
-      <ul>
-        <li>Mục 1</li>
-        <li>Mục 2</li>
-      </ul>
-    `
   },
-  */
 ];
