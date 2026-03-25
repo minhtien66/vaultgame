@@ -1421,16 +1421,21 @@ function renderPrivacy() {
           <li>Ngăn chặn lạm dụng và bảo vệ an toàn trang web</li>
         </ul>
         Chúng tôi <strong>không bán</strong> thông tin của bạn cho bên thứ ba.` },
-        { h: '5. Dịch vụ bên thứ ba', p: `Trang web có thể chứa liên kết đến các trang bên thứ ba (Gofile, Steam, v.v.). Chúng tôi không kiểm soát chính sách bảo mật của các trang này và khuyến khích bạn đọc chính sách của họ trước khi chia sẻ thông tin.` },
-        { h: '6. Bảo mật dữ liệu', p: `Chúng tôi áp dụng các biện pháp kỹ thuật hợp lý để bảo vệ dữ liệu thu thập. Tuy nhiên, không có phương thức truyền dữ liệu qua Internet nào có thể được đảm bảo an toàn tuyệt đối.` },
-        { h: '7. Quyền của bạn', p: `Bạn có quyền:<br><br>
+        // Tìm đến phần vi trong renderPrivacy, mục 5:
+{ 
+  h: '5. Dịch vụ bên thứ ba', 
+  p: `Trang web có thể chứa liên kết đến các trang bên thứ ba (Gofile, Steam, v.v.). Chúng tôi không kiểm soát chính sách bảo mật của các trang này. Ngoài ra, chúng tôi sử dụng dịch vụ của <strong>DMCA.com</strong> để giám sát và bảo vệ nội dung khỏi việc sao chép trái phép.` 
+},
+        { h: '6. Dịch vụ bên thứ ba', p: `Trang web có thể chứa liên kết đến các trang bên thứ ba (Gofile, Steam, v.v.). Chúng tôi không kiểm soát chính sách bảo mật của các trang này và khuyến khích bạn đọc chính sách của họ trước khi chia sẻ thông tin.` },
+        { h: '7. Bảo mật dữ liệu', p: `Chúng tôi áp dụng các biện pháp kỹ thuật hợp lý để bảo vệ dữ liệu thu thập. Tuy nhiên, không có phương thức truyền dữ liệu qua Internet nào có thể được đảm bảo an toàn tuyệt đối.` },
+        { h: '8. Quyền của bạn', p: `Bạn có quyền:<br><br>
         <ul>
           <li>Yêu cầu xóa dữ liệu liên quan đến bạn</li>
           <li>Từ chối cookie bằng cách thay đổi cài đặt trình duyệt</li>
           <li>Không đồng ý với quảng cáo cá nhân hóa của Google</li>
         </ul>` },
-        { h: '8. Thay đổi chính sách', p: `Chúng tôi có thể cập nhật chính sách này theo thời gian. Mọi thay đổi sẽ được đăng tải trên trang này kèm ngày cập nhật. Việc tiếp tục sử dụng trang web đồng nghĩa với việc bạn chấp nhận chính sách mới.` },
-        { h: '9. Liên hệ', p: `Nếu bạn có câu hỏi về chính sách bảo mật, vui lòng <a href="#" onclick="go('contact');return false;">liên hệ với chúng tôi</a>.` },
+        { h: '9. Thay đổi chính sách', p: `Chúng tôi có thể cập nhật chính sách này theo thời gian. Mọi thay đổi sẽ được đăng tải trên trang này kèm ngày cập nhật. Việc tiếp tục sử dụng trang web đồng nghĩa với việc bạn chấp nhận chính sách mới.` },
+        { h: '10. Liên hệ', p: `Nếu bạn có câu hỏi về chính sách bảo mật, vui lòng <a href="#" onclick="go('contact');return false;">liên hệ với chúng tôi</a>.` },
       ]
     },
     en: {
@@ -1452,18 +1457,35 @@ function renderPrivacy() {
           <li>Prevent abuse and maintain website security</li>
         </ul>
         We <strong>do not sell</strong> your information to third parties.` },
-        { h: '5. Third-Party Services', p: `The website may contain links to third-party sites (Gofile, Steam, etc.). We do not control the privacy practices of these sites and encourage you to read their policies before sharing information.` },
-        { h: '6. Data Security', p: `We apply reasonable technical measures to protect collected data. However, no method of transmitting data over the Internet can be guaranteed to be completely secure.` },
-        { h: '7. Your Rights', p: `You have the right to:<br><br>
-        <ul>
-          <li>Request deletion of data related to you</li>
-          <li>Refuse cookies by adjusting your browser settings</li>
-          <li>Opt out of Google personalised advertising</li>
-        </ul>` },
-        { h: '8. Policy Changes', p: `We may update this policy from time to time. Any changes will be posted on this page with an updated date. Continued use of the website constitutes acceptance of the updated policy.` },
-        { h: '9. Contact', p: `If you have questions about this privacy policy, please <a href="#" onclick="go('contact');return false;">contact us</a>.` },
-      ]
-    },
+        {
+  h: '5. Third-Party Services',
+  p: `The website may contain links to third-party sites (Gofile, Steam, etc.). We do not control the privacy policies of these sites. Additionally, we use <strong>DMCA.com</strong> services to monitor and protect content from unauthorized copying.`
+},
+{
+  h: '6. Third-Party Services',
+  p: `The website may contain links to third-party sites (Gofile, Steam, etc.). We do not control the privacy policies of these sites and encourage you to read their policies before sharing information.`
+},
+{
+  h: '7. Data Security',
+  p: `We apply reasonable technical measures to protect the data we collect. However, no method of data transmission over the Internet can be guaranteed to be absolutely secure.`
+},
+{
+  h: '8. Your Rights',
+  p: `You have the right to:<br><br>
+  <ul>
+    <li>Request deletion of data related to you</li>
+    <li>Refuse cookies by changing your browser settings</li>
+    <li>Opt out of Google's personalized advertising</li>
+  </ul>`
+},
+{
+  h: '9. Policy Changes',
+  p: `We may update this policy from time to time. Any changes will be posted on this page with the date of update. Your continued use of the website constitutes acceptance of the new policy.`
+},
+{
+  h: '10. Contact',
+  p: `If you have any questions about the privacy policy, please <a href="#" onclick="go('contact');return false;">contact us</a>.`
+}
     es: {
       sections: [
         { h: '1. Introducción', p: `VaultGame ("nosotros", "el sitio web") se compromete a proteger tu privacidad. Esta política explica cómo recopilamos, usamos y protegemos la información cuando visitas <strong>vaultgame.qzz.io</strong>.` },
@@ -1476,14 +1498,25 @@ function renderPrivacy() {
         </ul>` },
         { h: '3. Cookies y tecnologías de seguimiento', p: `El sitio usa <strong>cookies</strong> para guardar tus preferencias. Podemos usar <strong>Google Analytics</strong> y mostrar anuncios a través de <strong>Google AdSense</strong>. Puedes desactivar los anuncios personalizados en <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.` },
         { h: '4. Uso de la información', p: `Los datos recopilados se usan solo para operar y mejorar el sitio, analizar tendencias y mostrar contenido relevante. <strong>No vendemos</strong> tu información a terceros.` },
-        { h: '5. Servicios de terceros', p: `El sitio puede contener enlaces a terceros (Gofile, Steam, etc.). No controlamos sus políticas de privacidad.` },
-        { h: '6. Seguridad', p: `Aplicamos medidas técnicas razonables para proteger los datos recopilados.` },
-        { h: '7. Tus derechos', p: `Puedes solicitar la eliminación de tus datos, rechazar cookies desde tu navegador y desactivar la publicidad personalizada de Google.` },
-        { h: '8. Cambios en la política', p: `Podemos actualizar esta política. Los cambios se publicarán en esta página. El uso continuado implica aceptación.` },
-        { h: '9. Contacto', p: `Si tienes preguntas, <a href="#" onclick="go('contact');return false;">contáctanos</a>.` },
-      ]
-    }
-  };
+       {
+h: '5. Servicios de terceros',
+p: El sitio web puede contener enlaces a sitios de terceros (Gofile, Steam, etc.). No controlamos las políticas de privacidad de estos sitios. Además, utilizamos los servicios de <strong>DMCA.com</strong> para monitorear y proteger el contenido contra copias no autorizadas.
+},
+{
+h: '6. Servicios de terceros',
+p: El sitio web puede contener enlaces a sitios de terceros (Gofile, Steam, etc.). No controlamos las políticas de privacidad de estos sitios y le recomendamos que lea sus políticas antes de compartir información.
+},
+{
+h: '7. Seguridad de los datos',
+p: Aplicamos medidas técnicas razonables para proteger los datos que recopilamos. Sin embargo, ningún método de transmisión de datos a través de Internet puede garantizarse como absolutamente seguro.
+},
+{
+h: '8. Sus derechos',
+p: `Usted tiene derecho a:
+
+
+<ul> <li>Solicitar la eliminación de los datos relacionados con usted</li> <li>Rechazar las cookies cambiando la configuración de su navegador</li> <li>No aceptar la publicidad personalizada de Google</li> </ul>` }, { h: '9. Cambios en la política', p: `Podemos actualizar esta política periódicamente. Cualquier cambio se publicará en esta página junto con la fecha de actualización. El uso continuado del sitio web implica la aceptación de la nueva política.` }, { h: '10. Contacto', p: `Si tiene preguntas sobre la política de privacidad, por favor <a href="#" onclick="go('contact');return false;">contáctenos</a>.` }
+
 
   const data = content[lang] || content.vi;
   const box = el.querySelector('.policy-box');
