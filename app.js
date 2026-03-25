@@ -262,6 +262,53 @@ function updateCanonical(path) {
   el.href = 'https://vaultgame.qzz.io' + path;
 }
 
+function updateSEO(title, description, imageUrl) {
+  // --- <title> ---
+  document.title = title;
+
+  // --- <meta name="description"> ---
+  let metaDesc = document.querySelector('meta[name="description"]');
+  if (!metaDesc) {
+    metaDesc = document.createElement('meta');
+    metaDesc.name = 'description';
+    document.head.appendChild(metaDesc);
+  }
+  metaDesc.content = description;
+
+  // --- Open Graph ---
+  const ogMap = {
+    'og:title':       title,
+    'og:description': description,
+    'og:image':       imageUrl || 'https://vaultgame.qzz.io/og-default.jpg',
+    'og:type':        'website',
+  };
+  for (const [prop, val] of Object.entries(ogMap)) {
+    let el = document.querySelector(`meta[property="${prop}"]`);
+    if (!el) {
+      el = document.createElement('meta');
+      el.setAttribute('property', prop);
+      document.head.appendChild(el);
+    }
+    el.content = val;
+  }
+
+  // --- Twitter Card ---
+  const twMap = {
+    'twitter:title':       title,
+    'twitter:description': description,
+    'twitter:image':       imageUrl || 'https://vaultgame.qzz.io/og-default.jpg',
+  };
+  for (const [name, val] of Object.entries(twMap)) {
+    let el = document.querySelector(`meta[name="${name}"]`);
+    if (!el) {
+      el = document.createElement('meta');
+      el.name = name;
+      document.head.appendChild(el);
+    }
+    el.content = val;
+  }
+}
+
 function go(page, param) {
   closeLangMenu();
   showPage(page);
@@ -270,11 +317,22 @@ function go(page, param) {
     const urlSlug = g ? g.slug : param;
     history.pushState(null,'', BASE_PATH + '/game/' + urlSlug);
     updateCanonical('/game/' + urlSlug);
+    if (g) {
+      const seoTitle = 'Tải ' + g.title + ' PC miễn phí — VaultGame';
+      const seoDesc  = g.desc_short + ' | Tải ' + g.title + ' full crack miễn phí, không quảng cáo, tốc độ cao tại VaultGame.';
+      updateSEO(seoTitle, seoDesc, g.thumbnail || '');
+    }
     renderDetail(+param);
   } else {
     const r = ROUTES[page]; if(!r) return;
     history.pushState(null,'', BASE_PATH + r.path);
     updateCanonical(r.path);
+    const p = L().pages[page];
+    if (p) {
+      updateSEO(p.title + ' — VaultGame', p.sub);
+    } else {
+      updateSEO('VaultGame — Tải Game PC Miễn Phí', 'Kho game PC miễn phí, Việt hóa đầy đủ, không quảng cáo, tốc độ cao.');
+    }
     reRender(page);
   }
   window.scrollTo({top:0,behavior:'smooth'});
@@ -316,13 +374,27 @@ function handlePath() {
   const bp = p.match(/^\/blog\/(.+)$/);
   if (bp) {
     const post = BLOG_POSTS.find(x=>x.slug===bp[1]);
-    if (post) { showPage('blogpost'); renderBlogPost(post); updateCanonical(p); return; }
+    if (post) {
+      showPage('blogpost');
+      renderBlogPost(post);
+      updateCanonical(p);
+      updateSEO(post.title + ' — VaultGame Blog', post.desc || '', post.thumbnail || '');
+      return;
+    }
   }
   // Game detail: /game/slug
   const gm = p.match(/^\/game\/(.+)$/);
   if (gm) {
     const g = GAMES.find(x=>x.slug===gm[1]) || GAMES.find(x=>x.id===+gm[1]);
-    if (g) { showPage('detail'); renderDetail(g.id); updateCanonical(p); return; }
+    if (g) {
+      showPage('detail');
+      renderDetail(g.id);
+      updateCanonical(p);
+      const seoTitle = 'Tải ' + g.title + ' PC miễn phí — VaultGame';
+      const seoDesc  = g.desc_short + ' | Tải ' + g.title + ' full crack miễn phí, không quảng cáo, tốc độ cao tại VaultGame.';
+      updateSEO(seoTitle, seoDesc, g.thumbnail || '');
+      return;
+    }
   }
   // Static pages
   const found = Object.entries(ROUTES).find(([k,r])=>!['detail','blogpost'].includes(k) && r.path===p);
@@ -330,6 +402,12 @@ function handlePath() {
   showPage(target);
   reRender(target);
   updateCanonical(p);
+  const pg = L().pages[target];
+  if (pg) {
+    updateSEO(pg.title + ' — VaultGame', pg.sub);
+  } else {
+    updateSEO('VaultGame — Tải Game PC Miễn Phí', 'Kho game PC miễn phí, Việt hóa đầy đủ, không quảng cáo, tốc độ cao.');
+  }
 }
 
 window.addEventListener('popstate', handlePath);
@@ -936,6 +1014,8 @@ function goBlogPost(slug) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-blog-post').classList.add('active');
   history.pushState(null,'', BASE_PATH + '/blog/' + post.slug);
+  updateCanonical('/blog/' + post.slug);
+  updateSEO(post.title + ' — VaultGame Blog', post.desc || '', post.thumbnail || '');
   renderBlogPost(post);
   window.scrollTo({top:0,behavior:'smooth'});
 }
