@@ -239,6 +239,10 @@ const ROUTES = {
 };
 
 function showPage(page) {
+  // Unsubscribe stats listener nếu rời khỏi trang detail
+  if (curPage === 'detail' && page !== 'detail') {
+    if (_statsUnsub) { try { _statsUnsub(); } catch(e){} _statsUnsub = null; }
+  }
   curPage = page;
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
@@ -640,7 +644,7 @@ function renderDetail(id){
     +'<div class="dv2-score-box"><div class="dv2-score-head">'
     +'<div class="dv2-score-circle"><span class="dv2-score-num">'+s100+'</span><span class="dv2-score-lbl">VaultGame</span></div>'
     +'<div class="dv2-score-bars">'+scoreBarsH+'</div></div>'
-    +'<div style="font-size:.72rem;color:var(--text3);text-align:center">'+starStr(g.rating)+' '+g.rating.toFixed(1)+'/5.0 &middot; '+fmtN(g.downloads)+' '+ld.dlcountLabel+'</div></div></div>';
+    +'<div style="font-size:.72rem;color:var(--text3);text-align:center">'+starStr(g.rating)+' '+g.rating.toFixed(1)+'/5.0 &middot; <span id="stat-score-dl">'+fmtN(g.downloads)+'</span> '+ld.dlcountLabel+'</div></div></div>';
 
   var relatedH='';
   if(related.length){
@@ -668,7 +672,7 @@ function renderDetail(id){
     var hasGroup=dlinks.some(function(d){return d.group;});
     if(!hasGroup){
       for(var dli=0;dli<dlinks.length;dli++){
-        dlLinksHtml+='<a href="'+dlinks[dli].url+'" class="dv2-dl-btn" target="_blank" rel="noopener">'+(dlinks[dli].icon||'&#11015;')+' '+ld.dlBtn+' — '+dlinks[dli].label+'</a>';
+        dlLinksHtml+='<a href="'+dlinks[dli].url+'" class="dv2-dl-btn" target="_blank" rel="noopener" onclick="_trackDownload('+g.id+')">'+(dlinks[dli].icon||'&#11015;')+' '+ld.dlBtn+' — '+dlinks[dli].label+'</a>';
       }
     }else{
       var groups={},groupOrder=[];
@@ -682,7 +686,7 @@ function renderDetail(id){
         var grp=groupOrder[gi];var grpLinks=groups[grp];
         dlLinksHtml+='<div class="dv2-dl-group"><div class="dv2-dl-group-label">'+grpLinks[0].icon+' '+grp+'</div><div class="dv2-dl-group-btns">';
         for(var gli=0;gli<grpLinks.length;gli++){
-          dlLinksHtml+='<a href="'+grpLinks[gli].url+'" class="dv2-dl-part-btn" target="_blank" rel="noopener">&#11015; '+grpLinks[gli].label+'</a>';
+          dlLinksHtml+='<a href="'+grpLinks[gli].url+'" class="dv2-dl-part-btn" target="_blank" rel="noopener" onclick="_trackDownload('+g.id+')">&#11015; '+grpLinks[gli].label+'</a>';
         }
         dlLinksHtml+='</div></div>';
       }
@@ -743,7 +747,8 @@ function renderDetail(id){
     +'<div class="dv2-dl-stats">'
     +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val">'+g.size+'</span><span class="dv2-dl-stat-key">'+ld.dlStatSize+'</span></div>'
     +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val">'+g.year+'</span><span class="dv2-dl-stat-key">'+ld.dlStatYear+'</span></div>'
-    +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val">'+fmtN(g.downloads)+'</span><span class="dv2-dl-stat-key">'+ld.dlStatDl+'</span></div>'
+    +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val" id="stat-dl-val">'+fmtN(g.downloads)+'</span><span class="dv2-dl-stat-key">'+ld.dlStatDl+'</span></div>'
+    +'<div class="dv2-dl-stat"><span class="dv2-dl-stat-val" id="stat-views-val">—</span><span class="dv2-dl-stat-key">Lượt xem</span></div>'
     +'</div>'
     +dlBtnsH
     +'<div class="dv2-dl-free-note">'+ld.dlFreeNote+'</div>'
@@ -823,6 +828,10 @@ function renderDetail(id){
   }
 
   setTimeout(function(){ _cmtRender(g.id); }, 100);
+
+  // Track view + load realtime stats
+  _trackView(g.id);
+  _loadGameStats(g.id);
 }
 
 function dv2Rows(req){
@@ -1045,6 +1054,7 @@ document.addEventListener('DOMContentLoaded',()=>{ applyTheme(_theme); updateLan
 // ── COMMENTS (Firebase Firestore) ──────────────────────────
 var _cmtRating = 0;
 var _cmtUnsub = null; // realtime listener unsubscribe
+var _statsUnsub = null; // game stats realtime listener
 
 function _cmtSetStar(n) {
   _cmtRating = n;
@@ -1193,4 +1203,112 @@ function _cmtDraw(gameId, list) {
   }
 
   wrap.innerHTML = countH + formH + listH;
+}
+
+// ══ 10. VIEW & DOWNLOAD TRACKING (Firestore) ══════════════
+
+/**
+ * Lấy db instance (tái dùng logic giống comment section)
+ */
+function _getDb() {
+  return window._db || (typeof firebase !== 'undefined' && firebase.firestore ? firebase.firestore() : null);
+}
+
+/**
+ * Tăng lượt xem khi vào trang game.
+ * Dùng sessionStorage để tránh tăng liên tục khi refresh trong cùng phiên.
+ */
+function _trackView(gameId) {
+  var sessionKey = 'vg_view_' + gameId;
+  if (sessionStorage.getItem(sessionKey)) return; // đã xem trong phiên này
+  sessionStorage.setItem(sessionKey, '1');
+
+  var db = _getDb();
+  if (!db) return;
+
+  var ref = db.collection('game_stats').doc(String(gameId));
+  db.runTransaction(function(tx) {
+    return tx.get(ref).then(function(doc) {
+      if (!doc.exists) {
+        tx.set(ref, { gameId: gameId, views: 1, downloads: 0 });
+      } else {
+        tx.update(ref, { views: firebase.firestore.FieldValue.increment(1) });
+      }
+    });
+  }).catch(function(err) { console.warn('trackView error:', err); });
+}
+
+/**
+ * Tăng lượt tải khi click link download.
+ * Dùng localStorage cooldown 60 giây / link để tránh spam click.
+ */
+function _trackDownload(gameId) {
+  var coolKey = 'vg_dl_' + gameId;
+  var lastTime = parseInt(localStorage.getItem(coolKey) || '0', 10);
+  var now = Date.now();
+  if (now - lastTime < 60000) return; // cooldown 60 giây
+  localStorage.setItem(coolKey, String(now));
+
+  var db = _getDb();
+  if (!db) return;
+
+  var ref = db.collection('game_stats').doc(String(gameId));
+  db.runTransaction(function(tx) {
+    return tx.get(ref).then(function(doc) {
+      if (!doc.exists) {
+        tx.set(ref, { gameId: gameId, views: 0, downloads: 1 });
+      } else {
+        tx.update(ref, { downloads: firebase.firestore.FieldValue.increment(1) });
+      }
+    });
+  }).catch(function(err) { console.warn('trackDownload error:', err); });
+}
+
+/**
+ * Lắng nghe realtime stats từ Firestore rồi cập nhật UI.
+ * Hiển thị: tổng = base (trong data.js) + delta (Firestore).
+ */
+function _loadGameStats(gameId) {
+  if (_statsUnsub) { try { _statsUnsub(); } catch(e){} _statsUnsub = null; }
+
+  var db = _getDb();
+  if (!db) return;
+
+  var baseGame = GAMES.find(function(x){ return x.id === gameId; });
+  var baseDl = baseGame ? (baseGame.downloads || 0) : 0;
+
+  _statsUnsub = db.collection('game_stats').doc(String(gameId))
+    .onSnapshot(function(doc) {
+      var dlDelta = 0, views = 0;
+      if (doc.exists) {
+        var data = doc.data();
+        dlDelta = data.downloads || 0;
+        views   = data.views    || 0;
+      }
+      var totalDl = baseDl + dlDelta;
+
+      // Cập nhật stat box bên phải
+      var dlEl = document.getElementById('stat-dl-val');
+      if (dlEl) dlEl.textContent = fmtN(totalDl);
+
+      var viewEl = document.getElementById('stat-views-val');
+      if (viewEl) viewEl.textContent = fmtN(views);
+
+      // Cập nhật score section bên dưới
+      var scoreEl = document.getElementById('stat-score-dl');
+      if (scoreEl) scoreEl.textContent = fmtN(totalDl);
+
+      // Cập nhật hero slideshow nếu game này đang hiển thị
+      var heroInfoRow = document.getElementById('heroInfoRow');
+      if (heroInfoRow) {
+        var hiItems = heroInfoRow.querySelectorAll('.hi-item');
+        // hi-item thứ 3 là Downloads
+        if (hiItems.length >= 3) {
+          var valEl = hiItems[2].querySelector('.hi-val');
+          if (valEl) valEl.textContent = fmtN(totalDl);
+        }
+      }
+    }, function(err) {
+      console.warn('loadGameStats error:', err);
+    });
 }
