@@ -52,7 +52,7 @@ const LANGS = {
       scoreStory:'Cốt Truyện',scoreGameplay:'Gameplay',scoreGraphics:'Đồ Họa',scoreAudio:'Âm Thanh',scoreTotal:'Tổng Thể',scorePoints:'điểm' },
     search:{ placeholder:'Tìm kiếm game...',hint:'Nhập tên game để tìm kiếm...',notFound:'Không tìm thấy' },
     empty:{ title:'Chưa có dữ liệu',notFound:'Không tìm thấy game',back:'← Quay lại',noHot:'Chưa có game nổi bật',noNew:'Chưa có game mới',noViet:'Chưa có game Việt hóa, sắp cập nhật...',noSearch:'Thử từ khóa khác hoặc bỏ bộ lọc' },
-    footer:{ explore:'Khám phá',list:'Danh sách',info:'Thông tin',about:'Giới thiệu',contact:'Liên hệ',report:'Báo lỗi',copy:'© 2025 VaultGame — All rights reserved',made:'Made with ❤️ for VN gamers' },
+    footer:{ explore:'Khám phá',list:'Danh sách',info:'Thông tin',about:'Giới thiệu',contact:'Liên hệ',report:'Báo lỗi',copy:'© 2026 VaultGame — All rights reserved',made:'Made with ❤️ for VN gamers' },
     sr:{ os:'Hệ điều hành',cpu:'CPU',ram:'RAM',gpu:'GPU',storage:'Ổ cứng',directx:'DirectX' },
   },
   en: {
