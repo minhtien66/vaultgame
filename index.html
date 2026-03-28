@@ -64,6 +64,17 @@ img{display:block;max-width:100%}
 .nav-search kbd{font-family:var(--mono);font-size:.56rem;background:var(--border);padding:.08rem .28rem;border-radius:3px;margin-left:auto}
 .nav-count{font-family:var(--mono);font-size:.62rem;color:var(--text3);background:var(--card);border:1px solid var(--border);padding:.22rem .52rem;border-radius:5px;white-space:nowrap}
 
+/* ── GENRE DROPDOWN ── */
+.nav-genre-wrap{position:relative;flex-shrink:0}
+.nav-genre-wrap>.nav-link{display:flex;align-items:center;gap:.35rem}
+.genre-dropdown{display:none;position:absolute;top:calc(100% + 4px);left:0;background:var(--card2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;min-width:200px;box-shadow:0 12px 40px rgba(0,0,0,.6);z-index:2000;animation:fadeUp .15s ease;padding:.35rem 0}
+.nav-genre-wrap:hover .genre-dropdown{display:block}
+.genre-drop-item{display:flex;align-items:center;gap:.65rem;padding:.52rem 1rem;font-size:.78rem;font-weight:700;color:var(--text2);cursor:pointer;transition:background .1s,color .1s;white-space:nowrap;border-left:2px solid transparent}
+.genre-drop-item:hover{background:rgba(0,180,216,.08);color:var(--accent);border-left-color:var(--accent)}
+.genre-drop-item.viet-item{color:var(--accent)}
+.genre-drop-item.viet-item:hover{background:rgba(0,180,216,.12)}
+.genre-drop-sep{height:1px;background:var(--border);margin:.3rem 0}
+
 /* ── LANG SWITCHER ── */
 .lang-wrap{position:relative;flex-shrink:0}
 #langBtn{display:flex;align-items:center;gap:.4rem;background:var(--card);border:1px solid var(--border);color:var(--text2);padding:.3rem .75rem .3rem .6rem;border-radius:7px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .17s;white-space:nowrap;font-family:var(--body)}
@@ -746,9 +757,35 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
     <a class="nav-link" id="nl-games" onclick="go('games')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="10" y1="12" x2="14" y2="12"/><circle cx="17" cy="12" r=".5" fill="currentColor"/><circle cx="19" cy="12" r=".5" fill="currentColor"/></svg>Tất cả Game
     </a>
-    <a class="nav-link" id="nl-genre" onclick="go('genre')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Thể loại
-    </a>
+    <div class="nav-genre-wrap">
+      <a class="nav-link" id="nl-genre" onclick="go('genre')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Thể loại
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="genre-dropdown" id="genreNavDropdown">
+        <div class="genre-drop-item viet-item" onclick="go('viet')">🇻🇳 Việt Hóa</div>
+        <div class="genre-drop-sep"></div>
+        <div class="genre-drop-item" onclick="goGenre('online')">🌐 Online + Co-op + Multiplayer</div>
+        <div class="genre-drop-item" onclick="goGenre('action')">🗡 Hành động</div>
+        <div class="genre-drop-item" onclick="goGenre('adventure')">△ Phiêu lưu</div>
+        <div class="genre-drop-item" onclick="goGenre('openworld')">🗺 Thế giới mở</div>
+        <div class="genre-drop-item" onclick="goGenre('anime')">⛩ Anime</div>
+        <div class="genre-drop-item" onclick="goGenre('horror')">◉ Kinh dị</div>
+        <div class="genre-drop-item" onclick="goGenre('shooter')">◎ Bắn súng</div>
+        <div class="genre-drop-item" onclick="goGenre('slasher')">⚔ Chặt chém</div>
+        <div class="genre-drop-item" onclick="goGenre('rpg')">⚗️ Nhập vai</div>
+        <div class="genre-drop-item" onclick="goGenre('survival')">🏕 Sinh tồn</div>
+        <div class="genre-drop-item" onclick="goGenre('fighting')">🥊 Đối kháng</div>
+        <div class="genre-drop-item" onclick="goGenre('sports')">◭ Thể thao</div>
+        <div class="genre-drop-item" onclick="goGenre('football')">⚽ Bóng đá</div>
+        <div class="genre-drop-item" onclick="goGenre('puzzle')">⬡ Giải đố</div>
+        <div class="genre-drop-item" onclick="goGenre('simulation')">◈ Mô phỏng</div>
+        <div class="genre-drop-item" onclick="goGenre('strategy')">♟ Chiến thuật</div>
+        <div class="genre-drop-item" onclick="goGenre('visualnovel')">📖 Visual Novel</div>
+        <div class="genre-drop-item" onclick="goGenre('simulator')">🎮 Giả lập</div>
+        <div class="genre-drop-item" onclick="goGenre('fps')">🎯 FPS góc nhìn thứ nhất</div>
+      </div>
+    </div>
     <a class="nav-link" id="nl-viet" onclick="go('viet')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Việt Hóa
     </a>
@@ -1017,16 +1054,16 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
         <div class="isb-card-icon">📧</div>
         <div class="isb-card-title">Email hỗ trợ</div>
         <p class="isb-card-text">Phù hợp cho các vấn đề cần giải quyết chi tiết, đính kèm file log hoặc screenshot.</p>
-        <a class="isb-btn" href="mailto:nguyenhoangminhtien3@gmail.com">
-    nguyenhoangminhtien3@gmail.com
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#fc929b8985999294939d929b9195929488959992cfbc9b919d9590d29f9391">
+    <span class="__cf_email__" data-cfemail="91fff6e4e8f4fff9fef0fff6fcf8fff9e5f8f4ffa2d1f6fcf0f8fdbff2fefc">[email&#160;protected]</span>
 </a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">🐛</div>
         <div class="isb-card-title">Báo lỗi / Link hỏng</div>
         <p class="isb-card-text">Phát hiện link chết hoặc game lỗi? Báo ngay để chúng tôi xử lý trong 24h.</p>
-        <a class="isb-btn" href="mailto:nguyenhoangminhtien3@gmail.com">
-    nguyenhoangminhtien3@gmail.com
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#afc1c8dad6cac1c7c0cec1c8c2c6c1c7dbc6cac19cefc8c2cec6c381ccc0c2">
+    <span class="__cf_email__" data-cfemail="5f31382a263a3137303e3138323631372b363a316c1f38323e3633713c3032">[email&#160;protected]</span>
 </a>
       </div>
       <div class="isb-card contact-card">
@@ -1051,8 +1088,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
         <div class="isb-card-icon">💡</div>
         <div class="isb-card-title">Yêu cầu game</div>
         <p class="isb-card-text">Muốn chúng tôi thêm một tựa game? Gửi yêu cầu và chúng tôi sẽ cố gắng đáp ứng sớm nhất.</p>
-       <a class="isb-btn" href="mailto:nguyenhoangminhtien3@gmail.com">
-    nguyenhoangminhtien3@gmail.com
+       <a class="isb-btn" href="/cdn-cgi/l/email-protection#fd939a8884989395929c939a9094939589949893cebd9a909c9491d39e9290">
+    <span class="__cf_email__" data-cfemail="1f71786a667a7177707e7178727671776b767a712c5f78727e7673317c7072">[email&#160;protected]</span>
 </a>
       </div>
     </div>
@@ -1085,48 +1122,48 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
         <div class="isb-card-icon">🔗</div>
         <div class="isb-card-title">Link hỏng / 404</div>
         <p class="isb-card-text">Link tải trả về lỗi 404, file bị xóa khỏi server hoặc link đã hết hạn.</p>
-       <a class="isb-btn" href="mailto:nguyenhoangminhtien3@gmail.com">
-    nguyenhoangminhtien3@gmail.com
+       <a class="isb-btn" href="/cdn-cgi/l/email-protection#97f9f0e2eef2f9fff8f6f9f0fafef9ffe3fef2f9a4d7f0faf6fefbb9f4f8fa">
+    <span class="__cf_email__" data-cfemail="157b72606c707b7d7a747b72787c7b7d617c707b26557278747c793b767a78">[email&#160;protected]</span>
 </a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">💥</div>
         <div class="isb-card-title">Game crash / không chạy</div>
         <p class="isb-card-text">Game không khởi động được, crash ngay khi mở, màn hình đen hoặc thiếu file DLL.</p>
-        <a class="isb-btn" href="mailto:nguyenhoangminhtien3@gmail.com">
-    nguyenhoangminhtien3@gmail.com
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#076960727e62696f686669606a6e696f736e62693447606a666e6b2964686a">
+    <span class="__cf_email__" data-cfemail="a1cfc6d4d8c4cfc9cec0cfc6ccc8cfc9d5c8c4cf92e1c6ccc0c8cd8fc2cecc">[email&#160;protected]</span>
 </a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">🌐</div>
         <div class="isb-card-title">Lỗi Việt hóa</div>
         <p class="isb-card-text">Chữ hiển thị sai, bị lỗi font, thiếu bản dịch hoặc bình luận tiếng Việt không hoạt động.</p>
-       <a class="isb-btn" href="mailto:nguyenhoangminhtien3@gmail.com">
-    nguyenhoangminhtien3@gmail.com
+       <a class="isb-btn" href="/cdn-cgi/l/email-protection#600e071519050e080f010e070d090e081409050e5320070d01090c4e030f0d">
+    <span class="__cf_email__" data-cfemail="cba5acbeb2aea5a3a4aaa5aca6a2a5a3bfa2aea5f88baca6aaa2a7e5a8a4a6">[email&#160;protected]</span>
 </a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">📝</div>
         <div class="isb-card-title">Thông tin sai</div>
         <p class="isb-card-text">Ảnh, mô tả, cấu hình hoặc thông tin game không chính xác, hướng dẫn cài đặt sai.</p>
-       <a class="isb-btn" href="mailto:nguyenhoangminhtien3@gmail.com">
-    nguyenhoangminhtien3@gmail.com
+       <a class="isb-btn" href="/cdn-cgi/l/email-protection#a7c9c0d2dec2c9cfc8c6c9c0cacec9cfd3cec2c994e7c0cac6cecb89c4c8ca">
+    <span class="__cf_email__" data-cfemail="c4aaa3b1bda1aaacaba5aaa3a9adaaacb0ada1aaf784a3a9a5ada8eaa7aba9">[email&#160;protected]</span>
 </a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">🔐</div>
         <div class="isb-card-title">Nghi ngờ virus / malware</div>
         <p class="isb-card-text">Antivirus cảnh báo, file có hành vi lạ hoặc bạn nghi ngờ file bị nhiễm độc.</p>
-        <a class="isb-btn" href="mailto:nguyenhoangminhtien3@gmail.com">
-    nguyenhoangminhtien3@gmail.com
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#aec0c9dbd7cbc0c6c1cfc0c9c3c7c0c6dac7cbc09deec9c3cfc7c280cdc1c3">
+    <span class="__cf_email__" data-cfemail="543a33212d313a3c3b353a33393d3a3c203d313a67143339353d387a373b39">[email&#160;protected]</span>
 </a>
       </div>
       <div class="isb-card contact-card">
         <div class="isb-card-icon">💡</div>
         <div class="isb-card-title">Yêu cầu game mới</div>
         <p class="isb-card-text">Tựa game bạn muốn chơi chưa có trong kho — gửi yêu cầu để chúng tôi xem xét thêm vào.</p>
-        <a class="isb-btn" href="mailto:nguyenhoangminhtien3@gmail.com">
-    nguyenhoangminhtien3@gmail.com
+        <a class="isb-btn" href="/cdn-cgi/l/email-protection#8ee0e9fbf7ebe0e6e1efe0e9e3e7e0e6fae7ebe0bdcee9e3efe7e2a0ede1e3">
+    <span class="__cf_email__" data-cfemail="127c75676b777c7a7d737c757f7b7c7a667b777c2152757f737b7e3c717d7f">[email&#160;protected]</span>
 </a>
       </div>
     </div>
