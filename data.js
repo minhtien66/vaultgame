@@ -334,6 +334,111 @@ const GAMES = [
       },
     },
   },
+  {
+    id: 5,
+    title: "PES 2026 SP Football Life 2026 + Việt Hóa + Real Faces",
+    slug: "pes-2026-sp-football-life-2026-viet-hoa-real-faces",
+    genre: "sports",
+    genre_label: "Thể Thao / Bóng Đá",
+    desc_short: "SP Football Life 2026 — bản cập nhật mùa giải 2025/2026 của series PES huyền thoại. Tích hợp sẵn Việt Hóa hoàn chỉnh và gói Real Faces chân thực.",
+    desc_full: `
+<h2>SP Football Life 2026 là gì?</h2>
+<p>SP Football Life (SPFL) là dự án cộng đồng được tạo ra nhằm tiếp nối và cập nhật các chế độ chơi Career offline vốn xuất hiện trong series PES huyền thoại của Konami. Phiên bản FL26 được nâng cấp toàn diện cho mùa giải 2025/2026, mang lại trải nghiệm bóng đá offline chân thực và phong phú nhất từ trước đến nay.</p>
+
+<h2>Tổng quan & nổi bật</h2>
+<p>FL26 được cập nhật đội hình mùa giải 2025/26, bao gồm các đội thăng hạng thay thế đội xuống hạng và bổ sung nhiều đội bóng mới. Đồ họa, hiệu ứng âm thanh, vật lý bóng và lối chơi đều được nâng cấp đáng kể. Chế độ chỉnh sửa hoạt động đầy đủ với ba đội bóng hoàn toàn có thể tùy biến: Ceres Negros, Zalgiris Vilnius và Zamora FC.</p>
+
+<h2>Gameplay & cơ chế</h2>
+<p>Kế thừa toàn bộ nền tảng gameplay sâu sắc của series PES, FL26 mang đến hệ thống điều khiển mượt mà, AI thủ môn và hậu vệ được cải thiện đáng kể, vật lý bóng chân thực và hàng loạt chỉnh sửa nhỏ giúp trận đấu cảm giác tự nhiên hơn bao giờ hết. Chế độ Career offline với độ sâu chiến thuật cao là điểm mạnh không thể thay thế của tựa game này.</p>
+
+<h2>Bình luận v8 hoàn toàn mới</h2>
+<p>FL26 tích hợp hệ thống bình luận tiếng Anh v8 với nhiều tên cầu thủ mới và các đoạn hội thoại bình luận phong phú hơn. Đây là bước nâng cấp lớn so với các phiên bản trước, tạo cảm giác như đang xem một trận đấu thực sự trên truyền hình.</p>
+
+<h2>Gói Real Faces — Khuôn mặt cầu thủ siêu chân thực</h2>
+<p>Phiên bản này tích hợp sẵn gói khuôn mặt thật (Real Faces) được thiết kế riêng cho FL26. Hàng trăm cầu thủ nổi tiếng được tái hiện với khuôn mặt scan 3D cực kỳ chân thực, tăng đáng kể tính thẩm mỹ và sự cuốn hút khi chơi game. Gói khuôn mặt sẽ tiếp tục được cập nhật trong suốt năm 2026 và 2027.</p>
+
+<h2>Bản Việt Hóa hoàn chỉnh</h2>
+<p>Cộng đồng game thủ Việt Nam đã Việt hóa toàn bộ giao diện, menu và nội dung trong game. Bản Việt Hóa đã được tích hợp sẵn — không cần cài thêm bất kỳ bước nào. Chỉ cần chạy game là trải nghiệm ngay bằng tiếng Việt.</p>
+
+<h2>Cập nhật liên tục</h2>
+<p>Nhóm phát triển thực hiện quét định kỳ cơ sở dữ liệu để cập nhật đội hình và thuộc tính cầu thủ theo các diễn biến chuyển nhượng thực tế. Các đội tuyển quốc gia đã được cập nhật, đang chờ danh sách chính thức tham dự World Cup. Trò chơi sẽ hiển thị thông báo khi có phiên bản mới.</p>
+
+<h2>Vì sao nên chọn PES 2026 SP Football Life?</h2>
+<p>Trong khi eFootball hiện tại tập trung vào chế độ online, SPFL là lựa chọn hoàn hảo cho những ai yêu thích Career offline với độ sâu chiến thuật cao. Với đồ họa đẹp, gameplay mượt mà, khuôn mặt cầu thủ siêu chân thực và bản Việt Hóa hoàn chỉnh, đây là tựa game bóng đá PC tốt nhất hiện tại cho game thủ Việt Nam. Nếu muốn ủng hộ nhà phát triển gốc, hãy mua bản quyền tại <strong>pessmokepatch.com</strong>.</p>`,
+    install_guide: `<h3>QUY TRÌNH CÀI ĐẶT PES 2026 SP FOOTBALL LIFE 2026</h3>
+    <ol>
+      <li>Tải tất cả Part về và giải nén — mật khẩu nằm trong dấu [ ] ở tên file nén (ví dụ: <strong>vaultgame.qzz.io</strong>)</li>
+      <li>Vào thư mục game sau khi giải nén, copy thư mục <strong>"KONAMI"</strong> vào <code>C:\Users\%Tên User%\Documents</code> (xóa thư mục KONAMI cũ nếu có sẵn)</li>
+      <li>Chạy file <strong>"FL 2026 start.exe"</strong> để khởi động game</li>
+      <li>Chỉnh cài đặt đồ họa qua file <strong>"Settings.exe"</strong></li>
+      <li>Việt Hóa + Real Faces đã tích hợp sẵn, không cần cài thêm — Play game!</li>
+    </ol>
+    <h3>CÀI PATCH VIỆT HÓA RIÊNG (nếu cần)</h3>
+    <ol>
+      <li>Tải Patch Việt Hóa về và giải nén (mật khẩu tương tự)</li>
+      <li>Vào thư mục <strong>"SP Football Life 2026 Patch Viet Hoa"</strong></li>
+      <li>Copy tất cả file vào thư mục chứa game, chọn Replace để ghi đè</li>
+      <li>Khởi động game và tận hưởng!</li>
+    </ol>
+    <p><strong>Lưu ý quan trọng:</strong> Tắt Windows Defender / antivirus trước khi giải nén. Không đặt tên thư mục có ký tự tiếng Việt. Đặt tất cả Part vào cùng 1 thư mục và chỉ giải nén từ Part 1.</p>`,
+    size: "56.8 GB",
+    version: "FL26 (Mùa giải 2025/2026)",
+    year: 2025,
+    developer: "SP Football Life Community",
+    publisher: "Konami",
+    rating: 4.7,
+    downloads: 0,
+    emoji: "⚽",
+    badges: ["hot", "new", "viet"],
+    viet: true,
+    download_links: [
+      { label: "Part 1", url: "https://gofile.io/d/pes2026part1", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 2", url: "https://gofile.io/d/pes2026part2", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 3", url: "https://gofile.io/d/pes2026part3", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 4", url: "https://gofile.io/d/pes2026part4", icon: "⬇️", group: "Mirror Link" },
+      { label: "Patch Việt Hóa", url: "https://gofile.io/d/pes2026viet", icon: "🇻🇳", group: "Mirror Link" },
+    ],
+    thumbnail: "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-vertical_photo-zAowwKiTTnsF2A9MCyJJ.jpeg",
+    screenshots: [
+      "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-screenshot-dR4yBRu2ACgfe6T9omfu.jpeg",
+      "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-screenshot-ys2NYmRPn6Uk5R0sPUdU.jpeg",
+      "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-screenshot-Zys21MwTp8GIYaPhfj9B.jpeg",
+      "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-screenshot-SzsGD109wpSvCmHleg0f.jpeg",
+    ],
+    gallery: [
+      "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-screenshot-dR4yBRu2ACgfe6T9omfu.jpeg",
+      "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-screenshot-ys2NYmRPn6Uk5R0sPUdU.jpeg",
+      "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-screenshot-Zys21MwTp8GIYaPhfj9B.jpeg",
+      "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-screenshot-SzsGD109wpSvCmHleg0f.jpeg",
+    ],
+    trailer: "https://www.youtube.com/embed/LgkC_QBpZgo",
+    tags: ["Bóng Đá", "Thể Thao", "Việt Hóa", "PES", "PES 2026", "SP Football Life", "Real Faces", "Career Mode", "Offline"],
+    sys_req: {
+      min: {
+        os: "Windows 7 64-bit",
+        cpu: "Intel Core i5-3470 / AMD FX 4350",
+        ram: "8 GB",
+        gpu: "NVIDIA GTX 760 / AMD Radeon R9 270X (2 GB VRAM)",
+        storage: "100 GB",
+        directx: "DirectX 11",
+      },
+      rec: {
+        os: "Windows 10/11 64-bit",
+        cpu: "Intel Core i7-6700 / AMD Ryzen 5 2600",
+        ram: "16 GB",
+        gpu: "NVIDIA GTX 1060 / AMD RX 580 (4 GB VRAM)",
+        storage: "120 GB SSD",
+        directx: "DirectX 12",
+      },
+    },
+    score: {
+      story: 4.0,
+      gameplay: 4.8,
+      graphics: 4.6,
+      audio: 4.5,
+      overall: 4.7,
+    },
+  },
 ];
 
 const GENRES = [
