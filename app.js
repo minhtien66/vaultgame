@@ -512,34 +512,22 @@ function _hStartFill(){
     var el=document.getElementById('hf'+_hIdx);if(el)el.style.width=_hFill+'%';
   },H_TICK);
 }
-// Unsub hero banner stats listener
-var _hStatsUnsub = null;
-
-function _hLoadStats(gameId, baseDl) {
-  if (_hStatsUnsub) { try { _hStatsUnsub(); } catch(e){} _hStatsUnsub = null; }
-  var db = _getDb();
-  if (!db) return;
-  _hStatsUnsub = db.collection('game_stats').doc(String(gameId))
-    .onSnapshot(function(doc) {
-      var dlDelta = 0;
-      if (doc.exists) dlDelta = doc.data().downloads || 0;
-      var totalDl = baseDl + dlDelta;
-      var heroInfoRow = document.getElementById('heroInfoRow');
-      if (heroInfoRow) {
-        var hiItems = heroInfoRow.querySelectorAll('.hi-item');
-        if (hiItems.length >= 3) {
-          var valEl = hiItems[2].querySelector('.hi-val');
-          if (valEl) valEl.textContent = fmtN(totalDl);
-        }
-      }
-    }, function(err) { console.warn('hLoadStats error:', err); });
+var _hStatsUnsub=null;
+function _hLoadStats(gameId,baseDl){
+  if(_hStatsUnsub){try{_hStatsUnsub();}catch(e){}  _hStatsUnsub=null;}
+  var db=_getDb();if(!db)return;
+  _hStatsUnsub=db.collection('game_stats').doc(String(gameId)).onSnapshot(function(doc){
+    var dlDelta=0;if(doc.exists)dlDelta=doc.data().downloads||0;
+    var total=baseDl+dlDelta;
+    var row=document.getElementById('heroInfoRow');
+    if(row){var items=row.querySelectorAll('.hi-item');if(items.length>=3){var v=items[2].querySelector('.hi-val');if(v)v.textContent=fmtN(total);}}
+  },function(e){console.warn('hLoadStats:',e);});
 }
-
 function _hGoTo(idx){
   var gs=_hGames();if(!gs.length)return;
   _hIdx=((idx%gs.length)+gs.length)%gs.length;
   _hRender(gs[_hIdx]);_hStartFill();
-  _hLoadStats(gs[_hIdx].id, gs[_hIdx].downloads || 0);
+  _hLoadStats(gs[_hIdx].id,gs[_hIdx].downloads||0);
   clearInterval(_hTimer);
   if(!_hPaused)_hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
 }
@@ -555,7 +543,7 @@ function _hInit(){
   _hIdx=0;_hPaused=false;clearInterval(_hTimer);clearInterval(_hFillT);
   var gs=_hGames();if(!gs.length)return;
   _hRender(gs[0]);_hStartFill();
-  _hLoadStats(gs[0].id, gs[0].downloads || 0);
+  _hLoadStats(gs[0].id,gs[0].downloads||0);
   _hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
 }
 function switchHero(id,dotEl){
@@ -632,11 +620,7 @@ function renderGenrePage() {
   } else { head.style.display='none'; games.innerHTML=GAMES.map((g,i)=>gcard(g,i*.02)).join(''); }
 }
 function selectGenre(id){ genrePageFilter=id; renderGenrePage(); }
-
-function goGenre(genreId){
-  genrePageFilter = genreId;
-  go('genre');
-}
+function goGenre(genreId){ genrePageFilter=genreId; go('genre'); }
 
 function renderViet() {
   const l=L(); const list=GAMES.filter(g=>g.viet);
