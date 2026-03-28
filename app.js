@@ -556,10 +556,25 @@ function _hInitStats() {
   }, function(e){ console.warn('hInitStats:', e); });
 }
 
+function _hUpdateDlDisplay(g){
+  // Sau _hRender, patch lại số lượt tải thực từ Firestore (tránh bị reset về data.js tĩnh)
+  var total = (g.downloads||0) + (_firestoreDlMap[g.id]||0);
+  var row = document.getElementById('heroInfoRow');
+  if(row){
+    var items = row.querySelectorAll('.hi-item');
+    if(items.length >= 3){
+      var v = items[2].querySelector('.hi-val');
+      if(v) v.textContent = fmtN(total);
+    }
+  }
+}
+
 function _hGoTo(idx){
   var gs=_hGames();if(!gs.length)return;
   _hIdx=((idx%gs.length)+gs.length)%gs.length;
-  _hRender(gs[_hIdx]);_hStartFill();
+  _hRender(gs[_hIdx]);
+  _hUpdateDlDisplay(gs[_hIdx]); // patch ngay sau render
+  _hStartFill();
   clearInterval(_hTimer);
   if(!_hPaused)_hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
 }
@@ -582,18 +597,18 @@ function _hInit(){
         _firestoreDlMap[parseInt(doc.id)] = d.downloads || 0;
       });
       var gs=_hGames();if(!gs.length)return;
-      _hRender(gs[0]);_hStartFill();
+      _hRender(gs[0]);_hUpdateDlDisplay(gs[0]);_hStartFill();
       _hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
       _hInitStats(); // realtime listener để reorder khi có thay đổi
     }).catch(function(){
       // Fallback nếu Firestore lỗi
       var gs=_hGames();if(!gs.length)return;
-      _hRender(gs[0]);_hStartFill();
+      _hRender(gs[0]);_hUpdateDlDisplay(gs[0]);_hStartFill();
       _hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
     });
   } else {
     var gs=_hGames();if(!gs.length)return;
-    _hRender(gs[0]);_hStartFill();
+    _hRender(gs[0]);_hUpdateDlDisplay(gs[0]);_hStartFill();
     _hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
   }
 }
