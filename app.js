@@ -512,10 +512,43 @@ function _hStartFill(){
     var el=document.getElementById('hf'+_hIdx);if(el)el.style.width=_hFill+'%';
   },H_TICK);
 }
+// Unsubscribe function cho hero banner stats listener
+var _hStatsUnsub = null;
+
+/**
+ * Lắng nghe realtime stats từ Firestore và cập nhật số lượt tải trên banner trang chủ.
+ */
+function _hLoadStats(gameId, baseDl) {
+  // Huỷ listener cũ nếu có
+  if (_hStatsUnsub) { try { _hStatsUnsub(); } catch(e){} _hStatsUnsub = null; }
+
+  var db = _getDb();
+  if (!db) return;
+
+  _hStatsUnsub = db.collection('game_stats').doc(String(gameId))
+    .onSnapshot(function(doc) {
+      var dlDelta = 0;
+      if (doc.exists) dlDelta = doc.data().downloads || 0;
+      var totalDl = baseDl + dlDelta;
+
+      // Cập nhật hi-item thứ 3 (Downloads) trong heroInfoRow
+      var heroInfoRow = document.getElementById('heroInfoRow');
+      if (heroInfoRow) {
+        var hiItems = heroInfoRow.querySelectorAll('.hi-item');
+        if (hiItems.length >= 3) {
+          var valEl = hiItems[2].querySelector('.hi-val');
+          if (valEl) valEl.textContent = fmtN(totalDl);
+        }
+      }
+    }, function(err) { console.warn('hLoadStats error:', err); });
+}
+
 function _hGoTo(idx){
   var gs=_hGames();if(!gs.length)return;
   _hIdx=((idx%gs.length)+gs.length)%gs.length;
   _hRender(gs[_hIdx]);_hStartFill();
+  // Load realtime stats cho game đang hiển thị trên banner
+  _hLoadStats(gs[_hIdx].id, gs[_hIdx].downloads || 0);
   clearInterval(_hTimer);
   if(!_hPaused)_hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
 }
@@ -531,6 +564,7 @@ function _hInit(){
   _hIdx=0;_hPaused=false;clearInterval(_hTimer);clearInterval(_hFillT);
   var gs=_hGames();if(!gs.length)return;
   _hRender(gs[0]);_hStartFill();
+  _hLoadStats(gs[0].id, gs[0].downloads || 0);
   _hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
 }
 function switchHero(id,dotEl){
