@@ -235,13 +235,36 @@ img{display:block;max-width:100%}
 .rcount strong{color:var(--green)}
 
 /* ── GENRE ── */
-.genre-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.58rem;margin-bottom:1.65rem}
-.gc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.95rem .82rem;text-align:center;cursor:pointer;transition:all .16s}
-.gc:hover,.gc.active{border-color:var(--accent);background:rgba(0,180,216,.07);transform:translateY(-2px)}
-.gc.active .gc-name{color:var(--accent)}
-.gc-icon{font-size:1.65rem;margin-bottom:.35rem}
-.gc-name{font-size:.72rem;font-weight:800}
-.gc-count{font-family:var(--mono);font-size:.6rem;color:var(--text3);margin-top:.1rem}
+/* ── GENRE PAGE (redesigned) ── */
+.genre-page-header{background:#0d0e12;border-bottom:1px solid var(--border);padding:2rem 2rem 0}
+.genre-page-header-inner{max-width:1400px;margin:0 auto}
+.genre-page-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.genre-page-title{font-family:var(--display);font-size:clamp(1.4rem,3vw,2rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:.7rem}
+.genre-page-title::before{content:'';display:inline-block;width:4px;height:1.4em;background:var(--green);border-radius:2px;flex-shrink:0}
+.genre-sort-wrap{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--text2);font-weight:700}
+.genre-sort-select{background:var(--card2);border:1px solid var(--border2);color:var(--text);padding:.38rem 1rem .38rem .7rem;border-radius:6px;font-size:.78rem;font-weight:600;font-family:var(--body);cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239096b0'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .6rem center;padding-right:1.8rem}
+.genre-search-bar{width:100%;background:var(--card2);border:1px solid var(--border2);border-radius:8px;display:flex;align-items:center;gap:.7rem;padding:.75rem 1.1rem;margin-bottom:1.3rem;transition:border-color .15s}
+.genre-search-bar:focus-within{border-color:var(--accent)}
+.genre-search-bar input{flex:1;background:none;border:none;color:var(--text);font-size:.9rem;font-family:var(--body)}
+.genre-search-bar input::placeholder{color:var(--text3)}
+.genre-search-bar svg{flex-shrink:0;opacity:.45}
+.genre-chips-wrap{display:flex;gap:.5rem;flex-wrap:wrap;padding-bottom:1.1rem;overflow-x:auto;scrollbar-width:none}
+.genre-chips-wrap::-webkit-scrollbar{display:none}
+.gc{display:inline-flex;align-items:center;gap:.45rem;padding:.42rem 1rem;border-radius:6px;border:1px solid var(--border2);background:var(--card2);font-size:.76rem;font-weight:700;color:var(--text2);cursor:pointer;transition:all .14s;white-space:nowrap;font-family:var(--body)}
+.gc:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,180,216,.07)}
+.gc.active{border-color:var(--green);color:#000;background:var(--green)}
+.gc-count{font-family:var(--mono);font-size:.62rem;opacity:.7}
+.gc.active .gc-count{opacity:.8}
+.genre-filters-bar{background:#0d0e12;border-bottom:1px solid var(--border);padding:.85rem 2rem}
+.genre-filters-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem 1.5rem}
+.genre-filter-group{display:flex;flex-direction:column;gap:.35rem}
+.genre-filter-label{font-size:.72rem;font-weight:800;color:var(--text2);letter-spacing:.05em}
+.genre-filter-select{background:var(--card2);border:1px solid var(--border2);color:var(--text);padding:.5rem .9rem;border-radius:6px;font-size:.78rem;font-family:var(--body);cursor:pointer;width:100%;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239096b0'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .7rem center;padding-right:2rem}
+@media(max-width:768px){
+  .genre-filters-inner{grid-template-columns:repeat(2,1fr)}
+  .genre-page-title-row{flex-direction:column;align-items:flex-start;gap:.7rem}
+  .genre-page-header,.genre-filters-bar{padding-left:1rem;padding-right:1rem}
+}
 
 /* ── VIET ── */
 .viet-banner{background:linear-gradient(135deg,rgba(196,30,58,.13),rgba(196,30,58,.04));border:1px solid rgba(196,30,58,.2);border-radius:11px;padding:1rem 1.4rem;display:flex;align-items:center;gap:.95rem;margin-bottom:1.4rem}
@@ -948,9 +971,28 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
 
 <!-- ══ THỂ LOẠI ══ -->
 <div class="page" id="page-genre">
-  <div class="ph"><div class="ph-inner"><div class="ph-title">Thể Loại Game</div><div class="ph-sub">Chọn thể loại yêu thích để khám phá</div></div></div>
+  <div class="genre-page-header">
+    <div class="genre-page-header-inner">
+      <div class="genre-page-title-row">
+        <div class="genre-page-title" id="genrePageTitle">THỂ LOẠI GAME</div>
+        <div class="genre-sort-wrap">
+          <span>Sắp xếp:</span>
+          <select class="genre-sort-select" id="genreSortSel" onchange="genreSortChange(this.value)">
+            <option value="new">Mới nhất</option>
+            <option value="name">Tên A&#8594;Z</option>
+            <option value="rating">Đánh giá</option>
+            <option value="dl">Lượt tải</option>
+          </select>
+        </div>
+      </div>
+      <div class="genre-search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="genreSearchInput" placeholder="Nhập tên game cần tìm" oninput="genreSearchChange(this.value)">
+      </div>
+      <div class="genre-chips-wrap" id="genreGrid"></div>
+    </div>
+  </div>
   <div class="wrap" style="padding-top:1.4rem;padding-bottom:2rem">
-    <div class="genre-grid" id="genreGrid"></div>
     <div class="sec-head" id="genreHead" style="display:none"><div class="sec-label" id="genreLabel"></div></div>
     <div class="game-grid lg" id="genreGames"></div>
   </div>
