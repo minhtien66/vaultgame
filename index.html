@@ -63,6 +63,17 @@ img{display:block;max-width:100%}
 .nav-search:hover{border-color:var(--accent);color:var(--text)}
 .nav-search kbd{font-family:var(--mono);font-size:.56rem;background:var(--border);padding:.08rem .28rem;border-radius:3px;margin-left:auto}
 .nav-count{font-family:var(--mono);font-size:.62rem;color:var(--text3);background:var(--card);border:1px solid var(--border);padding:.22rem .52rem;border-radius:5px;white-space:nowrap}
+/* ── GENRE DROPDOWN ── */
+.nav-genre-wrap{position:relative;display:flex;align-items:center;flex-shrink:0}
+/* padding-top tạo vùng hover liên tục từ nav-link xuống dropdown, tránh bị mất khi di chuột */
+.genre-dropdown{display:none;position:absolute;top:100%;left:0;padding-top:8px;z-index:9999}
+.genre-dropdown-inner{background:var(--card2,var(--card));border:1px solid var(--border2,var(--border));border-radius:10px;overflow-y:auto;max-height:70vh;min-width:230px;box-shadow:0 12px 40px rgba(0,0,0,.65);padding:.3rem 0;scrollbar-width:thin}
+.nav-genre-wrap:hover .genre-dropdown{display:block;animation:fadeUp .14s ease}
+.gdrop-item{display:flex;align-items:center;gap:.6rem;padding:.5rem 1.1rem;font-size:.78rem;font-weight:700;color:var(--text2);cursor:pointer;transition:background .1s,color .1s;white-space:nowrap;border-left:2px solid transparent;text-transform:none;letter-spacing:0}
+.gdrop-item:hover{background:rgba(0,180,216,.09);color:var(--accent);border-left-color:var(--accent)}
+.gdrop-item.gdrop-viet{color:var(--accent)}
+.gdrop-item.gdrop-viet:hover{background:rgba(0,180,216,.14)}
+.gdrop-sep{height:1px;background:var(--border);margin:.3rem 0}
 
 /* ── LANG SWITCHER ── */
 .lang-wrap{position:relative;flex-shrink:0}
@@ -224,26 +235,13 @@ img{display:block;max-width:100%}
 .rcount strong{color:var(--green)}
 
 /* ── GENRE ── */
-/* ── GENRE PAGE REDESIGN ── */
-.genre-filter-bar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:1.1rem}
-.genre-filter-title{font-size:1.35rem;font-weight:900;font-family:var(--display);border-left:3px solid var(--accent);padding-left:.7rem;margin-bottom:.1rem}
-.genre-filter-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
-@media(max-width:900px){.genre-filter-row{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.genre-filter-row{grid-template-columns:1fr}}
-.genre-filter-group{display:flex;flex-direction:column;gap:.4rem}
-.genre-filter-label{font-size:.7rem;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
-.genre-fselect{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:.52rem .85rem;font-size:.8rem;color:var(--text);font-family:var(--body);cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .65rem center;transition:border-color .15s}
-.genre-fselect:focus{outline:none;border-color:var(--accent)}
-.genre-search-wrap{position:relative}
-.genre-search-wrap svg{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
-.genre-search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:.52rem .85rem .52rem 2.4rem;font-size:.85rem;color:var(--text);font-family:var(--body);transition:border-color .15s;box-sizing:border-box}
-.genre-search-input:focus{outline:none;border-color:var(--accent)}
-.genre-filter-actions{display:flex;align-items:center;gap:.7rem;margin-top:.2rem}
-.genre-btn-filter{background:var(--accent);color:#000;font-weight:800;font-size:.78rem;padding:.52rem 1.4rem;border-radius:7px;border:none;cursor:pointer;transition:opacity .15s;font-family:var(--body)}
-.genre-btn-filter:hover{opacity:.85}
-.genre-btn-reset{background:transparent;color:var(--text3);font-size:.78rem;padding:.52rem .8rem;border:1px solid var(--border);border-radius:7px;cursor:pointer;font-family:var(--body)}
-.genre-btn-reset:hover{color:var(--text);border-color:var(--text3)}
-.genre-rcount{font-size:.78rem;color:var(--text3);font-family:var(--mono);margin-left:auto}
+.genre-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.58rem;margin-bottom:1.65rem}
+.gc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.95rem .82rem;text-align:center;cursor:pointer;transition:all .16s}
+.gc:hover,.gc.active{border-color:var(--accent);background:rgba(0,180,216,.07);transform:translateY(-2px)}
+.gc.active .gc-name{color:var(--accent)}
+.gc-icon{font-size:1.65rem;margin-bottom:.35rem}
+.gc-name{font-size:.72rem;font-weight:800}
+.gc-count{font-family:var(--mono);font-size:.6rem;color:var(--text3);margin-top:.1rem}
 
 /* ── VIET ── */
 .viet-banner{background:linear-gradient(135deg,rgba(196,30,58,.13),rgba(196,30,58,.04));border:1px solid rgba(196,30,58,.2);border-radius:11px;padding:1rem 1.4rem;display:flex;align-items:center;gap:.95rem;margin-bottom:1.4rem}
@@ -759,9 +757,37 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
     <a class="nav-link" id="nl-games" onclick="go('games')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="10" y1="12" x2="14" y2="12"/><circle cx="17" cy="12" r=".5" fill="currentColor"/><circle cx="19" cy="12" r=".5" fill="currentColor"/></svg>Tất cả Game
     </a>
-    <a class="nav-link" id="nl-genre" onclick="go('genre')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Thể loại
-    </a>
+    <div class="nav-genre-wrap">
+      <a class="nav-link" id="nl-genre" onclick="go('genre')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Thể loại
+        <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="opacity:.6"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="genre-dropdown">
+        <div class="genre-dropdown-inner">
+          <div class="gdrop-item gdrop-viet" onclick="go('viet')">🇻🇳 Việt Hóa</div>
+          <div class="gdrop-sep"></div>
+          <div class="gdrop-item" onclick="goGenre('online')">🌐 Online + Co-op + Multiplayer</div>
+          <div class="gdrop-item" onclick="goGenre('action')">🗡️ Hành động</div>
+          <div class="gdrop-item" onclick="goGenre('adventure')">🧭 Phiêu lưu</div>
+          <div class="gdrop-item" onclick="goGenre('openworld')">🗺️ Thế giới mở</div>
+          <div class="gdrop-item" onclick="goGenre('anime')">⛩️ Anime</div>
+          <div class="gdrop-item" onclick="goGenre('horror')">👻 Kinh dị</div>
+          <div class="gdrop-item" onclick="goGenre('shooter')">🎯 Bắn súng</div>
+          <div class="gdrop-item" onclick="goGenre('slasher')">⚔️ Chặt chém</div>
+          <div class="gdrop-item" onclick="goGenre('rpg')">⚗️ Nhập vai</div>
+          <div class="gdrop-item" onclick="goGenre('survival')">🏕️ Sinh tồn</div>
+          <div class="gdrop-item" onclick="goGenre('fighting')">🥊 Đối kháng</div>
+          <div class="gdrop-item" onclick="goGenre('sports')">🏆 Thể thao</div>
+          <div class="gdrop-item" onclick="goGenre('football')">⚽ Bóng đá</div>
+          <div class="gdrop-item" onclick="goGenre('puzzle')">🧩 Giải đố</div>
+          <div class="gdrop-item" onclick="goGenre('simulation')">🚛 Mô phỏng</div>
+          <div class="gdrop-item" onclick="goGenre('strategy')">♟️ Chiến thuật</div>
+          <div class="gdrop-item" onclick="goGenre('visualnovel')">📖 Visual Novel</div>
+          <div class="gdrop-item" onclick="goGenre('simulator')">🎮 Giả lập</div>
+          <div class="gdrop-item" onclick="goGenre('fps')">🔫 FPS góc nhìn thứ nhất</div>
+        </div>
+      </div>
+    </div>
     <a class="nav-link" id="nl-viet" onclick="go('viet')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Việt Hóa
     </a>
@@ -924,70 +950,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
 <div class="page" id="page-genre">
   <div class="ph"><div class="ph-inner"><div class="ph-title">Thể Loại Game</div><div class="ph-sub">Chọn thể loại yêu thích để khám phá</div></div></div>
   <div class="wrap" style="padding-top:1.4rem;padding-bottom:2rem">
-    <div class="genre-filter-bar">
-      <div class="genre-filter-title" id="genreFilterTitle">Tất Cả Game</div>
-      <!-- Row 1: Search + Sort -->
-      <div style="display:grid;grid-template-columns:1fr auto;gap:.85rem;align-items:end">
-        <div class="genre-filter-group">
-          <label class="genre-filter-label">Tìm kiếm</label>
-          <div class="genre-search-wrap">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input class="genre-search-input" id="genreSearch" placeholder="Nhập tên game cần tìm..." oninput="renderGenrePage()">
-          </div>
-        </div>
-        <div class="genre-filter-group">
-          <label class="genre-filter-label">Sắp xếp</label>
-          <select class="genre-fselect" id="genreSort" onchange="renderGenrePage()">
-            <option value="new">Mới nhất</option>
-            <option value="name">Tên A→Z</option>
-            <option value="rating">Đánh giá</option>
-            <option value="dl">Lượt tải</option>
-          </select>
-        </div>
-      </div>
-      <!-- Row 2: Thể loại + Việt hóa -->
-      <div class="genre-filter-row">
-        <div class="genre-filter-group">
-          <label class="genre-filter-label">Thể loại</label>
-          <select class="genre-fselect" id="genreTypeSelect" onchange="renderGenrePage()">
-            <option value="">- Tất cả -</option>
-            <option value="action">Hành động</option>
-            <option value="rpg">Nhập vai</option>
-            <option value="strategy">Chiến thuật</option>
-            <option value="puzzle">Giải đố</option>
-            <option value="shooter">Bắn súng</option>
-            <option value="adventure">Phiêu lưu</option>
-            <option value="simulation">Mô phỏng</option>
-            <option value="horror">Kinh dị</option>
-            <option value="sports">Thể Thao</option>
-          </select>
-        </div>
-        <div class="genre-filter-group">
-          <label class="genre-filter-label">Việt hóa</label>
-          <select class="genre-fselect" id="genreVietSelect" onchange="renderGenrePage()">
-            <option value="">- Tất cả -</option>
-            <option value="yes">Đã Việt hóa</option>
-            <option value="no">Chưa Việt hóa</option>
-          </select>
-        </div>
-        <div class="genre-filter-group">
-          <label class="genre-filter-label">Đánh giá</label>
-          <select class="genre-fselect" id="genreRatingSelect" onchange="renderGenrePage()">
-            <option value="">- Tất cả -</option>
-            <option value="4.5">4.5★ trở lên</option>
-            <option value="4">4.0★ trở lên</option>
-            <option value="3.5">3.5★ trở lên</option>
-          </select>
-        </div>
-        <div class="genre-filter-group" style="justify-content:flex-end">
-          <label class="genre-filter-label">&nbsp;</label>
-          <div class="genre-filter-actions">
-            <span class="genre-rcount" id="genreRcount"></span>
-            <button class="genre-btn-reset" onclick="resetGenreFilters()">Đặt lại</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="genre-grid" id="genreGrid"></div>
+    <div class="sec-head" id="genreHead" style="display:none"><div class="sec-label" id="genreLabel"></div></div>
     <div class="game-grid lg" id="genreGames"></div>
   </div>
 </div>

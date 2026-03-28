@@ -457,12 +457,15 @@ function topRow(g,rank) {
 // ── HERO SLIDESHOW ──
 var _hIdx=0,_hTimer=null,_hPaused=false,_hFill=0,_hFillT=null;
 var H_MS=6000,H_TICK=60;
-var _firestoreDlMap={};
+// Cache lượt tải từ Firestore cho banner sort
+var _firestoreDlMap = {};
+
 function _hGames(){
   return [...GAMES].sort(function(a,b){
-    var A=(a.downloads||0)+(_firestoreDlMap[a.id]||0);
-    var B=(b.downloads||0)+(_firestoreDlMap[b.id]||0);
-    return B!==A?B-A:(b.id||0)-(a.id||0);
+    var totalA = (a.downloads||0) + (_firestoreDlMap[a.id]||0);
+    var totalB = (b.downloads||0) + (_firestoreDlMap[b.id]||0);
+    if(totalB !== totalA) return totalB - totalA;
+    return (b.id||0) - (a.id||0);
   }).slice(0,5);
 }
 function _hRender(g){
@@ -519,24 +522,59 @@ function _hStartFill(){
     var el=document.getElementById('hf'+_hIdx);if(el)el.style.width=_hFill+'%';
   },H_TICK);
 }
-var _hStatsUnsub=null;
+var _hStatsUnsub = null;
+
+// Lắng nghe realtime TẤT CẢ game stats, cập nhật sort order và số hiển thị trên banner
+function _hInitStats() {
+  var db = _getDb();
+  if (!db) return;
+  db.collection('game_stats').onSnapshot(function(snapshot) {
+    snapshot.forEach(function(doc) {
+      var d = doc.data();
+      _firestoreDlMap[parseInt(doc.id)] = d.downloads || 0;
+    });
+    // Reorder banner nếu đang ở trang chủ
+    var currentGame = _hGames()[_hIdx] || _hGames()[0];
+    if (currentGame) {
+      // Cập nhật số lượt tải đang hiển thị
+      var row = document.getElementById('heroInfoRow');
+      if (row) {
+        var items = row.querySelectorAll('.hi-item');
+        if (items.length >= 3) {
+          var gs = _hGames();
+          // Tìm game đang hiển thị trong order mới
+          var displayedTitle = document.getElementById('heroTitle');
+          if (displayedTitle) {
+            var shownGame = gs.find(function(g){ return displayedTitle.textContent.trim().startsWith(g.title.substring(0,10)); }) || gs[0];
+            var total = (shownGame.downloads||0) + (_firestoreDlMap[shownGame.id]||0);
+            var v = items[2].querySelector('.hi-val');
+            if (v) v.textContent = fmtN(total);
+          }
+        }
+      }
+    }
+  }, function(e){ console.warn('hInitStats:', e); });
+}
+
 function _hUpdateDlDisplay(g){
-  var total=(g.downloads||0)+(_firestoreDlMap[g.id]||0);
-  var row=document.getElementById('heroInfoRow');
-  if(row){var items=row.querySelectorAll('.hi-item');if(items.length>=3){var v=items[2].querySelector('.hi-val');if(v)v.textContent=fmtN(total);}}
+  // Sau _hRender, patch lại số lượt tải thực từ Firestore (tránh bị reset về data.js tĩnh)
+  var total = (g.downloads||0) + (_firestoreDlMap[g.id]||0);
+  var row = document.getElementById('heroInfoRow');
+  if(row){
+    var items = row.querySelectorAll('.hi-item');
+    if(items.length >= 3){
+      var v = items[2].querySelector('.hi-val');
+      if(v) v.textContent = fmtN(total);
+    }
+  }
 }
-function _hInitStats(){
-  var db=_getDb();if(!db)return;
-  db.collection('game_stats').onSnapshot(function(snap){
-    snap.forEach(function(doc){_firestoreDlMap[parseInt(doc.id)]=doc.data().downloads||0;});
-    var gs=_hGames();
-    if(gs[_hIdx])_hUpdateDlDisplay(gs[_hIdx]);
-  },function(e){console.warn('hInitStats:',e);});
-}
+
 function _hGoTo(idx){
   var gs=_hGames();if(!gs.length)return;
   _hIdx=((idx%gs.length)+gs.length)%gs.length;
-  _hRender(gs[_hIdx]);_hUpdateDlDisplay(gs[_hIdx]);_hStartFill();
+  _hRender(gs[_hIdx]);
+  _hUpdateDlDisplay(gs[_hIdx]); // patch ngay sau render
+  _hStartFill();
   clearInterval(_hTimer);
   if(!_hPaused)_hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
 }
@@ -550,14 +588,29 @@ function heroTogglePause(){
 }
 function _hInit(){
   _hIdx=0;_hPaused=false;clearInterval(_hTimer);clearInterval(_hFillT);
-  var db=_getDb();
-  function _doRender(){var gs=_hGames();if(!gs.length)return;_hRender(gs[0]);_hUpdateDlDisplay(gs[0]);_hStartFill();_hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);}
-  if(db){
-    db.collection('game_stats').get().then(function(snap){
-      snap.forEach(function(doc){_firestoreDlMap[parseInt(doc.id)]=doc.data().downloads||0;});
-      _doRender();_hInitStats();
-    }).catch(_doRender);
-  } else { _doRender(); }
+  // Fetch Firestore stats trước để sort đúng ngay từ đầu
+  var db = _getDb();
+  if (db) {
+    db.collection('game_stats').get().then(function(snapshot){
+      snapshot.forEach(function(doc){
+        var d = doc.data();
+        _firestoreDlMap[parseInt(doc.id)] = d.downloads || 0;
+      });
+      var gs=_hGames();if(!gs.length)return;
+      _hRender(gs[0]);_hUpdateDlDisplay(gs[0]);_hStartFill();
+      _hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
+      _hInitStats(); // realtime listener để reorder khi có thay đổi
+    }).catch(function(){
+      // Fallback nếu Firestore lỗi
+      var gs=_hGames();if(!gs.length)return;
+      _hRender(gs[0]);_hUpdateDlDisplay(gs[0]);_hStartFill();
+      _hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
+    });
+  } else {
+    var gs=_hGames();if(!gs.length)return;
+    _hRender(gs[0]);_hUpdateDlDisplay(gs[0]);_hStartFill();
+    _hTimer=setInterval(function(){_hGoTo(_hIdx+1);},H_MS);
+  }
 }
 function switchHero(id,dotEl){
   var i=_hGames().findIndex(function(x){return x.id===id;});
@@ -619,58 +672,21 @@ function renderGames() {
 function setGenreFilter(el,g) { genreFilter=g; document.querySelectorAll('#gChips .chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); renderGames(); }
 
 function renderGenrePage() {
-  const q = (document.getElementById('genreSearch')?.value||'').toLowerCase().trim();
-  const typeVal = document.getElementById('genreTypeSelect')?.value || genrePageFilter || '';
-  const vietVal = document.getElementById('genreVietSelect')?.value || '';
-  const ratingVal = parseFloat(document.getElementById('genreRatingSelect')?.value||'0');
-  const sortVal = document.getElementById('genreSort')?.value || 'new';
-
-  // Sync dropdown với genrePageFilter (khi click từ navbar dropdown)
-  if(genrePageFilter && document.getElementById('genreTypeSelect')){
-    document.getElementById('genreTypeSelect').value = genrePageFilter;
-  }
-
-  let list = [...GAMES];
-  if(typeVal) list = list.filter(g => g.genre === typeVal);
-  if(vietVal === 'yes') list = list.filter(g => g.viet);
-  if(vietVal === 'no')  list = list.filter(g => !g.viet);
-  if(ratingVal) list = list.filter(g => g.rating >= ratingVal);
-  if(q) list = list.filter(g =>
-    g.title.toLowerCase().includes(q) ||
-    g.genre_label.toLowerCase().includes(q) ||
-    g.tags.some(t => t.toLowerCase().includes(q))
-  );
-
-  if(sortVal==='name')   list.sort((a,b)=>a.title.localeCompare(b.title));
-  else if(sortVal==='rating') list.sort((a,b)=>b.rating-a.rating);
-  else if(sortVal==='dl') list.sort((a,b)=>((b.downloads||0)+(_firestoreDlMap[b.id]||0))-((a.downloads||0)+(_firestoreDlMap[a.id]||0)));
-  else list.sort((a,b)=>(b.id||0)-(a.id||0)); // newest
-
-  // Cập nhật title
-  const titleEl = document.getElementById('genreFilterTitle');
-  if(titleEl){
-    if(typeVal){
-      const gObj = GENRES.find(x=>x.id===typeVal);
-      titleEl.textContent = (gObj?.icon||'🎮')+' '+(gObj?.name||typeVal);
-    } else { titleEl.textContent = 'Tất Cả Game'; }
-  }
-
-  // Cập nhật count
-  const rc = document.getElementById('genreRcount');
-  if(rc) rc.textContent = list.length + ' game';
-
-  const games = document.getElementById('genreGames');
-  if(games) games.innerHTML = list.map((g,i)=>gcard(g,i*.03)).join('') || emptyHtml(L().empty.notFound);
+  const fl=L().filter;
+  const grid=document.getElementById('genreGrid');
+  let html=`<div class="gc ${!genrePageFilter?'active':''}" onclick="selectGenre(null)"><div class="gc-icon">🎮</div><div class="gc-name">${fl.all}</div><div class="gc-count">${GAMES.length} ${fl.gameUnit}</div></div>`;
+  html+=GENRES.map(g=>{ const cnt=GAMES.filter(x=>x.genre===g.id).length; return `<div class="gc ${genrePageFilter===g.id?'active':''}" onclick="selectGenre('${g.id}')"><div class="gc-icon">${g.icon}</div><div class="gc-name">${g.name}</div><div class="gc-count">${cnt} ${fl.gameUnit}</div></div>`; }).join('');
+  grid.innerHTML=html;
+  const head=document.getElementById('genreHead'),label=document.getElementById('genreLabel'),games=document.getElementById('genreGames');
+  if(genrePageFilter){
+    const gObj=GENRES.find(x=>x.id===genrePageFilter);
+    head.style.display='flex';
+    label.innerHTML=`${gObj?.icon||'🎮'} ${gObj?.name||''} <span style="color:var(--text3);font-weight:400;font-size:.9rem;font-family:var(--body)">(${GAMES.filter(x=>x.genre===genrePageFilter).length})</span>`;
+    games.innerHTML=GAMES.filter(x=>x.genre===genrePageFilter).map((g,i)=>gcard(g,i*.03)).join('')||emptyHtml(L().empty.title);
+  } else { head.style.display='none'; games.innerHTML=GAMES.map((g,i)=>gcard(g,i*.02)).join(''); }
 }
 function selectGenre(id){ genrePageFilter=id; renderGenrePage(); }
 function goGenre(genreId){ genrePageFilter=genreId; go('genre'); }
-function resetGenreFilters(){
-  genrePageFilter=null;
-  const ids=['genreSearch','genreTypeSelect','genreVietSelect','genreRatingSelect'];
-  ids.forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
-  const s=document.getElementById('genreSort'); if(s) s.value='new';
-  renderGenrePage();
-}
 
 function renderViet() {
   const l=L(); const list=GAMES.filter(g=>g.viet);
