@@ -671,21 +671,39 @@ function renderGames() {
 }
 function setGenreFilter(el,g) { genreFilter=g; document.querySelectorAll('#gChips .chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); renderGames(); }
 
+var genrePageSort='new';
+var genrePageSearch='';
 function renderGenrePage() {
   const fl=L().filter;
   const grid=document.getElementById('genreGrid');
-  let html=`<div class="gc ${!genrePageFilter?'active':''}" onclick="selectGenre(null)"><div class="gc-icon">🎮</div><div class="gc-name">${fl.all}</div><div class="gc-count">${GAMES.length} ${fl.gameUnit}</div></div>`;
-  html+=GENRES.map(g=>{ const cnt=GAMES.filter(x=>x.genre===g.id).length; return `<div class="gc ${genrePageFilter===g.id?'active':''}" onclick="selectGenre('${g.id}')"><div class="gc-icon">${g.icon}</div><div class="gc-name">${g.name}</div><div class="gc-count">${cnt} ${fl.gameUnit}</div></div>`; }).join('');
+  // Render chips
+  let html=`<div class="gc ${!genrePageFilter?'active':''}" onclick="selectGenre(null)">\u{1F3AE} ${fl.all} <span class="gc-count">${GAMES.length}</span></div>`;
+  html+=GENRES.map(g=>{ const cnt=GAMES.filter(x=>x.genre===g.id).length; return `<div class="gc ${genrePageFilter===g.id?'active':''}" onclick="selectGenre('${g.id}')">${g.icon||''} ${g.name} <span class="gc-count">${cnt}</span></div>`; }).join('');
   grid.innerHTML=html;
+  // Filter + search + sort
+  let list=genrePageFilter?GAMES.filter(x=>x.genre===genrePageFilter):[...GAMES];
+  if(genrePageSearch){
+    const q=genrePageSearch.toLowerCase();
+    list=list.filter(g=>(g.title||'').toLowerCase().includes(q)||(g.tags||[]).some(t=>t.toLowerCase().includes(q)));
+  }
+  const s=genrePageSort||'new';
+  if(s==='name') list=[...list].sort((a,b)=>(a.title||'').localeCompare(b.title||''));
+  else if(s==='rating') list=[...list].sort((a,b)=>b.rating-a.rating);
+  else if(s==='dl') list=[...list].sort((a,b)=>b.downloads-a.downloads);
+  else list=[...list].sort((a,b)=>b.year-a.year);
   const head=document.getElementById('genreHead'),label=document.getElementById('genreLabel'),games=document.getElementById('genreGames');
   if(genrePageFilter){
     const gObj=GENRES.find(x=>x.id===genrePageFilter);
     head.style.display='flex';
-    label.innerHTML=`${gObj?.icon||'🎮'} ${gObj?.name||''} <span style="color:var(--text3);font-weight:400;font-size:.9rem;font-family:var(--body)">(${GAMES.filter(x=>x.genre===genrePageFilter).length})</span>`;
-    games.innerHTML=GAMES.filter(x=>x.genre===genrePageFilter).map((g,i)=>gcard(g,i*.03)).join('')||emptyHtml(L().empty.title);
-  } else { head.style.display='none'; games.innerHTML=GAMES.map((g,i)=>gcard(g,i*.02)).join(''); }
+    label.innerHTML=`${gObj?.icon||'\u{1F3AE}'} ${gObj?.name||''} <span style="color:var(--text3);font-weight:400;font-size:.9rem;font-family:var(--body)">(${list.length})</span>`;
+  } else { head.style.display='none'; }
+  games.innerHTML=list.length?list.map((g,i)=>gcard(g,i*.02)).join(''):emptyHtml(L().empty.title);
+  const ss=document.getElementById('genreSortSel'); if(ss) ss.value=genrePageSort;
+  const si=document.getElementById('genreSearchInput'); if(si&&si.value!==genrePageSearch) si.value=genrePageSearch;
 }
 function selectGenre(id){ genrePageFilter=id; renderGenrePage(); }
+function genreSortChange(v){ genrePageSort=v; renderGenrePage(); }
+function genreSearchChange(v){ genrePageSearch=v; renderGenrePage(); }
 function goGenre(genreId){ genrePageFilter=genreId; go('genre'); }
 
 function renderViet() {
