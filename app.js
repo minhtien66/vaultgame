@@ -431,7 +431,8 @@ function gcard(g,delay=0) {
   const img=g.thumbnail?`<img src="${g.thumbnail}" alt="${g.title}" loading="lazy" onerror="this.style.display='none'">`:'';
   return `
 <div class="gcard" style="animation-delay:${delay}s" onclick="go('detail',${g.id})">
-  <div class="gcard-thumb">${img}<span class="gcard-emoji">${g.emoji}</span><div class="gcard-grad"></div></div>
+  <div class="gcard-thumb">${img}<span class="gcard-emoji">${g.emoji}</span><div class="gcard-grad"></div>
+  ${g.updated?`<div class="gcard-date">📅 ${g.updated}</div>`:''}</div>
   ${badgeHtml(g.badges,g.viet)}
   <div class="gcard-score">★ ${g.rating.toFixed(1)}</div>
   <div class="gcard-body">
@@ -630,7 +631,10 @@ function renderHome() {
   const snl=document.getElementById('secNewLabel'); if(snl) snl.textContent=lh.new_;
   const snm=document.getElementById('secNewMore');  if(snm) snm.textContent=lh.newMore;
   const hot=GAMES.filter(g=>g.badges.includes('hot'));
-  const newG=GAMES.filter(g=>g.badges.includes('new'));
+  const newG=[...GAMES].filter(g=>g.badges.includes('new')).sort((a,b)=>{
+    const pd=s=>{if(!s)return 0;const[d,m,y]=s.split('/');return new Date(y,m-1,d).getTime();};
+    return pd(b.updated)-pd(a.updated);
+  });
   document.getElementById('homeHot').innerHTML=(hot.length?hot:GAMES).slice(0,8).map((g,i)=>gcard(g,i*.04)).join('')||emptyHtml(l.empty.noHot);
   document.getElementById('homeNew').innerHTML=(newG.length?newG:GAMES).slice(0,4).map((g,i)=>gcard(g,i*.05)).join('')||emptyHtml(l.empty.noNew);
 
