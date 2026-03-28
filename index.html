@@ -65,7 +65,9 @@ img{display:block;max-width:100%}
 .nav-count{font-family:var(--mono);font-size:.62rem;color:var(--text3);background:var(--card);border:1px solid var(--border);padding:.22rem .52rem;border-radius:5px;white-space:nowrap}
 /* ── GENRE DROPDOWN ── */
 .nav-genre-wrap{position:relative;display:flex;align-items:center;flex-shrink:0}
-.genre-dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--card2,var(--card));border:1px solid var(--border2,var(--border));border-radius:10px;overflow:hidden;min-width:220px;box-shadow:0 12px 40px rgba(0,0,0,.65);z-index:9999;padding:.3rem 0}
+/* padding-top tạo vùng hover liên tục từ nav-link xuống dropdown, tránh bị mất khi di chuột */
+.genre-dropdown{display:none;position:absolute;top:100%;left:0;padding-top:8px;z-index:9999}
+.genre-dropdown-inner{background:var(--card2,var(--card));border:1px solid var(--border2,var(--border));border-radius:10px;overflow-y:auto;max-height:70vh;min-width:230px;box-shadow:0 12px 40px rgba(0,0,0,.65);padding:.3rem 0;scrollbar-width:thin}
 .nav-genre-wrap:hover .genre-dropdown{display:block;animation:fadeUp .14s ease}
 .gdrop-item{display:flex;align-items:center;gap:.6rem;padding:.5rem 1.1rem;font-size:.78rem;font-weight:700;color:var(--text2);cursor:pointer;transition:background .1s,color .1s;white-space:nowrap;border-left:2px solid transparent;text-transform:none;letter-spacing:0}
 .gdrop-item:hover{background:rgba(0,180,216,.09);color:var(--accent);border-left-color:var(--accent)}
@@ -761,27 +763,29 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
         <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="opacity:.6"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
       <div class="genre-dropdown">
-        <div class="gdrop-item gdrop-viet" onclick="go('viet')">🇻🇳 Việt Hóa</div>
-        <div class="gdrop-sep"></div>
-        <div class="gdrop-item" onclick="goGenre('online')">🌐 Online + Co-op + Multiplayer</div>
-        <div class="gdrop-item" onclick="goGenre('action')">🗡️ Hành động</div>
-        <div class="gdrop-item" onclick="goGenre('adventure')">🧭 Phiêu lưu</div>
-        <div class="gdrop-item" onclick="goGenre('openworld')">🗺️ Thế giới mở</div>
-        <div class="gdrop-item" onclick="goGenre('anime')">⛩️ Anime</div>
-        <div class="gdrop-item" onclick="goGenre('horror')">👻 Kinh dị</div>
-        <div class="gdrop-item" onclick="goGenre('shooter')">🎯 Bắn súng</div>
-        <div class="gdrop-item" onclick="goGenre('slasher')">⚔️ Chặt chém</div>
-        <div class="gdrop-item" onclick="goGenre('rpg')">⚗️ Nhập vai</div>
-        <div class="gdrop-item" onclick="goGenre('survival')">🏕️ Sinh tồn</div>
-        <div class="gdrop-item" onclick="goGenre('fighting')">🥊 Đối kháng</div>
-        <div class="gdrop-item" onclick="goGenre('sports')">🏆 Thể thao</div>
-        <div class="gdrop-item" onclick="goGenre('football')">⚽ Bóng đá</div>
-        <div class="gdrop-item" onclick="goGenre('puzzle')">🧩 Giải đố</div>
-        <div class="gdrop-item" onclick="goGenre('simulation')">🚛 Mô phỏng</div>
-        <div class="gdrop-item" onclick="goGenre('strategy')">♟️ Chiến thuật</div>
-        <div class="gdrop-item" onclick="goGenre('visualnovel')">📖 Visual Novel</div>
-        <div class="gdrop-item" onclick="goGenre('simulator')">🎮 Giả lập</div>
-        <div class="gdrop-item" onclick="goGenre('fps')">🔫 FPS góc nhìn thứ nhất</div>
+        <div class="genre-dropdown-inner">
+          <div class="gdrop-item gdrop-viet" onclick="go('viet')">🇻🇳 Việt Hóa</div>
+          <div class="gdrop-sep"></div>
+          <div class="gdrop-item" onclick="goGenre('online')">🌐 Online + Co-op + Multiplayer</div>
+          <div class="gdrop-item" onclick="goGenre('action')">🗡️ Hành động</div>
+          <div class="gdrop-item" onclick="goGenre('adventure')">🧭 Phiêu lưu</div>
+          <div class="gdrop-item" onclick="goGenre('openworld')">🗺️ Thế giới mở</div>
+          <div class="gdrop-item" onclick="goGenre('anime')">⛩️ Anime</div>
+          <div class="gdrop-item" onclick="goGenre('horror')">👻 Kinh dị</div>
+          <div class="gdrop-item" onclick="goGenre('shooter')">🎯 Bắn súng</div>
+          <div class="gdrop-item" onclick="goGenre('slasher')">⚔️ Chặt chém</div>
+          <div class="gdrop-item" onclick="goGenre('rpg')">⚗️ Nhập vai</div>
+          <div class="gdrop-item" onclick="goGenre('survival')">🏕️ Sinh tồn</div>
+          <div class="gdrop-item" onclick="goGenre('fighting')">🥊 Đối kháng</div>
+          <div class="gdrop-item" onclick="goGenre('sports')">🏆 Thể thao</div>
+          <div class="gdrop-item" onclick="goGenre('football')">⚽ Bóng đá</div>
+          <div class="gdrop-item" onclick="goGenre('puzzle')">🧩 Giải đố</div>
+          <div class="gdrop-item" onclick="goGenre('simulation')">🚛 Mô phỏng</div>
+          <div class="gdrop-item" onclick="goGenre('strategy')">♟️ Chiến thuật</div>
+          <div class="gdrop-item" onclick="goGenre('visualnovel')">📖 Visual Novel</div>
+          <div class="gdrop-item" onclick="goGenre('simulator')">🎮 Giả lập</div>
+          <div class="gdrop-item" onclick="goGenre('fps')">🔫 FPS góc nhìn thứ nhất</div>
+        </div>
       </div>
     </div>
     <a class="nav-link" id="nl-viet" onclick="go('viet')">
@@ -1429,14 +1433,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
   </div>
   <div class="footer-bot">
     <span class="footer-copy">© 2026 VaultGame — Kho game PC miễn phí</span>
-    <!-- Badge DMCA hiện tại sẽ nhảy lên vị trí cũ của dòng Made with -->
     <div style="display: inline-block; margin-left: 10px; vertical-align: middle;">
       <a href="//www.dmca.com/Protection/Status.aspx?ID=b20edc4f-e969-4e89-b5c5-6c65a768e5d3" title="DMCA.com Protection Status" class="dmca-badge">
           <img src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-10.png?ID=b20edc4f-e969-4e89-b5c5-6c65a768e5d3" alt="DMCA.com Protection Status" />
       </a>
       <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
     </div>
-    <!-- Dòng Made with hiện tại sẽ nằm ở vị trí của DMCA cũ -->
     <div style="margin-top: 15px;">
       <span class="footer-copy">Made with ❤️ for gamers worldwide</span>
     </div>
