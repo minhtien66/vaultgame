@@ -708,7 +708,7 @@ const BLOG_POSTS = [
     desc: "Khám phá chi tiết về mẫu CPU Dual-Cache đầu tiên trên thế giới của AMD, hứa hẹn hiệu năng gaming hủy diệt vừa được xác nhận ra mắt trong tuần này.",
     date: "28/03/2026",
     readTime: "8 phút đọc",
-    thumbnail: "https://i.ibb.co/2NzzH0Qx/AMD-Ryzen-9-9950-X3D2-Launch.png",
+    thumbnail: "https://i.ibb.co/mFDMWzPq/download-2.png",
     gradient: "linear-gradient(135deg,#ed1c24,#911014)",
     icon: "🔥",
     content: `
