@@ -4,341 +4,6 @@
  
 const GAMES = [
   {
-    id: 4,
-    title: "Euro Truck Simulator 2 Việt Hóa + Online Multiplayer",
-    slug: "euro-truck-simulator-2-viet-hoa",
-    genre: "simulation",
-    genre_label: "Mô Phỏng / Lái Xe",
-    desc_short: "Đánh giá chi tiết Euro Truck Simulator 2 — tựa game mô phỏng lái xe tải huyền thoại với bản Việt Hóa hoàn chỉnh và hỗ trợ chơi Online Multiplayer cùng bạn bè.",
-    desc_full: `
-<h2>Euro Truck Simulator 2 là gì?</h2>
-<p>Euro Truck Simulator 2 (ETS2) là tựa game mô phỏng lái xe tải nổi tiếng thế giới của SCS Software, lần đầu ra mắt năm 2012 và đến nay vẫn là một trong những game mô phỏng được yêu thích nhất trên Steam với hơn 200.000 đánh giá tích cực. Tại Việt Nam, cộng đồng game thủ đã Việt hóa hoàn chỉnh giao diện và phụ đề tiếng Việt, giúp người chơi trong nước trải nghiệm tựa game này dễ dàng hơn bao giờ hết.</p>
-
-<h2>Khám phá châu Âu sau tay lái</h2>
-<p>Trong ETS2, bạn sẽ lái xe tải qua hơn 60 thành phố châu Âu — từ London (Anh), Paris (Pháp), Berlin (Đức), Rome (Ý), Warsaw (Ba Lan) đến hàng chục quốc gia châu Âu khác. Mỗi thành phố được tái hiện với kiến trúc đặc trưng, hệ thống đường xá chi tiết và các biển hiệu giao thông đúng chuẩn châu Âu.</p>
-<p>Nhiệm vụ chính là vận chuyển hàng hóa đa dạng — từ hàng nông sản, vật liệu xây dựng đến hàng công nghiệp — với nhiều loại xe tải từ các thương hiệu danh tiếng như Volvo, Scania, MAN, Mercedes-Benz và DAF. Mỗi loại xe có đặc tính lái và thông số kỹ thuật riêng, tạo ra sự phong phú trong trải nghiệm.</p>
-
-<h2>Xây dựng đế chế vận tải của riêng bạn</h2>
-<p>ETS2 không chỉ là game lái xe đơn thuần — đây còn là game quản lý kinh doanh thú vị. Bắt đầu từ một tài xế làm thuê, bạn sẽ dần tích lũy tiền để mua xe tải đầu tiên, mở garage riêng, thuê thêm tài xế AI và mở rộng công ty vận tải xuyên châu Âu. Hệ thống kinh tế trong game rất logic: chi phí nhiên liệu, sửa chữa xe, lương nhân viên và lợi nhuận từ mỗi chuyến hàng đều được tính toán chi tiết.</p>
-
-<h2>Chơi Online Multiplayer — Convoy cùng bạn bè</h2>
-<p>Một trong những điểm hấp dẫn nhất của phiên bản này là hỗ trợ chơi Online Multiplayer. Bạn có thể tạo hoặc tham gia đoàn xe convoy cùng bạn bè, cùng nhau vận chuyển hàng hóa và khám phá châu Âu trên cùng một server. Trải nghiệm convoy 5-10 người trên cao tốc châu Âu về đêm là một trong những khoảnh khắc đáng nhớ nhất trong game.</p>
-
-<h2>Bản Việt Hóa — Trải nghiệm game bằng tiếng mẹ đẻ</h2>
-<p>Cộng đồng game thủ Việt Nam đã dày công Việt hóa toàn bộ giao diện game, từ menu chính, bản đồ, thông báo nhiệm vụ đến các thông số kỹ thuật của xe. Chỉ cần vào phần cài đặt ngôn ngữ trong game và chọn Tiếng Việt — bản dịch sẽ được áp dụng ngay lập tức mà không cần thao tác thêm.</p>
-
-<h2>Tại sao nên trải nghiệm ETS2?</h2>
-<p>Nếu bạn đang tìm kiếm một tựa game thư giãn sau những giờ làm việc căng thẳng, ETS2 là lựa chọn hoàn hảo. Cảm giác lái xe xuyên đêm trên những cung đường châu Âu với âm nhạc yêu thích, ngắm cảnh bình minh ló dạng sau dãy núi Alps — đó là điều mà ít game nào có thể mang lại. Đây cũng là một trong những game có cộng đồng mod lớn nhất thế giới, với hàng chục nghìn mod miễn phí từ bản đồ mở rộng, xe mới đến thay đổi thời tiết và đồ họa.</p>
-<p>Nếu bạn muốn ủng hộ nhà phát triển, hãy mua bản quyền chính thức trên <strong>Steam</strong> — SCS Software thường xuyên có khuyến mãi giảm giá rất hấp dẫn.</p>`,
-    install_guide: `<h3>HƯỚNG DẪN TRẢI NGHIỆM EURO TRUCK SIMULATOR 2 VIỆT HÓA</h3>
-    <ol>
-      <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip (mật khẩu nằm trong dấu [ ] ở tên file nén)</li>
-      <li>Với Win 64bit: vào thư mục <code>Euro Truck Simulator 2\bin\win_x64</code>, chạy file <strong>eurotrucks2.exe</strong></li>
-      <li>Với Win 32bit: vào thư mục <code>Euro Truck Simulator 2\bin\win_x86</code>, chạy file <strong>eurotrucks2.exe</strong></li>
-      <li>Vào phần cài đặt trong game, chọn ngôn ngữ <strong>Tiếng Việt</strong></li>
-      <li>Bản Việt Hóa đã được tích hợp sẵn — khởi động game và tận hưởng!</li>
-    </ol>
-    <h3>HƯỚNG DẪN CHƠI ONLINE MULTIPLAYER</h3>
-    <ol>
-      <li>Tải Steam fix online và giải nén (mật khẩu tương tự file game)</li>
-      <li>Copy toàn bộ file trong thư mục vừa giải nén vào thư mục chứa game</li>
-      <li>Mở Steam và đăng nhập tài khoản (để chạy nền)</li>
-      <li>Chạy <strong>eurotrucks2.exe</strong> như hướng dẫn bên trên</li>
-      <li><strong>Tạo phòng:</strong> ESC → Hộ tống → Tạo một đoàn xe → Xác nhận</li>
-      <li><strong>Tham gia:</strong> ESC → Hộ tống → Kết nối với máy chủ của bạn bè</li>
-    </ol>`,
-    size: "32.3 GB",
-    version: "Phiên bản mới nhất (Việt Hóa)",
-    year: 2012,
-    updated: "18/03/2026",
-    developer: "SCS Software",
-    publisher: "SCS Software",
-    rating: 4.8,
-    downloads: 0,
-    emoji: "🚛",
-    badges: ["hot", "new"],
-    viet: true,
-    download_links: [
-      { label: "Part 1", url: "https://gofile.io/d/NuM1Cb", icon: "⬇️", group: "Mirror Link" },
-      { label: "Part 2", url: "https://gofile.io/d/DdLZbG", icon: "⬇️", group: "Mirror Link" },
-      { label: "Part 3", url: "https://gofile.io/d/XcMB4I", icon: "⬇️", group: "Mirror Link" },
-      { label: "Steam Fix Online", url: "https://gofile.io/d/XUQ4iP", icon: "🔧", group: "Mirror Link" },
-    ],
-    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
-    screenshots: [
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/ss_bd8b2b2f6a1a595afab14f398de836e6010563c7.1920x1080.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_03.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_05.jpg",
-    ],
-    gallery: [
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/ss_bd8b2b2f6a1a595afab14f398de836e6010563c7.1920x1080.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_01.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_02.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_03.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_04.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_05.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_06.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_07.jpg",
-      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_08.jpg",
-    ],
-    trailer: "https://www.youtube.com/embed/RHGAfgKMRiI",
-    tags: ["Lái Xe", "Mô Phỏng", "Việt Hóa", "Multiplayer", "Online", "Châu Âu", "SCS Software"],
-    sys_req: {
-      min: {
-        os: "Windows 10 64-bit",
-        cpu: "Intel Core i5-6400 / AMD Ryzen 3 1200",
-        ram: "8 GB",
-        gpu: "NVIDIA GeForce GTX 660 / AMD Radeon RX 460 (2GB VRAM)",
-        storage: "25 GB",
-        directx: "Version 11",
-      },
-      rec: {
-        os: "Windows 10/11 64-bit",
-        cpu: "Intel Core i5-9600 / AMD Ryzen 5 3600",
-        ram: "12 GB",
-        gpu: "NVIDIA GeForce GTX 1660 / AMD Radeon RX 590 (2GB VRAM)",
-        storage: "25 GB SSD",
-        directx: "Version 11",
-      },
-    },
-  },
-  {
-    id: 3,
-    title: "Victoria 3",
-    slug: "victoria-3",
-    genre: "strategy",
-    genre_label: "Chiến lược / Mô phỏng",
-    desc_short: "Xây dựng đế chế của bạn trong thế kỷ 19 đầy biến động — quản lý kinh tế, xã hội, ngoại giao và chiến tranh trong tựa game chiến lược vĩ mô đỉnh cao của Paradox Interactive.",
-    desc_full: `
-<h2>Victoria 3 — Đỉnh cao của dòng game chiến lược vĩ mô</h2>
-<p>Victoria 3 là tựa game chiến lược vĩ mô được phát triển bởi Paradox Development Studio và phát hành năm 2022. Đây là phần tiếp theo được mong chờ suốt hơn 10 năm của loạt game Victoria nổi tiếng, đưa người chơi trở về kỷ nguyên 1836–1936 — thời đại của Cách mạng Công nghiệp, chủ nghĩa thực dân và sự trỗi dậy của các cường quốc.</p>
-
-<h2>Cốt truyện và bối cảnh</h2>
-<p>Không có một "cốt truyện" cố định trong Victoria 3 — thay vào đó, chính lịch sử do bạn viết nên mới là cốt truyện thật sự. Bạn bắt đầu năm 1836, khi thế giới đang đứng trước ngưỡng cửa của cuộc Cách mạng Công nghiệp. Từ đây, mọi quyết định đều định hình lịch sử: liệu nước Anh có duy trì vị thế bá chủ thế giới? Liệu Việt Nam có thể kháng cự chủ nghĩa thực dân Pháp? Hay một quốc gia nhỏ bé ở châu Phi có thể vươn lên thành cường quốc toàn cầu?</p>
-
-<h2>Đồ họa và âm thanh</h2>
-<p>Victoria 3 có giao diện bản đồ thế giới chi tiết với nhiều lớp thông tin — từ chính trị, kinh tế, dân số đến địa hình và tài nguyên. Phong cách đồ họa nghiêng về bản đồ chiến lược thay vì hiệu ứng hình ảnh hoành tráng, phù hợp với tính chất của dòng game grand strategy. Âm nhạc được thiết kế theo từng thời kỳ lịch sử, tạo không khí cực kỳ ăn nhập.</p>
-
-<h2>Gameplay và cơ chế độc đáo</h2>
-<p>Điểm đặc sắc nhất của Victoria 3 là hệ thống kinh tế cực kỳ chi tiết. Mỗi quốc gia có hàng chục loại hàng hóa trong chuỗi cung ứng — bông → vải → quần áo; sắt → thép → đường sắt → tàu hỏa. Bạn phải xây dựng các tòa nhà sản xuất đúng thứ tự, đảm bảo chuỗi cung ứng liền mạch để nền kinh tế phát triển bền vững.</p>
-<p>Hệ thống Pops (dân số) là cơ chế độc đáo nhất của Victoria: mỗi tầng lớp xã hội (nông dân, công nhân, tiểu tư sản, quý tộc...) có nhu cầu tiêu dùng, tư tưởng chính trị và mức độ hài lòng riêng. Nếu công nhân quá bất mãn, họ sẽ ủng hộ các phong trào cách mạng; nếu quý tộc mất đặc quyền, họ sẽ cản trở cải cách.</p>
-
-<h2>Tại sao nên trải nghiệm Victoria 3?</h2>
-<p>Nếu bạn yêu thích lịch sử và muốn "viết lại lịch sử" theo cách của mình, Victoria 3 là trải nghiệm không thể bỏ qua. Mỗi ván chơi là một câu chuyện hoàn toàn khác nhau — đôi khi bạn xây dựng đế chế công nghiệp hùng mạnh, đôi khi đưa một quốc gia nhỏ bé vươn lên sân khấu thế giới, đôi khi chứng kiến cuộc cách mạng xã hội lật đổ chính quyền do mình điều hành. Độ sâu của game gần như vô hạn và cộng đồng mod rất phong phú, đảm bảo trải nghiệm luôn mới mẻ sau hàng trăm giờ chơi.</p>
-<p>Hãy ủng hộ Paradox Development Studio bằng cách mua bản quyền chính thức trên <strong>Steam</strong> nếu bạn thích tựa game này!</p>`,
-    install_guide: `<ol>
-      <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip (mật khẩu nằm trong dấu [ ] ở tên file nén)</li>
-      <li>Mở thư mục sau khi giải nén</li>
-      <li>Chạy <strong>victoria3.exe</strong> để bắt đầu trải nghiệm</li>
-      <li><strong>Lưu ý:</strong> Tắt Windows Defender / phần mềm diệt virus tạm thời nếu gặp cảnh báo nhầm</li>
-    </ol>`,
-    size: "9.5 GB",
-    version: "Phiên bản mới nhất",
-    year: 2022,
-    updated: "15/03/2026",
-    developer: "Paradox Development Studio",
-    publisher: "Paradox Interactive",
-    rating: 4.4,
-    downloads: 0,
-    emoji: "🏭",
-    badges: ["hot", "new"],
-    viet: false,
-    download_links: [
-      { label: "Mirror Link", url: "https://gofile.io/d/jg1uxC", icon: "⬇️" },
-    ],
-    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
-    screenshots: [
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
-      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/529340/4a1da4d1f072d157c25645ca8459c6573a0d5671/ss_4a1da4d1f072d157c25645ca8459c6573a0d5671.1920x1080.jpg?t=1773335146",
-      "https://daominhha.net/wp-content/uploads/2022/10/download-mien-phi-VICTORIA-3-daominhha.net_.jpg",
-      "https://daominhha.net/wp-content/uploads/2022/10/tai-full-game-VICTORIA-3-daominhha.jpg",
-      "https://images.squarespace-cdn.com/content/v1/55ef0e29e4b099e22cdc9eea/36daaad5-13d6-4aeb-b44e-cda172934142/Victoria+3+World.jpg",
-    ],
-    trailer: "https://www.youtube.com/embed/WOlfY-FsL9I",
-    tags: ["Chiến lược", "Mô phỏng", "Lịch sử", "Grand Strategy", "Paradox", "Kinh tế", "Thế kỷ 19"],
-    sys_req: {
-      min: {
-        os: "Windows 10 Home 64-bit",
-        cpu: "Intel Core i5-6600K / AMD Ryzen 5 2600X",
-        ram: "8 GB",
-        gpu: "NVIDIA GeForce GTX 970 / AMD Radeon RX 470 (4GB VRAM)",
-        storage: "10 GB",
-        directx: "Version 11",
-      },
-      rec: {
-        os: "Windows 10/11 64-bit",
-        cpu: "Intel Core i7-8700K / AMD Ryzen 5 3600X",
-        ram: "16 GB",
-        gpu: "NVIDIA GeForce GTX 1070 / AMD Radeon RX 5700 (8GB VRAM)",
-        storage: "10 GB SSD",
-        directx: "Version 12",
-      },
-    },
-  },
-  {
-    id: 2,
-    title: "eFootball PES 2020 Việt Hóa + Bình Luận Tiếng Việt",
-    slug: "efootball-pes-2020-viet-hoa",
-    genre: "sports",
-    genre_label: "Thể Thao / Bóng Đá",
-    desc_short: "Đánh giá eFootball PES 2020 bản Việt Hóa — trải nghiệm bóng đá đỉnh cao với bình luận tiếng Việt hoàn chỉnh, đội tuyển Việt Nam cập nhật và lối chơi mượt mà huyền thoại của Konami.",
-    desc_full: `
-<h2>eFootball PES 2020 — Đỉnh cao bóng đá PC trước khi Konami đổi hướng</h2>
-<p>eFootball PES 2020 (Pro Evolution Soccer 2020) được nhiều người coi là tựa game bóng đá hay nhất mà Konami từng tạo ra trước khi chuyển sang mô hình free-to-play với eFootball gây nhiều tranh cãi. Ra mắt năm 2019, PES 2020 vẫn đang được hàng nghìn game thủ Việt Nam chơi đến tận hôm nay — đặc biệt với bản Việt hóa chất lượng cao kèm bình luận tiếng Việt của BLV Phạm Hùng Tiến.</p>
-
-<h2>Cốt truyện và chế độ chơi</h2>
-<p>PES 2020 không có "cốt truyện" theo nghĩa truyền thống, nhưng chế độ <strong>Master League</strong> chính là nơi để người chơi viết nên hành trình của riêng mình. Bạn sẽ tiếp quản một câu lạc bộ đang gặp khó khăn, từng bước xây dựng đội hình, ký hợp đồng cầu thủ, thiết lập chiến thuật và dẫn dắt CLB từ giải hạng dưới lên đến đỉnh cao Champions League.</p>
-
-<h2>Đồ họa và âm thanh</h2>
-<p>PES 2020 sử dụng engine Fox Engine với chất lượng đồ họa ấn tượng. Khuôn mặt các siêu sao như Messi, Ronaldo, Neymar được quét 3D chi tiết đến từng sợi tóc. Animation di chuyển của cầu thủ cực kỳ tự nhiên — các pha dribble, va chạm cơ thể và phản ứng của thủ môn đều mượt mà hơn nhiều so với đối thủ cùng thời.</p>
-<p>Điểm nhấn lớn nhất là <strong>bình luận tiếng Việt</strong> của BLV Phạm Hùng Tiến — với hàng nghìn câu được thu âm chuyên nghiệp, giọng bình luận sôi động đúng cảm xúc trận đấu.</p>
-
-<h2>Gameplay — Vì sao PES 2020 vẫn là tiêu chuẩn vàng?</h2>
-<p>Vật lý bóng của PES 2020 đến nay vẫn được đánh giá là chân thực nhất trong lịch sử game bóng đá. Mỗi đường chuyền, mỗi cú sút đều có trọng lượng riêng — không có cảm giác "cứng đơ" hay "trượt băng" như một số game bóng đá khác. AI đồng đội thông minh, biết di chuyển tạo không gian và hỗ trợ đúng lúc. Hệ thống "Magic Moments" — khả năng đặc biệt riêng của từng siêu sao — tái hiện rất chính xác phong cách chơi thực tế của họ.</p>
-
-<h2>Bản Việt Hóa — Trọn vẹn từ menu đến sân cỏ</h2>
-<p>Bản Việt hóa này bao gồm: giao diện menu hoàn toàn tiếng Việt, đội tuyển quốc gia Việt Nam với đội hình được cập nhật, và đặc biệt là bản patch bình luận tiếng Việt của BLV Phạm Hùng Tiến. Cộng đồng game thủ Việt Nam đã đầu tư rất nhiều công sức để mang lại trải nghiệm bóng đá hoàn chỉnh nhất bằng tiếng mẹ đẻ.</p>
-
-<h2>Tại sao nên trải nghiệm PES 2020?</h2>
-<p>Dù đã ra mắt hơn 5 năm, PES 2020 vẫn là lựa chọn hàng đầu cho những ai yêu bóng đá và muốn trải nghiệm gameplay mượt mà, chiều sâu chiến thuật và cảm giác bóng chân thực. Nếu bạn chưa từng thử PES 2020, đây là cơ hội tuyệt vời. Và nếu bạn muốn ủng hộ Konami, hãy tìm mua bản quyền trên <strong>Steam</strong>!</p>`,
-    install_guide: `<ol>
-<h3>HƯỚNG DẪN CÀI ĐẶT eFootball PES 2020</h3>
-<li>Tải file về và giải nén (mật khẩu nằm trong dấu [ ] ở tên file nén, ví dụ: tên file "[vaultgame]_PES2020.rar" thì mật khẩu là <strong>vaultgame</strong>)</li>
-<li>Vào thư mục sau khi giải nén, chạy file <strong>PES2020.exe</strong> để vào game</li>
-<li>Điều chỉnh cài đặt đồ họa qua file <strong>Settings.exe</strong></li>
-<li>Bắt đầu trải nghiệm</li>
-
-<h3>HƯỚNG DẪN CÀI Việt Hóa + Bình Luận Tiếng Việt</h3>
-<li>Tải file Patch Việt Hóa về và giải nén (mật khẩu tương tự file game)</li>
-<li>Copy 2 file <code>pes 20 viet hoa.cpk</code> và <code>Pham Hung Tien Official BLTV.cpk</code> vào thư mục <code>[thư mục game]\download</code></li>
-<li>Mở thư mục <code>DpFileList_Generator</code>, chạy <strong>DpFileList Generator.exe</strong></li>
-<li>Ở dòng CPK Path: chọn đường dẫn tới <code>[thư mục game]\download</code></li>
-<li>Ở dòng DpFileList: chọn đường dẫn tới <code>[thư mục game]\download</code> và chọn file <code>DpFileList.bin</code></li>
-<li>Chọn DLC v5.00, tích vào 2 file .cpk trong bảng mod, nhấn <strong>Generate DpFileList.bin</strong></li>
-<li>Khởi động game và chọn ngôn ngữ <strong>English</strong> để Việt Hóa hiển thị đúng</li>
-    </ol>`,
-    size: "36.1 GB",
-    version: "Phiên bản đầy đủ (Việt Hóa)",
-    year: 2019,
-    updated: "14/03/2026",
-    developer: "Konami",
-    publisher: "Konami",
-    rating: 4.7,
-    downloads: 0,
-    emoji: "⚽",
-    badges: ["hot", "new"],
-    viet: true,
-    download_links: [
-      { label: "Mirror Link", url: "https://gofile.io/d/4OYOvy", icon: "⬇️" },
-    ],
-    thumbnail: "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
-    screenshots: [
-      "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
-      "https://img.konami.com/products_master/eu_publish/pes2020/eu/en/images/pes2020-hp-messi-ronaldinho-02.jpg",
-      "https://www.gamereactor.eu/media/98/efootballpes2020_2959873b.jpg",
-      "https://product.hstatic.net/200000992511/product/pes-2020-gameplay_3ea412c58c584274b298d5399d5fd16b_master.jpg",
-    ],
-    trailer: "https://www.youtube.com/embed/cHDfOQyabD0",
-    tags: ["Bóng Đá", "Thể Thao", "Việt Hóa", "Multiplayer", "PES"],
-    sys_req: {
-      min: {
-        os: "Windows 7 SP1 64-bit",
-        cpu: "Intel Core i5-3470 / AMD FX-4350",
-        ram: "4 GB",
-        gpu: "NVIDIA GTX 670 / AMD Radeon HD 7870",
-        storage: "20 GB",
-        directx: "Version 11",
-      },
-      rec: {
-        os: "Windows 10 64-bit",
-        cpu: "Intel Core i7-6700 / AMD Ryzen 5 1600",
-        ram: "8 GB",
-        gpu: "NVIDIA GTX 1060 / AMD RX 5500 XT",
-        storage: "20 GB SSD",
-        directx: "Version 12",
-      },
-    },
-  },
-  {
-    id: 1,
-    title: "Geo-Political Simulator 2026",
-    slug: "geo-political-simulator-2026",
-    genre: "strategy",
-    genre_label: "Chiến lược / Mô phỏng",
-    desc_short: "Đánh giá Geo-Political Simulator 2026 — tựa game mô phỏng địa chính trị chân thực nhất, nơi bạn trải nghiệm vai trò lãnh đạo quốc gia với hệ thống kinh tế, ngoại giao và quân sự phức tạp.",
-    desc_full: `
-<h2>Geo-Political Simulator 2026 — Cầm quyền cả một quốc gia</h2>
-<p>Geo-Political Simulator 2026 là tựa game mô phỏng chính trị - địa lý chân thực và phức tạp nhất hiện nay do Eversim phát triển. Trong game, bạn sẽ đảm nhận vai trò nguyên thủ quốc gia — Tổng thống, Thủ tướng hoặc Quốc vương — của bất kỳ quốc gia nào trong số hơn 175 quốc gia trên thế giới. Đây không phải game giải trí nhanh, mà là một trải nghiệm chiến lược sâu sắc cho những ai muốn hiểu cách thế giới thực sự vận hành.</p>
-
-<h2>Cốt truyện — Lịch sử do bạn quyết định</h2>
-<p>GPS 2026 không có cốt truyện theo kiểu truyền thống — câu chuyện chính là nhiệm kỳ lãnh đạo của bạn. Game tái hiện thế giới thực tế với dữ liệu kinh tế, dân số, địa lý và quan hệ ngoại giao được cập nhật đến năm 2026. Mọi quyết định đều có hậu quả cụ thể: ký kết hiệp ước thương mại, phát động xung đột quân sự, cải cách hệ thống thuế, đối phó với khủng hoảng khí hậu hay quản lý dư luận trong nước.</p>
-<p>Bạn có thể chọn lãnh đạo Việt Nam và thực hiện những cải cách kinh tế táo bạo, thiết lập liên minh mới trong khu vực Đông Nam Á — hoặc chọn Mỹ, Trung Quốc, Nga và định hình lại trật tự thế giới theo ý mình.</p>
-
-<h2>Đồ họa và giao diện</h2>
-<p>Phiên bản 2026 có giao diện quản lý được cải tiến đáng kể so với các phiên bản trước. Bản đồ thế giới chi tiết với nhiều lớp thông tin có thể bật/tắt linh hoạt. Mặc dù không phải game tập trung vào đồ họa hình ảnh, GPS 2026 bù đắp bằng chiều sâu dữ liệu và tính minh bạch của các hệ thống — bạn luôn biết tại sao một quyết định lại dẫn đến hậu quả cụ thể.</p>
-
-<h2>Gameplay và các cơ chế nổi bật</h2>
-<p>Hệ thống game được chia thành nhiều mảng quản lý chính:</p>
-<p><strong>Kinh tế:</strong> Quản lý ngân sách quốc gia, đặt mức thuế, đầu tư vào cơ sở hạ tầng, năng lượng, giáo dục và y tế. Mỗi quyết định chi tiêu ảnh hưởng trực tiếp đến GDP, tỷ lệ thất nghiệp và mức độ hài lòng của người dân.</p>
-<p><strong>Ngoại giao:</strong> Đàm phán hiệp ước thương mại, tham gia hoặc rút khỏi các tổ chức quốc tế (LHQ, NATO, ASEAN...), thiết lập liên minh chiến lược và giải quyết tranh chấp lãnh thổ bằng con đường ngoại giao hoặc áp lực kinh tế.</p>
-<p><strong>Quân sự:</strong> Xây dựng và hiện đại hóa lực lượng quân sự, điều phối hoạt động gìn giữ hòa bình quốc tế, hoặc triển khai lực lượng trong các cuộc xung đột khu vực.</p>
-<p><strong>Chính trị nội địa:</strong> Duy trì tỷ lệ ủng hộ cao trong dân, cân bằng lợi ích giữa các nhóm xã hội, tổ chức bầu cử và đối phó với phe đối lập.</p>
-
-<h2>Phiên bản 2026 — Những tính năng mới</h2>
-<p>GPS 2026 bổ sung hàng loạt tính năng mới: AI ngoại giao nâng cao với phản ứng thực tế hơn từ các quốc gia khác; hệ thống biến đổi khí hậu với các sự kiện thiên tai ngày càng thường xuyên; khủng hoảng năng lượng toàn cầu đòi hỏi chiến lược chuyển đổi năng lượng tái tạo; và hàng trăm sự kiện lịch sử có thể xảy ra tùy theo quyết định của người chơi.</p>
-
-<h2>Tại sao nên trải nghiệm GPS 2026?</h2>
-<p>Nếu bạn yêu thích địa chính trị, kinh tế quốc tế hoặc đơn giản là tò mò về cách các quốc gia vận hành, GPS 2026 là cơ hội để "thực hành" những kiến thức đó trong môi trường mô phỏng an toàn. Game không có câu trả lời đúng duy nhất — có hàng nghìn cách để dẫn dắt một quốc gia, và mỗi lần chơi là một thử nghiệm chính sách hoàn toàn mới.</p>
-<p>Hãy ủng hộ Eversim bằng cách mua bản quyền chính thức trên <strong>Steam</strong> nếu bạn thích tựa game này!</p>`,
-    install_guide: `<ol>
-      <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip</li>
-      <li>Chạy file <strong>Setup.exe</strong> với quyền Administrator</li>
-      <li>Chọn thư mục cài đặt, nhấn <strong>Next</strong> và chờ cài xong</li>
-      <li>Sao chép các file hỗ trợ trong thư mục <strong>Support</strong> vào thư mục game</li>
-      <li>Chạy <strong>GPS2026.exe</strong> để bắt đầu trải nghiệm</li>
-    </ol>`,
-    size: "6.5 GB",
-    version: "Phiên bản mới nhất",
-    year: 2025,
-    updated: "25/03/2026",
-    developer: "Eversim",
-    publisher: "Eversim",
-    rating: 4.5,
-    downloads: 0,
-    emoji: "🌍",
-    badges: ["hot", "new"],
-    viet: false,
-    download_links: [
-      { label: "Mirror Link", url: "https://gofile.io/d/7iU3Fi", icon: "⬇️" },
-    ],
-    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
-    screenshots: [
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/e7cc6361f338a81fa281ddba522f8060f82f782c/page_bg_raw.jpg?t=1764264528",
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/8b3076a8b6385185a572c81c33949c91fc192093/ss_8b3076a8b6385185a572c81c33949c91fc192093.1920x1080.jpg?t=1764264528",
-    ],
-    trailer: "https://www.youtube.com/embed/ZCqSM3-HH78",
-    tags: ["Chiến lược", "Mô phỏng", "Chính trị", "Thế giới mở"],
-    sys_req: {
-      min: {
-        os: "Windows 10 64-bit",
-        cpu: "Intel Core i5-4460 / AMD FX-6300",
-        ram: "8 GB",
-        gpu: "NVIDIA GTX 760 / AMD Radeon R9 380",
-        storage: "5 GB",
-        directx: "Version 11",
-      },
-      rec: {
-        os: "Windows 11 64-bit",
-        cpu: "Intel Core i7-8700 / AMD Ryzen 5 3600",
-        ram: "16 GB",
-        gpu: "NVIDIA GTX 1060 / AMD RX 580",
-        storage: "5 GB SSD",
-        directx: "Version 12",
-      },
-    },
-  },
-  {
     id: 5,
     title: "PES 2026 SP Football Life 2026 + Việt Hóa + Real Faces",
     slug: "pes-2026-sp-football-life-2026-viet-hoa-real-faces",
@@ -442,6 +107,341 @@ const GAMES = [
       graphics: 4.6,
       audio: 4.5,
       overall: 4.7,
+    },
+  },
+  {
+    id: 4,
+    title: "Euro Truck Simulator 2 Việt Hóa + Online Multiplayer",
+    slug: "euro-truck-simulator-2-viet-hoa",
+    genre: "simulation",
+    genre_label: "Mô Phỏng / Lái Xe",
+    desc_short: "Đánh giá chi tiết Euro Truck Simulator 2 — tựa game mô phỏng lái xe tải huyền thoại với bản Việt Hóa hoàn chỉnh và hỗ trợ chơi Online Multiplayer cùng bạn bè.",
+    desc_full: `
+<h2>Euro Truck Simulator 2 là gì?</h2>
+<p>Euro Truck Simulator 2 (ETS2) là tựa game mô phỏng lái xe tải nổi tiếng thế giới của SCS Software, lần đầu ra mắt năm 2012 và đến nay vẫn là một trong những game mô phỏng được yêu thích nhất trên Steam với hơn 200.000 đánh giá tích cực. Tại Việt Nam, cộng đồng game thủ đã Việt hóa hoàn chỉnh giao diện và phụ đề tiếng Việt, giúp người chơi trong nước trải nghiệm tựa game này dễ dàng hơn bao giờ hết.</p>
+
+<h2>Khám phá châu Âu sau tay lái</h2>
+<p>Trong ETS2, bạn sẽ lái xe tải qua hơn 60 thành phố châu Âu — từ London (Anh), Paris (Pháp), Berlin (Đức), Rome (Ý), Warsaw (Ba Lan) đến hàng chục quốc gia châu Âu khác. Mỗi thành phố được tái hiện với kiến trúc đặc trưng, hệ thống đường xá chi tiết và các biển hiệu giao thông đúng chuẩn châu Âu.</p>
+<p>Nhiệm vụ chính là vận chuyển hàng hóa đa dạng — từ hàng nông sản, vật liệu xây dựng đến hàng công nghiệp — với nhiều loại xe tải từ các thương hiệu danh tiếng như Volvo, Scania, MAN, Mercedes-Benz và DAF. Mỗi loại xe có đặc tính lái và thông số kỹ thuật riêng, tạo ra sự phong phú trong trải nghiệm.</p>
+
+<h2>Xây dựng đế chế vận tải của riêng bạn</h2>
+<p>ETS2 không chỉ là game lái xe đơn thuần — đây còn là game quản lý kinh doanh thú vị. Bắt đầu từ một tài xế làm thuê, bạn sẽ dần tích lũy tiền để mua xe tải đầu tiên, mở garage riêng, thuê thêm tài xế AI và mở rộng công ty vận tải xuyên châu Âu. Hệ thống kinh tế trong game rất logic: chi phí nhiên liệu, sửa chữa xe, lương nhân viên và lợi nhuận từ mỗi chuyến hàng đều được tính toán chi tiết.</p>
+
+<h2>Chơi Online Multiplayer — Convoy cùng bạn bè</h2>
+<p>Một trong những điểm hấp dẫn nhất của phiên bản này là hỗ trợ chơi Online Multiplayer. Bạn có thể tạo hoặc tham gia đoàn xe convoy cùng bạn bè, cùng nhau vận chuyển hàng hóa và khám phá châu Âu trên cùng một server. Trải nghiệm convoy 5-10 người trên cao tốc châu Âu về đêm là một trong những khoảnh khắc đáng nhớ nhất trong game.</p>
+
+<h2>Bản Việt Hóa — Trải nghiệm game bằng tiếng mẹ đẻ</h2>
+<p>Cộng đồng game thủ Việt Nam đã dày công Việt hóa toàn bộ giao diện game, từ menu chính, bản đồ, thông báo nhiệm vụ đến các thông số kỹ thuật của xe. Chỉ cần vào phần cài đặt ngôn ngữ trong game và chọn Tiếng Việt — bản dịch sẽ được áp dụng ngay lập tức mà không cần thao tác thêm.</p>
+
+<h2>Tại sao nên trải nghiệm ETS2?</h2>
+<p>Nếu bạn đang tìm kiếm một tựa game thư giãn sau những giờ làm việc căng thẳng, ETS2 là lựa chọn hoàn hảo. Cảm giác lái xe xuyên đêm trên những cung đường châu Âu với âm nhạc yêu thích, ngắm cảnh bình minh ló dạng sau dãy núi Alps — đó là điều mà ít game nào có thể mang lại. Đây cũng là một trong những game có cộng đồng mod lớn nhất thế giới, với hàng chục nghìn mod miễn phí từ bản đồ mở rộng, xe mới đến thay đổi thời tiết và đồ họa.</p>
+<p>Nếu bạn muốn ủng hộ nhà phát triển, hãy mua bản quyền chính thức trên <strong>Steam</strong> — SCS Software thường xuyên có khuyến mãi giảm giá rất hấp dẫn.</p>`,
+    install_guide: `<h3>HƯỚNG DẪN TRẢI NGHIỆM EURO TRUCK SIMULATOR 2 VIỆT HÓA</h3>
+    <ol>
+      <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip (mật khẩu nằm trong dấu [ ] ở tên file nén)</li>
+      <li>Với Win 64bit: vào thư mục <code>Euro Truck Simulator 2\bin\win_x64</code>, chạy file <strong>eurotrucks2.exe</strong></li>
+      <li>Với Win 32bit: vào thư mục <code>Euro Truck Simulator 2\bin\win_x86</code>, chạy file <strong>eurotrucks2.exe</strong></li>
+      <li>Vào phần cài đặt trong game, chọn ngôn ngữ <strong>Tiếng Việt</strong></li>
+      <li>Bản Việt Hóa đã được tích hợp sẵn — khởi động game và tận hưởng!</li>
+    </ol>
+    <h3>HƯỚNG DẪN CHƠI ONLINE MULTIPLAYER</h3>
+    <ol>
+      <li>Tải Steam fix online và giải nén (mật khẩu tương tự file game)</li>
+      <li>Copy toàn bộ file trong thư mục vừa giải nén vào thư mục chứa game</li>
+      <li>Mở Steam và đăng nhập tài khoản (để chạy nền)</li>
+      <li>Chạy <strong>eurotrucks2.exe</strong> như hướng dẫn bên trên</li>
+      <li><strong>Tạo phòng:</strong> ESC → Hộ tống → Tạo một đoàn xe → Xác nhận</li>
+      <li><strong>Tham gia:</strong> ESC → Hộ tống → Kết nối với máy chủ của bạn bè</li>
+    </ol>`,
+    size: "32.3 GB",
+    version: "Phiên bản mới nhất (Việt Hóa)",
+    year: 2012,
+    updated: "25/03/2026",
+    developer: "SCS Software",
+    publisher: "SCS Software",
+    rating: 4.8,
+    downloads: 0,
+    emoji: "🚛",
+    badges: ["hot", "new"],
+    viet: true,
+    download_links: [
+      { label: "Part 1", url: "https://gofile.io/d/NuM1Cb", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 2", url: "https://gofile.io/d/DdLZbG", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 3", url: "https://gofile.io/d/XcMB4I", icon: "⬇️", group: "Mirror Link" },
+      { label: "Steam Fix Online", url: "https://gofile.io/d/XUQ4iP", icon: "🔧", group: "Mirror Link" },
+    ],
+    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
+    screenshots: [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/ss_bd8b2b2f6a1a595afab14f398de836e6010563c7.1920x1080.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_03.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_05.jpg",
+    ],
+    gallery: [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/ss_bd8b2b2f6a1a595afab14f398de836e6010563c7.1920x1080.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_01.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_02.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_03.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_04.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_05.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_06.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_07.jpg",
+      "https://www.scssoft.com/assets/images/euro-truck-simulator-2/img_08.jpg",
+    ],
+    trailer: "https://www.youtube.com/embed/RHGAfgKMRiI",
+    tags: ["Lái Xe", "Mô Phỏng", "Việt Hóa", "Multiplayer", "Online", "Châu Âu", "SCS Software"],
+    sys_req: {
+      min: {
+        os: "Windows 10 64-bit",
+        cpu: "Intel Core i5-6400 / AMD Ryzen 3 1200",
+        ram: "8 GB",
+        gpu: "NVIDIA GeForce GTX 660 / AMD Radeon RX 460 (2GB VRAM)",
+        storage: "25 GB",
+        directx: "Version 11",
+      },
+      rec: {
+        os: "Windows 10/11 64-bit",
+        cpu: "Intel Core i5-9600 / AMD Ryzen 5 3600",
+        ram: "12 GB",
+        gpu: "NVIDIA GeForce GTX 1660 / AMD Radeon RX 590 (2GB VRAM)",
+        storage: "25 GB SSD",
+        directx: "Version 11",
+      },
+    },
+  },
+  {
+    id: 3,
+    title: "Victoria 3",
+    slug: "victoria-3",
+    genre: "strategy",
+    genre_label: "Chiến lược / Mô phỏng",
+    desc_short: "Xây dựng đế chế của bạn trong thế kỷ 19 đầy biến động — quản lý kinh tế, xã hội, ngoại giao và chiến tranh trong tựa game chiến lược vĩ mô đỉnh cao của Paradox Interactive.",
+    desc_full: `
+<h2>Victoria 3 — Đỉnh cao của dòng game chiến lược vĩ mô</h2>
+<p>Victoria 3 là tựa game chiến lược vĩ mô được phát triển bởi Paradox Development Studio và phát hành năm 2022. Đây là phần tiếp theo được mong chờ suốt hơn 10 năm của loạt game Victoria nổi tiếng, đưa người chơi trở về kỷ nguyên 1836–1936 — thời đại của Cách mạng Công nghiệp, chủ nghĩa thực dân và sự trỗi dậy của các cường quốc.</p>
+
+<h2>Cốt truyện và bối cảnh</h2>
+<p>Không có một "cốt truyện" cố định trong Victoria 3 — thay vào đó, chính lịch sử do bạn viết nên mới là cốt truyện thật sự. Bạn bắt đầu năm 1836, khi thế giới đang đứng trước ngưỡng cửa của cuộc Cách mạng Công nghiệp. Từ đây, mọi quyết định đều định hình lịch sử: liệu nước Anh có duy trì vị thế bá chủ thế giới? Liệu Việt Nam có thể kháng cự chủ nghĩa thực dân Pháp? Hay một quốc gia nhỏ bé ở châu Phi có thể vươn lên thành cường quốc toàn cầu?</p>
+
+<h2>Đồ họa và âm thanh</h2>
+<p>Victoria 3 có giao diện bản đồ thế giới chi tiết với nhiều lớp thông tin — từ chính trị, kinh tế, dân số đến địa hình và tài nguyên. Phong cách đồ họa nghiêng về bản đồ chiến lược thay vì hiệu ứng hình ảnh hoành tráng, phù hợp với tính chất của dòng game grand strategy. Âm nhạc được thiết kế theo từng thời kỳ lịch sử, tạo không khí cực kỳ ăn nhập.</p>
+
+<h2>Gameplay và cơ chế độc đáo</h2>
+<p>Điểm đặc sắc nhất của Victoria 3 là hệ thống kinh tế cực kỳ chi tiết. Mỗi quốc gia có hàng chục loại hàng hóa trong chuỗi cung ứng — bông → vải → quần áo; sắt → thép → đường sắt → tàu hỏa. Bạn phải xây dựng các tòa nhà sản xuất đúng thứ tự, đảm bảo chuỗi cung ứng liền mạch để nền kinh tế phát triển bền vững.</p>
+<p>Hệ thống Pops (dân số) là cơ chế độc đáo nhất của Victoria: mỗi tầng lớp xã hội (nông dân, công nhân, tiểu tư sản, quý tộc...) có nhu cầu tiêu dùng, tư tưởng chính trị và mức độ hài lòng riêng. Nếu công nhân quá bất mãn, họ sẽ ủng hộ các phong trào cách mạng; nếu quý tộc mất đặc quyền, họ sẽ cản trở cải cách.</p>
+
+<h2>Tại sao nên trải nghiệm Victoria 3?</h2>
+<p>Nếu bạn yêu thích lịch sử và muốn "viết lại lịch sử" theo cách của mình, Victoria 3 là trải nghiệm không thể bỏ qua. Mỗi ván chơi là một câu chuyện hoàn toàn khác nhau — đôi khi bạn xây dựng đế chế công nghiệp hùng mạnh, đôi khi đưa một quốc gia nhỏ bé vươn lên sân khấu thế giới, đôi khi chứng kiến cuộc cách mạng xã hội lật đổ chính quyền do mình điều hành. Độ sâu của game gần như vô hạn và cộng đồng mod rất phong phú, đảm bảo trải nghiệm luôn mới mẻ sau hàng trăm giờ chơi.</p>
+<p>Hãy ủng hộ Paradox Development Studio bằng cách mua bản quyền chính thức trên <strong>Steam</strong> nếu bạn thích tựa game này!</p>`,
+    install_guide: `<ol>
+      <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip (mật khẩu nằm trong dấu [ ] ở tên file nén)</li>
+      <li>Mở thư mục sau khi giải nén</li>
+      <li>Chạy <strong>victoria3.exe</strong> để bắt đầu trải nghiệm</li>
+      <li><strong>Lưu ý:</strong> Tắt Windows Defender / phần mềm diệt virus tạm thời nếu gặp cảnh báo nhầm</li>
+    </ol>`,
+    size: "9.5 GB",
+    version: "Phiên bản mới nhất",
+    year: 2022,
+    updated: "20/03/2026",
+    developer: "Paradox Development Studio",
+    publisher: "Paradox Interactive",
+    rating: 4.4,
+    downloads: 0,
+    emoji: "🏭",
+    badges: ["hot", "new"],
+    viet: false,
+    download_links: [
+      { label: "Mirror Link", url: "https://gofile.io/d/jg1uxC", icon: "⬇️" },
+    ],
+    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
+    screenshots: [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/529340/4a1da4d1f072d157c25645ca8459c6573a0d5671/ss_4a1da4d1f072d157c25645ca8459c6573a0d5671.1920x1080.jpg?t=1773335146",
+      "https://daominhha.net/wp-content/uploads/2022/10/download-mien-phi-VICTORIA-3-daominhha.net_.jpg",
+      "https://daominhha.net/wp-content/uploads/2022/10/tai-full-game-VICTORIA-3-daominhha.jpg",
+      "https://images.squarespace-cdn.com/content/v1/55ef0e29e4b099e22cdc9eea/36daaad5-13d6-4aeb-b44e-cda172934142/Victoria+3+World.jpg",
+    ],
+    trailer: "https://www.youtube.com/embed/WOlfY-FsL9I",
+    tags: ["Chiến lược", "Mô phỏng", "Lịch sử", "Grand Strategy", "Paradox", "Kinh tế", "Thế kỷ 19"],
+    sys_req: {
+      min: {
+        os: "Windows 10 Home 64-bit",
+        cpu: "Intel Core i5-6600K / AMD Ryzen 5 2600X",
+        ram: "8 GB",
+        gpu: "NVIDIA GeForce GTX 970 / AMD Radeon RX 470 (4GB VRAM)",
+        storage: "10 GB",
+        directx: "Version 11",
+      },
+      rec: {
+        os: "Windows 10/11 64-bit",
+        cpu: "Intel Core i7-8700K / AMD Ryzen 5 3600X",
+        ram: "16 GB",
+        gpu: "NVIDIA GeForce GTX 1070 / AMD Radeon RX 5700 (8GB VRAM)",
+        storage: "10 GB SSD",
+        directx: "Version 12",
+      },
+    },
+  },
+  {
+    id: 1,
+    title: "Geo-Political Simulator 2026",
+    slug: "geo-political-simulator-2026",
+    genre: "strategy",
+    genre_label: "Chiến lược / Mô phỏng",
+    desc_short: "Đánh giá Geo-Political Simulator 2026 — tựa game mô phỏng địa chính trị chân thực nhất, nơi bạn trải nghiệm vai trò lãnh đạo quốc gia với hệ thống kinh tế, ngoại giao và quân sự phức tạp.",
+    desc_full: `
+<h2>Geo-Political Simulator 2026 — Cầm quyền cả một quốc gia</h2>
+<p>Geo-Political Simulator 2026 là tựa game mô phỏng chính trị - địa lý chân thực và phức tạp nhất hiện nay do Eversim phát triển. Trong game, bạn sẽ đảm nhận vai trò nguyên thủ quốc gia — Tổng thống, Thủ tướng hoặc Quốc vương — của bất kỳ quốc gia nào trong số hơn 175 quốc gia trên thế giới. Đây không phải game giải trí nhanh, mà là một trải nghiệm chiến lược sâu sắc cho những ai muốn hiểu cách thế giới thực sự vận hành.</p>
+
+<h2>Cốt truyện — Lịch sử do bạn quyết định</h2>
+<p>GPS 2026 không có cốt truyện theo kiểu truyền thống — câu chuyện chính là nhiệm kỳ lãnh đạo của bạn. Game tái hiện thế giới thực tế với dữ liệu kinh tế, dân số, địa lý và quan hệ ngoại giao được cập nhật đến năm 2026. Mọi quyết định đều có hậu quả cụ thể: ký kết hiệp ước thương mại, phát động xung đột quân sự, cải cách hệ thống thuế, đối phó với khủng hoảng khí hậu hay quản lý dư luận trong nước.</p>
+<p>Bạn có thể chọn lãnh đạo Việt Nam và thực hiện những cải cách kinh tế táo bạo, thiết lập liên minh mới trong khu vực Đông Nam Á — hoặc chọn Mỹ, Trung Quốc, Nga và định hình lại trật tự thế giới theo ý mình.</p>
+
+<h2>Đồ họa và giao diện</h2>
+<p>Phiên bản 2026 có giao diện quản lý được cải tiến đáng kể so với các phiên bản trước. Bản đồ thế giới chi tiết với nhiều lớp thông tin có thể bật/tắt linh hoạt. Mặc dù không phải game tập trung vào đồ họa hình ảnh, GPS 2026 bù đắp bằng chiều sâu dữ liệu và tính minh bạch của các hệ thống — bạn luôn biết tại sao một quyết định lại dẫn đến hậu quả cụ thể.</p>
+
+<h2>Gameplay và các cơ chế nổi bật</h2>
+<p>Hệ thống game được chia thành nhiều mảng quản lý chính:</p>
+<p><strong>Kinh tế:</strong> Quản lý ngân sách quốc gia, đặt mức thuế, đầu tư vào cơ sở hạ tầng, năng lượng, giáo dục và y tế. Mỗi quyết định chi tiêu ảnh hưởng trực tiếp đến GDP, tỷ lệ thất nghiệp và mức độ hài lòng của người dân.</p>
+<p><strong>Ngoại giao:</strong> Đàm phán hiệp ước thương mại, tham gia hoặc rút khỏi các tổ chức quốc tế (LHQ, NATO, ASEAN...), thiết lập liên minh chiến lược và giải quyết tranh chấp lãnh thổ bằng con đường ngoại giao hoặc áp lực kinh tế.</p>
+<p><strong>Quân sự:</strong> Xây dựng và hiện đại hóa lực lượng quân sự, điều phối hoạt động gìn giữ hòa bình quốc tế, hoặc triển khai lực lượng trong các cuộc xung đột khu vực.</p>
+<p><strong>Chính trị nội địa:</strong> Duy trì tỷ lệ ủng hộ cao trong dân, cân bằng lợi ích giữa các nhóm xã hội, tổ chức bầu cử và đối phó với phe đối lập.</p>
+
+<h2>Phiên bản 2026 — Những tính năng mới</h2>
+<p>GPS 2026 bổ sung hàng loạt tính năng mới: AI ngoại giao nâng cao với phản ứng thực tế hơn từ các quốc gia khác; hệ thống biến đổi khí hậu với các sự kiện thiên tai ngày càng thường xuyên; khủng hoảng năng lượng toàn cầu đòi hỏi chiến lược chuyển đổi năng lượng tái tạo; và hàng trăm sự kiện lịch sử có thể xảy ra tùy theo quyết định của người chơi.</p>
+
+<h2>Tại sao nên trải nghiệm GPS 2026?</h2>
+<p>Nếu bạn yêu thích địa chính trị, kinh tế quốc tế hoặc đơn giản là tò mò về cách các quốc gia vận hành, GPS 2026 là cơ hội để "thực hành" những kiến thức đó trong môi trường mô phỏng an toàn. Game không có câu trả lời đúng duy nhất — có hàng nghìn cách để dẫn dắt một quốc gia, và mỗi lần chơi là một thử nghiệm chính sách hoàn toàn mới.</p>
+<p>Hãy ủng hộ Eversim bằng cách mua bản quyền chính thức trên <strong>Steam</strong> nếu bạn thích tựa game này!</p>`,
+    install_guide: `<ol>
+      <li>Tải file về và giải nén bằng WinRAR hoặc 7-Zip</li>
+      <li>Chạy file <strong>Setup.exe</strong> với quyền Administrator</li>
+      <li>Chọn thư mục cài đặt, nhấn <strong>Next</strong> và chờ cài xong</li>
+      <li>Sao chép các file hỗ trợ trong thư mục <strong>Support</strong> vào thư mục game</li>
+      <li>Chạy <strong>GPS2026.exe</strong> để bắt đầu trải nghiệm</li>
+    </ol>`,
+    size: "6.5 GB",
+    version: "Phiên bản mới nhất",
+    year: 2025,
+    updated: "18/03/2026",
+    developer: "Eversim",
+    publisher: "Eversim",
+    rating: 4.5,
+    downloads: 0,
+    emoji: "🌍",
+    badges: ["hot", "new"],
+    viet: false,
+    download_links: [
+      { label: "Mirror Link", url: "https://gofile.io/d/7iU3Fi", icon: "⬇️" },
+    ],
+    thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
+    screenshots: [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/e7cc6361f338a81fa281ddba522f8060f82f782c/page_bg_raw.jpg?t=1764264528",
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/8b3076a8b6385185a572c81c33949c91fc192093/ss_8b3076a8b6385185a572c81c33949c91fc192093.1920x1080.jpg?t=1764264528",
+    ],
+    trailer: "https://www.youtube.com/embed/ZCqSM3-HH78",
+    tags: ["Chiến lược", "Mô phỏng", "Chính trị", "Thế giới mở"],
+    sys_req: {
+      min: {
+        os: "Windows 10 64-bit",
+        cpu: "Intel Core i5-4460 / AMD FX-6300",
+        ram: "8 GB",
+        gpu: "NVIDIA GTX 760 / AMD Radeon R9 380",
+        storage: "5 GB",
+        directx: "Version 11",
+      },
+      rec: {
+        os: "Windows 11 64-bit",
+        cpu: "Intel Core i7-8700 / AMD Ryzen 5 3600",
+        ram: "16 GB",
+        gpu: "NVIDIA GTX 1060 / AMD RX 580",
+        storage: "5 GB SSD",
+        directx: "Version 12",
+      },
+    },
+  },
+  {
+    id: 2,
+    title: "eFootball PES 2020 Việt Hóa + Bình Luận Tiếng Việt",
+    slug: "efootball-pes-2020-viet-hoa",
+    genre: "sports",
+    genre_label: "Thể Thao / Bóng Đá",
+    desc_short: "Đánh giá eFootball PES 2020 bản Việt Hóa — trải nghiệm bóng đá đỉnh cao với bình luận tiếng Việt hoàn chỉnh, đội tuyển Việt Nam cập nhật và lối chơi mượt mà huyền thoại của Konami.",
+    desc_full: `
+<h2>eFootball PES 2020 — Đỉnh cao bóng đá PC trước khi Konami đổi hướng</h2>
+<p>eFootball PES 2020 (Pro Evolution Soccer 2020) được nhiều người coi là tựa game bóng đá hay nhất mà Konami từng tạo ra trước khi chuyển sang mô hình free-to-play với eFootball gây nhiều tranh cãi. Ra mắt năm 2019, PES 2020 vẫn đang được hàng nghìn game thủ Việt Nam chơi đến tận hôm nay — đặc biệt với bản Việt hóa chất lượng cao kèm bình luận tiếng Việt của BLV Phạm Hùng Tiến.</p>
+
+<h2>Cốt truyện và chế độ chơi</h2>
+<p>PES 2020 không có "cốt truyện" theo nghĩa truyền thống, nhưng chế độ <strong>Master League</strong> chính là nơi để người chơi viết nên hành trình của riêng mình. Bạn sẽ tiếp quản một câu lạc bộ đang gặp khó khăn, từng bước xây dựng đội hình, ký hợp đồng cầu thủ, thiết lập chiến thuật và dẫn dắt CLB từ giải hạng dưới lên đến đỉnh cao Champions League.</p>
+
+<h2>Đồ họa và âm thanh</h2>
+<p>PES 2020 sử dụng engine Fox Engine với chất lượng đồ họa ấn tượng. Khuôn mặt các siêu sao như Messi, Ronaldo, Neymar được quét 3D chi tiết đến từng sợi tóc. Animation di chuyển của cầu thủ cực kỳ tự nhiên — các pha dribble, va chạm cơ thể và phản ứng của thủ môn đều mượt mà hơn nhiều so với đối thủ cùng thời.</p>
+<p>Điểm nhấn lớn nhất là <strong>bình luận tiếng Việt</strong> của BLV Phạm Hùng Tiến — với hàng nghìn câu được thu âm chuyên nghiệp, giọng bình luận sôi động đúng cảm xúc trận đấu.</p>
+
+<h2>Gameplay — Vì sao PES 2020 vẫn là tiêu chuẩn vàng?</h2>
+<p>Vật lý bóng của PES 2020 đến nay vẫn được đánh giá là chân thực nhất trong lịch sử game bóng đá. Mỗi đường chuyền, mỗi cú sút đều có trọng lượng riêng — không có cảm giác "cứng đơ" hay "trượt băng" như một số game bóng đá khác. AI đồng đội thông minh, biết di chuyển tạo không gian và hỗ trợ đúng lúc. Hệ thống "Magic Moments" — khả năng đặc biệt riêng của từng siêu sao — tái hiện rất chính xác phong cách chơi thực tế của họ.</p>
+
+<h2>Bản Việt Hóa — Trọn vẹn từ menu đến sân cỏ</h2>
+<p>Bản Việt hóa này bao gồm: giao diện menu hoàn toàn tiếng Việt, đội tuyển quốc gia Việt Nam với đội hình được cập nhật, và đặc biệt là bản patch bình luận tiếng Việt của BLV Phạm Hùng Tiến. Cộng đồng game thủ Việt Nam đã đầu tư rất nhiều công sức để mang lại trải nghiệm bóng đá hoàn chỉnh nhất bằng tiếng mẹ đẻ.</p>
+
+<h2>Tại sao nên trải nghiệm PES 2020?</h2>
+<p>Dù đã ra mắt hơn 5 năm, PES 2020 vẫn là lựa chọn hàng đầu cho những ai yêu bóng đá và muốn trải nghiệm gameplay mượt mà, chiều sâu chiến thuật và cảm giác bóng chân thực. Nếu bạn chưa từng thử PES 2020, đây là cơ hội tuyệt vời. Và nếu bạn muốn ủng hộ Konami, hãy tìm mua bản quyền trên <strong>Steam</strong>!</p>`,
+    install_guide: `<ol>
+<h3>HƯỚNG DẪN CÀI ĐẶT eFootball PES 2020</h3>
+<li>Tải file về và giải nén (mật khẩu nằm trong dấu [ ] ở tên file nén, ví dụ: tên file "[vaultgame]_PES2020.rar" thì mật khẩu là <strong>vaultgame</strong>)</li>
+<li>Vào thư mục sau khi giải nén, chạy file <strong>PES2020.exe</strong> để vào game</li>
+<li>Điều chỉnh cài đặt đồ họa qua file <strong>Settings.exe</strong></li>
+<li>Bắt đầu trải nghiệm</li>
+
+<h3>HƯỚNG DẪN CÀI Việt Hóa + Bình Luận Tiếng Việt</h3>
+<li>Tải file Patch Việt Hóa về và giải nén (mật khẩu tương tự file game)</li>
+<li>Copy 2 file <code>pes 20 viet hoa.cpk</code> và <code>Pham Hung Tien Official BLTV.cpk</code> vào thư mục <code>[thư mục game]\download</code></li>
+<li>Mở thư mục <code>DpFileList_Generator</code>, chạy <strong>DpFileList Generator.exe</strong></li>
+<li>Ở dòng CPK Path: chọn đường dẫn tới <code>[thư mục game]\download</code></li>
+<li>Ở dòng DpFileList: chọn đường dẫn tới <code>[thư mục game]\download</code> và chọn file <code>DpFileList.bin</code></li>
+<li>Chọn DLC v5.00, tích vào 2 file .cpk trong bảng mod, nhấn <strong>Generate DpFileList.bin</strong></li>
+<li>Khởi động game và chọn ngôn ngữ <strong>English</strong> để Việt Hóa hiển thị đúng</li>
+    </ol>`,
+    size: "36.1 GB",
+    version: "Phiên bản đầy đủ (Việt Hóa)",
+    year: 2019,
+    updated: "14/03/2026",
+    developer: "Konami",
+    publisher: "Konami",
+    rating: 4.7,
+    downloads: 0,
+    emoji: "⚽",
+    badges: ["hot", "new"],
+    viet: true,
+    download_links: [
+      { label: "Mirror Link", url: "https://gofile.io/d/4OYOvy", icon: "⬇️" },
+    ],
+    thumbnail: "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
+    screenshots: [
+      "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
+      "https://img.konami.com/products_master/eu_publish/pes2020/eu/en/images/pes2020-hp-messi-ronaldinho-02.jpg",
+      "https://www.gamereactor.eu/media/98/efootballpes2020_2959873b.jpg",
+      "https://product.hstatic.net/200000992511/product/pes-2020-gameplay_3ea412c58c584274b298d5399d5fd16b_master.jpg",
+    ],
+    trailer: "https://www.youtube.com/embed/cHDfOQyabD0",
+    tags: ["Bóng Đá", "Thể Thao", "Việt Hóa", "Multiplayer", "PES"],
+    sys_req: {
+      min: {
+        os: "Windows 7 SP1 64-bit",
+        cpu: "Intel Core i5-3470 / AMD FX-4350",
+        ram: "4 GB",
+        gpu: "NVIDIA GTX 670 / AMD Radeon HD 7870",
+        storage: "20 GB",
+        directx: "Version 11",
+      },
+      rec: {
+        os: "Windows 10 64-bit",
+        cpu: "Intel Core i7-6700 / AMD Ryzen 5 1600",
+        ram: "8 GB",
+        gpu: "NVIDIA GTX 1060 / AMD RX 5500 XT",
+        storage: "20 GB SSD",
+        directx: "Version 12",
+      },
     },
   },
 ];
