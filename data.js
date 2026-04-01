@@ -755,7 +755,7 @@ const BLOG_POSTS = [
     desc: "Tin nóng 01/04: Khi phần cứng máy tính bắt đầu bão hòa, các ông lớn như Nintendo và Sony đang có những bước đi không tưởng hướng về cộng đồng game thủ PC.",
     date: "01/04/2026",
     readTime: "7 phút đọc",
-    thumbnail: "https://i.ibb.co/69aq0l69/Gemini-PC-Gaming-Evolution-2026.png",
+    thumbnail: "https://i.ibb.co/ZsLc8Gp/Gemini-Generated-Image-g9kr0ug9kr0ug9kr.png",
     gradient: "linear-gradient(135deg,#00dbde,#fc00ff)",
     icon: "⚡",
     content: `
