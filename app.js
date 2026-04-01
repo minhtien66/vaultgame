@@ -648,7 +648,7 @@ function renderHome() {
     const cat=BLOG_CAT_LABELS[p.cat]||p.cat;
     const bg=p.thumbnail?`url(${p.thumbnail})`:(p.gradient||'linear-gradient(135deg,var(--accent),var(--accent2))');
     const iconH=!p.thumbnail?`<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem">${p.icon||'📝'}</div>`:'';
-    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="showPage('blogpost');history.pushState(null,'','/blog/${p.slug}');renderBlogPost(BLOG_POSTS.find(x=>x.slug==='${p.slug}'))">
+    return `<div class="hbc" style="animation-delay:${i*.06}s" onclick="goBlogPost('${p.slug}')">
       <div class="hbc-img" style="background:${bg};background-size:cover;background-position:center;position:relative">${iconH}</div>
       <div class="hbc-body">
         <span class="hbc-cat hbc-cat-${p.cat}">${cat}</span>
@@ -1121,7 +1121,7 @@ function goBlogPost(slug) {
   updateCanonical('/blog/' + post.slug);
   updateSEO(post.title + ' — VaultGame Blog', post.desc || '', post.thumbnail || '');
   renderBlogPost(post);
-  window.scrollTo({top:0,behavior:'instant'});
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function renderBlogPost(post) {
@@ -1181,10 +1181,10 @@ function renderBlogPost(post) {
   const sidebarPosts = BLOG_POSTS.filter(p=>p.id!==post.id).slice(0,5);
 
   el.innerHTML = `
-<div class="dv2-bc"><div class="dv2-bc-inner">
+<div class="bc"><div class="bc-inner">
   <a onclick="go('home')">Trang chủ</a><span>›</span>
   <a onclick="go('blog')">Blog</a><span>›</span>
-  <span style="color:var(--text2);font-weight:500;max-width:500px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:middle">${post.title}</span>
+  <span>${post.title}</span>
 </div></div>
 <div class="bp-wrap">
   <div class="bp-main">
