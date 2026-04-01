@@ -747,4 +747,39 @@ const BLOG_POSTS = [
     <p>Nếu bạn là một game thủ khắt khe nhất về FPS, hoặc một nhà sáng tạo nội dung cần sức mạnh đa nhân kết hợp độ trễ thấp, hãy bắt đầu "gom lúa" ngay từ bây giờ. Quái vật thực sự sắp được thả xích!</p>
     `
   },
+ {
+    id: 9,
+    slug: "nghich-ly-phan-cung-2026-va-lan-song-game-doc-quyen-do-bo-pc",
+    cat: "news",
+    title: "Nghịch lý phần cứng 2026: CPU 'chạm trần' sức mạnh và làn sóng siêu phẩm đổ bộ PC",
+    desc: "Tin nóng 01/04: Khi phần cứng máy tính bắt đầu bão hòa, các ông lớn như Nintendo và Sony đang có những bước đi không tưởng hướng về cộng đồng game thủ PC.",
+    date: "01/04/2026",
+    readTime: "7 phút đọc",
+    thumbnail: "https://i.ibb.co/69aq0l69/Gemini-PC-Gaming-Evolution-2026.png",
+    gradient: "linear-gradient(135deg,#00dbde,#fc00ff)",
+    icon: "⚡",
+    content: `
+    <p>Chào mừng các bạn đến với bản tin đặc biệt ngày 01/04/2026. Hôm nay, làng công nghệ không chỉ có những cú lừa vui nhộn mà còn chứng kiến những thay đổi mang tính bước ngoặt về chiến lược của các "ông lớn" trong ngành công nghiệp tỷ đô này.</p>
+
+    <h2>Sự thật về việc phần cứng đang "chạm trần"</h2>
+    <p>Theo các chuyên gia tại Tech4Gamers, chúng ta đang bước vào kỷ nguyên mà sức mạnh phần cứng bắt đầu bão hòa (Plateauing). Điều này có nghĩa là thay vì chạy đua nhồi nhét bóng bán dẫn, các nhà sản xuất như NVIDIA và AMD đang chuyển hướng sang tối ưu hóa AI. </p>
+    <p>Tin đồn về dòng <strong>RTX 50-series "Flagship Limited"</strong> ra mắt vào quý 3 tới đang khiến giới mộ điệu đứng ngồi không yên. Tuy nhiên, tâm điểm hôm nay lại nằm ở phần mềm.</p>
+
+    <h2>Nintendo Switch 2 và 'cú bắt tay' bất ngờ với PC?</h2>
+    <p>Một trong những tin tức gây chấn động nhất sáng nay là thông tin về việc Nintendo có thể sẽ nới lỏng các rào cản độc quyền. Với việc siêu phẩm <strong>Pokémon Winds and Waves</strong> vừa được công bố cho Switch 2, nhiều nguồn tin rò rỉ cho biết một phiên bản "Launcher" đặc biệt của Nintendo đang được thử nghiệm trên nền tảng Windows để tận dụng sức mạnh của các dòng CPU Ryzen 9 thế hệ mới.</p>
+
+    <h2>Những siêu phẩm không thể bỏ lỡ trong tháng 4/2026</h2>
+    <p>Nếu bạn đang tìm kiếm thứ gì đó để "vắt kiệt" sức mạnh dàn máy của mình, hãy chuẩn bị cho danh sách đổ bộ trong vài ngày tới:</p>
+    <ul>
+      <li><strong>Pragmata (24/04):</strong> Siêu phẩm sci-fi từ Capcom cuối cùng cũng ấn định ngày ra mắt, hứa hẹn một cuộc cách mạng về đồ họa Ray-Tracing 2.0.</li>
+      <li><strong>Diablo IV: Lord of Hatred (28/04):</strong> Bản mở rộng lớn nhất của Blizzard sẽ chính thức khai hỏa, mở rộng bản đồ Sanctuary lên gấp rưỡi.</li>
+      <li><strong>Starfield (PS5 Version - 07/04):</strong> Một minh chứng cho việc thế giới game không còn ranh giới, khi các tựa game từng là độc quyền Xbox nay đã có mặt trên mọi nền tảng.</li>
+    </ul>
+
+    <h2>Lời khuyên cho game thủ trong ngày "Cá tháng Tư"</h2>
+    <p>Dù có rất nhiều tin nóng, nhưng hãy tỉnh táo! Trong ngày 1/4, ranh giới giữa một bản cập nhật thực sự và một trò đùa từ các nhà phát triển là rất mong manh. Tuy nhiên, có một sự thật không thể chối cãi: <strong>Tháng 4/2026 sẽ là tháng bùng nổ nhất của làng Game PC từ đầu năm đến nay.</strong></p>
+
+    <p>Hãy theo dõi chúng tôi để cập nhật những cấu hình PC tối ưu nhất cho loạt siêu phẩm sắp tới nhé!</p>
+    `
+  },
 ];
