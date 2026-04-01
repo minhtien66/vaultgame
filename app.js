@@ -335,7 +335,7 @@ function go(page, param) {
     }
     reRender(page);
   }
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({top:0,behavior:'instant'});
 }
 
 function getCleanPath() {
@@ -1121,7 +1121,7 @@ function goBlogPost(slug) {
   updateCanonical('/blog/' + post.slug);
   updateSEO(post.title + ' — VaultGame Blog', post.desc || '', post.thumbnail || '');
   renderBlogPost(post);
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({top:0,behavior:'instant'});
 }
 
 function renderBlogPost(post) {
@@ -1181,10 +1181,10 @@ function renderBlogPost(post) {
   const sidebarPosts = BLOG_POSTS.filter(p=>p.id!==post.id).slice(0,5);
 
   el.innerHTML = `
-<div class="bc"><div class="bc-inner">
+<div class="dv2-bc"><div class="dv2-bc-inner">
   <a onclick="go('home')">Trang chủ</a><span>›</span>
   <a onclick="go('blog')">Blog</a><span>›</span>
-  <span>${post.title}</span>
+  <span style="color:var(--text2);font-weight:500;max-width:500px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:middle">${post.title}</span>
 </div></div>
 <div class="bp-wrap">
   <div class="bp-main">
