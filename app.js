@@ -1686,63 +1686,65 @@ function renderTerms() {
 // ============================================================
 
 function renderMod(activeGame='all') {
-  const el = document.getElementById('page-mod');
-  if (!el) return;
-
-  // Build filter buttons dynamically from MOD_POSTS games
+  // Build filter buttons
   const filterBar = document.getElementById('modFilterBar');
   if (filterBar) {
     const games = ['all', ...new Set(MOD_POSTS.map(m => m.game))];
     const gameLabels = {};
     MOD_POSTS.forEach(m => { gameLabels[m.game] = m.game_label || m.game; });
     filterBar.innerHTML = games.map(g =>
-      `<button class="filter-btn${g===activeGame?' active':''}" onclick="filterMod(this,'${g}')">${g==='all'?'Tất cả':gameLabels[g]}</button>`
+      `<button class="mod-filter-btn${g===activeGame?' active':''}" onclick="filterMod(this,'${g}')">${g==='all'?'Tất cả':gameLabels[g]}</button>`
     ).join('');
   }
 
   const grid = document.getElementById('modGrid');
   if (!grid) return;
 
-  const list = activeGame === 'all'
-    ? MOD_POSTS
-    : MOD_POSTS.filter(m => m.game === activeGame);
+  const list = activeGame === 'all' ? MOD_POSTS : MOD_POSTS.filter(m => m.game === activeGame);
 
   if (!list.length) {
-    grid.innerHTML = `<div style="text-align:center;padding:3rem;color:var(--text2)">Chưa có mod trong danh mục này, sắp cập nhật...</div>`;
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--text2)">Chưa có mod trong danh mục này, sắp cập nhật...</div>`;
     return;
   }
 
-  grid.innerHTML = list.map(m => `
-    <article class="bcard" onclick="goModPost('${m.slug}')" style="cursor:pointer">
-      <div class="bcard-thumb" style="background:${m.gradient};position:relative;overflow:hidden">
-        ${m.thumbnail ? `<img src="${m.thumbnail}" alt="${m.title}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.85">` : ''}
-        <span style="position:relative;font-size:2rem">${m.icon}</span>
-        <div style="position:absolute;top:.5rem;left:.5rem;display:flex;gap:.3rem;flex-wrap:wrap">
-          ${(m.badges||[]).includes('hot') ? `<span class="badge badge-hot">HOT</span>` : ''}
-          ${(m.badges||[]).includes('new') ? `<span class="badge badge-new">MỚI</span>` : ''}
-        </div>
-        <div style="position:absolute;bottom:.5rem;right:.5rem;background:rgba(0,0,0,.6);padding:.2rem .5rem;border-radius:4px;font-size:.7rem;color:#fff">${m.compat||''}</div>
+  grid.innerHTML = list.map(m => {
+    const badgesHtml = [
+      (m.badges||[]).includes('hot') ? `<span class="badge badge-hot">HOT</span>` : '',
+      (m.badges||[]).includes('new') ? `<span class="badge badge-new">MỚI</span>` : '',
+    ].join('');
+
+    return `
+    <article class="mod-card" onclick="goModPost('${m.slug}')">
+      <div class="mod-card-thumb">
+        ${m.thumbnail
+          ? `<img src="${m.thumbnail}" alt="${m.title}" loading="lazy">`
+          : `<div style="width:100%;height:100%;background:${m.gradient};display:flex;align-items:center;justify-content:center;font-size:3rem">${m.icon}</div>`
+        }
+        <div class="mod-card-thumb-overlay"></div>
+        ${badgesHtml ? `<div class="mod-card-badges">${badgesHtml}</div>` : ''}
+        ${m.compat ? `<div class="mod-card-compat">${m.compat}</div>` : ''}
       </div>
-      <div class="bcard-body">
-        <div class="bcard-meta">
-          <span class="blog-cat-badge" style="background:rgba(0,180,216,.15);color:var(--accent);border-radius:4px;padding:.15rem .45rem;font-size:.65rem;font-weight:800;letter-spacing:.04em">${m.game_label||m.game}</span>
-          <span>${m.date}</span>
-          <span>${m.readTime}</span>
+      <div class="mod-card-body">
+        <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+          <span class="mod-card-game">${m.game_label||m.game}</span>
+          <span style="font-size:.65rem;color:var(--text3)">${m.date}</span>
         </div>
-        <h3 class="bcard-title">${m.title}</h3>
-        <p class="bcard-desc">${m.desc}</p>
-        <div style="display:flex;gap:.5rem;align-items:center;margin-top:.8rem;flex-wrap:wrap">
-          <span style="font-size:.72rem;color:var(--text2)">👤 ${m.author||'Cộng đồng'}</span>
-          <span style="font-size:.72rem;color:var(--text2)">📦 ${m.version||''}</span>
-          <span style="margin-left:auto;font-size:.72rem;font-weight:700;color:var(--accent)">Xem mod →</span>
+        <h3 class="mod-card-title">${m.title}</h3>
+        <p class="mod-card-desc">${m.desc}</p>
+        <div class="mod-card-foot">
+          <div class="mod-card-meta">
+            <span>👤 ${m.author||'Cộng đồng'}</span>
+            <span>📦 ${m.version||''}</span>
+          </div>
+          <span class="mod-card-cta">Xem mod →</span>
         </div>
       </div>
-    </article>
-  `).join('');
+    </article>`;
+  }).join('');
 }
 
 function filterMod(btn, game) {
-  document.querySelectorAll('#modFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#modFilterBar .mod-filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderMod(game);
 }
