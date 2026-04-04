@@ -31,6 +31,7 @@ const LANGS = {
       new_:    { title:'Game Mới Cập Nhật',        sub:'Những game vừa được thêm vào kho' },
       top:     { title:'Top Game',                 sub:'Bảng xếp hạng theo đánh giá và lượt tải' },
       blog:    { title:'Blog VaultGame',           sub:'Tin tức, thủ thuật và bài viết về thế giới gaming' },
+      mod:     { title:'Mod Game',                 sub:'Tổng hợp mod chất lượng cao cho các tựa game PC' },
       about:   { title:'Giới Thiệu',               sub:'Về VaultGame và sứ mệnh của chúng tôi' },
       contact: { title:'Liên Hệ',                  sub:'Chúng tôi luôn sẵn sàng hỗ trợ bạn' },
       report:  { title:'Báo Lỗi',                  sub:'Giúp chúng tôi cải thiện VaultGame mỗi ngày' },
@@ -68,6 +69,7 @@ const LANGS = {
       new_:    { title:'New Releases',            sub:'Latest games added to the vault' },
       top:     { title:'Top Games',               sub:'Rankings by rating and downloads' },
       blog:    { title:'VaultGame Blog',          sub:'News, guides and articles about gaming' },
+      mod:     { title:'Game Mods',               sub:'High quality mods for PC games' },
       about:   { title:'About Us',                sub:'About VaultGame and our mission' },
       contact: { title:'Contact',                 sub:'Get in touch with our team' },
       report:  { title:'Report an Issue',         sub:'Help us improve VaultGame every day' },
@@ -105,6 +107,7 @@ const LANGS = {
       new_:    { title:'Novedades',                 sub:'Los últimos juegos añadidos al catálogo' },
       top:     { title:'Top Juegos',                sub:'Rankings por puntuación y descargas' },
       blog:    { title:'Blog de VaultGame',         sub:'Noticias, guías y artículos sobre gaming' },
+      mod:     { title:'Mods de Juegos',             sub:'Mods de alta calidad para juegos PC' },
       about:   { title:'Sobre Nosotros',            sub:'Acerca de VaultGame y nuestra misión' },
       contact: { title:'Contacto',                  sub:'Ponte en contacto con nuestro equipo' },
       report:  { title:'Reportar Problema',         sub:'Ayúdanos a mejorar VaultGame cada día' },
@@ -390,6 +393,18 @@ function handlePath() {
       renderBlogPost(post);
       updateCanonical(p);
       updateSEO(post.title + ' — VaultGame Blog', post.desc || '', post.thumbnail || '');
+      return;
+    }
+  }
+  // Mod post: /mod-game/slug
+  const mp = p.match(/^\/mod-game\/(.+)$/);
+  if (mp) {
+    const mod = MOD_POSTS.find(x=>x.slug===mp[1]);
+    if (mod) {
+      showPage('modpost');
+      renderModPost(mod);
+      updateCanonical(p);
+      updateSEO(mod.title + ' — VaultGame Mod', mod.desc || '', mod.thumbnail || '');
       return;
     }
   }
@@ -1686,7 +1701,12 @@ function renderTerms() {
 // ============================================================
 
 function renderMod(activeGame='all') {
-  // Build filter buttons
+  // Update page hero text từ i18n
+  const pg = L().pages && L().pages.mod;
+  const h1 = document.getElementById('modPageTitle');
+  const sub = document.getElementById('modPageSub');
+  if (h1 && pg) h1.textContent = pg.title;
+  if (sub && pg) sub.textContent = pg.sub;
   const filterBar = document.getElementById('modFilterBar');
   if (filterBar) {
     const games = ['all', ...new Set(MOD_POSTS.map(m => m.game))];
