@@ -4,6 +4,90 @@
  
 const GAMES = [
   {
+    id: 10,
+    title: "Battlefield Vietnam",
+    slug: "battlefield-vietnam",
+    genre: "action",
+    genre_label: "Bắn Súng / Chiến Tranh",
+    desc_short: "Trải nghiệm Chiến tranh Việt Nam qua góc nhìn của cả hai phe — lính Mỹ và Việt Cộng — trong tựa FPS kinh điển của EA. Bản đồ rừng rậm, trực thăng, nhạc rock 60s và lối chơi chiến thuật đội nhóm đỉnh cao.",
+    desc_full: `
+<h2>Battlefield Vietnam là gì?</h2>
+<p>Battlefield Vietnam là tựa game bắn súng góc nhìn thứ nhất (FPS) được phát triển bởi Digital Illusions CE (DICE) và phát hành bởi Electronic Arts vào năm 2004. Đây là phần thứ hai trong series Battlefield huyền thoại, lấy bối cảnh Chiến tranh Việt Nam với những trận chiến ác liệt tại rừng rậm nhiệt đới, đồng bằng sông Cửu Long và các thành phố lịch sử.</p>
+
+<h2>Bối cảnh & Bản đồ lịch sử</h2>
+<p>Game tái hiện các chiến dịch lịch sử nổi tiếng như Đường mòn Hồ Chí Minh, Trận Huế, Thung lũng Ia Drang, Chiến dịch Flaming Dart, Trận Khe Sanh và Sự kiện 30/4. Mỗi bản đồ được thiết kế chi tiết với địa hình rừng núi chân thực, tạo cảm giác chiến trường thực sự căng thẳng và nguy hiểm.</p>
+
+<h2>Gameplay & Cơ chế chiến đấu</h2>
+<p>Người chơi có thể tham chiến với tư cách lính Mỹ hoặc Việt Cộng, mỗi phe có vũ khí và phương tiện riêng biệt. Hệ thống chiếm điểm kiểm soát (Control Points) tạo ra lối chơi chiến thuật đội nhóm sâu sắc. Điểm nổi bật là khả năng bắn vũ khí từ ghế phụ xe cộ, hệ thống bản đồ 3D đầu tiên trong series, và trực thăng có thể cẩu xe lên không trung.</p>
+
+<h2>Phương tiện chiến đấu đa dạng</h2>
+<p>Battlefield Vietnam sở hữu kho phương tiện phong phú gồm xe tăng M48 Patton, xe tăng T-54 của Việt Cộng, trực thăng UH-1 Huey, AH-1 Cobra, máy bay cường kích F-4 Phantom, xe tải quân sự và nhiều loại tàu thuyền. Trực thăng Huey mang tính biểu tượng của cuộc chiến, cho phép vận chuyển quân nhanh chóng qua địa hình hiểm trở.</p>
+
+<h2>Nhạc nền Rock kinh điển thập niên 60</h2>
+<p>Một điểm đặc biệt không thể quên của Battlefield Vietnam là hệ thống radio trong xe cộ phát nhạc rock thập niên 60 xác thực — bao gồm các bản nhạc huyền thoại gắn liền với thời kỳ này. Người chơi thậm chí có thể import nhạc của riêng mình vào game, tạo nên trải nghiệm chiến đấu cực kỳ ấn tượng và đầy cảm xúc.</p>
+
+<h2>Đa người chơi huyền thoại</h2>
+<p>Với hỗ trợ lên đến 64 người chơi trực tuyến, Battlefield Vietnam từng là tâm điểm của cộng đồng game online thập niên 2000. Các trận chiến quy mô lớn trên bản đồ rộng, phối hợp bộ binh - xe tăng - không quân tạo nên những khoảnh khắc không thể quên. Dù server chính thức đã đóng cửa, cộng đồng vẫn duy trì các server riêng cho đến ngày nay.</p>
+
+<h2>Vì sao chơi lại năm 2026?</h2>
+<p>Battlefield Vietnam vẫn là một trong những FPS chiến tranh hay nhất mọi thời đại. Lối chơi chiến thuật đội nhóm, bản đồ đa dạng và không khí chiến tranh đặc trưng không có tựa game nào thay thế được. Đặc biệt với game thủ Việt Nam, đây là cơ hội độc đáo để trải nghiệm lịch sử dân tộc qua góc nhìn điện ảnh — dù ở phe nào.</p>`,
+    install_guide: `<h3>QUY TRÌNH CÀI ĐẶT BATTLEFIELD VIETNAM</h3>
+    <ol>
+      <li>Tải tất cả Part về, đặt vào cùng 1 thư mục rồi giải nén — mật khẩu nằm trong dấu [ ] ở tên file nén (ví dụ: <strong>vaultgame.qzz.io</strong>)</li>
+      <li>Chạy file <strong>Setup.exe</strong> và làm theo hướng dẫn cài đặt</li>
+      <li>Vào thư mục <strong>NOCD</strong> trong file tải về, copy file <strong>bfvietnam.exe</strong> và thư mục <strong>Mods</strong> vào thư mục cài đặt game (mặc định: <code>C:\Program Files (x86)\EA GAMES\Battlefield Vietnam\</code>), chọn Replace để ghi đè</li>
+      <li>Chạy <strong>bfvietnam.exe</strong> để khởi động game — không cần đĩa!</li>
+    </ol>
+    <p><strong>Lưu ý:</strong> Tắt Windows Defender / antivirus trước khi giải nén. Chạy file exe ở chế độ Compatibility Mode Windows XP nếu gặp lỗi trên Windows 10/11.</p>`,
+    size: "~2.3 GB",
+    version: "1.21 (Redux)",
+    year: 2004,
+    updated: "04/04/2026",
+    developer: "Digital Illusions CE (DICE)",
+    publisher: "Electronic Arts",
+    rating: 4.5,
+    downloads: 0,
+    emoji: "🪖",
+    badges: ["classic"],
+    viet: false,
+    download_links: [
+      { label: "Đang cập nhật...", url: "#", icon: "⏳", group: "Mirror Link" },
+    ],
+    thumbnail: "https://upload.wikimedia.org/wikipedia/en/5/5f/Battlefield_Vietnam_cover.jpg",
+    screenshots: [
+      "https://www.mobygames.com/images/shots/l/229203-battlefield-vietnam-windows-screenshot-flying-the-ah1-cobra.jpg",
+      "https://www.mobygames.com/images/shots/l/229198-battlefield-vietnam-windows-screenshot-taking-cover-in-the.jpg",
+      "https://www.mobygames.com/images/shots/l/229200-battlefield-vietnam-windows-screenshot-huey-assault.jpg",
+    ],
+    gallery: [
+      "https://www.mobygames.com/images/shots/l/229203-battlefield-vietnam-windows-screenshot-flying-the-ah1-cobra.jpg",
+      "https://www.mobygames.com/images/shots/l/229198-battlefield-vietnam-windows-screenshot-taking-cover-in-the.jpg",
+      "https://www.mobygames.com/images/shots/l/229200-battlefield-vietnam-windows-screenshot-huey-assault.jpg",
+      "https://www.mobygames.com/images/shots/l/229201-battlefield-vietnam-windows-screenshot-jungle-warfare.jpg",
+      "https://www.mobygames.com/images/shots/l/229202-battlefield-vietnam-windows-screenshot-tank-battle.jpg",
+    ],
+    trailer: "https://www.youtube.com/embed/kGjZcmfBP5A",
+    tags: ["FPS", "Bắn Súng", "Chiến Tranh", "Việt Nam", "Multiplayer", "Classic", "Lịch Sử", "Trực Thăng"],
+    sys_req: {
+      min: {
+        os: "Windows XP / Vista / 7 / 10 / 11",
+        cpu: "Intel Pentium 4 1.7 GHz",
+        ram: "256 MB",
+        gpu: "NVIDIA GeForce 3 / ATI Radeon 8500 (64 MB VRAM)",
+        storage: "3 GB",
+        directx: "DirectX 9.0",
+      },
+      rec: {
+        os: "Windows 10 / 11 64-bit",
+        cpu: "Intel Core 2 Duo hoặc tốt hơn",
+        ram: "1 GB",
+        gpu: "NVIDIA GeForce 6600 / ATI Radeon X700 (128 MB VRAM)",
+        storage: "3 GB",
+        directx: "DirectX 9.0",
+      },
+    },
+  },
+  {
     id: 5,
     title: "PES 2026 SP Football Life 2026 + Việt Hóa + Real Faces",
     slug: "pes-2026-sp-football-life-2026-viet-hoa-real-faces",
