@@ -174,8 +174,8 @@ function updateLangUI() {
   const fl = L().filter;
   [['chip-all',fl.all],['chip-action',fl.action],['chip-rpg',fl.rpg],['chip-strategy',fl.strategy],['chip-puzzle',fl.puzzle],['chip-shooter',fl.shooter],['chip-adventure',fl.adventure],['chip-simulation',fl.simulation],['chip-horror',fl.horror],['chip-sports',fl.sports]].forEach(([id,txt]) => { const el=document.getElementById(id); if(el) el.textContent=txt; });
   // Page headers — all pages including static ones
-  const allPageKeys = ['games','genre','viet','new_','top','blog','about','contact','report','privacy','terms'];
-  const pageIdMap = {games:'page-games',genre:'page-genre',viet:'page-viet',new_:'page-new',top:'page-top',blog:'page-blog',about:'page-about',contact:'page-contact',report:'page-report',privacy:'page-privacy',terms:'page-terms'};
+  const allPageKeys = ['games','genre','viet','new_','top','blog','mod','about','contact','report','privacy','terms'];
+  const pageIdMap = {games:'page-games',genre:'page-genre',viet:'page-viet',new_:'page-new',top:'page-top',blog:'page-blog',mod:'page-mod',about:'page-about',contact:'page-contact',report:'page-report',privacy:'page-privacy',terms:'page-terms'};
   allPageKeys.forEach(key => {
     const p = L().pages[key]; if(!p) return;
     const pid = pageIdMap[key]; if(!pid) return;
@@ -233,6 +233,8 @@ const ROUTES = {
   contact:  { path:'/lien-he',    el:'page-contact',   nav:null       },
   report:   { path:'/bao-loi',    el:'page-report',    nav:null       },
   blog:     { path:'/blog',       el:'page-blog',      nav:'nl-blog'  },
+  mod:      { path:'/mod-game',   el:'page-mod',       nav:'nl-mod'   },
+  modpost:  { path:'/mod-game/',  el:'page-mod-post',  nav:null       },
   privacy:  { path:'/chinh-sach', el:'page-privacy',   nav:null       },
   terms:    { path:'/dieu-khoan', el:'page-terms',     nav:null       },
   blogpost: { path:'/blog/',      el:'page-blog-post', nav:null       },
@@ -353,12 +355,19 @@ function reRender(page) {
     case 'new':      renderNew(); break;
     case 'top':      renderTop(); break;
     case 'blog':     renderBlog(); break;
+    case 'mod':      renderMod(); break;
     case 'privacy':  renderPrivacy(); break;
     case 'terms':    renderTerms(); break;
     case 'blogpost': {
       const slug = getCleanPath().replace('/blog/','');
       const bp = BLOG_POSTS.find(x=>x.slug===slug);
       if (bp) renderBlogPost(bp);
+      break;
+    }
+    case 'modpost': {
+      const slug = getCleanPath().replace('/mod-game/','');
+      const mp = MOD_POSTS.find(x=>x.slug===slug);
+      if (mp) renderModPost(mp);
       break;
     }
     case 'detail': {
@@ -1670,4 +1679,148 @@ function renderTerms() {
   box.innerHTML = data.sections.map(s =>
     `<div class="policy-section"><h3 class="policy-h">${s.h}</h3><div class="policy-text">${s.p}</div></div>`
   ).join('');
+}
+
+// ============================================================
+// MOD GAME — renderMod, filterMod, renderModPost
+// ============================================================
+
+function renderMod(activeCat='all') {
+  const el = document.getElementById('page-mod');
+  if (!el) return;
+  const title = el.querySelector('#modPageTitle');
+  const sub   = el.querySelector('#modPageSub');
+  if (title) title.textContent = 'Mod Game';
+  if (sub)   sub.textContent   = 'Tổng hợp mod chất lượng cao cho các tựa game PC';
+
+  const grid = document.getElementById('modGrid');
+  if (!grid) return;
+
+  const list = activeCat === 'all'
+    ? MOD_POSTS
+    : MOD_POSTS.filter(m => m.cat === activeCat);
+
+  if (!list.length) {
+    grid.innerHTML = `<div style="text-align:center;padding:3rem;color:var(--text2)">Chưa có mod trong danh mục này, sắp cập nhật...</div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(m => `
+    <article class="bcard" onclick="goModPost('${m.slug}')" style="cursor:pointer">
+      <div class="bcard-thumb" style="background:${m.gradient};position:relative;overflow:hidden">
+        ${m.thumbnail ? `<img src="${m.thumbnail}" alt="${m.title}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.85">` : ''}
+        <span style="position:relative;font-size:2rem">${m.icon}</span>
+        <div style="position:absolute;top:.5rem;left:.5rem;display:flex;gap:.3rem;flex-wrap:wrap">
+          ${(m.badges||[]).includes('hot') ? `<span class="badge badge-hot">HOT</span>` : ''}
+          ${(m.badges||[]).includes('new') ? `<span class="badge badge-new">MỚI</span>` : ''}
+        </div>
+        <div style="position:absolute;bottom:.5rem;right:.5rem;background:rgba(0,0,0,.6);padding:.2rem .5rem;border-radius:4px;font-size:.7rem;color:#fff">${m.compat||''}</div>
+      </div>
+      <div class="bcard-body">
+        <div class="bcard-meta">
+          <span class="blog-cat-badge" style="background:rgba(0,180,216,.15);color:var(--accent);border-radius:4px;padding:.15rem .45rem;font-size:.65rem;font-weight:800;letter-spacing:.04em">${m.game_label||m.game}</span>
+          <span>${m.date}</span>
+          <span>${m.readTime}</span>
+        </div>
+        <h3 class="bcard-title">${m.title}</h3>
+        <p class="bcard-desc">${m.desc}</p>
+        <div style="display:flex;gap:.5rem;align-items:center;margin-top:.8rem;flex-wrap:wrap">
+          <span style="font-size:.72rem;color:var(--text2)">👤 ${m.author||'Cộng đồng'}</span>
+          <span style="font-size:.72rem;color:var(--text2)">📦 ${m.version||''}</span>
+          <span style="margin-left:auto;font-size:.72rem;font-weight:700;color:var(--accent)">Xem mod →</span>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function filterMod(btn, cat) {
+  document.querySelectorAll('#page-mod .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMod(cat);
+}
+
+function goModPost(slug) {
+  const mp = MOD_POSTS.find(m => m.slug === slug);
+  if (!mp) return;
+  history.pushState({}, '', '/mod-game/' + slug);
+  showPage('modpost');
+  renderModPost(mp);
+}
+
+function renderModPost(m) {
+  const el = document.getElementById('page-mod-post');
+  if (!el) return;
+
+  const dlHtml = (() => {
+    const groups = {};
+    (m.download_links||[]).forEach(lnk => {
+      const g = lnk.group || 'Tải về';
+      if (!groups[g]) groups[g] = [];
+      groups[g].push(lnk);
+    });
+    return Object.entries(groups).map(([gname, links]) => `
+      <div class="dl-group" style="margin-bottom:1rem">
+        <div class="dl-group-label" style="font-size:.72rem;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem">${gname}</div>
+        <div style="display:flex;flex-direction:column;gap:.4rem">
+          ${links.map(lnk => `
+            <a href="${lnk.url}" target="_blank" rel="noopener" class="dl-btn" style="display:flex;align-items:center;gap:.6rem;padding:.65rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;font-weight:700;font-size:.85rem;transition:all .14s">
+              <span>${lnk.icon||'⬇️'}</span>
+              <span>${lnk.label}</span>
+              <svg style="margin-left:auto;opacity:.4" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  })();
+
+  const screenshotsHtml = (m.screenshots||[]).length ? `
+    <div class="gallery-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem;margin:1rem 0">
+      ${m.screenshots.map(s=>`<img src="${s}" alt="" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;cursor:pointer" onclick="openLb('${s}')">`).join('')}
+    </div>
+  ` : '';
+
+  el.innerHTML = `
+    <div class="detail-wrap" style="max-width:860px;margin:0 auto;padding:1.5rem 1rem 4rem">
+      <div class="detail-breadcrumb" style="font-size:.75rem;color:var(--text2);margin-bottom:1.2rem;display:flex;align-items:center;gap:.35rem;flex-wrap:wrap">
+        <a onclick="go('home')" style="color:var(--text2);cursor:pointer">Trang chủ</a><span>›</span>
+        <a onclick="go('mod')" style="color:var(--text2);cursor:pointer">Mod Game</a><span>›</span>
+        <span style="color:var(--text)">${m.title}</span>
+      </div>
+
+      <div style="background:${m.gradient};border-radius:16px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden;min-height:160px;display:flex;flex-direction:column;justify-content:flex-end">
+        ${m.thumbnail?`<img src="${m.thumbnail}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.3">`:''}
+        <div style="position:relative">
+          <div style="display:flex;gap:.4rem;margin-bottom:.6rem;flex-wrap:wrap">
+            <span style="background:rgba(0,0,0,.5);padding:.2rem .55rem;border-radius:20px;font-size:.7rem;font-weight:800;color:#fff">${m.game_label}</span>
+            <span style="background:rgba(0,0,0,.5);padding:.2rem .55rem;border-radius:20px;font-size:.7rem;color:#fff">${m.cat_label}</span>
+            ${(m.badges||[]).includes('hot')?`<span class="badge badge-hot">HOT</span>`:''}
+            ${(m.badges||[]).includes('new')?`<span class="badge badge-new">MỚI</span>`:''}
+          </div>
+          <h1 style="font-size:1.4rem;font-weight:900;color:#fff;margin:0 0 .3rem;line-height:1.2">${m.title}</h1>
+          <div style="display:flex;gap:1rem;font-size:.75rem;color:rgba(255,255,255,.8);flex-wrap:wrap">
+            <span>👤 ${m.author||'Cộng đồng'}</span>
+            <span>📦 ${m.version||''}</span>
+            <span>🎮 ${m.compat||''}</span>
+            <span>📅 ${m.date}</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start">
+        <div>
+          <div class="detail-desc" style="line-height:1.75;color:var(--text)">${m.content||''}</div>
+          ${screenshotsHtml ? `<h3 style="margin:1.5rem 0 .6rem;font-size:1rem">🖼️ Hình ảnh</h3>${screenshotsHtml}` : ''}
+        </div>
+        <div style="position:sticky;top:calc(var(--nav-h) + 1rem)">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem">
+            <h3 style="margin:0 0 1rem;font-size:.95rem;font-weight:800">⬇️ Tải Mod</h3>
+            ${dlHtml}
+            <p style="font-size:.7rem;color:var(--text2);margin:.8rem 0 0;line-height:1.5">⚠️ Đọc kỹ hướng dẫn cài đặt trong bài viết trước khi tải.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 }
