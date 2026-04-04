@@ -1685,20 +1685,27 @@ function renderTerms() {
 // MOD GAME — renderMod, filterMod, renderModPost
 // ============================================================
 
-function renderMod(activeCat='all') {
+function renderMod(activeGame='all') {
   const el = document.getElementById('page-mod');
   if (!el) return;
-  const title = el.querySelector('#modPageTitle');
-  const sub   = el.querySelector('#modPageSub');
-  if (title) title.textContent = 'Mod Game';
-  if (sub)   sub.textContent   = 'Tổng hợp mod chất lượng cao cho các tựa game PC';
+
+  // Build filter buttons dynamically from MOD_POSTS games
+  const filterBar = document.getElementById('modFilterBar');
+  if (filterBar) {
+    const games = ['all', ...new Set(MOD_POSTS.map(m => m.game))];
+    const gameLabels = {};
+    MOD_POSTS.forEach(m => { gameLabels[m.game] = m.game_label || m.game; });
+    filterBar.innerHTML = games.map(g =>
+      `<button class="filter-btn${g===activeGame?' active':''}" onclick="filterMod(this,'${g}')">${g==='all'?'Tất cả':gameLabels[g]}</button>`
+    ).join('');
+  }
 
   const grid = document.getElementById('modGrid');
   if (!grid) return;
 
-  const list = activeCat === 'all'
+  const list = activeGame === 'all'
     ? MOD_POSTS
-    : MOD_POSTS.filter(m => m.cat === activeCat);
+    : MOD_POSTS.filter(m => m.game === activeGame);
 
   if (!list.length) {
     grid.innerHTML = `<div style="text-align:center;padding:3rem;color:var(--text2)">Chưa có mod trong danh mục này, sắp cập nhật...</div>`;
@@ -1734,10 +1741,10 @@ function renderMod(activeCat='all') {
   `).join('');
 }
 
-function filterMod(btn, cat) {
-  document.querySelectorAll('#page-mod .filter-btn').forEach(b => b.classList.remove('active'));
+function filterMod(btn, game) {
+  document.querySelectorAll('#modFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  renderMod(cat);
+  renderMod(game);
 }
 
 function goModPost(slug) {
