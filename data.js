@@ -62,11 +62,11 @@ const GAMES = [
     badges: ["hot", "new", "viet"],
     viet: true,
     download_links: [
-      { label: "Part 1", url: "https://gofile.io/d/pes2026part1", icon: "⬇️", group: "Mirror Link" },
-      { label: "Part 2", url: "https://gofile.io/d/pes2026part2", icon: "⬇️", group: "Mirror Link" },
-      { label: "Part 3", url: "https://gofile.io/d/pes2026part3", icon: "⬇️", group: "Mirror Link" },
-      { label: "Part 4", url: "https://gofile.io/d/pes2026part4", icon: "⬇️", group: "Mirror Link" },
-      { label: "Patch Việt Hóa", url: "https://gofile.io/d/pes2026viet", icon: "🇻🇳", group: "Mirror Link" },
+      { label: "Part 1", url: "https://vik1ngfile.site/f/CHGV3JvPuu", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 2", url: "https://vik1ngfile.site/f/3xTV7BDF8A", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 3", url: "https://vik1ngfile.site/f/QIBR6c65Pg", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 4", url: "https://vik1ngfile.site/f/L2jSrfD7SM", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 5", url: "https://vik1ngfile.site/f/JZXiWEkt6S", icon: "⬇️", group: "Mirror Link" },
     ],
     thumbnail: "https://tamhongame.net/storage/games/pes-2026-sp-football-life-2026-viet-hoa-real-faces/pes-2026-sp-football-life-2026-viet-hoa-real-faces-vertical_photo-zAowwKiTTnsF2A9MCyJJ.jpeg",
     screenshots: [
