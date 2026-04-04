@@ -866,3 +866,64 @@ const BLOG_POSTS = [
     `
   },
 ];
+
+// ============================================================
+// MOD_POSTS — Dữ liệu Mod Game
+// ============================================================
+
+const MOD_POSTS = [
+  {
+    id: 1,
+    slug: "ets2-ban-do-viet-nam-pham-thach",
+    game: "ets2",
+    game_label: "Euro Truck Simulator 2",
+    cat: "map",
+    cat_label: "Bản Đồ",
+    title: "Bản Đồ Việt Nam v9.0 cho ETS2 — Full Bắc Vào Nam",
+    desc: "Mod bản đồ tái hiện toàn bộ cung đường Việt Nam từ Điện Biên đến Cà Mau, do tác giả Phạm Thạch phát triển. Hỗ trợ ETS2 phiên bản 1.50 trở lên.",
+    date: "04/04/2026",
+    readTime: "3 phút đọc",
+    thumbnail: "https://allmods.net/wp-content/uploads/2021/06/cover_viet-nam-map-v81-free-by-phamthach-ets2-150_1P7EEv3wTM.webp",
+    gradient: "linear-gradient(135deg,#e63946,#f4a261)",
+    icon: "🗺️",
+    badges: ["hot", "new"],
+    version: "v9.0",
+    compat: "ETS2 1.50 – 1.53+",
+    author: "Phạm Thạch",
+    download_links: [
+      { label: "Part 1", url: "https://gofile.io/d/ualXmO", icon: "⬇️", group: "Link tải chính" },
+      { label: "Part 2", url: "https://gofile.io/d/JlbWMo", icon: "⬇️", group: "Link tải chính" },
+      { label: "⚠️ Mod Zoom Full Map (Bắt buộc)", url: "https://gofile.io/d/LS3eqX", icon: "🔧", group: "Mod yêu cầu" },
+    ],
+    screenshots: [
+      "https://allmods.net/wp-content/uploads/2021/06/cover_viet-nam-map-v81-free-by-phamthach-ets2-150_1P7EEv3wTM.webp",
+      "https://allmods.net/wp-content/uploads/2021/06/cover_viet-nam-map-v81-free-by-phamthach-ets2-150_cxqYNyIfMC.webp",
+      "https://allmods.net/wp-content/uploads/2021/06/cover_viet-nam-map-v81-free-by-phamthach-ets2-150_q6h73JBc2e.webp",
+      "https://allmods.net/wp-content/uploads/2021/06/cover_viet-nam-map-v81-free-by-phamthach-ets2-150_6P7vnX7Wkf.webp",
+      "https://allmods.net/wp-content/uploads/2019/11/project-vietnam-v-1-0_2-1024x576.jpeg",
+    ],
+    content: `
+<h2>Giới thiệu Mod Bản Đồ Việt Nam</h2>
+<p>Đây là mod bản đồ nổi tiếng nhất trong cộng đồng ETS2 Việt Nam, được phát triển và liên tục cập nhật bởi tác giả <strong>Phạm Thạch</strong>. Phiên bản v9.0 tái hiện toàn bộ cung đường Việt Nam từ Điện Biên (Tây Bắc) kéo dài đến tận Mũi Cà Mau, bao gồm 4 khu vực bản đồ riêng biệt ghép lại thành một hành trình xuyên Việt hoàn chỉnh.</p>
+
+<h2>4 Khu vực bản đồ</h2>
+<p><strong>Bản Đồ VN 1 — Miền Bắc:</strong> Tuyến đường Tây Bắc hiểm trở từ Điện Biên về Hà Nội, sau đó xuôi Nam đến Đà Nẵng và vào Tây Nguyên qua Buôn Ma Thuột. Đây là khu vực địa hình phức tạp nhất với đèo núi quanh co đặc trưng.</p>
+<p><strong>Bản Đồ VN 2 — Miền Đông Nam Bộ:</strong> Từ Tây Nguyên xuống TP. Hồ Chí Minh với nhiều chi tiết đô thị được tái hiện tỉ mỉ. Từ Sài Gòn tiếp tục nối về hướng Tây và Đà Lạt để kết nối với các bản đồ liền kề.</p>
+<p><strong>Bản Đồ VN 3 — Miền Tây:</strong> Tuyến Quốc lộ 1A qua các tỉnh Long An, Mỹ Tho, Tiền Giang, qua cầu Mỹ Thuận đến Vĩnh Long và Cần Thơ. Phong cảnh đồng bằng sông nước đặc trưng Nam Bộ.</p>
+<p><strong>Bản Đồ VN 4 — Duyên Hải Nam Trung Bộ:</strong> Cung đường ven biển Đông từ Đà Nẵng vào Nam qua Quảng Nam, Quảng Trị, Phú Yên, Nha Trang, Cam Ranh, kết thúc ở Đà Lạt.</p>
+
+<h2>⚠️ Mod Zoom Full Map — Bắt buộc phải cài</h2>
+<p>Mod <strong>Zoom Full Map Global Background</strong> là điều kiện tiên quyết để có thể nhìn thấy bản đồ khu vực Đông Nam Á trên màn hình bản đồ trong game. Nếu không cài mod này, vùng lãnh thổ Việt Nam sẽ không hiển thị trong giao diện bản đồ tổng thể. Tải và kích hoạt mod này <em>trước</em> khi kích hoạt bất kỳ phần bản đồ VN nào.</p>
+
+<h2>Hướng dẫn cài đặt</h2>
+<ol>
+  <li>Tải đủ <strong>Part 1, Part 2</strong> và <strong>Mod Zoom Full Map</strong> về máy</li>
+  <li>Giải nén, copy tất cả file <code>.scs</code> vào thư mục: <code>Documents\Euro Truck Simulator 2\mod</code></li>
+  <li>Mở ETS2, tạo <strong>Profile mới</strong> (không dùng profile cũ để tránh xung đột)</li>
+  <li>Vào <strong>Trình Quản Lý Mod</strong>, kích hoạt theo thứ tự: Zoom Full Map → VN1 → VN2 → VN3 → VN4</li>
+  <li>Chọn phân hệ bản đồ <strong>VietNammap.mbd</strong> thay vì Europe để bắt đầu tại Việt Nam</li>
+</ol>
+<p><strong>Lưu ý:</strong> Hạn chế dùng nhiều mod khác trong cùng một profile để tránh xung đột. Nên chơi trên ETS2 phiên bản 1.50 đến 1.53.</p>
+    `,
+  },
+];
