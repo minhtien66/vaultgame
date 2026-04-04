@@ -862,6 +862,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
     <a class="nav-link" id="nl-blog" onclick="go('blog')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Blog
     </a>
+    <a class="nav-link" id="nl-mod" onclick="go('mod')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Mod Game
+    </a>
   </div>
 
   <div class="nav-right">
@@ -907,6 +910,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
   <a class="nav-link" onclick="go('new');toggleDrawer()">⚡ Game Mới</a>
   <a class="nav-link" onclick="go('top');toggleDrawer()">📈 Top Game</a>
   <a class="nav-link" onclick="go('blog');toggleDrawer()">✍️ Blog</a>
+  <a class="nav-link" onclick="go('mod');toggleDrawer()">⭐ Mod Game</a>
   <div class="drawer-lang">
     <button class="drawer-lang-btn" onclick="setLang('vi');toggleDrawer()"><span class="lang-flag-circle" style="width:20px;height:20px"><img src="https://flagcdn.com/w40/vn.png" alt="VN" style="width:28px;height:28px"></span> Việt</button>
     <button class="drawer-lang-btn" onclick="setLang('en');toggleDrawer()"><span class="lang-flag-circle" style="width:20px;height:20px"><img src="https://flagcdn.com/w40/gb.png" alt="EN" style="width:28px;height:28px"></span> EN</button>
@@ -1469,6 +1473,27 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.1rem 2
 
 <!-- ══ BLOG POST DETAIL ══ -->
 <div class="page" id="page-blog-post"></div>
+
+<!-- ══ MOD GAME ══ -->
+<div class="page" id="page-mod">
+  <div class="page-hero">
+    <h1 id="modPageTitle">Mod Game</h1>
+    <p id="modPageSub">Tổng hợp mod chất lượng cao cho các tựa game PC</p>
+  </div>
+  <div class="page-body">
+    <div class="filter-bar" style="margin-bottom:1.5rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+      <button class="filter-btn active" onclick="filterMod(this,'all')" id="modCatAll">Tất cả</button>
+      <button class="filter-btn" onclick="filterMod(this,'map')">🗺️ Bản Đồ</button>
+      <button class="filter-btn" onclick="filterMod(this,'truck')">🚛 Xe cộ</button>
+      <button class="filter-btn" onclick="filterMod(this,'skin')">🎨 Skin</button>
+      <button class="filter-btn" onclick="filterMod(this,'other')">🔧 Khác</button>
+    </div>
+    <div id="modGrid" class="blog-grid"></div>
+  </div>
+</div>
+
+<!-- ══ MOD POST DETAIL ══ -->
+<div class="page" id="page-mod-post"></div>
 
 <!-- LIGHTBOX -->
 <div id="lb"><button id="lb-close" onclick="closeLb()">✕</button><img id="lb-img" src="" alt=""></div>
