@@ -248,10 +248,10 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: true,
     download_links: [
-      { label: "Part 1", url: "https://link4m.com/MyIYQy2K", icon: "⬇️", group: "Mirror Link" },
-      { label: "Part 2", url: "https://link4m.com/Y3mg8", icon: "⬇️", group: "Mirror Link" },
-      { label: "Part 3", url: "https://link4m.com/0Yob5Pl", icon: "⬇️", group: "Mirror Link" },
-      { label: "Steam Fix Online", url: "https://link4m.com/VNP53s3", icon: "🔧", group: "Mirror Link" },
+      { label: "Part 1", url: "https://gofile.io/d/NuM1Cb", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 2", url: "https://gofile.io/d/DdLZbG", icon: "⬇️", group: "Mirror Link" },
+      { label: "Part 3", url: "https://gofile.io/d/XcMB4I", icon: "⬇️", group: "Mirror Link" },
+      { label: "Steam Fix Online", url: "https://gofile.io/d/XUQ4iP", icon: "🔧", group: "Mirror Link" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
     screenshots: [
@@ -333,7 +333,7 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: false,
     download_links: [
-      { label: "Mirror Link", url: "https://link4m.net/ZUs0kR", icon: "⬇️" },
+      { label: "Mirror Link", url: "https://gofile.io/d/jg1uxC", icon: "⬇️" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
     screenshots: [
@@ -414,7 +414,7 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: false,
     download_links: [
-      { label: "Mirror Link", url: "https://link4m.com/W0QAlZ", icon: "⬇️" },
+      { label: "Mirror Link", url: "https://gofile.io/d/7iU3Fi", icon: "⬇️" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4021780/414ca27a13435d96ec1f22d28cb81db7fe2ece77/header.jpg?t=1764264528",
     screenshots: [
@@ -497,7 +497,7 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: true,
     download_links: [
-      { label: "Mirror Link", url: "https://link4m.net/FuB9P6", icon: "⬇️" },
+      { label: "Mirror Link", url: "https://gofile.io/d/4OYOvy", icon: "⬇️" },
     ],
     thumbnail: "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
     screenshots: [
