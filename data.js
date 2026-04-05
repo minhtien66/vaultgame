@@ -333,7 +333,7 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: false,
     download_links: [
-      { label: "Mirror Link", url: "https://gofile.io/d/jg1uxC", icon: "⬇️" },
+      { label: "Mirror Link", url: "https://link4m.net/ZUs0kR", icon: "⬇️" },
     ],
     thumbnail: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/529340/capsule_616x353.jpg",
     screenshots: [
@@ -497,7 +497,7 @@ const GAMES = [
     badges: ["hot", "new"],
     viet: true,
     download_links: [
-      { label: "Mirror Link", url: "https://gofile.io/d/4OYOvy", icon: "⬇️" },
+      { label: "Mirror Link", url: "https://link4m.net/FuB9P6", icon: "⬇️" },
     ],
     thumbnail: "https://hadoantv.com/wp-content/uploads/2025/10/download-eFootball-PES-2020-hadoan-tv.jpg",
     screenshots: [
